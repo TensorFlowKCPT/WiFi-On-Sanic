@@ -1,0 +1,312 @@
+body {
+  margin: 0px;
+  background-color: #fff;
+}
+/* HEADER */
+.header {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.wrapper-navigations {
+  display: flex;
+  gap: 60px;
+}
+
+.logo {
+  color: #000;
+  font-family: Inter;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.navigate {
+  color: #000;
+
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.wrapper-telephone {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.header button {
+  border-radius: 10px;
+  background-color: #657fda;
+  padding: 15px;
+  color: white;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: 1px solid #000;
+}
+
+a {
+  text-decoration: none;
+}
+/* ПОИСК */
+.container-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.container-search span:nth-child(1) {
+  display: block;
+  width: 696px;
+  text-align: center;
+  font-family: Inter;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.container-search span:nth-child(1) span {
+  color: #657fda;
+}
+
+.container-search input {
+  height: 60px;
+  width: 1300px;
+  border: 1px solid #657fda;
+  border-radius: 15px;
+  background-color: rgba(217, 217, 217, 0.2);
+
+  padding: 10px;
+  color: #000;
+  text-align: start;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 100;
+  line-height: normal;
+}
+/* ПРОВАЙДЕРЫ */
+.providers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 100px;
+  gap: 20px;
+}
+
+.providers span {
+  color: #000;
+
+  text-align: center;
+  font-family: Inter;
+  font-size: 52px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.wrapper-providers {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+}
+/* ПОПУЛЯРНЫЕ ТАРИФЫ */
+
+.popular-tariffs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.wrapper-card-tariff {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.popular-tariffs-text {
+  color: #000;
+
+  text-align: center;
+  font-family: Inter;
+  font-size: 52px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+/* КАРТОЧКА */
+.card-tariff {
+  height: 400px;
+  width: 255px;
+  border-radius: 20px;
+  box-shadow: 4px 5px 6px 0px rgba(0, 0, 0, 0.25),
+    0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card-tariff-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+  background-color: #667fda;
+  border-radius: 20px 20px 0 0;
+  padding: 7px;
+
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.card-tariff-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+}
+
+.wrapper-priceAndLogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.wrapper-priceAndLogo span:nth-child(1) {
+  color: #000;
+  text-decoration: line-through;
+  text-decoration-color: red;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.wrapper-priceAndLogo span:nth-child(2) {
+  color: #000;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.params {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.param {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+}
+
+.param span {
+  color: #000;
+
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.conn-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.conn-info button {
+  height: 30px;
+  width: 180px;
+  background-color: #657fda;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.conn-info a {
+  color: #000;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+
+.advantages {
+  display: flex;
+  max-width: 1600px;
+  align-items: center;
+  justify-content: space-around;
+  margin: 100px auto;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.advantage {
+  display: flex;
+  height: 160px;
+  align-items: center;
+  justify-items: center;
+  gap: 30px;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px #657fda;
+}
+
+.advantage span {
+  width: 600px;
+  color: #000;
+
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
