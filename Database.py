@@ -7,8 +7,11 @@ class Database:
         houseid = json.loads(requests.get(f"https://catalog.api.2gis.com/3.0/items/geocode?q={address}&key="+key2gis).content)['result']['items'][0]['id']
         resp = json.loads(requests.get(f"https://catalog.api.2gis.com/2.0/catalog/branch/list?building_id={houseid}&servicing=true&servicing_group=internet&key={key2gis}").content)
         providers = []
-        for i in resp['result']['items']:
-            providers.append(i['name'])
+        try:
+            for i in resp['result']['items']:
+                providers.append(i['name'])
+        except KeyError:
+            pass
         return providers
     
     def GetAllProvidersFromDB():
@@ -48,9 +51,15 @@ class Database:
                 validproviders.append(i)
         
         tariffs = []
+        city = address.split(',')[0].removeprefix("г ")
         with sqlite3.connect("sqlite.sqlite3") as conn:
-            cursor = conn.execute("SELECT id FROM Cities WHERE Name = ?", (address.split(',')[0],))
-            CityId = cursor.fetchone()[0]
+            cursor = conn.execute("SELECT id FROM Cities WHERE Name = ?", (city,)).fetchone()
+            if cursor == None:
+                return {
+                'providers':validproviders,
+                'tariffs':tariffs,
+                }
+            CityId = cursor[0]
             for i in validproviders:
                 cursor = conn.execute("SELECT id, Name, NameEng, Description, Price, PriceOld, OptionsJSON FROM Tariffs WHERE idCity = ? AND idProvider = ?", (CityId, i['id'],))
                 rows = cursor.fetchall()
@@ -92,4 +101,24 @@ class Database:
                 })
             output = {'tariffs':tariffs, 'providers':providers}
             return output
-print(Database.GetInfoByCityName("Тюмень"))
+    def GetAllSubdomains():
+        with sqlite3.connect("sqlite.sqlite3") as conn:
+            cursor = conn.execute("SELECT NameEng FROM Cities")
+            rows = cursor.fetchall()
+            output = []
+            for i in rows:
+                output.append(i[0])
+        return output
+    def GetCityBySubdomain(subdomain):
+        with sqlite3.connect("sqlite.sqlite3") as conn:
+            cursor = conn.execute("SELECT * FROM Cities Where NameEng = ?",(subdomain,))
+            row = cursor.fetchone()
+            if row:
+                output = {
+                    'id' : row[0],
+                    'Name' : row[1],
+                    'NameEng': row[2]
+                }
+            else: output = None
+        return output
+#print(Database.GetAllSubdomains())

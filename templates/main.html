@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>wifi-on</title>
-    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="static/css/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,30 +30,32 @@
     </div>
     <div class="container-search">
       <span
-        >Найди своего идеального <span>провайдера</span> в вашем городе
+        >Найди своего идеального <span>провайдера</span> {%if data["City"]!= "Unknown"%}в городе {{data['City']}}{%else%}в вашем городе{%endif%}
         здесь</span
       >
       <input
         type="search"
         name=""
-        id=""
-        placeholder="Начтите вводить свой адрес"
+        id="SearchBox"
+        placeholder="Начните вводить свой адрес"
+        oninput="CheckAddress()"
       />
+      <div id="SuggestionsContainer"></div>
     </div>
 
     <div class="providers">
-      <span>Провайдеры в г. Тюмень</span>
+      <span>Провайдеры в городе {{data.City}}</span>
       <div class="wrapper-providers">
-        <a href=""><img src="../img/main/bln80px.png" alt="" /></a>
-        <a href=""><img src="../img/main/mts80px.png" alt="" /></a>
-        <a href=""><img src="../img/main/rtk80px.png" alt="" /></a>
-        <a href=""><img src="../img/main/ttk80px.png" alt="" /></a>
-        <a href=""><img src="../img/main/domru80px.png" alt="" /></a>
+        <a href=""><img src="static/img/main/bln80px.png" alt="beeline" /></a>
+        <a href=""><img src="static/img/main/mts80px.png" alt="mts" /></a>
+        <a href=""><img src="static/img/main/rtk80px.png" alt="rtk" /></a>
+        <a href=""><img src="static/img/main/ttk80px.png" alt="ttk" /></a>
+        <a href=""><img src="static/img/main/domru80px.png" alt="domru" /></a>
       </div>
     </div>
     <div class="popular-tariffs">
       <span class="popular-tariffs-text"
-        >Популярные тарифы по городу Тюмень</span
+        >Популярные тарифы в городе {{data.City}}</span
       >
       <div class="wrapper-card-tariff">
         <div class="card-tariff">
@@ -307,4 +309,5 @@
     <div class="wrapper-form"></div>
     <div class="footer"></div> -->
   </body>
+  <script src="/static/js/main.js"></script>
 </html>
