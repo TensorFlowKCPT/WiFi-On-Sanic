@@ -23,14 +23,29 @@
         <a href=""
           ><div class="wrapper-telephone">
             <span class="navigate">+78005500792</span>
-            <img src="../img/main/telephone.svg" alt="" /></div
+            <img
+              src="static/img/main/telephone.svg"
+              alt="Иконка телефона"
+            /></div
         ></a>
       </div>
-      <button class="">Оставить заявку</button>
+      <button class="header-button">Оставить заявку</button>
     </div>
+
+    <div class="header-mobile">
+      <a href=""><span class="logo">WiFi On</span></a>
+      <div class="wrapper-telephone">
+        <span class="navigate">+78005500792</span>
+      </div>
+      <button>
+        <img src="static/img/main/menu.svg" alt="Иконка меню для телефона" />
+      </button>
+    </div>
+
     <div class="container-search">
       <span
-        >Найди своего идеального <span>провайдера</span> {%if data["City"]!= "Unknown"%}в городе {{data['City']}}{%else%}в вашем городе{%endif%}
+        >Найди своего идеального <span>провайдера</span> {%if data["City"]!=
+        "Unknown"%}в городе {{data['City']}}{%else%}в вашем городе{%endif%}
         здесь</span
       >
       <input
