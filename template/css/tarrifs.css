@@ -19,7 +19,6 @@ button:hover {
 .card-tariff:hover {
   transform: scale(1.04);
 }
-
 .wrapper-navigations a {
   position: relative;
 }
@@ -114,125 +113,97 @@ button:hover {
 a {
   text-decoration: none;
 }
-/* ПОИСК */
-.container-search {
+/* ФИЛЬТРАЦИЯ КАРТОЧЕК */
+.filter-cards {
   display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+/* ФИЛЬТРАЦИЯ */
+.filters {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
-  gap: 35px;
+  gap: 40px;
+  padding: 12px;
   background-color: #f5f7fa;
-  padding-top: 30px;
-  padding-bottom: 80px;
 }
 
-.container-search-span1 {
-  display: block;
-  width: 696px;
-  text-align: center;
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-name {
+  color: #000;
+
   font-family: Inter;
-  font-size: 64px;
+  font-size: 22px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
 }
 
-.container-search-span1 span {
-  color: #2a6f97;
+.filter-params {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.container-search p {
+.filter-params span {
+  color: #000;
+
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
   margin: 0;
+}
+
+.slider-numbers {
+  height: 15px;
+  width: 50px;
+  border-radius: 10px;
+  border: solid 1px black;
+  text-align: center;
+
+  color: #000;
+
   font-family: Inter;
-  font-size: 40px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
-
-.container-search p span {
-  color: #2a6f97;
-}
-
-.container-search input {
-  height: 60px;
-  width: 1300px;
-  border: 1px solid #657fda;
-  border-radius: 15px;
-  background-color: rgba(217, 217, 217, 0.2);
-
-  padding: 10px;
-  color: #000;
-  text-align: start;
-  font-family: Inter;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 100;
-  line-height: normal;
-}
-/* ПРОВАЙДЕРЫ */
-.providers {
+/* ВРАППЕР ДЛЯ КАРТОЧЕК */
+.cards {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  margin: 100px;
-  gap: 20px;
-}
-
-.providers span {
-  color: #000;
-
-  text-align: center;
-  font-family: Inter;
-  font-size: 52px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.wrapper-providers {
-  display: flex;
-  margin-top: 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 80px;
-}
-/* ПОПУЛЯРНЫЕ ТАРИФЫ */
-
-.popular-tariffs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.wrapper-card-tariff {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-  margin-top: 50px;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  gap: 60px;
+  padding: 40px;
 }
-
-.popular-tariffs-text {
-  color: #000;
-
-  text-align: center;
-  font-family: Inter;
-  font-size: 52px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-/* КАРТОЧКА */
+/* КАРТОЧКА ТОВАРА */
 .card-tariff {
   height: 400px;
   width: 255px;
   border-radius: 20px;
-  box-shadow: 4px 5px 6px 0px #2a6f97, 0px 0px 4px 0px #2a6f97;
+  box-shadow: 4px 5px 6px 0px rgba(0, 0, 0, 0.25),
+    0px 0px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .card-tariff-header {
@@ -349,150 +320,7 @@ a {
   font-weight: 300;
   line-height: normal;
 }
-
-.advantages {
-  display: flex;
-  max-width: 1600px;
-  align-items: center;
-  justify-content: space-around;
-  margin: 100px auto;
-  flex-wrap: wrap;
-  gap: 50px;
-}
-
-.advantage {
-  display: flex;
-  height: 160px;
-  align-items: center;
-  justify-items: center;
-  gap: 30px;
-  padding: 5px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px #2a6f97;
-}
-
-.advantage span {
-  width: 600px;
-  color: #000;
-
-  text-align: center;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.vertical-line {
-  border: 1px solid #657fda;
-  margin: 50px;
-}
-
-.cities {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background-color: #f5f7fa;
-  padding: 50px 0;
-}
-
-.cities span {
-  margin-top: 20px;
-  margin-bottom: 50px;
-  color: #000;
-
-  font-family: Inter;
-  font-size: 52px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.wrapper-all-cities {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.wrapper-cities {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  margin: 10px;
-}
-
-.wrapper-cities a {
-  color: #000;
-  font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.wrapper-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #f5f7fa;
-  padding: 50px 0;
-}
-
-.wrapper-form span:nth-child(1) {
-  color: #000;
-
-  font-family: Inter;
-  font-size: 52px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-bottom: 10px;
-}
-
-.wrapper-form span:nth-child(2) {
-  color: #000;
-  font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.wrapper-form form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 25px;
-  margin-top: 25px;
-}
-
-.wrapper-form form input {
-  height: 40px;
-  width: 800px;
-  border: solid 2px #dfdfe6;
-  border-radius: 10px;
-  background-color: rgb(249 250 251);
-  padding: 5px 15px;
-}
-
-.wrapper-form form button {
-  border-radius: 10px;
-  background-color: rgb(42 111 151);
-  padding: 10px;
-  width: 75%;
-
-  color: white;
-  font-family: Inter;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  border: none;
-}
-
+/* ФУТЕР */
 .footer {
   display: flex;
   align-items: center;
