@@ -19,6 +19,7 @@ button:hover {
 .card-tariff:hover {
   transform: scale(1.04);
 }
+
 .wrapper-navigations a {
   position: relative;
 }
@@ -29,7 +30,7 @@ button:hover {
   bottom: 0;
   display: block;
   width: 100%;
-  height: 1px;
+  height: 2px;
   background: #2a6f97;
 }
 .wrapper-navigations a::after {
@@ -97,6 +98,23 @@ button:hover {
   gap: 5px;
 }
 
+.city-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.city-button span {
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  color: #2a6f97;
+  cursor: pointer;
+}
+
 .header button {
   border-radius: 10px;
   background-color: rgb(42 111 151);
@@ -112,6 +130,52 @@ button:hover {
 
 a {
   text-decoration: none;
+}
+/* ПОЛУМОДАЛКА ДЛЯ ГОРОДОВ */
+.cities {
+  display: none;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f5f7fa;
+  padding: 50px 0;
+}
+
+.cities span {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  color: #000;
+
+  font-family: Inter;
+  font-size: 52px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.wrapper-all-cities {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.wrapper-cities {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin: 10px;
+}
+
+.wrapper-cities a {
+  color: #000;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 /* ФИЛЬТРАЦИЯ КАРТОЧЕК */
 .filter-cards {
@@ -381,4 +445,112 @@ input[type="number"]::-webkit-outer-spin-button {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+/* МОДАЛКА */
+
+.container-modals {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modals {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+  padding: 25px;
+  background-color: #f9faf8;
+  border-radius: 20px;
+}
+
+.modals-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.modals-header p {
+  margin: 0;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.modals-header img {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.modals form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  border: solid 1px #dfdfe6;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #f9faf8;
+}
+
+.input-container img {
+  height: 18px;
+  width: 18px;
+  margin-left: 10px;
+}
+
+.input-container input {
+  height: 15px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  background-color: #f9faf8;
+}
+
+.modals form input:focus {
+  outline: none;
+}
+
+.modals form button {
+  width: 100%;
+  height: 40px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  background-color: #2a6f97;
+  border: none;
+
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #fff;
 }

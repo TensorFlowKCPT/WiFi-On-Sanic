@@ -177,302 +177,78 @@ a {
   font-weight: 500;
   line-height: normal;
 }
-/* ПОИСК */
-.container-search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 35px;
-  background-color: #f5f7fa;
-  padding-top: 30px;
-  padding-bottom: 80px;
+/* ОТЗЫВЫ */
+.wrapper-reviews {
+  text-align: center;
+  padding: 40px;
 }
 
-.container-search-span1 {
-  display: block;
-  width: 696px;
-  text-align: center;
+.wrapper-reviews p {
   font-family: Inter;
-  font-size: 64px;
+  font-size: 50px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
 
-.container-search-span1 span {
-  color: #2a6f97;
-}
-
-.container-search p {
-  margin: 0;
-  font-family: Inter;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-.container-search p span {
-  color: #2a6f97;
-}
-
-.container-search input {
-  height: 60px;
-  width: 1300px;
-  border: 1px solid #657fda;
-  border-radius: 15px;
-  background-color: rgba(217, 217, 217, 0.2);
-
-  padding: 10px;
-  color: #000;
-  text-align: start;
-  font-family: Inter;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 100;
-  line-height: normal;
-}
-/* ПРОВАЙДЕРЫ */
-.providers {
+.reviews {
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  margin: 100px;
-  gap: 20px;
-}
-
-.providers span {
-  color: #000;
-
-  text-align: center;
-  font-family: Inter;
-  font-size: 52px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.wrapper-providers {
-  display: flex;
-  margin-top: 20px;
   justify-content: center;
-  align-items: center;
-  gap: 80px;
-}
-/* ПОПУЛЯРНЫЕ ТАРИФЫ */
-
-.popular-tariffs {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.wrapper-card-tariff {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-  margin-top: 50px;
+  gap: 40px;
+  padding: 30px;
   flex-wrap: wrap;
 }
 
-.popular-tariffs-text {
-  color: #000;
-
-  text-align: center;
-  font-family: Inter;
-  font-size: 52px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-/* КАРТОЧКА */
-.card-tariff {
-  height: 400px;
-  width: 255px;
+.review {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  width: 670px;
+  box-shadow: 4px 5px 6px 0px rgba(0, 0, 0, 0.25),
+    0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  box-shadow: 4px 5px 6px 0px #2a6f97, 0px 0px 4px 0px #2a6f97;
+  padding: 15px;
 }
 
-.card-tariff-header {
+.review-header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 75px;
-  background-color: #2a6f97;
-  border-radius: 20px 20px 0 0;
-  padding: 7px;
-
-  color: #fff;
-  text-align: center;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.card-tariff-body {
-  display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
-  gap: 15px;
-  padding: 10px;
 }
 
-.wrapper-priceAndLogo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.review img {
+  border: solid 1px rgb(42 111 151);
+  border-radius: 50%;
+  background-color: #013a63;
+  height: 100px;
+}
+
+.info-clients {
+  display: flexs;
+  text-align: center;
   gap: 10px;
 }
 
-.wrapper-priceAndLogo span:nth-child(1) {
-  color: #000;
-  text-decoration: line-through;
-  text-decoration-color: red;
-  text-align: center;
+.info-clients span:nth-child(1) {
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.info-clients span:nth-child(2) {
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.wrapper-priceAndLogo span:nth-child(2) {
-  color: #000;
-  font-family: Inter;
-  font-size: 30px;
-  font-style: normal;
   font-weight: 600;
   line-height: normal;
+  white-space: nowrap;
 }
 
-.params {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.param {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  gap: 10px;
-}
-
-.param span {
-  color: #000;
-
-  text-align: center;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.conn-info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.conn-info button {
-  height: 30px;
-  width: 180px;
-  background-color: #2a6f97;
-  border: none;
-  border-radius: 10px;
-  color: #fff;
-
-  text-align: center;
-  font-family: Inter;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.conn-info a {
-  color: #000;
-  text-align: center;
-  font-family: Inter;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-}
-
-.advantages {
-  display: flex;
-  max-width: 1600px;
-  align-items: center;
-  justify-content: space-around;
-  margin: 100px auto;
-  flex-wrap: wrap;
-  gap: 50px;
-}
-
-.advantage {
-  display: flex;
-  height: 160px;
-  align-items: center;
-  justify-items: center;
-  gap: 30px;
-  padding: 5px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px #2a6f97;
-}
-
-.advantage span {
-  width: 600px;
-  color: #000;
-
-  text-align: center;
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-.vertical-line {
-  border: 1px solid #657fda;
-  margin: 50px;
-}
-
-.wrapper-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color: #f5f7fa;
-  padding: 50px 0;
-}
-
-.wrapper-form span:nth-child(1) {
-  color: #000;
-
-  font-family: Inter;
-  font-size: 52px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin-bottom: 10px;
-}
-
-.wrapper-form span:nth-child(2) {
-  color: #000;
+.description {
   font-family: Inter;
   font-size: 18px;
   font-style: normal;
@@ -480,39 +256,7 @@ a {
   line-height: normal;
 }
 
-.wrapper-form form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 25px;
-  margin-top: 25px;
-}
-
-.wrapper-form form input {
-  height: 40px;
-  width: 800px;
-  border: solid 2px #dfdfe6;
-  border-radius: 10px;
-  background-color: rgb(249 250 251);
-  padding: 5px 15px;
-}
-
-.wrapper-form form button {
-  border-radius: 10px;
-  background-color: rgb(42 111 151);
-  padding: 10px;
-  width: 75%;
-
-  color: white;
-  font-family: Inter;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  border: none;
-}
-
+/* ФУУТЕР */
 .footer {
   display: flex;
   align-items: center;

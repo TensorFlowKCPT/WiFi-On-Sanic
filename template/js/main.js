@@ -24,3 +24,28 @@ elements.forEach(function (element, index) {
     delay: index, // Задержка для последовательного запуска анимации для каждого элемента
   });
 });
+// ЭТО ФУНКЦИОНАЛ МОДАЛКИ ЗАЯВКИ
+
+// Функция открытия модального окна
+const openModalApplication = () => {
+  const modal = document.getElementById("modal");
+  modal.style.display = "block";
+  document.body.style.overflow = "hidden";
+};
+
+// Функция закрытия модального окна
+const closeModalApplication = () => {
+  const modal = document.getElementById("modal");
+  modal.style.display = "none";
+  document.body.style.overflow = "auto";
+};
+// ЭТО ФУНКЦИОНАЛ МОДАЛКИ ГОРОДОВ
+// Функция открытия модального окна
+const openModalCities = () => {
+  const modal = document.getElementById("cities");
+  if (modal.style.display == "none") {
+    modal.style.display = "flex";
+  } else {
+    modal.style.display = "none";
+  }
+};
