@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,43 +11,101 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   </head>
   <body>
-    <div class="header">
-      <a href=""><span class="logo">WiFi On</span></a>
-      <div class="wrapper-navigations">
-        <a href=""><span class="navigate">Тарифы</span></a>
-        <a href=""><span class="navigate">Отзывы</span></a>
-        <a href=""><span class="navigate">О нас</span></a>
-        <a href=""><span class="navigate">Часто задаваемые вопросы</span></a>
+    <div class="header-cities">
+      <div class="header">
         <a href=""
-          ><div class="wrapper-telephone">
-            <span class="navigate">+78005500792</span>
-            <img
-              src="static/img/main/telephone.svg"
-              alt="Иконка телефона"
-            /></div
-        ></a>
+          ><span class="logo" 
+            >
+            <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"><g filter="url(#filter0_d_58_208)"><path d="M47.6089 10.4663H33.654C32.7004 10.4663 31.9097 9.67548 31.9097 8.7219C31.9097 7.76831 32.7004 6.97754 33.654 6.97754H47.6089C48.5625 6.97754 49.3532 7.76831 49.3532 8.7219C49.3532 9.67548 48.5625 10.4663 47.6089 10.4663Z" fill="#292D32"></path><path d="M40.6314 17.4438H33.654C32.7004 17.4438 31.9097 16.653 31.9097 15.6994C31.9097 14.7459 32.7004 13.9551 33.654 13.9551H40.6314C41.585 13.9551 42.3758 14.7459 42.3758 15.6994C42.3758 16.653 41.585 17.4438 40.6314 17.4438Z" fill="#2A6F97"></path><path d="M27.8395 47.6791C14.6987 47.6791 4 36.9804 4 23.8395C4 10.6987 14.6987 0 27.8395 0C28.7931 0 29.5839 0.790775 29.5839 1.74436C29.5839 2.69794 28.7931 3.48871 27.8395 3.48871C16.6059 3.48871 7.48871 12.6291 7.48871 23.8395C7.48871 35.0499 16.6059 44.1904 27.8395 44.1904C39.0732 44.1904 48.1904 35.0499 48.1904 23.8395C48.1904 22.886 48.9811 22.0952 49.9347 22.0952C50.8883 22.0952 51.6791 22.886 51.6791 23.8395C51.6791 36.9804 40.9804 47.6791 27.8395 47.6791Z" fill="#013A63"></path><path d="M52.2615 50.0046C51.8196 50.0046 51.3777 49.8418 51.0288 49.493L46.3772 44.8413C45.7027 44.1669 45.7027 43.0505 46.3772 42.376C47.0517 41.7015 48.1681 41.7015 48.8426 42.376L53.4942 47.0276C54.1687 47.7021 54.1687 48.8185 53.4942 49.493C53.1453 49.8418 52.7034 50.0046 52.2615 50.0046Z" fill="#292D32"></path></g><defs><filter id="filter0_d_58_208" x="0" y="0" width="58" height="58.0044" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"></feColorMatrix><feOffset dy="4"></feOffset><feGaussianBlur stdDeviation="2"></feGaussianBlur><feComposite in2="hardAlpha" operator="out"></feComposite><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"></feColorMatrix><feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_58_208"></feBlend><feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_58_208" result="shape"></feBlend></filter></defs></svg>
+            <span>On-</span><span>Wi</span><span>Fi</span></span
+          ></a>
+        <div class="wrapper-navigations">
+          <a href=""><span class="navigate">Тарифы</span></a>
+          <a href=""><span class="navigate">Отзывы</span></a>
+          <a href=""><span class="navigate">О нас</span></a>
+          <a href=""><span class="navigate">Часто задаваемые вопросы</span></a>
+          <a href=""
+            ><div class="wrapper-telephone">
+              <span class="navigate">+78005500792</span>
+              <img src="../img/main/telephone.svg" alt="" /></div
+          ></a>
+        </div>
+        <div class="city-button">
+          <span onclick="openModalCities()">Город</span>
+          <button onclick="openModalApplication()" class="active-modal">Оставить заявку</button>
+        </div>
       </div>
-      <button class="header-button">Оставить заявку</button>
-    </div>
-
-    <div class="header-mobile">
-      <a href=""><span class="logo">WiFi On</span></a>
-      <div class="wrapper-telephone">
-        <span class="navigate">+78005500792</span>
+      <div style="display: none;" id="cities" class="cities">
+        <span>Города в которых мы есть</span>
+        <div class="wrapper-all-cities">
+          <div class="wrapper-cities">
+            <a href="">Москва</a>
+            <a href="">Санкт-Петербург</a>
+            <a href="">Новосибирск</a>
+            <a href="">Екатеринбург</a>
+            <a href="">Нижний Новгород</a>
+            <a href="">Казань</a>
+            <a href="">Самара</a>
+            <a href="">Челябинск</a>
+            <a href="">Омск</a>
+            <a href="">Ростов-на-Дону</a>
+            <a href="">Уфа</a>
+            <a href="">Пермь</a>
+            <a href="">Сургут</a>
+          </div>
+          <div class="wrapper-cities">
+            <a href="">Махачкала</a>
+            <a href="">Оренбург</a>
+            <a href="">Томск</a>
+            <a href="">Новокузнецк</a>
+            <a href="">Кемерово</a>
+            <a href="">Астрахань</a>
+            <a href="">Рязань</a>
+            <a href="">Набережные</a>
+            <a href="">Челны</a>
+            <a href="">Пенза</a>
+            <a href="">Липецк </a>
+            <a href="">Тула</a>
+          </div>
+          <div class="wrapper-cities">
+            <a href="">Волгоград</a>
+            <a href="">Воронеж</a>
+            <a href="">Саратов</a>
+            <a href="">Краснодар</a>
+            <a href="">Тольятти</a>
+            <a href="">Тюмень</a>
+            <a href="">Ижевск</a>
+            <a href="">Барнаул</a>
+            <a href="">Ульяновск</a>
+            <a href="">Иркутск</a>
+            <a href="">Владивосток</a>
+            <a href="">Ярославль</a>
+          </div>
+          <div class="wrapper-cities">
+            <a href="">Хабаровск</a>
+            <a href="">Киров</a>
+            <a href="">Чебоксары</a>
+            <a href="">Калининград</a>
+            <a href="">Курск</a>
+            <a href="">Улан-Удэ</a>
+            <a href="">Ставрополь</a>
+            <a href="">Магнитогорск</a>
+            <a href="">Тверь</a>
+            <a href="">Иваново</a>
+            <a href="">Брянск</a>
+            <a href="">Сочи</a>
+            <a href="">Белгород</a>
+          </div>
+        </div>
       </div>
-      <button>
-        <img src="static/img/main/menu.svg" alt="Иконка меню для телефона" />
-      </button>
     </div>
-
     <div class="container-search">
-      <span
-        >Найди своего идеального <span>провайдера</span> {%if data["City"]!=
-        "Unknown"%}в городе {{data['City']}}{%else%}в вашем городе{%endif%}
-        здесь</span
-      >
+      <span class="container-search-span1">Найди своего идеального <span>провайдера</span> <br>здесь</span>
+      <p>Подключи <span id="typed-output"></span></p>
       <input
         type="search"
         name=""
@@ -57,9 +115,9 @@
       />
       <div id="SuggestionsContainer"></div>
     </div>
-
+    
     <div class="providers">
-      <span>Провайдеры в городе {{data.City}}</span>
+      <span>Провайдеры в {{data.City}}</span>
       <div class="wrapper-providers">
         <a href=""><img src="static/img/main/bln80px.png" alt="beeline" /></a>
         <a href=""><img src="static/img/main/mts80px.png" alt="mts" /></a>
@@ -101,7 +159,7 @@
               </div>
             </div>
             <div class="conn-info">
-              <button>Подключить</button>
+              <button onclick="openModalApplication()">Подключить</button>
               <a href=""><span>Узнать подробнее</span></a>
             </div>
           </div>
@@ -134,7 +192,7 @@
               </div>
             </div>
             <div class="conn-info">
-              <button>Подключить</button>
+              <button onclick="openModalApplication()">Подключить</button>
               <a href=""><span>Узнать подробнее</span></a>
             </div>
           </div>
@@ -167,7 +225,7 @@
               </div>
             </div>
             <div class="conn-info">
-              <button>Подключить</button>
+              <button onclick="openModalApplication()">Подключить</button>
               <a href=""><span>Узнать подробнее</span></a>
             </div>
           </div>
@@ -200,7 +258,7 @@
               </div>
             </div>
             <div class="conn-info">
-              <button>Подключить</button>
+              <button onclick="openModalApplication()">Подключить</button>
               <a href=""><span>Узнать подробнее</span></a>
             </div>
           </div>
@@ -209,7 +267,7 @@
     </div>
     <div class="advantages">
       <div class="advantage">
-        <img src="/img/main/широкийВыбор64px.png" alt="" /><span
+        <img src="../img/main/широкийВыбор64px.png" alt="" /><span
           >Мы предлагаем огромный ассортимент тарифных планов от всех
           провайдеров, включая федеральных и региональных операторов связи. У
           нас вы сможете найти множество вариантов для подключения, включая
@@ -219,7 +277,7 @@
         >
       </div>
       <div class="advantage">
-        <img src="/img/main/качество64px.png" alt="" /><span
+        <img src="../img/main/качество64px.png" alt="" /><span
           >Мы активно собираем обратную связь от наших клиентов о работе наших
           партнеров Интернет-провайдеров. Это позволяет нам быть в курсе их
           работы и предлагать клиенту только лучшие предложения по качеству. Мы
@@ -228,7 +286,7 @@
         >
       </div>
       <div class="advantage">
-        <img src="/img/main/официально64px.png" alt="" /><span>
+        <img src="../img/main/официально64px.png" alt="" /><span>
           Вы заключаете соглашение прямо с поставщиком и получаете доступ к
           персональному кабинету. Поэтому вы можете рассчитывать на поддержку
           экспертов в случае проблем, они всегда доступны. Обеспечивается также
@@ -236,7 +294,7 @@
         >
       </div>
       <div class="advantage">
-        <img src="/img/main/сравнение64px.png" alt="" /><span
+        <img src="../img/main/сравнение64px.png" alt="" /><span
           >На нашем веб-сайте вы можете оперативно сопоставить цену, условия
           подключения и другую информацию, относящуюся к тарифам, и сделать
           оптимальный выбор! Чтобы облегчить поиск, мы отбираем предложения по
@@ -245,7 +303,7 @@
         >
       </div>
       <div class="advantage">
-        <img src="/img/main/выгодно64px.png" alt="" />
+        <img src="../img/main/выгодно64px.png" alt="" />
         <span>
           Мы не только предлагаем скидки от партнеров, с которыми сотрудничаем,
           но и предлагаем выгодные предложения от себя. Акции проводятся
@@ -253,7 +311,7 @@
         </span>
       </div>
       <div class="advantage">
-        <img src="/img/main/доступныеЦены64px.png" alt="" />
+        <img src="../img/main/доступныеЦены64px.png" alt="" />
         <span>
           Вы получите возможность воспользоваться всеми скидками, акциями и
           бонусами от провайдера. Мы предлагаем такую же стоимость подписки, а
@@ -261,68 +319,51 @@
         </span>
       </div>
     </div>
-    <!-- <div class="cities">
-      <div class="wrapper-cities">
-        <a href="">Москва</a>
-        <a href="">Санкт-Петербург</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
+
+    </div>
+    <div class="wrapper-form">
+      <span>Свяжитесь с нами</span>
+      <span>Для сотрудничества</span>
+      <form action="">
+        <input placeholder="Ваше имя" type="text" name="" id="">
+        <input placeholder="Ваш E-mail " type="email" name="" id="">
+        <button>Оставить заявку</button>
+      </form>
+    </div>
+    <div class="footer">
+      <div class="wrapper-footer-a">
+        <a href="">Тариф</a>
+        <a href="">Отзывы клиентов</a>
+        <a href="">О нас</a>
+        <a href="">Часто задаваемые вопросы</a>
       </div>
-      <div class="wrapper-cities">
-        <a href="">Москва</a>
-        <a href="">Санкт-Петербург</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-      </div>
-      <div class="wrapper-cities">
-        <a href="">Москва</a>
-        <a href="">Санкт-Петербург</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-      </div>
-      <div class="wrapper-cities">
-        <a href="">Москва</a>
-        <a href="">Санкт-Петербург</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
-        <a href="">Москва</a>
+      <div class="footer-logo"><span>On-</span><span>Wi</span><span>Fi</span></div>
+      <span class="footer-title">© 2023 On-WiFi. Все права защищены.</span>
+    </div>
+    <script src="static/js/main.js"></script>
+
+    <div id="modal" class="container-modals">
+      <div class="modals">
+        <div class="modals-header">
+          <p>Оставить заявку</p>
+          <img onclick="closeModalApplication()" src="../img/main/closeModal.svg" alt="">
+        </div>
+        <form action="">
+          <div class="input-container">
+            <img src="../img/main/telephone-modal.svg" alt="">
+            <input placeholder="Номер телефона" type="tel" name="" id="">
+          </div>
+          <div class="input-container">
+            <img src="../img/main/user-modal.svg" alt="">
+            <input placeholder="Ваше имя" type="text" name="" id="">
+          </div>
+          <div class="input-container">
+            <img src="../img/main/geo-modal.svg" alt="">
+            <input placeholder="Адрес подключения" type="text" name="" id="">
+          </div>
+          <button>Отправить</button>
+        </form>
       </div>
     </div>
-    <div class="questions"></div>
-    <div class="reviews"></div>
-    <div class="wrapper-form"></div>
-    <div class="footer"></div> -->
   </body>
-  <script src="/static/js/main.js"></script>
 </html>

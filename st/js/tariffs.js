@@ -37,3 +37,30 @@ const openModalCities = () => {
     modal.style.display = "none";
   }
 };
+
+
+
+
+function CheckTariffs() {
+  const ProviderFilters = document.querySelectorAll(".providersFilterCheckbox"); // Добавлен точечный селектор перед классом
+  var activeProviders = [];
+  //console.log(ProviderFilters);
+  ProviderFilters.forEach(element => {
+    if (element.checked) {
+      activeProviders.push(element.name); // Убран доступ к childNodes, так как name прямо доступен у элемента
+    }
+  });
+  console.log(activeProviders)
+  var tariffsContainer = document.getElementById("tariffs");
+  // Перебираем все потомки элемента с id "tariffs"
+  tariffsContainer?.childNodes.forEach(element => {
+    if (element.nodeType === 1) {
+      var providerName = element.dataset.provider; // Заменено на dataset.provider
+      console.log(providerName)
+      element.style.display = "none";
+      if (activeProviders.includes(providerName) || activeProviders.length === 0) { // Исправлено условие
+        element.style.display = "block";
+      }
+    }
+  });
+}

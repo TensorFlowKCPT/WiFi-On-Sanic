@@ -3,7 +3,7 @@ from sanic.response import text, html
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from Database import Database
-import http
+import httpx
 
 app = Sanic("Wifi-On")
 local_link = "http://localhost:8000/"
