@@ -1,7 +1,16 @@
+/* all */
+* {
+  font-family: Inter;
+  color: #000;
+  font-style: normal;
+  line-height: normal;
+}
+
 body {
   margin: 0px;
   background-color: #fff;
 }
+
 /* АНИМАЦИИ НА ОБЩАГ */
 button {
   transition: transform 0.1s ease-out;
@@ -23,6 +32,7 @@ button:hover {
 .wrapper-navigations a {
   position: relative;
 }
+
 .wrapper-navigations a::after {
   position: absolute;
   content: "";
@@ -33,13 +43,16 @@ button:hover {
   height: 2px;
   background: #2a6f97;
 }
+
 .wrapper-navigations a::after {
   width: 0;
   transition: 0.3s;
 }
+
 .wrapper-navigations a:hover:after {
   width: 100%;
 }
+
 /* HEADER */
 .header {
   height: 80px;
@@ -58,21 +71,14 @@ button:hover {
 .logo {
   display: flex;
 
-  color: #000;
-  font-family: Inter;
   font-size: 48px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
 }
 
 .logo svg {
   margin-right: 5px;
 }
 
-.logo span:nth-child(1) {
-  color: #000;
-}
 
 .logo span:nth-child(2) {
   color: #2a6f97;
@@ -83,13 +89,8 @@ button:hover {
 }
 
 .navigate {
-  color: #000;
-
-  font-family: Inter;
   font-size: 22px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 .wrapper-telephone {
@@ -106,37 +107,77 @@ button:hover {
 }
 
 .city-button span {
-  font-family: Inter;
   font-size: 18px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
   color: #2a6f97;
   cursor: pointer;
 }
 
-.header button {
+.header button,
+.wrapper__mobile button {
   border-radius: 10px;
   background-color: rgb(42 111 151);
   padding: 15px;
   color: white;
-  font-family: Inter;
   font-size: 18px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
   border: none;
 }
 
 a {
   text-decoration: none;
 }
+
+/* HEADER MOBILE */
+.header__mobile {
+  display: none;
+}
+
+.menuMobile {
+  display: none;
+}
+
+.btn-mobile {
+  position: fixed;
+  top: 50px;
+  right: 60px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+}
+
+
+.wrapper__mobile {
+  display: none;
+  position: absolute;
+  top: 88px;
+  right: 70px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 5px 6px;
+  border-radius: 10px;
+}
+
+.wrapper__mobile.show {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+}
+
+.wrapper__mobile.show a {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 3px 1px;
+}
+
 /* ПОЛУМОДАЛКА ДЛЯ ГОРОДОВ */
 .cities {
   display: none;
   position: absolute;
   width: 100%;
-  z-index: 100;
+  z-index: 2;
   align-items: center;
   flex-direction: column;
   background-color: #f5f7fa;
@@ -146,13 +187,9 @@ a {
 .cities span {
   margin-top: 20px;
   margin-bottom: 50px;
-  color: #000;
 
-  font-family: Inter;
   font-size: 52px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 .wrapper-all-cities {
@@ -170,13 +207,10 @@ a {
 }
 
 .wrapper-cities a {
-  color: #000;
-  font-family: Inter;
   font-size: 18px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
+
 /* ПОИСК */
 .container-search {
   display: flex;
@@ -193,11 +227,8 @@ a {
   display: block;
   width: 696px;
   text-align: center;
-  font-family: Inter;
   font-size: 64px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
 }
 
 .container-search-span1 span {
@@ -206,11 +237,8 @@ a {
 
 .container-search p {
   margin: 0;
-  font-family: Inter;
   font-size: 40px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
 }
 
 .container-search p span {
@@ -219,20 +247,17 @@ a {
 
 .container-search input {
   height: 60px;
-  width: 1300px;
+  min-width: 1300px;
   border: 1px solid #657fda;
   border-radius: 15px;
   background-color: rgba(217, 217, 217, 0.2);
 
   padding: 10px;
-  color: #000;
   text-align: start;
-  font-family: Inter;
   font-size: 20px;
-  font-style: normal;
   font-weight: 100;
-  line-height: normal;
 }
+
 /* ПРОВАЙДЕРЫ */
 .providers {
   display: flex;
@@ -244,14 +269,9 @@ a {
 }
 
 .providers span {
-  color: #000;
-
   text-align: center;
-  font-family: Inter;
   font-size: 52px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 .wrapper-providers {
@@ -261,6 +281,7 @@ a {
   align-items: center;
   gap: 80px;
 }
+
 /* ПОПУЛЯРНЫЕ ТАРИФЫ */
 
 .popular-tariffs {
@@ -280,14 +301,9 @@ a {
 }
 
 .popular-tariffs-text {
-  color: #000;
-
   text-align: center;
-  font-family: Inter;
   font-size: 52px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 /* КАРТОЧКА */
@@ -309,11 +325,8 @@ a {
 
   color: #fff;
   text-align: center;
-  font-family: Inter;
   font-size: 16px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
 }
 
 .card-tariff-body {
@@ -333,24 +346,16 @@ a {
 }
 
 .wrapper-priceAndLogo span:nth-child(1) {
-  color: #000;
   text-decoration: line-through;
   text-decoration-color: red;
   text-align: center;
-  font-family: Inter;
   font-size: 14px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 }
 
 .wrapper-priceAndLogo span:nth-child(2) {
-  color: #000;
-  font-family: Inter;
   font-size: 30px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
 }
 
 .params {
@@ -369,14 +374,9 @@ a {
 }
 
 .param span {
-  color: #000;
-
   text-align: center;
-  font-family: Inter;
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 }
 
 .conn-info {
@@ -396,21 +396,14 @@ a {
   color: #fff;
 
   text-align: center;
-  font-family: Inter;
   font-size: 12px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 .conn-info a {
-  color: #000;
   text-align: center;
-  font-family: Inter;
   font-size: 12px;
-  font-style: normal;
   font-weight: 300;
-  line-height: normal;
 }
 
 .advantages {
@@ -436,14 +429,10 @@ a {
 
 .advantage span {
   width: 600px;
-  color: #000;
 
   text-align: center;
-  font-family: Inter;
   font-size: 16px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 .vertical-line {
@@ -461,23 +450,15 @@ a {
 }
 
 .wrapper-form span:nth-child(1) {
-  color: #000;
 
-  font-family: Inter;
   font-size: 52px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   margin-bottom: 10px;
 }
 
 .wrapper-form span:nth-child(2) {
-  color: #000;
-  font-family: Inter;
   font-size: 18px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 .wrapper-form form {
@@ -505,11 +486,8 @@ a {
   width: 75%;
 
   color: white;
-  font-family: Inter;
   font-size: 15px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
   border: none;
 }
 
@@ -533,11 +511,8 @@ a {
 
 .footer a {
   color: #ccc;
-  font-family: Inter;
   font-size: 18px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 }
 
 .footer-logo {
@@ -546,11 +521,8 @@ a {
   border-top: solid 1px #ccc;
   width: 80%;
 
-  font-family: Inter;
   font-size: 38px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 .footer-logo span:nth-child(1) {
@@ -568,22 +540,18 @@ a {
 .footer-title {
   color: #9ca3af;
 
-  font-family: Inter;
   font-size: 15px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 }
+
 /* МОДАЛКА */
 
 .container-modals {
   display: none;
-  align-items: center;
-  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 3;
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
@@ -599,6 +567,7 @@ a {
   padding: 25px;
   background-color: #f9faf8;
   border-radius: 20px;
+  margin: 30vh auto;
 }
 
 .modals-header {
@@ -611,11 +580,8 @@ a {
 
 .modals-header p {
   margin: 0;
-  font-family: Inter;
   font-size: 24px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
 .modals-header img {
@@ -655,11 +621,8 @@ a {
   width: 100%;
   padding: 10px;
   border: none;
-  font-family: Inter;
   font-size: 13px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   background-color: #f9faf8;
 }
 
@@ -675,10 +638,48 @@ a {
   background-color: #2a6f97;
   border: none;
 
-  font-family: Inter;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
   color: #fff;
 }
+
+/* ADAPTIVE */
+@media (max-width: 1558px) {
+  .city-button {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1540px) {
+  .header {
+    display: none;
+  }
+
+  .header__mobile {
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f7fa;
+  }
+
+  .menuMobile {
+    display: flex;
+  }
+
+  .city-button {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .modal-mobile {
+    padding: 11px;
+  }
+
+}
+
+/* @media (max-width: 1350px) {
+  .advantages {}
+} */
