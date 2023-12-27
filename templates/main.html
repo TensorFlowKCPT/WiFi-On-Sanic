@@ -274,14 +274,16 @@
         >Найди своего идеального <span>провайдера</span> <br />здесь</span
       >
       <p>Подключи <span id="typed-output"></span></p>
-      <input
-        type="search"
-        name=""
-        id="SearchBox"
-        placeholder="Начните вводить свой адрес"
-        oninput="CheckAddress()"
-      />
-      <div id="SuggestionsContainer"></div>
+      <div class="wrapper-search">
+        <input
+          type="search"
+          name=""
+          id="SearchBox"
+          placeholder="Начните вводить свой адрес"
+          oninput="CheckAddress()"
+        />
+        <div id="SuggestionsContainer"></div>
+      </div>
     </div>
 
     <div class="providers">
