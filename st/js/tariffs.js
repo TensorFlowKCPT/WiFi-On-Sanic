@@ -40,6 +40,10 @@ const openModalCities = () => {
 
 function CheckTariffs() {
   const ProviderFilters = document.querySelectorAll(".providersFilterCheckbox"); // Добавлен точечный селектор перед классом
+  const MinTP = parseInt(document.getElementById('input11').value)
+  const MaxTP = parseInt(document.getElementById('input12').value)
+  const MinTIS = parseInt(document.getElementById('input21').value)
+  const MaxTIS = parseInt(document.getElementById('input22').value)
   var activeProviders = [];
   //console.log(ProviderFilters);
   ProviderFilters.forEach((element) => {
@@ -47,18 +51,14 @@ function CheckTariffs() {
       activeProviders.push(element.name); // Убран доступ к childNodes, так как name прямо доступен у элемента
     }
   });
-  console.log(activeProviders);
   var tariffsContainer = document.getElementById("tariffs");
-  // Перебираем все потомки элемента с id "tariffs"
   tariffsContainer?.childNodes.forEach((element) => {
     if (element.nodeType === 1) {
-      var providerName = element.dataset.provider; // Заменено на dataset.provider
-      console.log(providerName);
+      var providerName = element.dataset.provider;
+      var tariffprice = parseInt(element.dataset.price);
+      var tis = parseInt(element.dataset.internetspeed);
       element.style.display = "none";
-      if (
-        activeProviders.includes(providerName) ||
-        activeProviders.length === 0
-      ) {
+      if ((activeProviders.includes(providerName) ||activeProviders.length === 0)&&((MaxTP>tariffprice&&MinTP<tariffprice))&&(Number.isNaN(tis)||(MaxTIS>tis&&MinTIS<tis))) {
         // Исправлено условие
         element.style.display = "block";
       }
@@ -70,12 +70,13 @@ $(function () {
   // СОЗДАНИЕ И ОБРАБОТКА ПЕРВОГО СЛАЙДЕРА ЧЕРЕЗ JQUERY
   $("#slider-range1").slider({
     range: true,
-    min: 0,
-    max: 10000,
+    min: parseFloat($("#slider-range1").data("min")),
+    max: parseFloat($("#slider-range1").data("max")),
     values: [0, 10000],
     slide: function (event, ui) {
       $("#input11").val(ui.values[0]);
       $("#input12").val(ui.values[1]);
+      CheckTariffs()
     },
   });
   $("#input11").val($("#slider-range1").slider("values", 0));
@@ -99,12 +100,13 @@ $(function () {
   // СОЗДАНИЕ И ОБРАБОТКА ВТОРОГО СЛАЙДЕРА ЧЕРЕЗ JQUERY
   $("#slider-range2").slider({
     range: true,
-    min: 0,
-    max: 10000,
+    min: parseFloat($("#slider-range2").data("min")),
+    max: parseFloat($("#slider-range2").data("max")),
     values: [0, 10000],
     slide: function (event, ui) {
       $("#input21").val(ui.values[0]);
       $("#input22").val(ui.values[1]);
+      CheckTariffs()
     },
   });
   $("#input21").val($("#slider-range2").slider("values", 0));

@@ -51,6 +51,10 @@ class Database:
                 validproviders.append(i)
         
         tariffs = []
+        maxtariffcost = 0
+        mintariffcost = 99999
+        maxtariffinternetspeed = 0
+        mintariffinternetspeed = 99999
         city = address.split(',')[0].removeprefix("г ")
         with sqlite3.connect("sqlite.sqlite3") as conn:
             cursor = conn.execute("SELECT id FROM Cities WHERE Name = ?", (city,)).fetchone()
@@ -64,18 +68,35 @@ class Database:
                 cursor = conn.execute("SELECT id, Name, NameEng, Description, Price, PriceOld, OptionsJSON FROM Tariffs WHERE idCity = ? AND idProvider = ?", (CityId, i['id'],))
                 rows = cursor.fetchall()
                 for row in rows:
+                    if row[4] > maxtariffcost:
+                        maxtariffcost = row[4]
+                    if row[4] < mintariffcost:
+                        mintariffcost = row[4]
+                    options = json.loads(row[6])
+                    try:
+                        if options['Values']['InternetSpeed']:
+                            if int(options['Values']['InternetSpeed'][0])>maxtariffinternetspeed:
+                                maxtariffinternetspeed = int(options['Values']['InternetSpeed'][0])
+                            if int(options['Values']['InternetSpeed'][0])<mintariffinternetspeed:
+                                mintariffinternetspeed = int(options['Values']['InternetSpeed'][0])
+                    except KeyError:
+                        pass
                     tariffs.append({'id':row[0],
                                     'Name':row[1],
                                     'NameEng':row[2],
                                     'Description':row[3],
                                     'Price': row[4],
                                     'PriceOld': row[5],
-                                    'Options': json.loads(row[6]),
+                                    'Options': options,
                                     'Provider': i
                     })
         output = {
                 'providers':validproviders,
                 'tariffs':tariffs,
+                'maxtariffprice':maxtariffcost,
+                'mintariffprice':mintariffcost,
+                'maxtariffinternetspeed':maxtariffinternetspeed,
+                'mintariffinternetspeed':mintariffinternetspeed
                 }
         return output
     

@@ -182,19 +182,15 @@
           <div class="filter-params">
             <div class="filter-param">
               <input type="checkbox" name="" id="" />
-              <span>Интернет + ТВ</span>
-            </div>
-            <div class="filter-param">
-              <input type="checkbox" name="" id="" />
               <span>Интернет</span>
             </div>
             <div class="filter-param">
               <input type="checkbox" name="" id="" />
-              <span>Интернет + Связь + ТВ</span>
+              <span>Тв</span>
             </div>
             <div class="filter-param">
               <input type="checkbox" name="" id="" />
-              <span>ТВ</span>
+              <span>Связь</span>
             </div>
           </div>
         </div>
@@ -213,17 +209,17 @@
         <div class="filter">
           <span class="filter-name">Стоимость тарифа </span>
           <div class="slider">
-            <input type="text" id="input11" class="slider-input">
-            <div class="slider-range" id="slider-range1"></div>
-            <input type="text" id="input12" class="slider-input">
+            <input type="text" id="input11" class="slider-input" onchange="CheckTariffs()">
+            <div class="slider-range" data-min="{{ data['mintariffprice'] }}" data-max= "{{data['maxtariffprice']}}" id="slider-range1"></div>
+            <input type="text" id="input12" class="slider-input" onchange="CheckTariffs()">
           </div>
         </div>
         <div class="filter">
           <span class="filter-name">Скорость интернета</span>
           <div class="slider">
-            <input type="text" id="input21" class="slider-input">
-            <div class="slider-range" id="slider-range2"></div>
-            <input type="text" id="input22" class="slider-input">
+            <input type="text" id="input21" class="slider-input" onchange="CheckTariffs()">
+            <div class="slider-range" data-min="{{ data['mintariffinternetspeed'] }}" data-max= "{{data['maxtariffinternetspeed']}}" id="slider-range2"></div>
+            <input type="text" id="input22" class="slider-input" onchange="CheckTariffs()">
           </div>
         </div>
       </div>
