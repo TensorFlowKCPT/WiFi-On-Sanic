@@ -291,7 +291,8 @@ a {
   line-height: normal;
 }
 #SuggestionsContainer div {
-  margin: 10px;
+  width: 100%;
+  padding: 10px;
   cursor: pointer;
 }
 

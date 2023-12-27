@@ -1,6 +1,10 @@
 body {
   margin: 0px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
 }
 /* АНИМАЦИИ НА ОБЩАГ */
 button {
@@ -180,11 +184,13 @@ a {
 /* ФИЛЬТРАЦИЯ КАРТОЧЕК */
 .filter-cards {
   display: flex;
+  flex: 1;
 }
 
 /* ФИЛЬТРАЦИЯ */
 .filters {
   display: flex;
+
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
@@ -260,7 +266,7 @@ a {
 /* ВРАППЕР ДЛЯ КАРТОЧЕК */
 .cards {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
   gap: 60px;

@@ -4,6 +4,13 @@ const url =
 const token = "37246a81de5e3317c98fb92126a5e5bf19aae2b2";
 function CheckAddress() {
   var query = SearchBox.value;
+  const suggestionsContainer = document.getElementById("SuggestionsContainer");
+  if (query == "") {
+    // Удаляем все дочерние элементы
+    while (suggestionsContainer.firstChild) {
+      suggestionsContainer.removeChild(suggestionsContainer.firstChild);
+    }
+  }
   var options = {
     method: "POST",
     mode: "cors",
@@ -28,6 +35,7 @@ function CheckAddress() {
         window.location.href = "/tariffs?address=" + query;
       }
       setSuggestions(suggestions.map((suggestion) => suggestion.value));
+      animationElemetsSearch.restart();
     })
     .catch((error) => console.log("error", error));
 }
@@ -74,24 +82,23 @@ elements.forEach(function (element, index) {
     delay: index, // Задержка для последовательного запуска анимации для каждого элемента
   });
 });
-// ЭТО ФУНКЦИОНАЛ МОДАЛКИ ЗАЯВКИ
 
+// ЭТО ФУНКЦИОНАЛ МОДАЛКИ ЗАЯВКИ
 // Функция открытия модального окна
 const openModalApplication = () => {
   const modal = document.getElementById("modal");
   modal.style.display = "block";
   document.body.style.overflow = "hidden";
 };
-
 // Функция закрытия модального окна
 const closeModalApplication = () => {
   const modal = document.getElementById("modal");
   modal.style.display = "none";
   document.body.style.overflow = "auto";
 };
+
 // ЭТО ФУНКЦИОНАЛ МОДАЛКИ ГОРОДОВ
 const modal = document.getElementById("cities");
-
 // Определяем анимацию
 const animationStart = anime({
   targets: modal,
@@ -100,7 +107,6 @@ const animationStart = anime({
   easing: "easeInOutQuad",
   duration: 250,
 });
-
 const animationEnd = anime({
   targets: modal,
   opacity: [1, 0], // Переход от невидимости к видимости
@@ -108,7 +114,6 @@ const animationEnd = anime({
   easing: "easeInOutQuad",
   duration: 250,
 });
-
 // Функция открытия модального окна
 const openModalCities = () => {
   const modal = document.getElementById("cities");
@@ -123,6 +128,14 @@ const openModalCities = () => {
   }
 };
 
+// АНИМАЦИИ ДЛЯ ПОИСКА
+const animationElemetsSearch = anime({
+  targets: document.getElementById("SuggestionsContainer"),
+  opacity: [0, 1], // Переход от невидимости к видимости
+  translateY: [0, 0], // Смещение по оси Y
+  easing: "easeInOutQuad",
+  duration: 700,
+});
 // menuMobile
 function menuMobile() {
   var mobileMenu = document.getElementById("mobileMenu");

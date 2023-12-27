@@ -39,11 +39,12 @@ const openModalCities = () => {
 };
 
 function CheckTariffs() {
+  animationCards.restart();
   const ProviderFilters = document.querySelectorAll(".providersFilterCheckbox"); // Добавлен точечный селектор перед классом
-  const MinTP = parseInt(document.getElementById('input11').value)
-  const MaxTP = parseInt(document.getElementById('input12').value)
-  const MinTIS = parseInt(document.getElementById('input21').value)
-  const MaxTIS = parseInt(document.getElementById('input22').value)
+  const MinTP = parseInt(document.getElementById("input11").value);
+  const MaxTP = parseInt(document.getElementById("input12").value);
+  const MinTIS = parseInt(document.getElementById("input21").value);
+  const MaxTIS = parseInt(document.getElementById("input22").value);
   var activeProviders = [];
   //console.log(ProviderFilters);
   ProviderFilters.forEach((element) => {
@@ -58,7 +59,13 @@ function CheckTariffs() {
       var tariffprice = parseInt(element.dataset.price);
       var tis = parseInt(element.dataset.internetspeed);
       element.style.display = "none";
-      if ((activeProviders.includes(providerName) ||activeProviders.length === 0)&&((MaxTP>tariffprice&&MinTP<tariffprice))&&(Number.isNaN(tis)||(MaxTIS>tis&&MinTIS<tis))) {
+      if (
+        (activeProviders.includes(providerName) ||
+          activeProviders.length === 0) &&
+        MaxTP > tariffprice &&
+        MinTP < tariffprice &&
+        (Number.isNaN(tis) || (MaxTIS > tis && MinTIS < tis))
+      ) {
         // Исправлено условие
         element.style.display = "block";
       }
@@ -76,7 +83,7 @@ $(function () {
     slide: function (event, ui) {
       $("#input11").val(ui.values[0]);
       $("#input12").val(ui.values[1]);
-      CheckTariffs()
+      CheckTariffs();
     },
   });
   $("#input11").val($("#slider-range1").slider("values", 0));
@@ -106,7 +113,7 @@ $(function () {
     slide: function (event, ui) {
       $("#input21").val(ui.values[0]);
       $("#input22").val(ui.values[1]);
-      CheckTariffs()
+      CheckTariffs();
     },
   });
   $("#input21").val($("#slider-range2").slider("values", 0));
@@ -127,4 +134,13 @@ $(function () {
       }
     }
   });
+});
+
+// АНИМАЦИЯ ПРИ ОБНОВЛЕНИИ ФИЛЬТРОВ
+const animationCards = anime({
+  targets: document.querySelectorAll(".cards"),
+  opacity: [0, 1], // Переход от невидимости к видимости
+  translateY: [0, 0], // Смещение по оси Y
+  easing: "easeInOutQuad",
+  duration: 700,
 });
