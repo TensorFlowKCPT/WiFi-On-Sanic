@@ -12,11 +12,15 @@
       rel="stylesheet"
     />
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
   </head>
   <body>
     <div class="header-cities">
       <div class="header">
-        <a href=""
+        <a href="/"
           ><span class="logo">
             <svg
               width="55"
@@ -88,10 +92,12 @@
           ></a
         >
         <div class="wrapper-navigations">
-          <a href=""><span class="navigate">Тарифы</span></a>
-          <a href=""><span class="navigate">Отзывы</span></a>
-          <a href=""><span class="navigate">О нас</span></a>
-          <a href=""><span class="navigate">Часто задаваемые вопросы</span></a>
+          <a href="/tariffs"><span class="navigate">Тарифы</span></a>
+          <a href="/reviews"><span class="navigate">Отзывы</span></a>
+          <a href="/aboutUs"><span class="navigate">О нас</span></a>
+          <a href="/questions"
+            ><span class="navigate">Часто задаваемые вопросы</span></a
+          >
           <a href=""
             ><div class="wrapper-telephone">
               <span class="navigate">+78005500792</span>
@@ -174,19 +180,19 @@
         <div class="filter">
           <span class="filter-name">Тарифы</span>
           <div class="filter-params">
-            <div class="param">
+            <div class="filter-param">
               <input type="checkbox" name="" id="" />
               <span>Интернет + ТВ</span>
             </div>
-            <div class="param">
+            <div class="filter-param">
               <input type="checkbox" name="" id="" />
               <span>Интернет</span>
             </div>
-            <div class="param">
+            <div class="filter-param">
               <input type="checkbox" name="" id="" />
               <span>Интернет + Связь + ТВ</span>
             </div>
-            <div class="param">
+            <div class="filter-param">
               <input type="checkbox" name="" id="" />
               <span>ТВ</span>
             </div>
@@ -196,28 +202,28 @@
           <span class="filter-name">Провайдеры</span>
           <div class="filter-params">
             {% for provider in data['providers'] %}
-            <div class="param">
+            <div class="filter-param">
               <input type="checkbox" class="providersFilterCheckbox" name="{{ provider['NameEng'] }}" id="{{ provider['NameEng'] }}" onchange="CheckTariffs()" />
-              <label for="{{ provider['NameEng'] }}">{{ provider['Name'] }}</label>
+              <span for="{{ provider['NameEng'] }}">{{ provider['Name'] }}</span>
             </div>
             {% endfor %}
           </div>
         </div>
         
         <div class="filter">
-          <span class="filter-name">Провайдеры</span>
+          <span class="filter-name">Стоимость тарифа </span>
           <div class="slider">
-            <input class="slider-numbers" type="number" name="" id="" />
-            <input type="range" name="" id="" />
-            <input class="slider-numbers" type="number" name="" id="" />
+            <input type="text" id="input11" class="slider-input">
+            <div class="slider-range" id="slider-range1"></div>
+            <input type="text" id="input12" class="slider-input">
           </div>
         </div>
         <div class="filter">
           <span class="filter-name">Скорость интернета</span>
           <div class="slider">
-            <input class="slider-numbers" type="number" name="" id="" />
-            <input type="range" name="" id="" />
-            <input class="slider-numbers" type="number" name="" id="" />
+            <input type="text" id="input21" class="slider-input">
+            <div class="slider-range" id="slider-range2"></div>
+            <input type="text" id="input22" class="slider-input">
           </div>
         </div>
       </div>
@@ -238,21 +244,33 @@
             </div>
             <div class="params">
               <div class="param">
-                {% if tariff['Options']['Values']['InternetSpeed'] %}
+                
                 <img src="static/img/main/inet35px.png" alt="" />
-                <span>{{tariff['Options']['Values']['InternetSpeed'][0]}} {{tariff['Options']['Values']['InternetSpeed'][1]}}</span>
+                {% if tariff['Options']['Values']['InternetSpeed'] %}
+                <span>{{tariff['Options']['Values']['InternetSpeed'][0]}} {{tariff['Options']['Values']['InternetSpeed'][1]}}
+                  {% else %}
+                  ---
+                </span>
                 {% endif %}
               </div>
               <div class="param">
-                {% if tariff['Options']['Values']['ChannelsCount'] %}
+                
                 <img src="static/img/main/tv35px.png" alt="" />
-                <span>{{tariff['Options']['Values']['ChannelsCount'][0]}} {{tariff['Options']['Values']['ChannelsCount'][1]}}</span>
+                {% if tariff['Options']['Values']['ChannelsCount'] %}
+                <span>{{tariff['Options']['Values']['ChannelsCount'][0]}} {{tariff['Options']['Values']['ChannelsCount'][1]}}
+                  {% else %} 
+                  ---
+                </span>
                 {% endif %}
               </div>
               <div class="param">
-                {% if tariff['Options']['Values']['GigabytesCount'] %}
+                
                 <img src="static/img/main/mob35px.png" alt="" />
-                <span>{{tariff['Options']['Values']['GigabytesCount'][0]}} {{tariff['Options']['Values']['GigabytesCount'][1]}}</span>
+                {% if tariff['Options']['Values']['GigabytesCount'] %}
+                <span>{{tariff['Options']['Values']['GigabytesCount'][0]}} {{tariff['Options']['Values']['GigabytesCount'][1]}}
+                  {% else %} 
+                  ---
+                </span>
                 {% endif %}
               </div>
             </div>
@@ -309,4 +327,5 @@
   </body>
 
   <script src="static/js/tariffs.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.js"></script>
 </html>

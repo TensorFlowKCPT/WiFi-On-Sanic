@@ -57,5 +57,26 @@ async def tariffs(request):
     return html(rendered_html)
 #endregion
 
+#region /aboutUs
+@app.route("/aboutUs")
+async def aboutUs(request):
+    template = env.get_template('aboutUs.html')
+    return html(template.render())
+#endregion
+
+#region /question
+@app.route("/questions")
+async def questions(request):
+    template = env.get_template('questions.html')
+    return html(template.render())
+#endregion
+
+#region /reviews
+@app.route("/reviews")
+async def reviews(request):
+    template = env.get_template('reviews.html')
+    return html(template.render())
+#endregion
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000, debug=True)

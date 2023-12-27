@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>wifi-on</title>
-    <link rel="stylesheet" href="../css/aboutUs.css" />
+    <link rel="stylesheet" href="static/css/aboutUs.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,7 +17,7 @@
   <body>
     <div class="header-cities">
       <div class="header">
-        <a href=""
+        <a href="/"
           ><span class="logo">
             <svg
               width="55"
@@ -89,10 +89,12 @@
           ></a
         >
         <div class="wrapper-navigations">
-          <a href=""><span class="navigate">Тарифы</span></a>
-          <a href=""><span class="navigate">Отзывы</span></a>
-          <a href=""><span class="navigate">О нас</span></a>
-          <a href=""><span class="navigate">Часто задаваемые вопросы</span></a>
+          <a href="/tariffs"><span class="navigate">Тарифы</span></a>
+          <a href="/reviews"><span class="navigate">Отзывы</span></a>
+          <a href="/aboutUs"><span class="navigate">О нас</span></a>
+          <a href="/questions"
+            ><span class="navigate">Часто задаваемые вопросы</span></a
+          >
           <a href=""
             ><div class="wrapper-telephone">
               <span class="navigate">+78005500792</span>
@@ -319,7 +321,6 @@
       </div>
       <span class="footer-title">© 2023 On-WiFi. Все права защищены.</span>
     </div>
-    <script src="../js/aboutUs.js"></script>
 
     <div id="modal" class="container-modals">
       <div class="modals">
@@ -348,5 +349,7 @@
         </form>
       </div>
     </div>
+
+    <script src="static/js/aboutUs.js"></script>
   </body>
 </html>
