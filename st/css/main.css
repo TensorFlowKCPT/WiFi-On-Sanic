@@ -79,7 +79,6 @@ button:hover {
   margin-right: 5px;
 }
 
-
 .logo span:nth-child(2) {
   color: #2a6f97;
 }
@@ -147,7 +146,6 @@ a {
   padding: 2px;
 }
 
-
 .wrapper__mobile {
   display: none;
   position: absolute;
@@ -163,7 +161,6 @@ a {
   display: flex;
   flex-direction: column;
   gap: 8px;
-
 }
 
 .wrapper__mobile.show a {
@@ -248,14 +245,54 @@ a {
 .container-search input {
   height: 60px;
   min-width: 1300px;
-  border: 1px solid #657fda;
+  border: none;
   border-radius: 15px;
   background-color: rgba(217, 217, 217, 0.2);
 
   padding: 10px;
+  padding-left: 25px;
   text-align: start;
   font-size: 20px;
   font-weight: 100;
+
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.container-search input:focus {
+  outline: none;
+}
+
+.wrapper-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: solid 2px #0369a1;
+  border-radius: 10px;
+}
+
+#SuggestionsContainer {
+  width: 97%;
+  display: flex;
+  border-radius: 3px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+#SuggestionsContainer div {
+  margin: 10px;
+  cursor: pointer;
 }
 
 /* ПРОВАЙДЕРЫ */
@@ -450,7 +487,6 @@ a {
 }
 
 .wrapper-form span:nth-child(1) {
-
   font-size: 52px;
   font-weight: 500;
   margin-bottom: 10px;
@@ -677,7 +713,6 @@ a {
   .modal-mobile {
     padding: 11px;
   }
-
 }
 
 /* @media (max-width: 1350px) {
