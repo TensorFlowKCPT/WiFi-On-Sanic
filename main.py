@@ -19,7 +19,7 @@ async def index(request):
     data = {}
     data['City'] = {'Name':'Москва', 'NameEng': 'unknown'}
     
-    print(request.headers.get('Referer'))
+    print(request.headers.get('Referer').split('.')[0].removeprefix('https://'))
 
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
