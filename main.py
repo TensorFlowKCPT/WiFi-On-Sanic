@@ -3,10 +3,10 @@ from sanic.response import text, html
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from Database import Database
-import httpx
+import requests
 
 app = Sanic("Wifi-On")
-local_link = "http://localhost:8000/"
+local_link = "http://localhost:3000/"
 env = Environment(
     loader=FileSystemLoader('templates'),  # Папка с шаблонами
     autoescape=select_autoescape(['html', 'xml'])
@@ -14,17 +14,10 @@ env = Environment(
 
 app.static("/static/", "./st/")
 
+def get_city_from_ip(ip):
+    response = requests.get(f'https://ipinfo.io/{ip}?token=579eb1c2e8eaba')
+    return Database.GetCityBySubdomain(str(response.json().get('city')).lower())
 
-
-async def get_city_from_ip(ip):
-    # Запрос к ipinfo.io для получения информации о местоположении по IP
-    async with httpx.AsyncClient() as client:
-        response = await client.get(f'https://ipinfo.io/{ip}/json')
-    data = response.json()
-
-    # Извлекаем город из полученных данных
-    city = data.get('city', 'Unknown')
-    return city
 
 #Получение адреса пользователя из ip не очень работает, надо будет уже с ssh и серваком это делать, без них не понять
 #region /index
@@ -32,15 +25,16 @@ async def get_city_from_ip(ip):
 async def index(request):
     referer = request.headers.get('Referer')
     data = {}
-    data['City'] = 'Unknown'
+    data['City'] = 'Москва'
     if referer != local_link and referer != None:
         Subdomain = referer.split('.')[0]
         city = Database.GetCityBySubdomain(Subdomain)
         if city:
             data['City'] = city['Name'] 
         else:
+            #city = get_city_from_ip("91.239.42.192") #Временно Тюмень
             city = get_city_from_ip(request.ip)
-            data['City'] = city
+            data['City'] = city['Name']
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
 
@@ -79,4 +73,4 @@ async def reviews(request):
 #endregion
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    app.run(host="0.0.0.0", port=3000, debug=True)
