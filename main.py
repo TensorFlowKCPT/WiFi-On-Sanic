@@ -3,7 +3,6 @@ from sanic.response import text, html
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from Database import Database
-import requests
 
 app = Sanic("Wifi-On")
 local_link = "http://localhost:3000/"
@@ -13,25 +12,15 @@ env = Environment(
 )
 
 app.static("/static/", "./st/")
-
-def get_city_from_ip(ip):
-    response = requests.get(f'https://ipinfo.io/{ip}?token=579eb1c2e8eaba')
-    print(response.json())
-    return Database.GetCityBySubdomain(str(response.json().get('city')).lower())
-
-
 #Получение адреса пользователя из ip не очень работает, надо будет уже с ssh и серваком это делать, без них не понять
 #region /index
 @app.route("/")
 async def index(request):
     data = {}
     data['City'] = {'Name':'Москва', 'NameEng': 'unknown'}
-    print(request.headers.get("Referer"))
-    ip = None#request.json.get('ip')
     
-    if ip:
-        city = get_city_from_ip(ip)
-        data['City'] = city
+    print(request.headers.get('Referer'))
+
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
 
