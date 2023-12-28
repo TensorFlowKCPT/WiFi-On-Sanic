@@ -37,3 +37,9 @@ const openModalCities = () => {
     modal.style.display = "none";
   }
 };
+
+// menuMobile
+function menuMobile() {
+  var mobileMenu = document.getElementById("mobileMenu");
+  mobileMenu.classList.toggle("show");
+}
