@@ -232,9 +232,9 @@
           <div class="card-tariff-body">
             <div class="wrapper-priceAndLogo">
               
-              <span>{% if tariff['PriceOld'] and tariff['PriceOld'] != 0 %}{{tariff['PriceOld']}} руб{% endif %}</span>
+              <span>{% if tariff['PriceOld'] and tariff['PriceOld'] != 0 %}{{tariff['PriceOld']}}{% endif %}</span>
               
-              <span>{{tariff['Price']}} руб</span>
+              <span>{{tariff['Price']}}руб.</span>
               
               <img src="static/img/main/{{tariff['Provider']['ImageUrl']}}" alt="" />
             </div>
@@ -281,10 +281,10 @@
     </div>
     <div class="footer">
       <div class="wrapper-footer-a">
-        <a href="">Тариф</a>
-        <a href="">Отзывы клиентов</a>
-        <a href="">О нас</a>
-        <a href="">Часто задаваемые вопросы</a>
+        <a href="/tariffs">Тариф</a>
+        <a href="/reviews">Отзывы клиентов</a>
+        <a href="/aboutUs">О нас</a>
+        <a href="/questions">Часто задаваемые вопросы</a>
       </div>
       <div class="footer-logo">
         <span>On-</span><span>Wi</span><span>Fi</span>
