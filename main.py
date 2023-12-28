@@ -19,11 +19,10 @@ async def index(request):
     data = {}
     data['City'] = {'Name':'Москва', 'NameEng': 'unknown'}
     subdomain = request.headers.get('host').split('.')[0].removeprefix('https://')
-    if subdomain!="":
-        print(subdomain)
+    if subdomain!="on-wifi":
+        data['City'] = Database.GetCityBySubdomain(subdomain)
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
-
     return html(rendered_html)
 #endregion
 
