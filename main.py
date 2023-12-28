@@ -34,8 +34,12 @@ async def index(request):
 @app.route("/tariffs")
 async def tariffs(request):
     address = request.args.get("address")
+    city = request.args.get("city")
     template = env.get_template('tariffs.html')
-    data = Database.GetInfoByAddress(address)
+    if address:
+        data = Database.GetInfoByAddress(address)
+    elif city:
+        data = Database.GetInfoByCityName(city)
     rendered_html = template.render(data = data)
     return html(rendered_html)
 #endregion
