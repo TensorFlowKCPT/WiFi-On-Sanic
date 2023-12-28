@@ -100,6 +100,22 @@ class Database:
                 }
         return output
     
+    def GetAllCities():
+        with sqlite3.connect("sqlite.sqlite3") as conn:
+            cursor = conn.execute("SELECT Name, NameEng FROM Cities")
+            rows = cursor.fetchall()
+            output = []
+            if rows != None:
+                lastLetter = ''
+                for row in sorted(rows):
+                    if row[0][0] == lastLetter:
+                        output.append([row[0], row[1]])
+                    else:
+                        output.append(row[0][0])
+                        output.append([row[0], row[1]])
+                    lastLetter = row[0][0]
+                return output
+    
     def GetInfoByCityName(cityName:str):
         with sqlite3.connect("sqlite.sqlite3") as conn:
             cursor = conn.execute("SELECT id FROM Cities WHERE Name = ?", (cityName,))
@@ -167,4 +183,3 @@ class Database:
                 }
             else: output = None
         return output
-#print(Database.GetAllSubdomains())
