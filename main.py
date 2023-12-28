@@ -21,6 +21,7 @@ app.static("/static/", "./st/")
 async def index(request):
     data = {}
     data['City'] = {'Name':'Москва', 'NameEng': 'unknown'}
+    data['Cities'] = Database.GetAllCities()
     subdomain = request.headers.get('host').split('.')[0].removeprefix('https://')
     if subdomain!="on-wifi":
         data['City'] = Database.GetCityBySubdomain(subdomain)

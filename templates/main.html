@@ -222,56 +222,13 @@
       <div style="display: none" id="cities" class="cities">
         <span>Города в которых мы есть</span>
         <div class="wrapper-all-cities">
-          <a href="">Москва</a>
-          <a href="">Санкт-Петербург</a>
-          <a href="">Новосибирск</a>
-          <a href="">Екатеринбург</a>
-          <a href="">Нижний Новгород</a>
-          <a href="">Казань</a>
-          <a href="">Самара</a>
-          <a href="">Челябинск</a>
-          <a href="">Омск</a>
-          <a href="">Ростов-на-Дону</a>
-          <a href="">Уфа</a>
-          <a href="">Пермь</a>
-          <a href="">Сургут</a>
-          <a href="">Хабаровск</a>
-          <a href="">Киров</a>
-          <a href="">Чебоксары</a>
-          <a href="">Калининград</a>
-          <a href="">Курск</a>
-          <a href="">Улан-Удэ</a>
-          <a href="">Ставрополь</a>
-          <a href="">Магнитогорск</a>
-          <a href="">Тверь</a>
-          <a href="">Иваново</a>
-          <a href="">Брянск</a>
-          <a href="">Сочи</a>
-          <a href="">Белгород</a>
-          <a href="">Махачкала</a>
-          <a href="">Оренбург</a>
-          <a href="">Томск</a>
-          <a href="">Новокузнецк</a>
-          <a href="">Кемерово</a>
-          <a href="">Астрахань</a>
-          <a href="">Рязань</a>
-          <a href="">Набережные</a>
-          <a href="">Челны</a>
-          <a href="">Пенза</a>
-          <a href="">Липецк </a>
-          <a href="">Тула</a>
-          <a href="">Волгоград</a>
-          <a href="">Воронеж</a>
-          <a href="">Саратов</a>
-          <a href="">Краснодар</a>
-          <a href="">Тольятти</a>
-          <a href="">Тюмень</a>
-          <a href="">Ижевск</a>
-          <a href="">Барнаул</a>
-          <a href="">Ульяновск</a>
-          <a href="">Иркутск</a>
-          <a href="">Владивосток</a>
-          <a href="">Ярославль</a>
+          <div class="wrapper-cities">
+            {% for city in data['Cities'] %} {% if city|length == 1 %}
+            <h1>{{ city[0] }}</h1>
+            {% else %}
+            <a href="https://{{ city[1] }}.on-wifi.ru">{{ city[0] }}</a>
+            {% endif %} {% endfor %}
+          </div>
         </div>
       </div>
     </div>
