@@ -27,7 +27,8 @@ async def index(request):
     data = {}
     data['City'] = {'Name':'Москва', 'NameEng': 'unknown'}
     print(request.headers.get("Referer"))
-    ip = request.json.get('ip')
+    ip = None#request.json.get('ip')
+    
     if ip:
         city = get_city_from_ip(ip)
         data['City'] = city
