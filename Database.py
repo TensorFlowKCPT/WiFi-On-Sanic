@@ -114,7 +114,8 @@ class Database:
             mintariffinternetspeed = 99999
             for row in rows:
                 Provider = Database.GetProviderById(row[7])
-                providers.append(Provider)
+                if not Provider in providers:
+                    providers.append(Provider)
                 options = json.loads(row[6])
                 try:
                     if options['Values']['InternetSpeed']:
