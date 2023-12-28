@@ -23,18 +23,11 @@ def get_city_from_ip(ip):
 #region /index
 @app.route("/")
 async def index(request):
-    referer = request.headers.get('Referer')
     data = {}
     data['City'] = 'Москва'
-    if referer != local_link and referer != None:
-        Subdomain = referer.split('.')[0]
-        city = Database.GetCityBySubdomain(Subdomain)
-        if city:
-            data['City'] = city['Name'] 
-        else:
-            #city = get_city_from_ip("91.239.42.192") #Временно Тюмень
-            city = get_city_from_ip(request.ip)
-            data['City'] = city['Name']
+    #city = get_city_from_ip("91.239.42.192") #Временно Тюмень
+    city = get_city_from_ip(request.ip)
+    data['City'] = city['Name']
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
 
