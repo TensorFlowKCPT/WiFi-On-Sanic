@@ -96,7 +96,7 @@
               /></div
           ></a>
         </div>
-        <div class="city-button">
+        <div class="city-button" id="cityButton" data-city='{{data.City["NameEng"]}}'>
           <span onclick="openModalCities()">Город</span>
           <button onclick="openModalApplication()" class="active-modal">
             Оставить заявку
@@ -295,7 +295,7 @@
     </div>
 
     <div class="providers">
-      <span>Провайдеры в городе {{data.City}}</span>
+      <span>Провайдеры в городе {{data.City['Name']}}</span>
       <div class="wrapper-providers">
         <a href=""><img src="static/img/main/bln80px.png" alt="beeline" /></a>
         <a href=""><img src="static/img/main/mts80px.png" alt="mts" /></a>
@@ -306,7 +306,7 @@
     </div>
     <div class="popular-tariffs">
       <span class="popular-tariffs-text"
-        >Популярные тарифы в городе {{data.City}}</span
+        >Популярные тарифы в городе {{data.City['Name']}}</span
       >
       <div class="wrapper-card-tariff">
         <div class="card-tariff">

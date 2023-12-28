@@ -25,13 +25,12 @@ def get_city_from_ip(ip):
 @app.route("/")
 async def index(request):
     data = {}
-    print(request.headers.get('Referer'))
-    data['City'] = 'Москва'
-    print(request.ip)
-    city = get_city_from_ip(request.remote_addr)
-    print(request.remote_addr)
-    print(city)
-    data['City'] = city['Name']
+    data['City'] = {'Name':'Москва', 'NameEng': 'unknown'}
+    print(request.headers.get("Referer"))
+    ip = request.json.get('ip')
+    if ip:
+        city = get_city_from_ip(ip)
+        data['City'] = city
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
 

@@ -141,3 +141,10 @@ function menuMobile() {
   var mobileMenu = document.getElementById("mobileMenu");
   mobileMenu.classList.toggle("show");
 }
+function CheckCity(){
+  var city = document.getElementById("cityButton").dataset.city
+  if(city==='unknown'){
+    console.log('Отправляю свой ip')
+  }
+}
+CheckCity()
