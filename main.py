@@ -18,12 +18,9 @@ app.static("/static/", "./st/")
 async def index(request):
     data = {}
     data['City'] = {'Name':'Москва', 'NameEng': 'unknown'}
-    
-    print(request.headers.get('host'))
-    print(request.headers.get('host'))
-    print(request.headers.get('host'))
-    print(request.headers.get('host'))
-    print(request.headers.get('host'))
+    subdomain = request.headers.get('host').split('.')[0].removeprefix('https://')
+    if subdomain!="":
+        print(subdomain)
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
 
