@@ -28,7 +28,7 @@ async def index(request):
     print(request.headers.get('Referer'))
     data['City'] = 'Москва'
     print(request.ip)
-    city = get_city_from_ip(request.ip)
+    city = get_city_from_ip(request.headers.get("X-Request-Data"))
     print(city)
     data['City'] = city['Name']
     template = env.get_template('main.html')
