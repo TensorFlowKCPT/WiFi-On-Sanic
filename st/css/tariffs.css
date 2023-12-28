@@ -6,6 +6,7 @@ body {
   min-height: 100vh;
   margin: 0;
 }
+
 /* АНИМАЦИИ НА ОБЩАГ */
 button {
   transition: transform 0.1s ease-out;
@@ -27,6 +28,7 @@ button:hover {
 .wrapper-navigations a {
   position: relative;
 }
+
 .wrapper-navigations a::after {
   position: absolute;
   content: "";
@@ -37,13 +39,16 @@ button:hover {
   height: 2px;
   background: #2a6f97;
 }
+
 .wrapper-navigations a::after {
   width: 0;
   transition: 0.3s;
 }
+
 .wrapper-navigations a:hover:after {
   width: 100%;
 }
+
 /* HEADER */
 .header {
   height: 80px;
@@ -119,7 +124,8 @@ button:hover {
   cursor: pointer;
 }
 
-.header button {
+.header button,
+.wrapper__mobile button {
   border-radius: 10px;
   background-color: rgb(42 111 151);
   padding: 15px;
@@ -135,6 +141,50 @@ button:hover {
 a {
   text-decoration: none;
 }
+
+/* HEADER MOBILE */
+.header__mobile {
+  display: none;
+}
+
+.menuMobile {
+  display: none;
+}
+
+.btn-mobile {
+  position: fixed;
+  top: 45px;
+  right: 60px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.wrapper__mobile {
+  display: none;
+  position: absolute;
+  top: 78px;
+  right: 60px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 5px 6px;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+.wrapper__mobile.show {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wrapper__mobile.show a {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 3px 1px;
+}
+
 /* ПОЛУМОДАЛКА ДЛЯ ГОРОДОВ */
 .cities {
   display: none;
@@ -181,6 +231,7 @@ a {
   font-weight: 500;
   line-height: normal;
 }
+
 /* ФИЛЬТРАЦИЯ КАРТОЧЕК */
 .filter-cards {
   display: flex;
@@ -397,6 +448,7 @@ a {
   font-weight: 300;
   line-height: normal;
 }
+
 /* ФУТЕР */
 .footer {
   display: flex;
@@ -459,6 +511,7 @@ a {
   font-weight: 400;
   line-height: normal;
 }
+
 /* МОДАЛКА */
 
 .container-modals {
@@ -566,4 +619,37 @@ a {
   font-weight: 500;
   line-height: normal;
   color: #fff;
+}
+
+@media (max-width: 1598px) {
+  .header {
+    display: none;
+  }
+
+  .header__mobile {
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f7fa;
+  }
+
+  .navigate-mobile {
+    font-size: 19px;
+  }
+
+  .menuMobile {
+    display: flex;
+  }
+
+  .city-button {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .modal-mobile {
+    padding: 11px;
+  }
 }

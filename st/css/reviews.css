@@ -479,7 +479,7 @@ a {
   color: #fff;
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1598px) {
   .header {
     display: none;
   }
