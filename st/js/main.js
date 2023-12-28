@@ -136,6 +136,36 @@ const animationElemetsSearch = anime({
   easing: "easeInOutQuad",
   duration: 700,
 });
+
+document
+  .getElementById("colobarationButton")
+  .addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    var form = document.getElementById("colobarationForm");
+    var formData = new FormData(form);
+
+    fetch("/send-email", {
+      method: "POST",
+      body: formData,
+    }).then((response) => {
+      const button = document.querySelector("#colobarationButton");
+      animationFormButton.restart();
+      button.innerText = "Заявка принята";
+
+      return response.json();
+    });
+  });
+
+// АНИМАЦИЯ ДЛЯ ОТПРАВКИ ФОРМЫ
+const animationFormButton = anime({
+  targets: document.getElementById("colobarationButton"),
+  opacity: [0, 1], // Переход от невидимости к видимости
+  translateY: [0, 0], // Смещение по оси Y
+  easing: "easeInOutQuad",
+  duration: 700,
+});
+
 // menuMobile
 function menuMobile() {
   var mobileMenu = document.getElementById("mobileMenu");
