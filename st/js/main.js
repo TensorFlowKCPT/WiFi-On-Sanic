@@ -144,7 +144,9 @@ function menuMobile() {
 function CheckCity(){
   var city = document.getElementById("cityButton").dataset.city
   if(city==='unknown'){
-    console.log('Отправляю свой ip')
+    $.getJSON("https://api.ipify.org?format=json", function (data) {
+      console.log("Ip address ====>", data.ip);
+    })
   }
 }
 CheckCity()
