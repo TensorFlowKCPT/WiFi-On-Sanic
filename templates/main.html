@@ -218,13 +218,11 @@
       <div style="display: none" id="cities" class="cities">
         <span>Города в которых мы есть</span>
         <div class="wrapper-all-cities">
-          <div class="wrapper-cities">
-            {% for city in data['Cities'] %} {% if city|length == 1 %}
+          {% for city in data['Cities'] %} {% if city|length == 1 %}
             <h1>{{ city[0] }}</h1>
             {% else %}
             <a href="https://{{ city[1] }}.on-wifi.ru">{{ city[0] }}</a>
             {% endif %} {% endfor %}
-          </div>
         </div>
       </div>
     </div>
@@ -317,7 +315,7 @@
               </div>
             </div>
             <div class="conn-info">
-              <button>Подключить</button>
+              <button onclick="openModalApplication()">Подключить</button>
             </div>
           </div>
         </div>
