@@ -116,6 +116,10 @@ class Database:
                 Provider = Database.GetProviderById(row[7])
                 if not Provider in providers:
                     providers.append(Provider)
+                if row[4] > maxtariffcost:
+                    maxtariffcost = row[4]
+                if row[4] < mintariffcost:
+                    mintariffcost = row[4]
                 options = json.loads(row[6])
                 try:
                     if options['Values']['InternetSpeed']:
