@@ -87,13 +87,19 @@ elements.forEach(function (element, index) {
 // Функция открытия модального окна
 const openModalApplication = () => {
   const modal = document.getElementById("modal");
-  modal.style.display = "block";
+  modal.classList.remove("modals-inactive");
+  modal.classList.add("modals-active");
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
   document.body.style.overflow = "hidden";
 };
 // Функция закрытия модального окна
 const closeModalApplication = () => {
   const modal = document.getElementById("modal");
-  modal.style.display = "none";
+  modal.classList.remove("modals-active");
+  modal.classList.add("modals-inactive");
   document.body.style.overflow = "auto";
 };
 

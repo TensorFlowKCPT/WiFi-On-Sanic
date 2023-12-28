@@ -198,20 +198,14 @@ a {
 
 .wrapper-all-cities {
   display: flex;
-  width: 100%;
+  padding: 40px;
   align-items: center;
   justify-content: space-evenly;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
-.wrapper-cities {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  margin: 10px;
-}
-
-.wrapper-cities a {
+.wrapper-all-cities a {
   font-size: 18px;
   font-weight: 500;
 }
@@ -584,15 +578,14 @@ a {
 
 /* МОДАЛКА */
 
-.container-modals {
-  display: none;
+.modals-active {
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 3;
-  height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modals {
@@ -605,6 +598,10 @@ a {
   border-radius: 20px;
   margin: 30vh auto;
   max-width: 500px;
+}
+
+.modals-inactive {
+  display: none;
 }
 
 .modals-header {
@@ -968,7 +965,6 @@ a {
   .footer-title {
     padding-bottom: 20px;
   }
-
 }
 
 @media (min-width: 600px) {

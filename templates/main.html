@@ -81,7 +81,9 @@
           ></a
         >
         <div class="wrapper-navigations">
-          <a href="/tariffs?city={{data['City']['Name']}}"><span class="navigate">Тарифы</span></a>
+          <a href="/tariffs?city={{data['City']['Name']}}"
+            ><span class="navigate">Тарифы</span></a
+          >
           <a href="/reviews"><span class="navigate">Отзывы</span></a>
           <a href="/aboutUs"><span class="navigate">О нас</span></a>
           <a href="/questions"
@@ -96,7 +98,11 @@
               /></div
           ></a>
         </div>
-        <div class="city-button" id="cityButton" data-city='{{data.City["NameEng"]}}'>
+        <div
+          class="city-button"
+          id="cityButton"
+          data-city='{{data.City["NameEng"]}}'
+        >
           <span onclick="openModalCities()">Город</span>
           <button onclick="openModalApplication()" class="active-modal">
             Оставить заявку
@@ -216,64 +222,56 @@
       <div style="display: none" id="cities" class="cities">
         <span>Города в которых мы есть</span>
         <div class="wrapper-all-cities">
-          <div class="wrapper-cities">
-            <a href="">Москва</a>
-            <a href="">Санкт-Петербург</a>
-            <a href="">Новосибирск</a>
-            <a href="">Екатеринбург</a>
-            <a href="">Нижний Новгород</a>
-            <a href="">Казань</a>
-            <a href="">Самара</a>
-            <a href="">Челябинск</a>
-            <a href="">Омск</a>
-            <a href="">Ростов-на-Дону</a>
-            <a href="">Уфа</a>
-            <a href="">Пермь</a>
-            <a href="">Сургут</a>
-          </div>
-          <div class="wrapper-cities">
-            <a href="">Махачкала</a>
-            <a href="">Оренбург</a>
-            <a href="">Томск</a>
-            <a href="">Новокузнецк</a>
-            <a href="">Кемерово</a>
-            <a href="">Астрахань</a>
-            <a href="">Рязань</a>
-            <a href="">Набережные</a>
-            <a href="">Челны</a>
-            <a href="">Пенза</a>
-            <a href="">Липецк </a>
-            <a href="">Тула</a>
-          </div>
-          <div class="wrapper-cities">
-            <a href="">Волгоград</a>
-            <a href="">Воронеж</a>
-            <a href="">Саратов</a>
-            <a href="">Краснодар</a>
-            <a href="">Тольятти</a>
-            <a href="">Тюмень</a>
-            <a href="">Ижевск</a>
-            <a href="">Барнаул</a>
-            <a href="">Ульяновск</a>
-            <a href="">Иркутск</a>
-            <a href="">Владивосток</a>
-            <a href="">Ярославль</a>
-          </div>
-          <div class="wrapper-cities">
-            <a href="">Хабаровск</a>
-            <a href="">Киров</a>
-            <a href="">Чебоксары</a>
-            <a href="">Калининград</a>
-            <a href="">Курск</a>
-            <a href="">Улан-Удэ</a>
-            <a href="">Ставрополь</a>
-            <a href="">Магнитогорск</a>
-            <a href="">Тверь</a>
-            <a href="">Иваново</a>
-            <a href="">Брянск</a>
-            <a href="">Сочи</a>
-            <a href="">Белгород</a>
-          </div>
+          <a href="">Москва</a>
+          <a href="">Санкт-Петербург</a>
+          <a href="">Новосибирск</a>
+          <a href="">Екатеринбург</a>
+          <a href="">Нижний Новгород</a>
+          <a href="">Казань</a>
+          <a href="">Самара</a>
+          <a href="">Челябинск</a>
+          <a href="">Омск</a>
+          <a href="">Ростов-на-Дону</a>
+          <a href="">Уфа</a>
+          <a href="">Пермь</a>
+          <a href="">Сургут</a>
+          <a href="">Хабаровск</a>
+          <a href="">Киров</a>
+          <a href="">Чебоксары</a>
+          <a href="">Калининград</a>
+          <a href="">Курск</a>
+          <a href="">Улан-Удэ</a>
+          <a href="">Ставрополь</a>
+          <a href="">Магнитогорск</a>
+          <a href="">Тверь</a>
+          <a href="">Иваново</a>
+          <a href="">Брянск</a>
+          <a href="">Сочи</a>
+          <a href="">Белгород</a>
+          <a href="">Махачкала</a>
+          <a href="">Оренбург</a>
+          <a href="">Томск</a>
+          <a href="">Новокузнецк</a>
+          <a href="">Кемерово</a>
+          <a href="">Астрахань</a>
+          <a href="">Рязань</a>
+          <a href="">Набережные</a>
+          <a href="">Челны</a>
+          <a href="">Пенза</a>
+          <a href="">Липецк </a>
+          <a href="">Тула</a>
+          <a href="">Волгоград</a>
+          <a href="">Воронеж</a>
+          <a href="">Саратов</a>
+          <a href="">Краснодар</a>
+          <a href="">Тольятти</a>
+          <a href="">Тюмень</a>
+          <a href="">Ижевск</a>
+          <a href="">Барнаул</a>
+          <a href="">Ульяновск</a>
+          <a href="">Иркутск</a>
+          <a href="">Владивосток</a>
+          <a href="">Ярославль</a>
         </div>
       </div>
     </div>
@@ -531,7 +529,7 @@
       <span class="footer-title">© 2023 On-WiFi. Все права защищены.</span>
     </div>
 
-    <div id="modal" class="container-modals">
+    <div id="modal" class="modals-inactive">
       <div class="modals">
         <div class="modals-header">
           <p>Оставить заявку</p>

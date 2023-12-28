@@ -367,6 +367,11 @@ a {
   gap: 10px;
 }
 
+.wrapper-priceAndLogo img {
+  height: 45px;
+  width: 45px;
+}
+
 .wrapper-priceAndLogo span:nth-child(1) {
   color: #000;
   text-decoration: line-through;
