@@ -3,7 +3,6 @@ from sanic.response import text, html
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from Database import Database
-import httpx
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
