@@ -19,11 +19,11 @@ async def index(request):
     data = {}
     data['City'] = {'Name':'Москва', 'NameEng': 'unknown'}
     
-    print(request.headers.get('referer'))
-    print(request.headers.get('referer'))
-    print(request.headers.get('referer'))
-    print(request.headers.get('referer'))
-    print(request.headers.get('referer'))
+    print(request.headers)
+    print(request.headers)
+    print(request.headers)
+    print(request.headers)
+    print(request.headers)
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
 
