@@ -97,7 +97,7 @@
           ></a>
         </div>
         <div class="city-button" id="cityButton" data-city='{{data.City["NameEng"]}}'>
-          <span onclick="openModalCities()">Город</span>
+          <span onclick="openModalCities()">{{data.City['Name']}}</span>
           <button onclick="openModalApplication()" class="active-modal">
             Оставить заявку
           </button>
@@ -202,7 +202,7 @@
             ><span class="navigate navigate-mobile">Вопросы</span></a
           >
           <div class="city-button">
-            <span onclick="openModalCities()">Город</span>
+            <span onclick="openModalCities()">{{data.City['Name']}}</span>
             <button
               onclick="openModalApplication()"
               class="active-modal modal-mobile"
@@ -249,11 +249,11 @@
     <div class="providers">
       <span>Провайдеры в городе {{data.City['Name']}}</span>
       <div class="wrapper-providers">
-        <a href=""><img src="static/img/main/bln80px.png" alt="beeline" /></a>
-        <a href=""><img src="static/img/main/mts80px.png" alt="mts" /></a>
-        <a href=""><img src="static/img/main/rtk80px.png" alt="rtk" /></a>
-        <a href=""><img src="static/img/main/ttk80px.png" alt="ttk" /></a>
-        <a href=""><img src="static/img/main/domru80px.png" alt="domru" /></a>
+        <a href="/tariffs"><img src="static/img/main/bln80px.png" alt="beeline" /></a>
+        <a href="/tariffs"><img src="static/img/main/mts80px.png" alt="mts" /></a>
+        <a href="/tariffs"><img src="static/img/main/rtk80px.png" alt="rtk" /></a>
+        <a href="/tariffs"><img src="static/img/main/ttk80px.png" alt="ttk" /></a>
+        <a href="/tariffs"><img src="static/img/main/domru80px.png" alt="domru" /></a>
       </div>
     </div>
     <div class="popular-tariffs">
@@ -261,137 +261,68 @@
         >Популярные тарифы в городе {{data.City['Name']}}</span
       >
       <div class="wrapper-card-tariff">
-        <div class="card-tariff">
+        {% for tariff in data['RandTariffs'] %} <div class="card-tariff" data-id =
+          "{{tariff['id']}}" data-Name = "{{tariff['Name']}}" data-NameEng =
+          "{{tariff['NameEng']}}" data-price="{{tariff['Price']}}"
+          data-provider="{{tariff['Provider']['NameEng']}}" {% if
+          tariff['Options']['Values']['InternetSpeed'] %}
+          data-internetSpeed="{{tariff['Options']['Values']['InternetSpeed'][0]}}"{%
+          endif %}>
           <div class="card-tariff-header">
-            <span>Первый месяц бесплатно! 11 Месяцев по скидке</span>
+            <span>{{tariff["Name"]}}</span>
           </div>
           <div class="card-tariff-body">
             <div class="wrapper-priceAndLogo">
-              <span>790</span>
-              <span>390 руб</span>
-              <img src="static/img/main/mts45px.png" alt="" />
+              <span
+                >{% if tariff['PriceOld'] and tariff['PriceOld'] != 0
+                %}{{tariff['PriceOld']}}{% endif %}</span
+              >
+
+              <span>{{tariff['Price']}}руб.</span>
+
+              <img
+                src="static/img/main/{{tariff['Provider']['ImageUrl']}}"
+                alt=""
+              />
             </div>
             <div class="params">
               <div class="param">
-                <img src="static/img/main/inet35px.png" alt="" /><span
-                  >500 мбит/сек.</span
-                >
+                <img src="static/img/main/inet35px.png" alt="" />
+                {% if tariff['Options']['Values']['InternetSpeed'] %}
+                <span
+                  >{{tariff['Options']['Values']['InternetSpeed'][0]}}
+                  {{tariff['Options']['Values']['InternetSpeed'][1]}} {% else %}
+                  ---
+                </span>
+                {% endif %}
               </div>
               <div class="param">
-                <img src="static/img/main/tv35px.png" alt="" /><span
-                  >221 канал + Kion</span
-                >
+                <img src="static/img/main/tv35px.png" alt="" />
+                {% if tariff['Options']['Values']['ChannelsCount'] %}
+                <span
+                  >{{tariff['Options']['Values']['ChannelsCount'][0]}}
+                  {{tariff['Options']['Values']['ChannelsCount'][1]}} {% else %}
+                  ---
+                </span>
+                {% endif %}
               </div>
               <div class="param">
-                <img src="static/img/main/mob35px.png" alt="" /><span
-                  >50Гб + 1200 минут</span
-                >
+                <img src="static/img/main/mob35px.png" alt="" />
+                {% if tariff['Options']['Values']['GigabytesCount'] %}
+                <span
+                  >{{tariff['Options']['Values']['GigabytesCount'][0]}}
+                  {{tariff['Options']['Values']['GigabytesCount'][1]}} {% else
+                  %} ---
+                </span>
+                {% endif %}
               </div>
             </div>
             <div class="conn-info">
-              <button onclick="openModalApplication()">Подключить</button>
-              <a href=""><span>Узнать подробнее</span></a>
+              <button>Подключить</button>
             </div>
           </div>
         </div>
-        <div class="card-tariff">
-          <div class="card-tariff-header">
-            <span>Первый месяц бесплатно! 11 Месяцев по скидке</span>
-          </div>
-          <div class="card-tariff-body">
-            <div class="wrapper-priceAndLogo">
-              <span>790</span>
-              <span>390 руб</span>
-              <img src="static/img/main/mts45px.png" alt="" />
-            </div>
-            <div class="params">
-              <div class="param">
-                <img src="static/img/main/inet35px.png" alt="" /><span
-                  >500 мбит/сек.</span
-                >
-              </div>
-              <div class="param">
-                <img src="static/img/main/tv35px.png" alt="" /><span
-                  >221 канал + Kion</span
-                >
-              </div>
-              <div class="param">
-                <img src="static/img/main/mob35px.png" alt="" /><span
-                  >50Гб + 1200 минут</span
-                >
-              </div>
-            </div>
-            <div class="conn-info">
-              <button onclick="openModalApplication()">Подключить</button>
-              <a href=""><span>Узнать подробнее</span></a>
-            </div>
-          </div>
-        </div>
-        <div class="card-tariff">
-          <div class="card-tariff-header">
-            <span>Первый месяц бесплатно! 11 Месяцев по скидке</span>
-          </div>
-          <div class="card-tariff-body">
-            <div class="wrapper-priceAndLogo">
-              <span>790</span>
-              <span>390 руб</span>
-              <img src="static/img/main/mts45px.png" alt="" />
-            </div>
-            <div class="params">
-              <div class="param">
-                <img src="static/img/main/inet35px.png" alt="" /><span
-                  >500 мбит/сек.</span
-                >
-              </div>
-              <div class="param">
-                <img src="static/img/main/tv35px.png" alt="" /><span
-                  >221 канал + Kion</span
-                >
-              </div>
-              <div class="param">
-                <img src="static/img/main/mob35px.png" alt="" /><span
-                  >50Гб + 1200 минут</span
-                >
-              </div>
-            </div>
-            <div class="conn-info">
-              <button onclick="openModalApplication()">Подключить</button>
-              <a href=""><span>Узнать подробнее</span></a>
-            </div>
-          </div>
-        </div>
-        <div class="card-tariff">
-          <div class="card-tariff-header">
-            <span>Первый месяц бесплатно! 11 Месяцев по скидке</span>
-          </div>
-          <div class="card-tariff-body">
-            <div class="wrapper-priceAndLogo">
-              <span>790</span>
-              <span>390 руб</span>
-              <img src="static/img/main/mts45px.png" alt="" />
-            </div>
-            <div class="params">
-              <div class="param">
-                <img src="static/img/main/inet35px.png" alt="" /><span
-                  >500 мбит/сек.</span
-                >
-              </div>
-              <div class="param">
-                <img src="static/img/main/tv35px.png" alt="" /><span
-                  >221 канал + Kion</span
-                >
-              </div>
-              <div class="param">
-                <img src="static/img/main/mob35px.png" alt="" /><span
-                  >50Гб + 1200 минут</span
-                >
-              </div>
-            </div>
-            <div class="conn-info">
-              <button onclick="openModalApplication()">Подключить</button>
-              <a href=""><span>Узнать подробнее</span></a>
-            </div>
-          </div>
+        {%endfor%}
         </div>
       </div>
     </div>

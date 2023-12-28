@@ -115,7 +115,18 @@ class Database:
                         output.append([row[0], row[1]])
                     lastLetter = row[0][0]
                 return output
-    
+    def GetRandomTariffByCity(cityName:str):
+        with sqlite3.connect("sqlite.sqlite3") as conn:
+            row = conn.execute("SELECT id, Name, NameEng, Description, Price, PriceOld, OptionsJSON, idProvider FROM Tariffs WHERE idCity = ? ORDER BY RANDOM() LIMIT 1",(cityName,)).fetchone()
+            return {'id':row[0],
+                                    'Name':row[1],
+                                    'NameEng':row[2],
+                                    'Description':row[3],
+                                    'Price': row[4],
+                                    'PriceOld': row[5],
+                                    'Options': json.loads(row[6]),
+                                    'Provider': Database.GetProviderById(row[7])
+                    }
     def GetInfoByCityName(cityName:str):
         with sqlite3.connect("sqlite.sqlite3") as conn:
             cursor = conn.execute("SELECT id FROM Cities WHERE Name = ?", (cityName,))

@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 app = Sanic("Wifi-On")
-local_link = "http://localhost:3000/"
+local_link = "localhost:3000"
 env = Environment(
     loader=FileSystemLoader('templates'),  # Папка с шаблонами
     autoescape=select_autoescape(['html', 'xml'])
@@ -20,11 +20,16 @@ app.static("/static/", "./st/")
 @app.route("/")
 async def index(request):
     data = {}
-    data['City'] = {'Name':'Москва', 'NameEng': 'unknown'}
+    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    
     data['Cities'] = Database.GetAllCities()
-    subdomain = request.headers.get('host').split('.')[0].removeprefix('https://')
-    if subdomain!="on-wifi":
+    host = request.headers.get('host')
+    subdomain = host.split('.')[0].removeprefix('https://')
+    if subdomain!="on-wifi" and host!=local_link:
         data['City'] = Database.GetCityBySubdomain(subdomain)
+    data['RandTariffs'] = []
+    for i in range(4):
+        data['RandTariffs'].append(Database.GetRandomTariffByCity(data['City']['id']))
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
     return html(rendered_html)
