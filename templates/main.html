@@ -189,7 +189,7 @@
           </svg>
         </button>
         <div class="wrapper__mobile" id="mobileMenu">
-          <a href="/tariffs"
+          <a href="/tariffs?city={{data['City']['Name']}}"
             ><span class="navigate navigate-mobile">Тарифы</span></a
           >
           <a href="/reviews"
@@ -510,7 +510,7 @@
     </div>
     <div class="footer">
       <div class="wrapper-footer-a">
-        <a href="/tariffs">Тариф</a>
+        <a href="/tariffs?city={{data['City']['Name']}}">Тариф</a>
         <a href="/reviews">Отзывы клиентов</a>
         <a href="/aboutUs">О нас</a>
         <a href="/questions">Часто задаваемые вопросы</a>
