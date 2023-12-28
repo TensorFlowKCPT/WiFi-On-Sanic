@@ -24,6 +24,7 @@ def get_city_from_ip(ip):
 @app.route("/")
 async def index(request):
     data = {}
+    print(request.headers.get('Referer'))
     data['City'] = 'Москва'
     #city = get_city_from_ip("91.239.42.192") #Временно Тюмень
     city = get_city_from_ip(request.ip)
