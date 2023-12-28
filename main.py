@@ -9,44 +9,24 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 app = Sanic("Wifi-On")
-local_link = "http://localhost:8000/"
+local_link = "http://localhost:3000/"
 env = Environment(
     loader=FileSystemLoader('templates'),  # Папка с шаблонами
     autoescape=select_autoescape(['html', 'xml'])
 )
 
 app.static("/static/", "./st/")
-
-
-
-async def get_city_from_ip(ip):
-    # Запрос к ipinfo.io для получения информации о местоположении по IP
-    async with httpx.AsyncClient() as client:
-        response = await client.get(f'https://ipinfo.io/{ip}/json')
-    data = response.json()
-
-    # Извлекаем город из полученных данных
-    city = data.get('city', 'Unknown')
-    return city
-
 #Получение адреса пользователя из ip не очень работает, надо будет уже с ssh и серваком это делать, без них не понять
 #region /index
 @app.route("/")
 async def index(request):
-    referer = request.headers.get('Referer')
     data = {}
-    data['City'] = 'Unknown'
-    if referer != local_link and referer != None:
-        Subdomain = referer.split('.')[0]
-        city = Database.GetCityBySubdomain(Subdomain)
-        if city:
-            data['City'] = city['Name'] 
-        else:
-            city = get_city_from_ip(request.ip)
-            data['City'] = city
+    data['City'] = {'Name':'Москва', 'NameEng': 'unknown'}
+    subdomain = request.headers.get('host').split('.')[0].removeprefix('https://')
+    if subdomain!="on-wifi":
+        data['City'] = Database.GetCityBySubdomain(subdomain)
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
-
     return html(rendered_html)
 #endregion
 
@@ -54,8 +34,12 @@ async def index(request):
 @app.route("/tariffs")
 async def tariffs(request):
     address = request.args.get("address")
+    city = request.args.get("city")
     template = env.get_template('tariffs.html')
-    data = Database.GetInfoByAddress(address)
+    if address:
+        data = Database.GetInfoByAddress(address)
+    elif city:
+        data = Database.GetInfoByCityName(city)
     rendered_html = template.render(data = data)
     return html(rendered_html)
 #endregion
@@ -134,4 +118,4 @@ async def send_email_handler(request):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8000, debug=True)
+    app.run(host="0.0.0.0", port=3000, debug=True)

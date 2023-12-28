@@ -81,7 +81,7 @@
           ></a
         >
         <div class="wrapper-navigations">
-          <a href="/tariffs"><span class="navigate">Тарифы</span></a>
+          <a href="/tariffs?city={{data['City']['Name']}}"><span class="navigate">Тарифы</span></a>
           <a href="/reviews"><span class="navigate">Отзывы</span></a>
           <a href="/aboutUs"><span class="navigate">О нас</span></a>
           <a href="/questions"
@@ -96,7 +96,7 @@
               /></div
           ></a>
         </div>
-        <div class="city-button">
+        <div class="city-button" id="cityButton" data-city='{{data.City["NameEng"]}}'>
           <span onclick="openModalCities()">Город</span>
           <button onclick="openModalApplication()" class="active-modal">
             Оставить заявку
@@ -189,10 +189,18 @@
           </svg>
         </button>
         <div class="wrapper__mobile" id="mobileMenu">
-          <a href=""><span class="navigate">Тарифы</span></a>
-          <a href=""><span class="navigate">Отзывы</span></a>
-          <a href=""><span class="navigate">О нас</span></a>
-          <a href=""><span class="navigate">Часто задаваемые вопросы</span></a>
+          <a href="/tariffs?city={{data['City']['Name']}}"
+            ><span class="navigate navigate-mobile">Тарифы</span></a
+          >
+          <a href="/reviews"
+            ><span class="navigate navigate-mobile">Отзывы</span></a
+          >
+          <a href="/aboutUs"
+            ><span class="navigate navigate-mobile">О нас</span></a
+          >
+          <a href="/questions"
+            ><span class="navigate navigate-mobile">Вопросы</span></a
+          >
           <div class="city-button">
             <span onclick="openModalCities()">Город</span>
             <button
@@ -287,7 +295,7 @@
     </div>
 
     <div class="providers">
-      <span>Провайдеры в {{data.City}}</span>
+      <span>Провайдеры в городе {{data.City['Name']}}</span>
       <div class="wrapper-providers">
         <a href=""><img src="static/img/main/bln80px.png" alt="beeline" /></a>
         <a href=""><img src="static/img/main/mts80px.png" alt="mts" /></a>
@@ -298,7 +306,7 @@
     </div>
     <div class="popular-tariffs">
       <span class="popular-tariffs-text"
-        >Популярные тарифы в городе {{data.City}}</span
+        >Популярные тарифы в городе {{data.City['Name']}}</span
       >
       <div class="wrapper-card-tariff">
         <div class="card-tariff">
@@ -435,6 +443,7 @@
         </div>
       </div>
     </div>
+
     <div class="advantages">
       <div class="advantage">
         <img src="static/img/main/широкийВыбор64px.png" alt="" /><span
@@ -511,7 +520,7 @@
     </div>
     <div class="footer">
       <div class="wrapper-footer-a">
-        <a href="/tariffs">Тариф</a>
+        <a href="/tariffs?city={{data['City']['Name']}}">Тариф</a>
         <a href="/reviews">Отзывы клиентов</a>
         <a href="/aboutUs">О нас</a>
         <a href="/questions">Часто задаваемые вопросы</a>
@@ -549,7 +558,6 @@
         </form>
       </div>
     </div>
-
     <script src="static/js/main.js"></script>
   </body>
 </html>

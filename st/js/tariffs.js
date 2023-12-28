@@ -52,6 +52,7 @@ function CheckTariffs() {
       activeProviders.push(element.name); // Убран доступ к childNodes, так как name прямо доступен у элемента
     }
   });
+  console.log(activeProviders)
   var tariffsContainer = document.getElementById("tariffs");
   tariffsContainer?.childNodes.forEach((element) => {
     if (element.nodeType === 1) {
@@ -142,5 +143,11 @@ const animationCards = anime({
   opacity: [0, 1], // Переход от невидимости к видимости
   translateY: [0, 0], // Смещение по оси Y
   easing: "easeInOutQuad",
-  duration: 700,
+  duration: 1000,
 });
+
+// menuMobile
+function menuMobile() {
+  var mobileMenu = document.getElementById("mobileMenu");
+  mobileMenu.classList.toggle("show");
+}

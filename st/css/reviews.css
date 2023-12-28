@@ -2,6 +2,7 @@ body {
   margin: 0px;
   background-color: #fff;
 }
+
 /* АНИМАЦИИ НА ОБЩАГ */
 button {
   transition: transform 0.1s ease-out;
@@ -23,6 +24,7 @@ button:hover {
 .wrapper-navigations a {
   position: relative;
 }
+
 .wrapper-navigations a::after {
   position: absolute;
   content: "";
@@ -33,13 +35,16 @@ button:hover {
   height: 2px;
   background: #2a6f97;
 }
+
 .wrapper-navigations a::after {
   width: 0;
   transition: 0.3s;
 }
+
 .wrapper-navigations a:hover:after {
   width: 100%;
 }
+
 /* HEADER */
 .header {
   height: 80px;
@@ -115,7 +120,8 @@ button:hover {
   cursor: pointer;
 }
 
-.header button {
+.header button,
+.active-modal {
   border-radius: 10px;
   background-color: rgb(42 111 151);
   padding: 15px;
@@ -131,6 +137,50 @@ button:hover {
 a {
   text-decoration: none;
 }
+
+/* HEADER MOBILE */
+.header__mobile {
+  display: none;
+}
+
+.menuMobile {
+  display: none;
+}
+
+.btn-mobile {
+  position: fixed;
+  top: 45px;
+  right: 60px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.wrapper__mobile {
+  display: none;
+  position: absolute;
+  top: 78px;
+  right: 60px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 5px 6px;
+  border-radius: 10px;
+  z-index: 3;
+}
+
+.wrapper__mobile.show {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.wrapper__mobile.show a {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 3px 1px;
+}
+
 /* ПОЛУМОДАЛКА ДЛЯ ГОРОДОВ */
 .cities {
   display: none;
@@ -177,6 +227,7 @@ a {
   font-weight: 500;
   line-height: normal;
 }
+
 /* ОТЗЫВЫ */
 .wrapper-reviews {
   text-align: center;
@@ -265,7 +316,6 @@ a {
   flex-direction: column;
   background-color: black;
   width: 100%;
-  height: 147px;
 }
 
 .wrapper-footer-a {
@@ -319,6 +369,7 @@ a {
   font-weight: 400;
   line-height: normal;
 }
+
 /* МОДАЛКА */
 
 .container-modals {
@@ -426,4 +477,130 @@ a {
   font-weight: 500;
   line-height: normal;
   color: #fff;
+}
+
+@media (max-width: 1598px) {
+  .header {
+    display: none;
+  }
+
+  .header__mobile {
+    height: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f7fa;
+  }
+
+  .navigate-mobile {
+    font-size: 19px;
+  }
+
+  .menuMobile {
+    display: flex;
+  }
+
+  .city-button {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .modal-mobile {
+    padding: 11px;
+  }
+}
+
+@media (max-width: 1390px) {
+  .wrapper-reviews p {
+    padding-top: 85px;
+  }
+}
+
+@media (max-width: 950px) {
+  .header__mobile {
+    justify-content: start;
+    gap: 60px;
+  }
+
+  .description {
+    font-size: 16px;
+    gap: 100px;
+  }
+}
+
+@media (max-width: 755px) {
+  .description {
+    font-size: 14px;
+  }
+
+  .navigate {
+    font-size: 19px;
+  }
+
+  .wrapper-telephone {
+    height: 23px;
+  }
+
+  .navigate-mobile,
+  .active-modal {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .info-clients span:nth-child(1) {
+    font-size: 17px;
+  }
+
+  .info-clients span:nth-child(2) {
+    font-size: 12px;
+  }
+
+  .description {
+    font-size: 13px;
+  }
+
+  .logo {
+    font-size: 30px;
+  }
+
+  .logo svg {
+    margin-top: -19px;
+  }
+
+  .wrapper-footer-a {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-title {
+    padding-bottom: 20px;
+  }
+
+}
+
+@media (min-width: 700px) {
+  .footer {
+    height: 147px;
+  }
+}
+
+@media (max-width: 580px) {
+  .description {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 550px) {
+  .header__mobile {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 513px) {
+  .description {
+    font-size: 10px;
+  }
 }
