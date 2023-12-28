@@ -16,6 +16,7 @@ app.static("/static/", "./st/")
 
 def get_city_from_ip(ip):
     response = requests.get(f'https://ipinfo.io/{ip}?token=579eb1c2e8eaba')
+    print(response.json())
     return Database.GetCityBySubdomain(str(response.json().get('city')).lower())
 
 
@@ -26,8 +27,9 @@ async def index(request):
     data = {}
     print(request.headers.get('Referer'))
     data['City'] = 'Москва'
-    #city = get_city_from_ip("91.239.42.192") #Временно Тюмень
+    print(request.ip)
     city = get_city_from_ip(request.ip)
+    print(city)
     data['City'] = city['Name']
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
