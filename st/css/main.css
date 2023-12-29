@@ -198,16 +198,24 @@ a {
 
 .wrapper-all-cities {
   display: flex;
-  padding: 40px;
   align-items: center;
   justify-content: space-evenly;
-  gap: 10px;
+  padding: 40px;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
+.wrapper-all-cities h1 {
+  width: 100%;
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+}
+
 .wrapper-all-cities a {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
+  margin: 10px;
 }
 
 /* ПОИСК */
@@ -377,6 +385,11 @@ a {
   justify-content: center;
   align-items: center;
   gap: 10px;
+}
+
+.wrapper-priceAndLogo img {
+  height: 45px;
+  width: 45px;
 }
 
 .wrapper-priceAndLogo span:nth-child(1) {
