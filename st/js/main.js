@@ -1,6 +1,6 @@
 const SearchBox = document.getElementById("SearchBox");
 const url =
-  "http://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
+  "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "37246a81de5e3317c98fb92126a5e5bf19aae2b2";
 function CheckAddress() {
   var query = SearchBox.value;
