@@ -25,7 +25,7 @@ async def index(request):
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
-    if subdomain!="on-wifi" and host!=local_link:
+    if subdomain!="on-wifi"and subdomain!="www" and host!=local_link:
         data['City'] = Database.GetCityBySubdomain(subdomain)
     data['RandTariffs'] = []
     for i in range(4):
@@ -50,7 +50,7 @@ async def tariffs(request):
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
-    if subdomain!="on-wifi" and host!=local_link:
+    if subdomain!="on-wifi"and subdomain!="www" and host!=local_link:
         data['City'] = Database.GetCityBySubdomain(subdomain)
     rendered_html = template.render(data = data)
     return html(rendered_html)
@@ -80,7 +80,7 @@ async def questions(request):
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
-    if subdomain!="on-wifi" and host!=local_link:
+    if subdomain!="on-wifi"and subdomain!="www" and host!=local_link:
         data['City'] = Database.GetCityBySubdomain(subdomain)
     template = env.get_template('questions.html')
     return html(template.render(data = data))
@@ -95,7 +95,7 @@ async def reviews(request):
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
-    if subdomain!="on-wifi" and host!=local_link:
+    if subdomain!="on-wifi"and subdomain!="www" and host!=local_link:
         data['City'] = Database.GetCityBySubdomain(subdomain)
     template = env.get_template('reviews.html')
     return html(template.render(data = data))
