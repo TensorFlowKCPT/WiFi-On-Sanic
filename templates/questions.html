@@ -89,7 +89,9 @@
           ></a
         >
         <div class="wrapper-navigations">
-          <a href="/tariffs?city={{data['City']['Name']}}"><span class="navigate">Тарифы</span></a>
+          <a href="/tariffs?city={{data['City']['Name']}}"
+            ><span class="navigate">Тарифы</span></a
+          >
           <a href="/reviews"><span class="navigate">Отзывы</span></a>
           <a href="/aboutUs"><span class="navigate">О нас</span></a>
           <a href="/questions"
@@ -112,10 +114,10 @@
         <span>Города в которых мы есть</span>
         <div class="wrapper-all-cities">
           {% for city in data['Cities'] %} {% if city|length == 1 %}
-            <h1>{{ city[0] }}</h1>
-            {% else %}
-            <a href="https://{{ city[1] }}.on-wifi.ru">{{ city[0] }}</a>
-            {% endif %} {% endfor %}
+          <h1>{{ city[0] }}</h1>
+          {% else %}
+          <a href="https://{{ city[1] }}.on-wifi.ru">{{ city[0] }}</a>
+          {% endif %} {% endfor %}
         </div>
       </div>
     </div>
@@ -256,27 +258,27 @@
       <span class="footer-title">© 2023 On-WiFi. Все права защищены.</span>
     </div>
 
-    <div id="modal" class="container-modals">
+    <div id="modal" class="modals-inactive">
       <div class="modals">
         <div class="modals-header">
           <p>Оставить заявку</p>
           <img
             onclick="closeModalApplication()"
-            src="../img/main/closeModal.svg"
+            src="static/img/main/closeModal.svg"
             alt=""
           />
         </div>
         <form action="">
           <div class="input-container">
-            <img src="../img/main/telephone-modal.svg" alt="" />
+            <img src="static/img/main/telephone-modal.svg" alt="" />
             <input placeholder="Номер телефона" type="tel" name="" id="" />
           </div>
           <div class="input-container">
-            <img src="../img/main/user-modal.svg" alt="" />
+            <img src="static/img/main/user-modal.svg" alt="" />
             <input placeholder="Ваше имя" type="text" name="" id="" />
           </div>
           <div class="input-container">
-            <img src="../img/main/geo-modal.svg" alt="" />
+            <img src="static/img/main/geo-modal.svg" alt="" />
             <input placeholder="Адрес подключения" type="text" name="" id="" />
           </div>
           <button>Отправить</button>
