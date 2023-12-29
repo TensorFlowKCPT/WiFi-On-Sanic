@@ -332,7 +332,14 @@
         data-provider="{{tariff['Provider']['NameEng']}}" {% if
         tariff['Options']['Values']['InternetSpeed'] %}
         data-internetSpeed="{{tariff['Options']['Values']['InternetSpeed'][0]}}"{%
-        endif %}>
+        endif %}
+        {% if tariff['Options']['Values']['ChannelsCount'] %}
+        data-channelscount="{{tariff['Options']['Values']['InternetSpeed'][0]}}"
+        {%endif %}
+        {% if tariff['Options']['Values']['GigabytesCount'] %}
+        data-gigabytescount="{{tariff['Options']['Values']['InternetSpeed'][0]}}"
+        {%endif %}
+        >
         <div class="card-tariff-header">
           <span>{{tariff["Name"]}}</span>
         </div>
