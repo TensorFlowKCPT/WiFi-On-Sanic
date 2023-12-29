@@ -38,6 +38,13 @@ async def index(request):
 #region /tariffs
 @app.route("/tariffs")
 async def tariffs(request):
+    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    
+    data['Cities'] = Database.GetAllCities()
+    host = request.headers.get('host')
+    subdomain = host.split('.')[0].removeprefix('https://')
+    if subdomain!="on-wifi" and host!=local_link:
+        data['City'] = Database.GetCityBySubdomain(subdomain)
     address = request.args.get("address")
     city = request.args.get("city")
     template = env.get_template('tariffs.html')
@@ -52,25 +59,50 @@ async def tariffs(request):
 #region /aboutUs
 @app.route("/aboutUs")
 async def aboutUs(request):
+    data = {}
+    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    
+    data['Cities'] = Database.GetAllCities()
+    host = request.headers.get('host')
+    subdomain = host.split('.')[0].removeprefix('https://')
+    if subdomain!="on-wifi" and host!=local_link:
+        data['City'] = Database.GetCityBySubdomain(subdomain)
     template = env.get_template('aboutUs.html')
-    return html(template.render())
+    return html(template.render(data = data))
 #endregion
 
 #region /question
 @app.route("/questions")
 async def questions(request):
+    data = {}
+    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    
+    data['Cities'] = Database.GetAllCities()
+    host = request.headers.get('host')
+    subdomain = host.split('.')[0].removeprefix('https://')
+    if subdomain!="on-wifi" and host!=local_link:
+        data['City'] = Database.GetCityBySubdomain(subdomain)
     template = env.get_template('questions.html')
-    return html(template.render())
+    return html(template.render(data = data))
 #endregion
 
 #region /reviews
 @app.route("/reviews")
 async def reviews(request):
+    data = {}
+    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    
+    data['Cities'] = Database.GetAllCities()
+    host = request.headers.get('host')
+    subdomain = host.split('.')[0].removeprefix('https://')
+    if subdomain!="on-wifi" and host!=local_link:
+        data['City'] = Database.GetCityBySubdomain(subdomain)
     template = env.get_template('reviews.html')
-    return html(template.render())
+    return html(template.render(data = data))
 #endregion
 
 def send_email(email, name):
+    
         # Настройки почтового сервера
     smtp_server = 'sm4.hosting.reg.ru'  # Замените на адрес вашего SMTP-сервера
     smtp_port = 587  # Порт SMTP-сервера (обычно 587 для TLS)

@@ -107,7 +107,7 @@
           ></a>
         </div>
         <div class="city-button">
-          <span onclick="openModalCities()">Город</span>
+          <span onclick="openModalCities()">{{data['City']['Name']}}</span>
           <button onclick="openModalApplication()" class="active-modal">
             Оставить заявку
           </button>
@@ -212,7 +212,7 @@
             ><span class="navigate navigate-mobile">Вопросы</span></a
           >
           <div class="city-button">
-            <span onclick="openModalCities()">Город</span>
+            <span onclick="openModalCities()">{{data['City']['Name']}}</span>
             <button
               onclick="openModalApplication()"
               class="active-modal modal-mobile"
@@ -225,64 +225,11 @@
         <div style="display: none" id="cities" class="cities">
           <span>Города в которых мы есть</span>
           <div class="wrapper-all-cities">
-            <div class="wrapper-cities">
-              <a href="">Москва</a>
-              <a href="">Санкт-Петербург</a>
-              <a href="">Новосибирск</a>
-              <a href="">Екатеринбург</a>
-              <a href="">Нижний Новгород</a>
-              <a href="">Казань</a>
-              <a href="">Самара</a>
-              <a href="">Челябинск</a>
-              <a href="">Омск</a>
-              <a href="">Ростов-на-Дону</a>
-              <a href="">Уфа</a>
-              <a href="">Пермь</a>
-              <a href="">Сургут</a>
-            </div>
-            <div class="wrapper-cities">
-              <a href="">Махачкала</a>
-              <a href="">Оренбург</a>
-              <a href="">Томск</a>
-              <a href="">Новокузнецк</a>
-              <a href="">Кемерово</a>
-              <a href="">Астрахань</a>
-              <a href="">Рязань</a>
-              <a href="">Набережные</a>
-              <a href="">Челны</a>
-              <a href="">Пенза</a>
-              <a href="">Липецк </a>
-              <a href="">Тула</a>
-            </div>
-            <div class="wrapper-cities">
-              <a href="">Волгоград</a>
-              <a href="">Воронеж</a>
-              <a href="">Саратов</a>
-              <a href="">Краснодар</a>
-              <a href="">Тольятти</a>
-              <a href="">Тюмень</a>
-              <a href="">Ижевск</a>
-              <a href="">Барнаул</a>
-              <a href="">Ульяновск</a>
-              <a href="">Иркутск</a>
-              <a href="">Владивосток</a>
-              <a href="">Ярославль</a>
-            </div>
-            <div class="wrapper-cities">
-              <a href="">Хабаровск</a>
-              <a href="">Киров</a>
-              <a href="">Чебоксары</a>
-              <a href="">Калининград</a>
-              <a href="">Курск</a>
-              <a href="">Улан-Удэ</a>
-              <a href="">Ставрополь</a>
-              <a href="">Магнитогорск</a>
-              <a href="">Тверь</a>
-              <a href="">Иваново</a>
-              <a href="">Брянск</a>
-              <a href="">Сочи</a>
-              <a href="">Белгород</a>
-            </div>
+            {% for city in data['Cities'] %} {% if city|length == 1 %}
+              <h1>{{ city[0] }}</h1>
+              {% else %}
+              <a href="https://{{ city[1] }}.on-wifi.ru">{{ city[0] }}</a>
+              {% endif %} {% endfor %}
           </div>
         </div>
       </div>
@@ -439,7 +386,7 @@
     </div>
     <div class="footer">
       <div class="wrapper-footer-a">
-        <a href="/tariffs">Тариф</a>
+        <a href="/tariffs?city={{data['City']['Name']}}">Тариф</a>
         <a href="/reviews">Отзывы клиентов</a>
         <a href="/aboutUs">О нас</a>
         <a href="/questions">Часто задаваемые вопросы</a>
