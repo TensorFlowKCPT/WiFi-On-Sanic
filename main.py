@@ -38,13 +38,6 @@ async def index(request):
 #region /tariffs
 @app.route("/tariffs")
 async def tariffs(request):
-    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
-    
-    data['Cities'] = Database.GetAllCities()
-    host = request.headers.get('host')
-    subdomain = host.split('.')[0].removeprefix('https://')
-    if subdomain!="on-wifi" and host!=local_link:
-        data['City'] = Database.GetCityBySubdomain(subdomain)
     address = request.args.get("address")
     city = request.args.get("city")
     template = env.get_template('tariffs.html')
@@ -52,6 +45,13 @@ async def tariffs(request):
         data = Database.GetInfoByAddress(address)
     elif city:
         data = Database.GetInfoByCityName(city)
+    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    
+    data['Cities'] = Database.GetAllCities()
+    host = request.headers.get('host')
+    subdomain = host.split('.')[0].removeprefix('https://')
+    if subdomain!="on-wifi" and host!=local_link:
+        data['City'] = Database.GetCityBySubdomain(subdomain)
     rendered_html = template.render(data = data)
     return html(rendered_html)
 #endregion
