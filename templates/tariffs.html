@@ -19,7 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
-  <body>
+  <body onload="CheckTariffs()">
     <div class="header-cities">
       <div class="header">
         <a href="/"
@@ -262,6 +262,9 @@
                   class="providersFilterCheckbox"
                   name="{{ provider['NameEng'] }}"
                   id="{{ provider['NameEng'] }}"
+                  {%if data['provider'] and provider['NameEng'] == data['provider']%}
+                  checked
+                  {%endif%}
                   onchange="CheckTariffs()"
                 />
                 <span for="{{ provider['NameEng'] }}"

@@ -40,11 +40,16 @@ async def index(request):
 async def tariffs(request):
     address = request.args.get("address")
     city = request.args.get("city")
+    
+        
     template = env.get_template('tariffs.html')
     if address:
         data = Database.GetInfoByAddress(address)
     elif city:
         data = Database.GetInfoByCityName(city)
+    provider = request.args.get("provider")
+    if provider:
+        data['provider'] = provider
     data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
     
     data['Cities'] = Database.GetAllCities()
