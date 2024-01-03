@@ -62,3 +62,9 @@ const openModalCities = () => {
     }, 250);
   }
 };
+
+// menuMobile
+function menuMobile() {
+  var mobileMenu = document.getElementById("mobileMenu");
+  mobileMenu.classList.toggle("show");
+};

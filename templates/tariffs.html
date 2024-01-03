@@ -19,7 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
-  <body onload="CheckTariffs()">
+  <bod onload="CheckTariffs()">
     <div class="header-cities">
       <div class="header">
         <a href="/"
@@ -94,7 +94,7 @@
           <a href="/questions"
             ><span class="navigate">Часто задаваемые вопросы</span></a
           >
-          <a href=""
+          <a href="tel:+78005500792"
             ><div class="wrapper-telephone">
               <span class="navigate">+78005500792</span>
               <img
@@ -116,7 +116,7 @@
       </div>
 
       <div class="header__mobile">
-        <a href=""
+        <a href="/"
           ><span class="logo">
             <svg
               width="55"
@@ -179,7 +179,7 @@
             <span>On-</span><span>Wi</span><span>Fi</span></span
           ></a
         >
-        <a href=""
+        <a href="tel:+78005500792"
           ><div class="wrapper-telephone">
             <span class="navigate">+78005500792</span>
             <img
@@ -187,42 +187,48 @@
               alt="Иконка телефона"
             /></div
         ></a>
-      </div>
-      <div class="menuMobile">
-        <button class="btn-mobile" onclick="menuMobile()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="26"
-            fill="none"
-          >
-            <path stroke="#000" stroke-width="6" d="M0 3h24M0 13h24M0 23h24" />
-          </svg>
-        </button>
-        <div class="wrapper__mobile" id="mobileMenu">
-          <a href="/tariffs?city={{data['City']['Name']}}"
-            ><span class="navigate navigate-mobile">Тарифы</span></a
-          >
-          <a href="/reviews"
-            ><span class="navigate navigate-mobile">Отзывы</span></a
-          >
-          <a href="/aboutUs"
-            ><span class="navigate navigate-mobile">О нас</span></a
-          >
-          <a href="/questions"
-            ><span class="navigate navigate-mobile">Вопросы</span></a
-          >
-          <div class="city-button">
-            <span onclick="openModalCities()">{{data.City['Name']}}</span>
-            <button
-              onclick="openModalApplication()"
-              class="active-modal modal-mobile"
+        <div class="menuMobile">
+          <button class="btn-mobile" onclick="menuMobile()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="26"
+              fill="none"
             >
-              Оставить заявку
-            </button>
-          </div>
+              <path
+                stroke="#000"
+                stroke-width="6"
+                d="M0 3h24M0 13h24M0 23h24"
+              />
+            </svg>
+          </button>
+          <div class="wrapper__mobile" id="mobileMenu">
+            <a href="/tariffs?city={{data['City']['Name']}}"
+              ><span class="navigate navigate-mobile">Тарифы</span></a
+            >
+            <a href="/reviews"
+              ><span class="navigate navigate-mobile">Отзывы</span></a
+            >
+            <a href="/aboutUs"
+              ><span class="navigate navigate-mobile">О нас</span></a
+            >
+            <a href="/questions"
+              ><span class="navigate navigate-mobile">Вопросы</span></a
+            >
+            <div
+          class="city-button"
+          id="cityButton"
+          data-city='{{data.City["NameEng"]}}'
+        >
+          <span onclick="openModalCities()">{{data.City['Name']}}</span>
+          <button onclick="openModalApplication()" class="active-modal">
+            Оставить заявку
+          </button>
         </div>
       </div>
+    </div>
+  </div>
+
 
         <div style="display: none" id="cities" class="cities">
           <span>Города в которых мы есть</span>

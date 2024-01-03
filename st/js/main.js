@@ -176,4 +176,4 @@ const animationFormButton = anime({
 function menuMobile() {
   var mobileMenu = document.getElementById("mobileMenu");
   mobileMenu.classList.toggle("show");
-}
+};
