@@ -89,16 +89,18 @@
           ></a
         >
         <div class="wrapper-navigations">
-          <a href="/tariffs?city={{data['City']['Name']}}"><span class="navigate">Тарифы</span></a>
+          <a href="/tariffs?city={{data['City']['Name']}}"
+            ><span class="navigate">Тарифы</span></a
+          >
           <a href="/reviews"><span class="navigate">Отзывы</span></a>
           <a href="/aboutUs"><span class="navigate">О нас</span></a>
           <a href="/questions"
             ><span class="navigate">Часто задаваемые вопросы</span></a
           >
-          <a href=""
+          <a href="tel:+78005500792"
             ><div class="wrapper-telephone">
               <span class="navigate">+78005500792</span>
-              <img src="../img/main/telephone.svg" alt="" /></div
+              <img src="static/img/main/telephone.svg" alt="" /></div
           ></a>
         </div>
         <div class="city-button">
@@ -108,15 +110,125 @@
           </button>
         </div>
       </div>
+
+      <div class="header__mobile">
+        <a href="/"
+          ><span class="logo">
+            <svg
+              width="55"
+              height="55"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g filter="url(#a)">
+                <path
+                  d="M47.6 10.47H33.66c-.95 0-1.74-.8-1.74-1.75s.79-1.74 1.74-1.74h13.96c.95 0 1.74.79 1.74 1.74 0 .96-.79 1.75-1.74 1.75Z"
+                  fill="#292D32"
+                />
+                <path
+                  d="M40.63 17.44h-6.98c-.95 0-1.74-.79-1.74-1.74s.79-1.74 1.74-1.74h6.98c.95 0 1.75.79 1.75 1.74s-.8 1.74-1.75 1.74Z"
+                  fill="#2A6F97"
+                />
+                <path
+                  d="M27.84 47.68A23.87 23.87 0 0 1 4 23.84 23.87 23.87 0 0 1 27.84 0c.95 0 1.74.8 1.74 1.74 0 .96-.79 1.75-1.74 1.75A20.37 20.37 0 0 0 7.49 23.84a20.37 20.37 0 0 0 20.35 20.35 20.37 20.37 0 0 0 20.35-20.35c0-.95.8-1.74 1.74-1.74.96 0 1.75.79 1.75 1.74a23.87 23.87 0 0 1-23.84 23.84Z"
+                  fill="#013A63"
+                />
+                <path
+                  d="M52.26 50c-.44 0-.88-.16-1.23-.5l-4.65-4.66a1.75 1.75 0 0 1 0-2.46c.67-.68 1.79-.68 2.46 0l4.65 4.65c.68.67.68 1.79 0 2.46-.34.35-.79.51-1.23.51Z"
+                  fill="#292D32"
+                />
+              </g>
+              <defs>
+                <filter
+                  id="a"
+                  x="0"
+                  y="0"
+                  width="58"
+                  height="58"
+                  filterUnits="userSpaceOnUse"
+                  color-interpolation-filters="sRGB"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                    result="hardAlpha"
+                  />
+                  <feOffset dy="4" />
+                  <feGaussianBlur stdDeviation="2" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                  />
+                  <feBlend
+                    in2="BackgroundImageFix"
+                    result="effect1_dropShadow_58_208"
+                  />
+                  <feBlend
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_58_208"
+                    result="shape"
+                  />
+                </filter>
+              </defs>
+            </svg>
+            <span>On-</span><span>Wi</span><span>Fi</span></span
+          ></a
+        >
+        <a href="tel:+78005500792"
+          ><div class="wrapper-telephone">
+            <span class="navigate">+78005500792</span>
+            <img
+              src="static/img/main/telephone.svg"
+              alt="Иконка телефона"
+            /></div
+        ></a>
+        <div class="menuMobile">
+          <button class="btn-mobile" onclick="menuMobile()">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="26"
+              fill="none"
+            >
+              <path
+                stroke="#000"
+                stroke-width="6"
+                d="M0 3h24M0 13h24M0 23h24"
+              />
+            </svg>
+          </button>
+          <div class="wrapper__mobile" id="mobileMenu">
+            <a href="/tariffs?city={{data['City']['Name']}}"
+              ><span class="navigate navigate-mobile">Тарифы</span></a
+            >
+            <a href="/reviews"
+              ><span class="navigate navigate-mobile">Отзывы</span></a
+            >
+            <a href="/aboutUs"
+              ><span class="navigate navigate-mobile">О нас</span></a
+            >
+            <a href="/questions"
+              ><span class="navigate navigate-mobile">Вопросы</span></a
+            >
+            <div class="city-button">
+              <span onclick="openModalCities()">{{data['City']['Name']}}</span>
+              <button onclick="openModalApplication()" class="active-modal">
+                Оставить заявку
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div style="display: none" id="cities" class="cities">
         <span>Города в которых мы есть</span>
         <div class="wrapper-all-cities">
           {% for city in data['Cities'] %} {% if city|length == 1 %}
-            <h1>{{ city[0] }}</h1>
-            {% else %}
-            <a href="https://{{ city[1] }}.on-wifi.ru">{{ city[0] }}</a>
-            {% endif %} {% endfor %}
-        </div>
+          <h1>{{ city[0] }}</h1>
+          {% else %}
+          <a href="https://{{ city[1] }}.on-wifi.ru">{{ city[0] }}</a>
+          {% endif %} {% endfor %}
         </div>
       </div>
     </div>

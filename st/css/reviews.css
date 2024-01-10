@@ -155,9 +155,6 @@ a {
 }
 
 .btn-mobile {
-  position: fixed;
-  top: 45px;
-  right: 60px;
   background: none;
   border: none;
   cursor: pointer;
@@ -167,12 +164,13 @@ a {
 .wrapper__mobile {
   display: none;
   position: absolute;
-  top: 78px;
-  right: 60px;
+  top: 35px;
+  right: 1px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   padding: 5px 6px;
   border-radius: 10px;
   z-index: 3;
+  background-color: #fff;
 }
 
 .wrapper__mobile.show {
@@ -180,6 +178,8 @@ a {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding: 7px 18px;
+  width: 177px;
 }
 
 .wrapper__mobile.show a {
@@ -202,7 +202,7 @@ a {
 .cities span {
   margin-top: 30px;
   margin-bottom: 50px;
-
+  text-align: center;
   font-size: 52px;
   font-weight: 500;
 }
@@ -279,7 +279,8 @@ a {
 }
 
 .info-clients {
-  display: flexs;
+  display: flex;
+  flex-direction: column;
   text-align: center;
   gap: 10px;
 }
@@ -501,7 +502,8 @@ a {
   }
 
   .menuMobile {
-    display: flex;
+    display: block;
+    position: relative;
   }
 
   .city-button {
@@ -515,64 +517,27 @@ a {
   }
 }
 
-@media (max-width: 1390px) {
-  .wrapper-reviews p {
-    padding-top: 85px;
-  }
-}
-
-@media (max-width: 950px) {
-  .header__mobile {
-    justify-content: start;
-    gap: 60px;
-  }
-
+@media (max-width: 850px) {
   .description {
     font-size: 16px;
-    gap: 100px;
-  }
-}
-
-@media (max-width: 755px) {
-  .description {
-    font-size: 14px;
   }
 
-  .navigate {
-    font-size: 19px;
-  }
-
-  .wrapper-telephone {
-    height: 23px;
-  }
-
-  .navigate-mobile,
-  .active-modal {
-    font-size: 15px;
-  }
-}
-
-@media (max-width: 700px) {
   .info-clients span:nth-child(1) {
     font-size: 17px;
   }
-
+  
   .info-clients span:nth-child(2) {
-    font-size: 12px;
-  }
-
-  .description {
     font-size: 13px;
   }
+}
 
-  .logo {
-    font-size: 30px;
+@media (min-width: 769px) {
+  .footer {
+    height: 147px;
   }
+}
 
-  .logo svg {
-    margin-top: -19px;
-  }
-
+@media (max-width: 768px) {
   .wrapper-footer-a {
     flex-direction: column;
     gap: 10px;
@@ -581,28 +546,130 @@ a {
   .footer-title {
     padding-bottom: 20px;
   }
-}
 
-@media (min-width: 700px) {
-  .footer {
-    height: 147px;
+  .cities span {
+    font-size: 45px;
   }
-}
 
-@media (max-width: 580px) {
+  .wrapper-reviews p {
+    font-size: 46px;
+  }
+
   .description {
+    font-size: 14px;
+  }
+
+  .info-clients span:nth-child(1) {
+    font-size: 15px;
+  }
+  
+  .info-clients span:nth-child(2) {
     font-size: 11px;
   }
 }
 
-@media (max-width: 550px) {
-  .header__mobile {
-    gap: 25px;
+@media (max-width: 650px) {
+  .navigate {
+    font-size: 18px;
+  }
+
+  .wrapper-telephone span {
+    display: none;
   }
 }
 
-@media (max-width: 513px) {
+@media (max-width: 595px) {
+  .wrapper-reviews p {
+    font-size: 38px;
+  }
+
+  .description {
+    font-size: 12px;
+  }
+
+  .info-clients span:nth-child(1) {
+    font-size: 14px;
+  }
+  
+  .info-clients span:nth-child(2) {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 535px) {
+  .wrapper-reviews p {
+    font-size: 34px;
+}
+
+  .description {
+    font-size: 11px;
+  }
+
+  .info-clients span:nth-child(1) {
+    font-size: 13px;
+}
+
+.info-clients span:nth-child(2) {
+  font-size: 10px;
+}
+
+  .review img {
+    height: 85px;
+  }
+}
+
+@media (max-width: 490px) {
+  .wrapper-reviews p {
+    font-size: 30px;
+}
+
   .description {
     font-size: 10px;
+  }
+
+.info-clients span:nth-child(2) {
+  font-size: 9px;
+}
+
+  .review img {
+    height: 75px;
+  }
+}
+
+@media (max-width: 450px) {
+  .review { 
+    gap: 15px;
+  }
+}
+
+@media (max-width: 437px) {
+  .description {
+    font-size: 9px;
+}
+  .cities span {
+    font-size: 38px;
+  }
+}
+
+@media (max-width: 417px) {
+  .description {
+    font-size: 8px;
+  }
+
+  .review img {
+    height: 65px;
+  }
+
+  .info-clients span:nth-child(1) {
+    font-size: 12px;
+}
+.info-clients span:nth-child(2) {
+  font-size: 8px;
+}
+}
+
+@media (max-width: 395px) {
+  .description {
+    font-size: 7px;
   }
 }
