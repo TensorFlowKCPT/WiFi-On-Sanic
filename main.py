@@ -108,7 +108,7 @@ async def reviews(request):
 
 def send_email(email, name):
     
-        # Настройки почтового сервера
+    # Настройки почтового сервера
     smtp_server = 'sm4.hosting.reg.ru'  # Замените на адрес вашего SMTP-сервера
     smtp_port = 587  # Порт SMTP-сервера (обычно 587 для TLS)
 
