@@ -8,8 +8,12 @@ $(function () {
     slide: function (event, ui) {
       $("#inputNumber11").val(ui.values[0]);
       $("#inputNumber12").val(ui.values[1]);
+      CheckTariffs();
     },
   });
+
+    
+
   $("#inputNumber11").val($("#inputRange1").slider("values", 0));
   $("#inputNumber12").val($("#inputRange1").slider("values", 1));
   $(".inputNumber").on("input", function () {
@@ -40,8 +44,11 @@ $(function () {
     slide: function (event, ui) {
       $("#inputNumber21").val(ui.values[0]);
       $("#inputNumber22").val(ui.values[1]);
+      CheckTariffs();
     },
   });
+
+
   $("#inputNumber21").val($("#inputRange2").slider("values", 0));
   $("#inputNumber22").val($("#inputRange2").slider("values", 1));
   $(".inputNumber").on("input", function () {
