@@ -1,451 +1,302 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Тарифы</title>
-    <link rel="stylesheet" href="static/css/tariffs.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
     <link
       rel="stylesheet"
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
-    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Tektur:wght@400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/tariffs.css" />
+    <link rel="stylesheet" href="/static/css/header.css" />
+    <link rel="stylesheet" href="/static/css/footer.css" />
+    <link rel="stylesheet" href="/static/css/cardTariff.css" />
+    <link rel="stylesheet" href="/static/css/modals.css" />
+    <title>Тарифы</title>
   </head>
-  <bod onload="CheckTariffs()">
-    <div class="header-cities">
-      <div class="header">
-        <a href="/"
-          ><span class="logo">
-            <svg
-              width="55"
-              height="55"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g filter="url(#a)">
-                <path
-                  d="M47.6 10.47H33.66c-.95 0-1.74-.8-1.74-1.75s.79-1.74 1.74-1.74h13.96c.95 0 1.74.79 1.74 1.74 0 .96-.79 1.75-1.74 1.75Z"
-                  fill="#292D32"
-                />
-                <path
-                  d="M40.63 17.44h-6.98c-.95 0-1.74-.79-1.74-1.74s.79-1.74 1.74-1.74h6.98c.95 0 1.75.79 1.75 1.74s-.8 1.74-1.75 1.74Z"
-                  fill="#2A6F97"
-                />
-                <path
-                  d="M27.84 47.68A23.87 23.87 0 0 1 4 23.84 23.87 23.87 0 0 1 27.84 0c.95 0 1.74.8 1.74 1.74 0 .96-.79 1.75-1.74 1.75A20.37 20.37 0 0 0 7.49 23.84a20.37 20.37 0 0 0 20.35 20.35 20.37 20.37 0 0 0 20.35-20.35c0-.95.8-1.74 1.74-1.74.96 0 1.75.79 1.75 1.74a23.87 23.87 0 0 1-23.84 23.84Z"
-                  fill="#013A63"
-                />
-                <path
-                  d="M52.26 50c-.44 0-.88-.16-1.23-.5l-4.65-4.66a1.75 1.75 0 0 1 0-2.46c.67-.68 1.79-.68 2.46 0l4.65 4.65c.68.67.68 1.79 0 2.46-.34.35-.79.51-1.23.51Z"
-                  fill="#292D32"
-                />
-              </g>
-              <defs>
-                <filter
-                  id="a"
-                  x="0"
-                  y="0"
-                  width="58"
-                  height="58"
-                  filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
-                >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                  />
-                  <feOffset dy="4" />
-                  <feGaussianBlur stdDeviation="2" />
-                  <feComposite in2="hardAlpha" operator="out" />
-                  <feColorMatrix
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-                  />
-                  <feBlend
-                    in2="BackgroundImageFix"
-                    result="effect1_dropShadow_58_208"
-                  />
-                  <feBlend
-                    in="SourceGraphic"
-                    in2="effect1_dropShadow_58_208"
-                    result="shape"
-                  />
-                </filter>
-              </defs>
-            </svg>
-            <span>On-</span><span>Wi</span><span>Fi</span></span
-          ></a
-        >
-        <div class="wrapper-navigations">
-          <a href="/tariffs?city={{data['City']['Name']}}"
-            ><span class="navigate">Тарифы</span></a
-          >
-          <a href="/reviews"><span class="navigate">Отзывы</span></a>
-          <a href="/aboutUs"><span class="navigate">О нас</span></a>
-          <a href="/questions"
-            ><span class="navigate">Часто задаваемые вопросы</span></a
-          >
-          <a href="tel:+78005500792"
-            ><div class="wrapper-telephone">
-              <span class="navigate">+78005500792</span>
-              <img
-                src="static/img/main/telephone.svg"
-                alt="Иконка телефона"
-              /></div
-          ></a>
-        </div>
-        <div
-          class="city-button"
-          id="cityButton"
-          data-city='{{data.City["NameEng"]}}'
-        >
-          <span onclick="openModalCities()">{{data.City['Name']}}</span>
-          <button onclick="openModalApplication()" class="active-modal">
-            Оставить заявку
-          </button>
-        </div>
-      </div>
-
-      <div class="header__mobile">
-        <a href="/"
-          ><span class="logo">
-            <svg
-              width="55"
-              height="55"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g filter="url(#a)">
-                <path
-                  d="M47.6 10.47H33.66c-.95 0-1.74-.8-1.74-1.75s.79-1.74 1.74-1.74h13.96c.95 0 1.74.79 1.74 1.74 0 .96-.79 1.75-1.74 1.75Z"
-                  fill="#292D32"
-                />
-                <path
-                  d="M40.63 17.44h-6.98c-.95 0-1.74-.79-1.74-1.74s.79-1.74 1.74-1.74h6.98c.95 0 1.75.79 1.75 1.74s-.8 1.74-1.75 1.74Z"
-                  fill="#2A6F97"
-                />
-                <path
-                  d="M27.84 47.68A23.87 23.87 0 0 1 4 23.84 23.87 23.87 0 0 1 27.84 0c.95 0 1.74.8 1.74 1.74 0 .96-.79 1.75-1.74 1.75A20.37 20.37 0 0 0 7.49 23.84a20.37 20.37 0 0 0 20.35 20.35 20.37 20.37 0 0 0 20.35-20.35c0-.95.8-1.74 1.74-1.74.96 0 1.75.79 1.75 1.74a23.87 23.87 0 0 1-23.84 23.84Z"
-                  fill="#013A63"
-                />
-                <path
-                  d="M52.26 50c-.44 0-.88-.16-1.23-.5l-4.65-4.66a1.75 1.75 0 0 1 0-2.46c.67-.68 1.79-.68 2.46 0l4.65 4.65c.68.67.68 1.79 0 2.46-.34.35-.79.51-1.23.51Z"
-                  fill="#292D32"
-                />
-              </g>
-              <defs>
-                <filter
-                  id="a"
-                  x="0"
-                  y="0"
-                  width="58"
-                  height="58"
-                  filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
-                >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                  />
-                  <feOffset dy="4" />
-                  <feGaussianBlur stdDeviation="2" />
-                  <feComposite in2="hardAlpha" operator="out" />
-                  <feColorMatrix
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-                  />
-                  <feBlend
-                    in2="BackgroundImageFix"
-                    result="effect1_dropShadow_58_208"
-                  />
-                  <feBlend
-                    in="SourceGraphic"
-                    in2="effect1_dropShadow_58_208"
-                    result="shape"
-                  />
-                </filter>
-              </defs>
-            </svg>
-            <span>On-</span><span>Wi</span><span>Fi</span></span
-          ></a
-        >
-        <a href="tel:+78005500792"
-          ><div class="wrapper-telephone">
-            <span class="navigate">+78005500792</span>
-            <img
-              src="static/img/main/telephone.svg"
-              alt="Иконка телефона"
-            /></div
-        ></a>
-        <div class="menuMobile">
-          <button class="btn-mobile" onclick="menuMobile()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="26"
-              fill="none"
-            >
-              <path
-                stroke="#000"
-                stroke-width="6"
-                d="M0 3h24M0 13h24M0 23h24"
-              />
-            </svg>
-          </button>
-          <div class="wrapper__mobile" id="mobileMenu">
-            <a href="/tariffs?city={{data['City']['Name']}}"
-              ><span class="navigate navigate-mobile">Тарифы</span></a
-            >
-            <a href="/reviews"
-              ><span class="navigate navigate-mobile">Отзывы</span></a
-            >
-            <a href="/aboutUs"
-              ><span class="navigate navigate-mobile">О нас</span></a
-            >
-            <a href="/questions"
-              ><span class="navigate navigate-mobile">Вопросы</span></a
-            >
-            <div
-          class="city-button"
-          id="cityButton"
-          data-city='{{data.City["NameEng"]}}'
-        >
-          <span onclick="openModalCities()">{{data.City['Name']}}</span>
-          <button onclick="openModalApplication()" class="active-modal">
-            Оставить заявку
-          </button>
-        </div>
+  <body onload="CheckTariffs()">
+    <div class="blue-blur">
+      <div id="blue-blur-1"></div>
+      <div id="blue-blur-2"></div>
+      <div id="blue-blur-3"></div>
+    </div>
+    <div class="header">
+      <a href="" class="logo">ON-WiFi</a>
+      <div>
+        <a href="">Тарифы</a>
+        <a>FAQ</a>
+        <a>Полулярные</a>
+        <a>Контакты</a>
       </div>
     </div>
-  </div>
-
-
-        <div style="display: none" id="cities" class="cities">
-          <span>Города в которых мы есть</span>
-          <div class="wrapper-all-cities">
-            {% for city in data['Cities'] %} {% if city|length == 1 %}
-              <h1>{{ city[0] }}</h1>
-              {% else %}
-              <a href="https://{{ city[1] }}.on-wifi.ru">{{ city[0] }}</a>
-              {% endif %} {% endfor %}
-          </div>
+    <div class="filtersAndTariff">
+      <div class="filters">
+        <div class="filters-header">
+          <span>Фильтр</span>
+          <img src="/static/img/filtersIcon.svg" alt="" />
         </div>
-      </div>
-      <div class="filter-cards">
-        <div class="filters">
-          <div class="filter">
-            <span class="filter-name">Тарифы</span>
-            <div class="filter-params">
-              <div class="filter-param">
-                <input type="checkbox" name="" id="" />
-                <span>Интернет</span>
-              </div>
-              <div class="filter-param">
-                <input type="checkbox" name="" id="" />
-                <span>Тв</span>
-              </div>
-              <div class="filter-param">
-                <input type="checkbox" name="" id="" />
-                <span>Связь</span>
-              </div>
+        <div class="filters-body">
+          <div class="filter-inputRange">
+            <div class="filter-price-header">
+              <span>Цена</span>
+              <img src="/static/img/filterIcon.svg" alt="" />
             </div>
-          </div>
-          <div class="filter">
-            <span class="filter-name">Провайдеры</span>
-            <div class="filter-params">
-              {% for provider in data['providers'] %}
-              <div class="filter-param">
+            <div class="filter-price-body">
+              <div class="header-inputRange">
                 <input
-                  type="checkbox"
-                  class="providersFilterCheckbox"
-                  name="{{ provider['NameEng'] }}"
-                  id="{{ provider['NameEng'] }}"
-                  {%if data['provider'] and provider['NameEng'] == data['provider']%}
-                  checked
-                  {%endif%}
+                  class="inputNumber"
+                  type="number"
+                  name=""
+                  id="inputNumber11"
                   onchange="CheckTariffs()"
                 />
-                <span for="{{ provider['NameEng'] }}"
-                  >{{ provider['Name'] }}</span
-                >
+                <div class="lineForNumbers"></div>
+                <input
+                  class="inputNumber"
+                  type="number"
+                  name=""
+                  id="inputNumber12"
+                  onchange="CheckTariffs()"
+                />
               </div>
-              {% endfor %}
+              <div
+                class="body-inputRange"
+                data-min="{{data['mintariffprice']}}"
+                data-max="{{data['maxtariffprice']}}"
+                id="inputRange1"
+                onchange="CheckTariffs()"
+              ></div>
+            </div>
+            <div class="filter-inputRange">
+              <div class="filter-price-header">
+                <span>Скорость интернета (Мбит./C.)</span>
+                <img src="/static/img/filterIcon.svg" alt="" />
+              </div>
+              <div class="filter-price-body">
+                <div class="header-inputRange">
+                  <input
+                    class="inputNumber"
+                    type="number"
+                    name=""
+                    id="inputNumber21"
+                    onchange="CheckTariffs()"
+                  />
+                  <div class="lineForNumbers"></div>
+                  <input
+                    class="inputNumber"
+                    type="number"
+                    name=""
+                    id="inputNumber22"
+                    onchange="CheckTariffs()"
+                  />
+                </div>
+                <div
+                  class="body-inputRange"
+                  data-min="{{data['mintariffinternetspeed']}}"
+                  data-max="{{data['maxtariffinternetspeed']}}"
+                  id="inputRange2"
+                  onchange="CheckTariffs()"
+                ></div>
+              </div>
             </div>
           </div>
-
-        <div class="filter">
-          <span class="filter-name">Стоимость тарифа </span>
-          <div class="slider">
-            <input
-              type="text"
-              id="input11"
-              class="slider-input"
-              onchange="CheckTariffs()"
-            />
-            <div
-              class="slider-range"
-              data-min="{{ data['mintariffprice'] }}"
-              data-max="{{data['maxtariffprice']}}"
-              id="slider-range1"
-            ></div>
-            <input
-              type="text"
-              id="input12"
-              class="slider-input"
-              onchange="CheckTariffs()"
-            />
-          </div>
-        </div>
-        <div class="filter">
-          <span class="filter-name">Скорость интернета</span>
-          <div class="slider">
-            <input
-              type="text"
-              id="input21"
-              class="slider-input"
-              onchange="CheckTariffs()"
-            />
-            <div
-              class="slider-range"
-              data-min="{{ data['mintariffinternetspeed'] }}"
-              data-max="{{data['maxtariffinternetspeed']}}"
-              id="slider-range2"
-            ></div>
-            <input
-              type="text"
-              id="input22"
-              class="slider-input"
-              onchange="CheckTariffs()"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="cards" id="tariffs">
-        {% for tariff in data['tariffs'] %} 
-        <div class="card-tariff" data-id =
-        "{{tariff['id']}}" data-Name = "{{tariff['Name']}}" data-NameEng =
-        "{{tariff['NameEng']}}" data-price="{{tariff['Price']}}"
-        data-provider="{{tariff['Provider']['NameEng']}}" {% if
-        tariff['Options']['Values']['InternetSpeed'] %}
-        data-internetSpeed="{{tariff['Options']['Values']['InternetSpeed'][0]}}"{%
-        endif %}
-        {% if tariff['Options']['Values']['ChannelsCount'] %}
-        data-channelscount="{{tariff['Options']['Values']['InternetSpeed'][0]}}"
-        {%endif %}
-        {% if tariff['Options']['Values']['GigabytesCount'] %}
-        data-gigabytescount="{{tariff['Options']['Values']['InternetSpeed'][0]}}"
-        {%endif %}
-        >
-        <div class="card-tariff-header">
-          <span>{{tariff["Name"]}}</span>
-        </div>
-        <div class="card-tariff-body">
-          <div class="wrapper-priceAndLogo">
-            <span
-              >{% if tariff['PriceOld'] and tariff['PriceOld'] != 0
-              %}{{tariff['PriceOld']}}{% endif %}</span
-            >
-
-            <span>{{tariff['Price']}}руб.</span>
-
-            <img
-              src="static/img/main/{{tariff['Provider']['ImageUrl']}}"
-              alt=""
-            />
-          </div>
-          <div class="params">
-            <div class="param">
-              <img src="static/img/main/inet35px.png" alt="" />
-              {% if tariff['Options']['Values']['InternetSpeed'] %}
-              <span
-                >{{tariff['Options']['Values']['InternetSpeed'][0]}}
-                {{tariff['Options']['Values']['InternetSpeed'][1]}} {% else %}
-                ---
-              </span>
-              {% endif %}
+          <div class="wrapper-filters">
+            <div class="filter">
+              <div class="filter-header">
+                <span>Провайдеры</span>
+                <img src="/static/img/filterIcon.svg" alt="" />
+              </div>
+              <div class="filter-body">
+                {% for provider in data['providers'] %}
+                <div class="checkboxAndText">
+                  <div class="custom-checkbox">
+                    <input class="provider-checkbox" type="checkbox" id="{{provider['id']}}" name="{{provider['Name']}}" onchange="CheckTariffs()"/>
+                    <label for="{{provider['id']}}"></label>
+                  </div>
+                  <span>{{provider['Name']}}</span>
+                </div>
+                {% endfor %}
+              </div>
             </div>
-            <div class="param">
-              <img src="static/img/main/tv35px.png" alt="" />
-              {% if tariff['Options']['Values']['ChannelsCount'] %}
-              <span
-                >{{tariff['Options']['Values']['ChannelsCount'][0]}}
-                {{tariff['Options']['Values']['ChannelsCount'][1]}} {% else %}
-                ---
-              </span>
-              {% endif %}
+            <div class="filter">
+              <div class="filter-header">
+                <span>Опции</span>
+                <img src="/static/img/filterIcon.svg" alt="" />
+              </div>
+              <div class="filter-body">
+                <div class="checkboxAndText">
+                  <div class="custom-checkbox">
+                    <input type="checkbox" class="OptionCheckbox" id="InternetCheckbox" name="internetspeed" onchange="CheckTariffs()"/>
+                    <label for="InternetCheckbox"></label>
+                  </div>
+                  <span>Интернет</span>
+                </div>
+                <div class="checkboxAndText">
+                  <div class="custom-checkbox">
+                    <input type="checkbox" class="OptionCheckbox" id="TVCheckbox" name="channels" onchange="CheckTariffs()"/>
+                    <label for="TVCheckbox"></label>
+                  </div>
+                  <span>Тв</span>
+                </div>
+                <div class="checkboxAndText">
+                  <div class="custom-checkbox">
+                    <input type="checkbox" class="OptionCheckbox" id="MobileCheckbox" name="mobile" onchange="CheckTariffs()"/>
+                    <label for="MobileCheckbox"></label>
+                  </div>
+                  <span>Мобильный</span>
+                </div>
+              </div>
             </div>
-            <div class="param">
-              <img src="static/img/main/mob35px.png" alt="" />
-              {% if tariff['Options']['Values']['GigabytesCount'] %}
-              <span
-                >{{tariff['Options']['Values']['GigabytesCount'][0]}}
-                {{tariff['Options']['Values']['GigabytesCount'][1]}} {% else %}
-                ---
-              </span>
-              {% endif %}
-            </div>
-          </div>
-          <div class="conn-info">
-            <button onclick="openModalApplication()">Подключить</button>
           </div>
         </div>
       </div>
-      {%endfor%}
+      <div class="tariff">
+        <div class="wrapper-tariffs" id="tariffs">
+          {% for tariff in data['tariffs'] %}
+              <div class="card" id="{{data['tariffs'].index(tariff)}}" 
+              data-provider="{{tariff['Provider']['Name']}}" 
+              data-price="{{tariff['Price']}}"
+              {% if tariff['Options']['Internet'] %}
+              data-internetspeed="{{tariff['Options']['Internet']['InternetSpeed']}}"
+              {%endif%}
+              {% if tariff['Options']['TV'] %}
+              data-channels="{{tariff['Options']['TV']['Channels']}}"
+              {%endif%}
+              {%if tariff['Options']['Mobile'] %}
+              data-mobile="{{tariff['Options']['Mobile']['гигабайт']}}"
+              {%endif%}
+              >
+                {% if tariff['PriceOld'] %}
+                <div class="header-card">
+                  <span>Акция</span>
+                </div>
+                {% endif %}
+                <div class="body-card">
+                  <div class="nameAndImg">
+                    <span>{{tariff['Name']}}</span>
+                    <img src="/static/img/{{tariff['Provider']['ImageUrl']}}" alt="" />
+                  </div>
+                  <div class="paramsTariff">
+                    {% if tariff['Options']['Internet'] %}
+                    <div class="paramTariff">
+                      <img src="/static/img/speedInternetTariff.svg" alt="" />
+                      <span>{{tariff['Options']['Internet']['InternetSpeed']}} мбит./с.</span>
+                      {% if tariff['Options']['Internet']['Router'] %}
+                      <img src="/static/img/routerTariff.svg" alt="" />
+                      <span>Роутер:<br/>{{tariff['Options']['Internet']['Router']}}</span>
+                      {%endif%}
+                    </div>
+                    {%endif%}
+                    {% if tariff['Options']['TV'] %}
+                    <div class="paramTariff">
+                      <img src="/static/img/channelsTariff.svg" alt="" />
+                      <span>{{tariff['Options']['TV']['Channels']}}</span>
+                      {% if tariff['Options']['TV']['TvBox'] %}
+                      <img src="/static/img/routerTariff.svg" alt="" />
+                      <span>Тв приставка:<br/>{{tariff['Options']['TV']['TvBox']}}</span>
+                      {%endif%}
+                    </div>
+                    {% endif %}
+                    {% if tariff['Options']['Mobile'] %}
+                    <div class="paramTariff">
+                      <img src="/static/img/mobileTariff.svg" alt="" />
+                      <span>{%if tariff['Options']['Mobile']['гигабайт']%}{{tariff['Options']['Mobile']['гигабайт']}}Гб  {%endif%}{%if tariff['Options']['Mobile']['минут']%}| {{tariff['Options']['Mobile']['минут']}} минут {%endif%}{%if tariff['Options']['Mobile']['смс']%}| {{tariff['Options']['Mobile']['смс']}} смс{%endif%}</span>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="footer-card">
+                  <div class="textAndImg">
+                    <span>Comparing to</span>
+                    <img src="/static/img/priceTariff.svg" alt="" />
+                  </div>
+                  <div class="twoPrice">
+                    <span>{{tariff['Price']}}</span>
+                    {%if tariff['PriceOld'] %}
+                    <span>{{tariff['PriceOld']}}</span>
+                    {%endif%}
+                  </div>
+                </div>
+                <button>Подключить</button>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="navigate-tariffs">
+          <button>Открыть все</button>
+          <div class="pages">
+            <img src="/static/img/previousPage.svg" alt="" />
+            <div class="group-pages">
+              <div class="pageNumber">1</div>
+              <div class="pageNumber">2</div>
+              <div class="pageNumber">3</div>
+              <div class="pageNumber">4</div>
+              <div class="pageNumber">5</div>
+              <div class="pageNumber">6</div>
+              <div class="pageNumber">7</div>
+            </div>
+            <img src="/static/img/nextPage.svg" alt="" />
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="footer">
-      <div class="wrapper-footer-a">
-        <a href="/tariffs?city={{data['City']['Name']}}">Тариф</a>
-        <a href="/reviews">Отзывы клиентов</a>
-        <a href="/aboutUs">О нас</a>
-        <a href="/questions">Часто задаваемые вопросы</a>
+    <div id="feedback" class="feedback">
+      <div class="typeRooms">
+        <button class="active-typeRoom">Подключение в квартиру</button>
+        <button class="unactive-typeRoom">Подключение в офис</button>
+        <button class="unactive-typeRoom">Подкючение в частный дом</button>
       </div>
-      <div class="footer-logo">
-        <span>On-</span><span>Wi</span><span>Fi</span>
-      </div>
-      <span class="footer-title">© 2023 On-WiFi. Все права защищены.</span>
-    </div>
-
-    <div id="modal" class="modals-inactive">
-      <div class="modals">
-        <div class="modals-header">
-          <p>Оставить заявку</p>
-          <img
-            onclick="closeModalApplication()"
-            src="static/img/main/closeModal.svg"
-            alt=""
+      <div class="data-feedback">
+        <div class="inputs-data-feedback">
+          <input class="validInput" placeholder="Ваше имя" type="text" />
+          <input
+            class="validInput"
+            placeholder="Ваш номер телефона"
+            type="text"
           />
+          <textarea
+            class="validInput"
+            placeholder="Адрес подключения"
+            cols="30"
+            rows="10"
+          ></textarea>
         </div>
-        <form action="">
-          <div class="input-container">
-            <img src="static/img/main/telephone-modal.svg" alt="" />
-            <input placeholder="Номер телефона" type="tel" name="" id="" />
+        <div class="checkAndSubmit">
+          <div class="checkAndText">
+            <div class="custom-checkbox">
+              <input type="checkbox" id="myCheckbox" />
+              <label for="myCheckbox"></label>
+            </div>
+            <span>Соглашение на обработку персональных данных</span>
           </div>
-          <div class="input-container">
-            <img src="static/img/main/user-modal.svg" alt="" />
-            <input placeholder="Ваше имя" type="text" name="" id="" />
-          </div>
-          <div class="input-container">
-            <img src="static/img/main/geo-modal.svg" alt="" />
-            <input placeholder="Адрес подключения" type="text" name="" id="" />
-          </div>
-          <button>Отправить</button>
-        </form>
+          <button disabled>Отправить</button>
+        </div>
       </div>
     </div>
-  </body>
+    <div id="footer" class="footer">
+      <a href="" class="logo">ON-WiFi</a>
 
-  <script src="static/js/tariffs.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.js"></script>
+      <div class="numberAndMedia">
+        <a href="tel:+78005500792"><span>&phone; +78005500792</span></a>
+        <span>Бесплатная консультация Ежедневно с 9 до 22 часов</span>
+        <div class="group-logo">
+          <a href="https://t.me/on_wifi_bot"
+            ><img src="/static/img/telegram50px.svg" alt=""
+          /></a>
+          <a href="https://wa.me/79526896473"
+            ><img src="/static/img/whatsapp50px.svg" alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.7.0/nouislider.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/static/js/tariffs.js"></script>
+  </body>
 </html>

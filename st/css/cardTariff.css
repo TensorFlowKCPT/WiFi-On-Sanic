@@ -1,0 +1,143 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 315px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: transform 0.1s ease-out;
+}
+.card button {
+  transition: transform 0.1s ease-out;
+  cursor: pointer;
+}
+
+.card button:hover {
+  transform: scale(1.04);
+}
+.card:hover {
+  transform: scale(1.04);
+}
+.header-card {
+  box-sizing: border-box;
+  height: 82px;
+  width: 100%;
+  padding-left: 20px;
+  border-radius: 10px 10px 0px 0px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.header-card span {
+  color: #fff;
+
+  font-family: Tektur;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.body-card {
+  display: block;
+  margin: 10px 20px;
+}
+.nameAndImg {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.nameAndImg span {
+  color: #fff;
+  font-family: Tektur;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.nameAndImg img {
+  height: 42px;
+  width: 42px;
+}
+
+.paramsTariff {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  flex-direction: column;
+  color: #fff;
+  font-family: Tektur;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.paramTariff {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.footer-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  margin: 20px 20px 20px 20px;
+}
+.textAndImg {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.textAndImg span {
+  color: #fff;
+  font-family: Tektur;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.twoPrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.twoPrice span:nth-child(1) {
+  color: #fff;
+  text-align: center;
+  font-family: Tektur;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+}
+.twoPrice span:nth-child(2) {
+  color: #fff;
+  text-align: center;
+  font-family: Tektur;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card button {
+  width: 100%;
+  height: 75px;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: #0500ff;
+  color: #fff;
+  text-align: center;
+  font-family: Tektur;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}

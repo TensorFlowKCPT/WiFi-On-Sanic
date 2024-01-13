@@ -1,445 +1,853 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>wifi-on</title>
-    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/css/header.css" />
+    <link rel="stylesheet" href="/static/css/cardTariff.css" />
+    <link rel="stylesheet" href="/static/css/footer.css" />
+    <link rel="stylesheet" href="/static/css/modals.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Tektur:wght@400;500;600;700;800;900&family=Ubuntu:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
-    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <title>Document</title>
   </head>
   <body>
-    <div class="header-cities">
-      <div class="header">
-        <a href="/"
-          ><span class="logo">
-            <svg
-              width="55"
-              height="55"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g filter="url(#a)">
-                <path
-                  d="M47.6 10.47H33.66c-.95 0-1.74-.8-1.74-1.75s.79-1.74 1.74-1.74h13.96c.95 0 1.74.79 1.74 1.74 0 .96-.79 1.75-1.74 1.75Z"
-                  fill="#292D32"
-                />
-                <path
-                  d="M40.63 17.44h-6.98c-.95 0-1.74-.79-1.74-1.74s.79-1.74 1.74-1.74h6.98c.95 0 1.75.79 1.75 1.74s-.8 1.74-1.75 1.74Z"
-                  fill="#2A6F97"
-                />
-                <path
-                  d="M27.84 47.68A23.87 23.87 0 0 1 4 23.84 23.87 23.87 0 0 1 27.84 0c.95 0 1.74.8 1.74 1.74 0 .96-.79 1.75-1.74 1.75A20.37 20.37 0 0 0 7.49 23.84a20.37 20.37 0 0 0 20.35 20.35 20.37 20.37 0 0 0 20.35-20.35c0-.95.8-1.74 1.74-1.74.96 0 1.75.79 1.75 1.74a23.87 23.87 0 0 1-23.84 23.84Z"
-                  fill="#013A63"
-                />
-                <path
-                  d="M52.26 50c-.44 0-.88-.16-1.23-.5l-4.65-4.66a1.75 1.75 0 0 1 0-2.46c.67-.68 1.79-.68 2.46 0l4.65 4.65c.68.67.68 1.79 0 2.46-.34.35-.79.51-1.23.51Z"
-                  fill="#292D32"
-                />
-              </g>
-              <defs>
-                <filter
-                  id="a"
-                  x="0"
-                  y="0"
-                  width="58"
-                  height="58"
-                  filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
-                >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                  />
-                  <feOffset dy="4" />
-                  <feGaussianBlur stdDeviation="2" />
-                  <feComposite in2="hardAlpha" operator="out" />
-                  <feColorMatrix
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-                  />
-                  <feBlend
-                    in2="BackgroundImageFix"
-                    result="effect1_dropShadow_58_208"
-                  />
-                  <feBlend
-                    in="SourceGraphic"
-                    in2="effect1_dropShadow_58_208"
-                    result="shape"
-                  />
-                </filter>
-              </defs>
-            </svg>
-            <span>On-</span><span>Wi</span><span>Fi</span></span
-          ></a
-        >
-        <div class="wrapper-navigations">
-          <a href="/tariffs?city={{data['City']['Name']}}"><span class="navigate">Тарифы</span></a>
-          <a href="/reviews"><span class="navigate">Отзывы</span></a>
-          <a href="/aboutUs"><span class="navigate">О нас</span></a>
-          <a href="/questions"
-            ><span class="navigate">Часто задаваемые вопросы</span></a
+    <div class="blue-blur">
+      <div id="blue-blur-1"></div>
+      <div id="blue-blur-2"></div>
+      <div id="blue-blur-3"></div>
+      <div id="blue-blur-4"></div>
+      <div id="blue-blur-5"></div>
+      <div id="blue-blur-6"></div>
+      <div id="blue-blur-7"></div>
+      <div id="blue-blur-8"></div>
+      <div id="blue-blur-9"></div>
+      <div id="blue-blur-10"></div>
+    </div>
+    <div class="header">
+      <a href="" class="logo">ON-WiFi</a>
+      <div>
+        <a href="">Тарифы</a>
+        <a>FAQ</a>
+        <a>Полулярные</a>
+        <a>Контакты</a>
+      </div>
+    </div>
+    <div class="search">
+      <h1>Найди своего идеального провайдера здесь</h1>
+      <h2>Подключи <span id="typed-output"></span></h2>
+      <div class="searchAndListbox">
+        <div class="custom-search">
+          <input placeholder="Начните вводить свой адрес" id="SearchBox" type="text" oninput="CheckAddress()"/>
+          <img src="/static/img/search.svg" alt="" />
+        </div>
+        <div id="SuggestionsContainer">
+        </div>
+        <div class="custom-listbox"></div>
+      </div>
+    </div>
+    <div class="paramsMain">
+      <a href="">
+        <div class="paramMain">
+          <div class="wrapper-svg">
+            <img src="/static/img/Internet+TV.svg" alt="" />
+          </div>
+          <span>Интернет + ТВ</span>
+        </div>
+      </a>
+      <a href=""
+        ><div class="paramMain">
+          <div class="wrapper-svg">
+            <img src="/static/img/HomeInternet.svg" alt="" />
+          </div>
+          <span>Домашний интернет</span>
+        </div></a
+      >
+      <a href=""
+        ><div class="paramMain">
+          <div class="wrapper-svg">
+            <img src="/static/img/Communication+Internet+TV.svg" alt="" />
+          </div>
+          <span>Связь + Интернет + ТВ</span>
+        </div></a
+      >
+      <a href="">
+        <div class="paramMain">
+          <div class="wrapper-svg">
+            <img src="/static/img/Atelevision.svg" alt="" />
+          </div>
+          <span>Телевидение</span>
+        </div></a
+      >
+    </div>
+    <div class="providersInCity">
+      <span>Провайдеры в городе {{data['City']['Name']}}</span>
+      <div class="wrapper-providersInCity">
+        <a href="">
+          <div class="providerInCity">
+            <div class="wrapper-img">
+              <img src="/static/img/beeline80px.png" alt="" />
+            </div>
+          </div>
+        </a>
+        <a href="">
+          <div class="providerInCity">
+            <div class="wrapper-img">
+              <img src="/static/img/domru80px.png" alt="" />
+            </div>
+          </div>
+        </a>
+        <a href="">
+          <div class="providerInCity">
+            <div class="wrapper-img">
+              <img src="/static/img/mts80px.png" alt="" />
+            </div>
+          </div>
+        </a>
+        <a href="">
+          <div class="providerInCity">
+            <div class="wrapper-img">
+              <img src="/static/img/rostelecom80px.png" alt="" />
+            </div>
+          </div>
+        </a>
+        <a href="">
+          <div class="providerInCity">
+            <div class="wrapper-img">
+              <img src="/static/img/ttk80px.png" alt="" />
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div id="popularRates" class="popularRates">
+      <h2>Популярные тарифы в городе {{data['City']['Name']}}</h2>
+      <div class="container-swiper">
+        <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+            <!-- Slides -->
+            {% for tariff in data['RandTariffs'] %}
+            <div class="swiper-slide">
+              <div class="card">
+                {% if tariff['PriceOld'] %}
+                <div class="header-card">
+                  <span>Акция</span>
+                </div>
+                {% endif %}
+                <div class="body-card">
+                  <div class="nameAndImg">
+                    <span>{{tariff['Name']}}</span>
+                    <img src="/static/img/{{tariff['Provider']['ImageUrl']}}" alt="" />
+                  </div>
+                  <div class="paramsTariff">
+                    {% if tariff['Options']['Internet'] %}
+                    <div class="paramTariff">
+                      <img src="/static/img/speedInternetTariff.svg" alt="" />
+                      <span>{{tariff['Options']['Internet']['InternetSpeed']}} мбит./с.</span>
+                      {% if tariff['Options']['Internet']['Router'] %}
+                      <img src="/static/img/routerTariff.svg" alt="" />
+                      <span>Роутер:<br/>{{tariff['Options']['Internet']['Router']}}</span>
+                      {%endif%}
+                    </div>
+                    {%endif%}
+                    {% if tariff['Options']['TV'] %}
+                    <div class="paramTariff">
+                      <img src="/static/img/channelsTariff.svg" alt="" />
+                      <span>{{tariff['Options']['TV']['Channels']}}</span>
+                      {% if tariff['Options']['TV']['TvBox'] %}
+                      <img src="/static/img/routerTariff.svg" alt="" />
+                      <span>Тв приставка:<br/>{{tariff['Options']['TV']['TvBox']}}</span>
+                      {%endif%}
+                    </div>
+                    {% endif %}
+                    {% if tariff['Options']['Mobile'] %}
+                    <div class="paramTariff">
+                      <img src="/static/img/mobileTariff.svg" alt="" />
+                      <span>{%if tariff['Options']['Mobile']['гигабайт']%}{{tariff['Options']['Mobile']['гигабайт']}}Гб  {%endif%}{%if tariff['Options']['Mobile']['минут']%}| {{tariff['Options']['Mobile']['минут']}} минут {%endif%}{%if tariff['Options']['Mobile']['смс']%}| {{tariff['Options']['Mobile']['смс']}} смс{%endif%}</span>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+                <div class="footer-card">
+                  <div class="textAndImg">
+                    <span>Comparing to</span>
+                    <img src="/static/img/priceTariff.svg" alt="" />
+                  </div>
+                  <div class="twoPrice">
+                    <span>{{tariff['Price']}}</span>
+                    {%if tariff['PriceOld'] %}
+                    <span>{{tariff['PriceOld']}}</span>
+                    {%endif%}
+                  </div>
+                </div>
+                <button>Подключить</button>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="buttonsSlider">
+        <img class="leftSliderButton" src="/static/img/leftSliderButton.svg" alt="" />
+        <button>Посмотреть все</button>
+        <img class="rightSliderButton" src="/static/img/rightSliderButton.svg" alt="" />
+      </div>
+    </div>
+    <div class="outPopularity">
+      <div class="header-outPopularity">
+        <img class="dottedLine" src="/static/img/dottedLineLeft.svg" alt="" />
+        <div>
+          <img src="/static/img/outPopularity.svg" alt="" />
+          <span>Чем известны</span>
+        </div>
+        <img class="dottedLine" src="/static/img/dottedLineRight.svg" alt="" />
+      </div>
+      <div class="footer-outPopularity">
+        <div class="info-outPopularity">
+          <div class="text-info-outPopularity">
+            <span>10 Years</span>
+            <span>cooperation with the country's leading providers</span>
+          </div>
+          <img src="/static/img/like-outPopulary.png" alt="" />
+        </div>
+        <div class="info-outPopularity">
+          <div class="text-info-outPopularity">
+            <span>89 regions</span>
+            <span>in which we connect the Internet and TV</span>
+          </div>
+          <img src="/static/img/money-outPopulary.png" alt="" />
+        </div>
+        <div class="info-outPopularity">
+          <div class="text-info-outPopularity">
+            <span>31452</span>
+            <span>100% money back guarantee in case of order failure</span>
+          </div>
+          <img src="/static/img/return-outPopulary.png" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="facts-wrapper">
+      <div class="facts">
+        <div class="fact">
+          <span
+            >We offer a huge range of tariff plans from all providers, including
+            federal and regional telecom operators. Here you can find many
+            options for connection, including dozens of different tariffs. We
+            understand that every customer has unique needs, which is why we
+            offer the widest range of rates to suit your needs.</span
           >
-          <a href="tel:+78005500792"
-            ><div class="wrapper-telephone">
-              <span class="navigate">+78005500792</span>
-              <img
-                src="static/img/main/telephone.svg"
-                alt="Иконка телефона"
-              /></div
-          ></a>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="33"
+            height="41"
+            viewBox="0 0 33 41"
+            fill="none"
+          >
+            <path
+              d="M24 21.2593C24 21.662 23.842 22.0482 23.5607 22.333C23.2794 22.6178 22.8978 22.7778 22.5 22.7778H10.5C10.1022 22.7778 9.72064 22.6178 9.43934 22.333C9.15804 22.0482 9 21.662 9 21.2593C9 20.8565 9.15804 20.4703 9.43934 20.1855C9.72064 19.9007 10.1022 19.7407 10.5 19.7407H22.5C22.8978 19.7407 23.2794 19.9007 23.5607 20.1855C23.842 20.4703 24 20.8565 24 21.2593ZM22.5 25.8148H10.5C10.1022 25.8148 9.72064 25.9748 9.43934 26.2596C9.15804 26.5444 9 26.9306 9 27.3333C9 27.7361 9.15804 28.1223 9.43934 28.4071C9.72064 28.6919 10.1022 28.8519 10.5 28.8519H22.5C22.8978 28.8519 23.2794 28.6919 23.5607 28.4071C23.842 28.1223 24 27.7361 24 27.3333C24 26.9306 23.842 26.5444 23.5607 26.2596C23.2794 25.9748 22.8978 25.8148 22.5 25.8148ZM33 6.07407V34.9259C33 36.5369 32.3679 38.0818 31.2426 39.2209C30.1174 40.3601 28.5913 41 27 41H6C4.4087 41 2.88258 40.3601 1.75736 39.2209C0.632141 38.0818 0 36.5369 0 34.9259V6.07407C0 5.2686 0.31607 4.49612 0.87868 3.92656C1.44129 3.35701 2.20435 3.03704 3 3.03704H6V1.51852C6 1.11578 6.15804 0.729541 6.43934 0.444764C6.72064 0.159986 7.10218 0 7.5 0C7.89782 0 8.27936 0.159986 8.56066 0.444764C8.84196 0.729541 9 1.11578 9 1.51852V3.03704H15V1.51852C15 1.11578 15.158 0.729541 15.4393 0.444764C15.7206 0.159986 16.1022 0 16.5 0C16.8978 0 17.2794 0.159986 17.5607 0.444764C17.842 0.729541 18 1.11578 18 1.51852V3.03704H24V1.51852C24 1.11578 24.158 0.729541 24.4393 0.444764C24.7206 0.159986 25.1022 0 25.5 0C25.8978 0 26.2794 0.159986 26.5607 0.444764C26.842 0.729541 27 1.11578 27 1.51852V3.03704H30C30.7956 3.03704 31.5587 3.35701 32.1213 3.92656C32.6839 4.49612 33 5.2686 33 6.07407ZM30 6.07407H27V7.59259C27 7.99533 26.842 8.38157 26.5607 8.66635C26.2794 8.95113 25.8978 9.11111 25.5 9.11111C25.1022 9.11111 24.7206 8.95113 24.4393 8.66635C24.158 8.38157 24 7.99533 24 7.59259V6.07407H18V7.59259C18 7.99533 17.842 8.38157 17.5607 8.66635C17.2794 8.95113 16.8978 9.11111 16.5 9.11111C16.1022 9.11111 15.7206 8.95113 15.4393 8.66635C15.158 8.38157 15 7.99533 15 7.59259V6.07407H9V7.59259C9 7.99533 8.84196 8.38157 8.56066 8.66635C8.27936 8.95113 7.89782 9.11111 7.5 9.11111C7.10218 9.11111 6.72064 8.95113 6.43934 8.66635C6.15804 8.38157 6 7.99533 6 7.59259V6.07407H3V34.9259C3 35.7314 3.31607 36.5039 3.87868 37.0734C4.44129 37.643 5.20435 37.963 6 37.963H27C27.7956 37.963 28.5587 37.643 29.1213 37.0734C29.6839 36.5039 30 35.7314 30 34.9259V6.07407Z"
+              fill="white"
+            />
+          </svg>
         </div>
-        <div class="city-button">
-          <span onclick="openModalCities()">Город</span>
-          <button onclick="openModalApplication()" class="active-modal">
-            Оставить заявку
-          </button>
+        <div class="fact">
+          <span
+            >We actively collect feedback from our customers about the work of
+            our Internet service provider partners. This allows us to keep
+            abreast of their work and offer the client only the best quality
+            offers. We value the opinions of our clients and strive to ensure
+            high quality work from our providers.</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="41"
+            height="41"
+            viewBox="0 0 41 41"
+            fill="none"
+          >
+            <path
+              d="M38.4119 15.8912C37.7218 15.17 37.008 14.4269 36.7389 13.7734C36.49 13.1749 36.4754 12.1829 36.4607 11.2219C36.4333 9.43549 36.404 7.41112 34.9964 6.00357C33.5889 4.59603 31.5645 4.56674 29.7781 4.53929C28.8171 4.52464 27.8251 4.51 27.2266 4.26107C26.575 3.99201 25.83 3.27817 25.1088 2.58812C23.8459 1.3746 22.4109 0 20.5 0C18.5891 0 17.1559 1.3746 15.8912 2.58812C15.17 3.27817 14.4269 3.99201 13.7734 4.26107C13.1786 4.51 12.1829 4.52464 11.2219 4.53929C9.43549 4.56674 7.41112 4.59603 6.00357 6.00357C4.59603 7.41112 4.57589 9.43549 4.53929 11.2219C4.52464 12.1829 4.51 13.1749 4.26107 13.7734C3.99201 14.425 3.27817 15.17 2.58812 15.8912C1.3746 17.1541 0 18.5891 0 20.5C0 22.4109 1.3746 23.8441 2.58812 25.1088C3.27817 25.83 3.99201 26.5731 4.26107 27.2266C4.51 27.8251 4.52464 28.8171 4.53929 29.7781C4.56674 31.5645 4.59603 33.5889 6.00357 34.9964C7.41112 36.404 9.43549 36.4333 11.2219 36.4607C12.1829 36.4754 13.1749 36.49 13.7734 36.7389C14.425 37.008 15.17 37.7218 15.8912 38.4119C17.1541 39.6254 18.5891 41 20.5 41C22.4109 41 23.8441 39.6254 25.1088 38.4119C25.83 37.7218 26.5731 37.008 27.2266 36.7389C27.8251 36.49 28.8171 36.4754 29.7781 36.4607C31.5645 36.4333 33.5889 36.404 34.9964 34.9964C36.404 33.5889 36.4333 31.5645 36.4607 29.7781C36.4754 28.8171 36.49 27.8251 36.7389 27.2266C37.008 26.575 37.7218 25.83 38.4119 25.1088C39.6254 23.8459 41 22.4109 41 20.5C41 18.5891 39.6254 17.1559 38.4119 15.8912ZM36.2978 23.0826C35.4211 23.9978 34.5132 24.9441 34.0318 26.1064C33.5706 27.2229 33.5504 28.4987 33.5321 29.7342C33.5138 31.0154 33.4937 32.3571 32.9245 32.9245C32.3552 33.4919 31.0227 33.5138 29.7342 33.5321C28.4987 33.5504 27.2229 33.5706 26.1064 34.0318C24.9441 34.5132 23.9978 35.4211 23.0826 36.2978C22.1675 37.1746 21.2321 38.0714 20.5 38.0714C19.7679 38.0714 18.8252 37.1709 17.9174 36.2978C17.0095 35.4247 16.0559 34.5132 14.8936 34.0318C13.7771 33.5706 12.5013 33.5504 11.2658 33.5321C9.9846 33.5138 8.64295 33.4937 8.07554 32.9245C7.50812 32.3552 7.48616 31.0227 7.46786 29.7342C7.44955 28.4987 7.42942 27.2229 6.96817 26.1064C6.48679 24.9441 5.57893 23.9978 4.70219 23.0826C3.82545 22.1675 2.92857 21.2321 2.92857 20.5C2.92857 19.7679 3.82911 18.8252 4.70219 17.9174C5.57527 17.0095 6.48679 16.0559 6.96817 14.8936C7.42942 13.7771 7.44955 12.5013 7.46786 11.2658C7.48616 9.9846 7.50629 8.64295 8.07554 8.07554C8.64478 7.50812 9.97728 7.48616 11.2658 7.46786C12.5013 7.44955 13.7771 7.42942 14.8936 6.96817C16.0559 6.48679 17.0022 5.57893 17.9174 4.70219C18.8325 3.82545 19.7679 2.92857 20.5 2.92857C21.2321 2.92857 22.1748 3.82911 23.0826 4.70219C23.9905 5.57527 24.9441 6.48679 26.1064 6.96817C27.2229 7.42942 28.4987 7.44955 29.7342 7.46786C31.0154 7.48616 32.3571 7.50629 32.9245 8.07554C33.4919 8.64478 33.5138 9.97728 33.5321 11.2658C33.5504 12.5013 33.5706 13.7771 34.0318 14.8936C34.5132 16.0559 35.4211 17.0022 36.2978 17.9174C37.1746 18.8325 38.0714 19.7679 38.0714 20.5C38.0714 21.2321 37.1709 22.1748 36.2978 23.0826ZM28.8574 15.0712C28.9936 15.2072 29.1016 15.3686 29.1752 15.5464C29.2489 15.7242 29.2869 15.9147 29.2869 16.1071C29.2869 16.2996 29.2489 16.4901 29.1752 16.6679C29.1016 16.8456 28.9936 17.0071 28.8574 17.1431L18.6074 27.3931C18.4714 27.5293 18.3099 27.6373 18.1322 27.711C17.9544 27.7847 17.7639 27.8226 17.5714 27.8226C17.379 27.8226 17.1885 27.7847 17.0107 27.711C16.8329 27.6373 16.6714 27.5293 16.5354 27.3931L12.1426 23.0003C11.8678 22.7255 11.7135 22.3529 11.7135 21.9643C11.7135 21.5757 11.8678 21.2031 12.1426 20.9283C12.4173 20.6535 12.79 20.4992 13.1786 20.4992C13.5671 20.4992 13.9398 20.6535 14.2146 20.9283L17.5714 24.287L26.7854 15.0712C26.9214 14.935 27.0829 14.827 27.2607 14.7533C27.4385 14.6796 27.629 14.6417 27.8214 14.6417C28.0139 14.6417 28.2044 14.6796 28.3822 14.7533C28.5599 14.827 28.7214 14.935 28.8574 15.0712Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+        <div class="fact">
+          <span
+            >On our website you can quickly compare prices, connection
+            conditions and other information related to tariffs and make the
+            best choice! To make your search easier, we select offers by data
+            volume, number of minutes and cost (₽). Enter these parameters for
+            convenience.</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="37"
+            viewBox="0 0 36 37"
+            fill="none"
+          >
+            <path
+              d="M33 0H3C2.20435 0 1.44129 0.311877 0.87868 0.867021C0.31607 1.42216 0 2.1751 0 2.96019V13.8334C0 30.4123 14.2162 35.9127 17.0625 36.847C17.6704 37.051 18.3296 37.051 18.9375 36.847C21.7875 35.9127 36 30.4123 36 13.8334V2.96019C36 2.1751 35.6839 1.42216 35.1213 0.867021C34.5587 0.311877 33.7957 0 33 0ZM18 34.0422C16.2638 33.4724 9.88312 31.0228 6.02437 24.8841L18 16.6067L29.9756 24.8786C26.1206 31.0099 19.7512 33.4594 18 34.0422ZM33 13.8426C33 17.1062 32.37 19.8796 31.365 22.2311L18.8606 13.5947C18.6084 13.4204 18.3079 13.3268 18 13.3268C17.6921 13.3268 17.3916 13.4204 17.1394 13.5947L4.635 22.2255C3.63 19.874 3 17.1007 3 13.8371V2.96019H33V13.8426Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+        <div class="fact">
+          <span
+            >On our website you can quickly compare prices, connection
+            conditions and other information related to tariffs and make the
+            best choice! To make your search easier, we select offers by data
+            volume, number of minutes and cost (₽). Enter these parameters for
+            convenience.</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="36"
+            height="33"
+            viewBox="0 0 36 33"
+            fill="none"
+          >
+            <path
+              d="M15.2308 20.6257C14.8635 20.6257 14.5114 20.7706 14.2517 21.0285C13.992 21.2864 13.8462 21.6362 13.8462 22.0009V26.9328L8.95154 22.0697C8.3064 21.433 7.7949 20.6754 7.4467 19.8409C7.09851 19.0064 6.92053 18.1116 6.92308 17.2082V10.8272C8.2283 10.4924 9.36581 9.69642 10.1224 8.58828C10.8789 7.48015 11.2026 6.136 11.0328 4.80778C10.8629 3.47957 10.2112 2.25847 9.19971 1.37339C8.18824 0.488307 6.88649 0 5.53847 0C4.19045 0 2.8887 0.488307 1.87723 1.37339C0.865759 2.25847 0.214013 3.47957 0.0441567 4.80778C-0.1257 6.136 0.197994 7.48015 0.954564 8.58828C1.71113 9.69642 2.84864 10.4924 4.15386 10.8272V17.21C4.15064 18.4746 4.39983 19.7274 4.88703 20.8959C5.37424 22.0643 6.08979 23.1252 6.99232 24.0174L11.8887 28.8771H6.92308C6.55586 28.8771 6.20368 29.022 5.94402 29.2799C5.68435 29.5378 5.53847 29.8876 5.53847 30.2523C5.53847 30.617 5.68435 30.9668 5.94402 31.2247C6.20368 31.4827 6.55586 31.6275 6.92308 31.6275H15.2308C15.598 31.6275 15.9502 31.4827 16.2098 31.2247C16.4695 30.9668 16.6154 30.617 16.6154 30.2523V22.0009C16.6154 21.6362 16.4695 21.2864 16.2098 21.0285C15.9502 20.7706 15.598 20.6257 15.2308 20.6257ZM2.76924 5.49815C2.76924 4.95416 2.93165 4.42239 3.23594 3.97008C3.54023 3.51777 3.97272 3.16523 4.47873 2.95706C4.98474 2.74888 5.54154 2.69441 6.07872 2.80054C6.6159 2.90667 7.10933 3.16862 7.49661 3.55328C7.88389 3.93794 8.14764 4.42803 8.25449 4.96156C8.36134 5.4951 8.3065 6.04813 8.0969 6.55071C7.88731 7.05329 7.53237 7.48285 7.07697 7.78508C6.62157 8.0873 6.08617 8.24861 5.53847 8.24861C4.80403 8.24861 4.09966 7.95883 3.58033 7.44302C3.061 6.92721 2.76924 6.22762 2.76924 5.49815ZM31.8461 22.1728V15.7918C31.8494 14.5271 31.6002 13.2743 31.113 12.1059C30.6258 10.9374 29.9102 9.87647 29.0077 8.98436L24.1113 4.12292H29.0769C29.4441 4.12292 29.7963 3.97803 30.056 3.72012C30.3157 3.46222 30.4615 3.11242 30.4615 2.74769C30.4615 2.38295 30.3157 2.03316 30.056 1.77525C29.7963 1.51735 29.4441 1.37246 29.0769 1.37246H20.7692C20.402 1.37246 20.0498 1.51735 19.7902 1.77525C19.5305 2.03316 19.3846 2.38295 19.3846 2.74769V10.9991C19.3846 11.3638 19.5305 11.7136 19.7902 11.9715C20.0498 12.2294 20.402 12.3743 20.7692 12.3743C21.1365 12.3743 21.4886 12.2294 21.7483 11.9715C22.008 11.7136 22.1538 11.3638 22.1538 10.9991V6.06715L27.0485 10.9303C27.6936 11.567 28.2051 12.3246 28.5533 13.1591C28.9015 13.9936 29.0795 14.8884 29.0769 15.7918V22.1728C27.7717 22.5075 26.6342 23.3036 25.8776 24.4117C25.1211 25.5198 24.7974 26.864 24.9672 28.1922C25.1371 29.5204 25.7888 30.7415 26.8003 31.6266C27.8118 32.5117 29.1135 33 30.4615 33C31.8096 33 33.1113 32.5117 34.1228 31.6266C35.1342 30.7415 35.786 29.5204 35.9558 28.1922C36.1257 26.864 35.802 25.5198 35.0454 24.4117C34.2889 23.3036 33.1514 22.5075 31.8461 22.1728ZM30.4615 30.2523C29.9138 30.2523 29.3784 30.091 28.923 29.7888C28.4676 29.4865 28.1127 29.057 27.9031 28.5544C27.6935 28.0518 27.6387 27.4988 27.7455 26.9653C27.8524 26.4317 28.1161 25.9416 28.5034 25.557C28.8907 25.1723 29.3841 24.9104 29.9213 24.8042C30.4585 24.6981 31.0153 24.7526 31.5213 24.9608C32.0273 25.1689 32.4598 25.5215 32.7641 25.9738C33.0683 26.4261 33.2308 26.9579 33.2308 27.5018C33.2308 28.2313 32.939 28.9309 32.4197 29.4467C31.9003 29.9625 31.196 30.2523 30.4615 30.2523Z"
+              fill="white"
+            />
+          </svg>
         </div>
       </div>
-
-      <div class="header__mobile">
-        <a href="/"
-          ><span class="logo">
-            <svg
-              width="55"
-              height="55"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g filter="url(#a)">
-                <path
-                  d="M47.6 10.47H33.66c-.95 0-1.74-.8-1.74-1.75s.79-1.74 1.74-1.74h13.96c.95 0 1.74.79 1.74 1.74 0 .96-.79 1.75-1.74 1.75Z"
-                  fill="#292D32"
-                />
-                <path
-                  d="M40.63 17.44h-6.98c-.95 0-1.74-.79-1.74-1.74s.79-1.74 1.74-1.74h6.98c.95 0 1.75.79 1.75 1.74s-.8 1.74-1.75 1.74Z"
-                  fill="#2A6F97"
-                />
-                <path
-                  d="M27.84 47.68A23.87 23.87 0 0 1 4 23.84 23.87 23.87 0 0 1 27.84 0c.95 0 1.74.8 1.74 1.74 0 .96-.79 1.75-1.74 1.75A20.37 20.37 0 0 0 7.49 23.84a20.37 20.37 0 0 0 20.35 20.35 20.37 20.37 0 0 0 20.35-20.35c0-.95.8-1.74 1.74-1.74.96 0 1.75.79 1.75 1.74a23.87 23.87 0 0 1-23.84 23.84Z"
-                  fill="#013A63"
-                />
-                <path
-                  d="M52.26 50c-.44 0-.88-.16-1.23-.5l-4.65-4.66a1.75 1.75 0 0 1 0-2.46c.67-.68 1.79-.68 2.46 0l4.65 4.65c.68.67.68 1.79 0 2.46-.34.35-.79.51-1.23.51Z"
-                  fill="#292D32"
-                />
-              </g>
-              <defs>
-                <filter
-                  id="a"
-                  x="0"
-                  y="0"
-                  width="58"
-                  height="58"
-                  filterUnits="userSpaceOnUse"
-                  color-interpolation-filters="sRGB"
-                >
-                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                  <feColorMatrix
-                    in="SourceAlpha"
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                    result="hardAlpha"
-                  />
-                  <feOffset dy="4" />
-                  <feGaussianBlur stdDeviation="2" />
-                  <feComposite in2="hardAlpha" operator="out" />
-                  <feColorMatrix
-                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-                  />
-                  <feBlend
-                    in2="BackgroundImageFix"
-                    result="effect1_dropShadow_58_208"
-                  />
-                  <feBlend
-                    in="SourceGraphic"
-                    in2="effect1_dropShadow_58_208"
-                    result="shape"
-                  />
-                </filter>
-              </defs>
-            </svg>
-            <span>On-</span><span>Wi</span><span>Fi</span></span
-          ></a
-        >
-        <a href="tel:+78005500792"
-          ><div class="wrapper-telephone">
-            <span class="navigate">+78005500792</span>
-            <img
-              src="static/img/main/telephone.svg"
-              alt="Иконка телефона"
-            /></div
-        ></a>
-        <div class="menuMobile">
-          <button class="btn-mobile" onclick="menuMobile()">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="26"
-              fill="none"
-            >
-              <path
-                stroke="#000"
-                stroke-width="6"
-                d="M0 3h24M0 13h24M0 23h24"
-              />
-            </svg>
-          </button>
-          <div class="wrapper__mobile" id="mobileMenu">
-            <a href="/tariffs?city={{data['City']['Name']}}"
-              ><span class="navigate navigate-mobile">Тарифы</span></a
-            >
-            <a href="/reviews"
-              ><span class="navigate navigate-mobile">Отзывы</span></a
-            >
-            <a href="/aboutUs"
-              ><span class="navigate navigate-mobile">О нас</span></a
-            >
-            <a href="/questions"
-              ><span class="navigate navigate-mobile">Вопросы</span></a
-            >
-            <div class="city-button">
-              <span onclick="openModalCities()">Город</span>
-              <button
-                onclick="openModalApplication()"
-                class="active-modal modal-mobile"
+      <div class="ourService">
+        <div class="ourService-leftDotting">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="193"
+            height="150"
+            viewBox="0 0 193 150"
+            fill="none"
+          >
+            <path
+              d="M0 2H35.5393C40.2582 2 44.7021 4.22062 47.5352 7.99445L144.348 136.953C144.941 137.744 145.649 138.443 146.448 139.026L156.356 146.261C158.068 147.511 160.133 148.185 162.253 148.185H192.462"
+              stroke="url(#paint0_linear_8_24)"
+              stroke-opacity="0.5"
+              stroke-width="3"
+              stroke-dasharray="5 5"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear_8_24"
+                x1="96.231"
+                y1="2"
+                x2="96.231"
+                y2="148.185"
+                gradientUnits="userSpaceOnUse"
               >
-                Оставить заявку
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div style="display: none" id="cities" class="cities">
-        <span>Города в которых мы есть</span>
-        <div class="wrapper-all-cities">
-          {% for city in data['Cities'] %} {% if city|length == 1 %}
-            <h1>{{ city[0] }}</h1>
-            {% else %}
-            <a href="https://{{ city[1] }}.on-wifi.ru">{{ city[0] }}</a>
-            {% endif %} {% endfor %}
-        </div>
-      </div>
-    </div>
-    <div class="container-search">
-      <span class="container-search-span1"
-        >Найди своего идеального <span>провайдера</span> <br />здесь</span
-      >
-      <p>Подключи <span id="typed-output"></span></p>
-      <div class="wrapper-search">
-        <input
-          type="search"
-          name=""
-          id="SearchBox"
-          placeholder="Начните вводить свой адрес"
-          oninput="CheckAddress()"
-        />
-        <div id="SuggestionsContainer"></div>
-      </div>
-    </div>
-
-    <div class="providers">
-      <span>Провайдеры в городе {{data.City['Name']}}</span>
-      <div class="wrapper-providers">
-        <a href="/tariffs?city={{data['City']['Name']}}&provider=beeline"><img src="static/img/main/bln80px.png" alt="beeline" /></a>
-        <a href="/tariffs?city={{data['City']['Name']}}&provider=mts"><img src="static/img/main/mts80px.png" alt="mts" /></a>
-        <a href="/tariffs?city={{data['City']['Name']}}&provider=rostelecom"><img src="static/img/main/rtk80px.png" alt="rtk" /></a>
-        <a href="/tariffs?city={{data['City']['Name']}}&provider=ttk"><img src="static/img/main/ttk80px.png" alt="ttk" /></a>
-        <a href="/tariffs?city={{data['City']['Name']}}&provider=domru"><img src="static/img/main/domru80px.png" alt="domru" /></a>
-      </div>
-    </div>
-    <div class="popular-tariffs">
-      <span class="popular-tariffs-text"
-        >Популярные тарифы в городе {{data.City['Name']}}</span
-      >
-      <div class="wrapper-card-tariff">
-        {% for tariff in data['RandTariffs'] %} <div class="card-tariff" data-id =
-          "{{tariff['id']}}" data-Name = "{{tariff['Name']}}" data-NameEng =
-          "{{tariff['NameEng']}}" data-price="{{tariff['Price']}}"
-          data-provider="{{tariff['Provider']['NameEng']}}" {% if
-          tariff['Options']['Values']['InternetSpeed'] %}
-          data-internetSpeed="{{tariff['Options']['Values']['InternetSpeed'][0]}}"{%
-          endif %}>
-          <div class="card-tariff-header">
-            <span>{{tariff["Name"]}}</span>
-          </div>
-          <div class="card-tariff-body">
-            <div class="wrapper-priceAndLogo">
-              <span
-                >{% if tariff['PriceOld'] and tariff['PriceOld'] != 0
-                %}{{tariff['PriceOld']}}{% endif %}</span
+                <stop stop-color="white" />
+                <stop offset="1" stop-color="#0500FF" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="192"
+            height="50"
+            viewBox="0 0 192 50"
+            fill="none"
+          >
+            <path
+              d="M191.864 47.8696H153.381C151.957 47.8696 150.549 47.5654 149.252 46.9772L52.1758 2.96178C50.8785 2.37361 49.4706 2.06934 48.0463 2.06934H0"
+              stroke="url(#paint0_linear_8_22)"
+              stroke-opacity="0.5"
+              stroke-width="3"
+              stroke-dasharray="5 5"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear_8_22"
+                x1="95.9321"
+                y1="2.06934"
+                x2="95.9321"
+                y2="47.8696"
+                gradientUnits="userSpaceOnUse"
               >
-
-              <span>{{tariff['Price']}}руб.</span>
-
-              <img
-                src="static/img/main/{{tariff['Provider']['ImageUrl']}}"
-                alt=""
-              />
-            </div>
-            <div class="params">
-              <div class="param">
-                <img src="static/img/main/inet35px.png" alt="" />
-                {% if tariff['Options']['Values']['InternetSpeed'] %}
-                <span
-                  >{{tariff['Options']['Values']['InternetSpeed'][0]}}
-                  {{tariff['Options']['Values']['InternetSpeed'][1]}} {% else %}
-                  ---
-                </span>
-                {% endif %}
-              </div>
-              <div class="param">
-                <img src="static/img/main/tv35px.png" alt="" />
-                {% if tariff['Options']['Values']['ChannelsCount'] %}
-                <span
-                  >{{tariff['Options']['Values']['ChannelsCount'][0]}}
-                  {{tariff['Options']['Values']['ChannelsCount'][1]}} {% else %}
-                  ---
-                </span>
-                {% endif %}
-              </div>
-              <div class="param">
-                <img src="static/img/main/mob35px.png" alt="" />
-                {% if tariff['Options']['Values']['GigabytesCount'] %}
-                <span
-                  >{{tariff['Options']['Values']['GigabytesCount'][0]}}
-                  {{tariff['Options']['Values']['GigabytesCount'][1]}} {% else
-                  %} ---
-                </span>
-                {% endif %}
-              </div>
-            </div>
-            <div class="conn-info">
-              <button onclick="openModalApplication()">Подключить</button>
-            </div>
-          </div>
+                <stop stop-color="white" />
+                <stop offset="1" stop-color="#0500FF" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="192"
+            height="50"
+            viewBox="0 0 192 50"
+            fill="none"
+          >
+            <path
+              d="M191.864 2.04345H153.381C151.957 2.04345 150.549 2.34772 149.252 2.9359L52.1758 46.9513C50.8785 47.5395 49.4706 47.8438 48.0463 47.8438H0"
+              stroke="url(#paint0_linear_8_23)"
+              stroke-opacity="0.5"
+              stroke-width="3"
+              stroke-dasharray="5 5"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear_8_23"
+                x1="95.9321"
+                y1="47.8438"
+                x2="95.9321"
+                y2="2.04345"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="white" />
+                <stop offset="1" stop-color="#0500FF" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="193"
+            height="150"
+            viewBox="0 0 193 150"
+            fill="none"
+          >
+            <path
+              d="M0 148.286H35.5393C40.2582 148.286 44.7021 146.066 47.5352 142.292L144.348 13.3328C144.941 12.542 145.649 11.8436 146.448 11.2605L156.356 4.02556C158.068 2.77536 160.133 2.10162 162.253 2.10162H192.462"
+              stroke="url(#paint0_linear_8_25)"
+              stroke-opacity="0.5"
+              stroke-width="3"
+              stroke-dasharray="5 5"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear_8_25"
+                x1="96.231"
+                y1="148.286"
+                x2="96.231"
+                y2="2.10162"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="white" />
+                <stop offset="1" stop-color="#0500FF" />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
-        {%endfor%}
+        <div class="wrapper-ourService">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="52"
+            height="52"
+            viewBox="0 0 52 52"
+            fill="none"
+          >
+            <rect
+              width="51.5146"
+              height="51.5146"
+              rx="5"
+              fill="white"
+              fill-opacity="0.05"
+            />
+            <path
+              d="M40.1096 16.959L27.1849 9.87537C26.8396 9.68424 26.4515 9.58398 26.0569 9.58398C25.6624 9.58398 25.2743 9.68424 24.9289 9.87537L12.0042 16.962C11.6351 17.1643 11.327 17.4621 11.112 17.8244C10.8971 18.1867 10.7832 18.6001 10.7822 19.0216V33.0918C10.7832 33.5132 10.8971 33.9267 11.112 34.289C11.327 34.6513 11.6351 34.9491 12.0042 35.1514L24.9289 42.238C25.2743 42.4291 25.6624 42.5294 26.0569 42.5294C26.4515 42.5294 26.8396 42.4291 27.1849 42.238L40.1096 35.1514C40.4787 34.9491 40.7868 34.6513 41.0018 34.289C41.2167 33.9267 41.3306 33.5132 41.3316 33.0918V19.0231C41.3314 18.6009 41.2179 18.1865 41.0029 17.8233C40.7879 17.4602 40.4794 17.1617 40.1096 16.959ZM26.0569 11.935L37.8566 18.4081L33.4842 20.8061L21.6831 14.333L26.0569 11.935ZM26.0569 24.8812L14.2572 18.4081L19.2362 15.6776L31.0359 22.1507L26.0569 24.8812ZM13.1322 20.4677L24.8819 26.9085V39.5296L13.1322 33.0933V20.4677ZM38.9816 33.0874L27.2319 39.5296V26.9144L31.9318 24.3384V29.5889C31.9318 29.9011 32.0556 30.2004 32.2759 30.4212C32.4963 30.6419 32.7951 30.7659 33.1068 30.7659C33.4184 30.7659 33.7172 30.6419 33.9376 30.4212C34.158 30.2004 34.2817 29.9011 34.2817 29.5889V23.0496L38.9816 20.4677V33.0859V33.0874Z"
+              fill="white"
+            />
+          </svg>
+          <span>Наш сервис</span>
+        </div>
+        <div class="ourService-rightDotting">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="193"
+            height="150"
+            viewBox="0 0 193 150"
+            fill="none"
+          >
+            <path
+              d="M192.462 2H156.923C152.204 2 147.76 4.22062 144.927 7.99445L48.1143 136.953C47.5206 137.744 46.8129 138.443 46.0143 139.026L36.1063 146.261C34.3942 147.511 32.3291 148.185 30.2091 148.185H-7.689e-05"
+              stroke="url(#paint0_linear_9_90)"
+              stroke-opacity="0.5"
+              stroke-width="3"
+              stroke-dasharray="5 5"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear_9_90"
+                x1="96.2309"
+                y1="2"
+                x2="96.2309"
+                y2="148.185"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="white" />
+                <stop offset="1" stop-color="#0500FF" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="193"
+            height="50"
+            viewBox="0 0 193 50"
+            fill="none"
+          >
+            <path
+              d="M0.59765 47.8696H39.0806C40.505 47.8696 41.9129 47.5654 43.2101 46.9772L140.286 2.96178C141.583 2.37361 142.991 2.06934 144.416 2.06934H192.462"
+              stroke="url(#paint0_linear_9_88)"
+              stroke-opacity="0.5"
+              stroke-width="3"
+              stroke-dasharray="5 5"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear_9_88"
+                x1="96.5298"
+                y1="2.06934"
+                x2="96.5298"
+                y2="47.8696"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="white" />
+                <stop offset="1" stop-color="#0500FF" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="193"
+            height="50"
+            viewBox="0 0 193 50"
+            fill="none"
+          >
+            <path
+              d="M0.59765 2.04345H39.0806C40.505 2.04345 41.9129 2.34772 43.2101 2.9359L140.286 46.9513C141.583 47.5395 142.991 47.8438 144.416 47.8438H192.462"
+              stroke="url(#paint0_linear_9_89)"
+              stroke-opacity="0.5"
+              stroke-width="3"
+              stroke-dasharray="5 5"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear_9_89"
+                x1="96.5298"
+                y1="47.8438"
+                x2="96.5298"
+                y2="2.04345"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="white" />
+                <stop offset="1" stop-color="#0500FF" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="193"
+            height="150"
+            viewBox="0 0 193 150"
+            fill="none"
+          >
+            <path
+              d="M192.462 148.286H156.923C152.204 148.286 147.76 146.066 144.927 142.292L48.1143 13.3328C47.5206 12.542 46.8129 11.8436 46.0143 11.2605L36.1063 4.02556C34.3942 2.77536 32.3291 2.10162 30.2091 2.10162H-7.689e-05"
+              stroke="url(#paint0_linear_9_91)"
+              stroke-opacity="0.5"
+              stroke-width="3"
+              stroke-dasharray="5 5"
+            />
+            <defs>
+              <linearGradient
+                id="paint0_linear_9_91"
+                x1="96.2309"
+                y1="148.286"
+                x2="96.2309"
+                y2="2.10162"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop stop-color="white" />
+                <stop offset="1" stop-color="#0500FF" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <div class="facts">
+        <div class="fact">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="38"
+            height="38"
+            viewBox="0 0 38 38"
+            fill="none"
+          >
+            <path
+              d="M19 0C15.2422 0 11.5687 1.11433 8.44417 3.20208C5.31964 5.28982 2.88436 8.25722 1.4463 11.729C0.0082324 15.2008 -0.368031 19.0211 0.365088 22.7067C1.09821 26.3924 2.90778 29.7778 5.56498 32.435C8.22218 35.0922 11.6077 36.9018 15.2933 37.6349C18.9789 38.368 22.7992 37.9918 26.271 36.5537C29.7428 35.1156 32.7102 32.6804 34.7979 29.5558C36.8857 26.4313 38 22.7578 38 19C37.9947 13.9625 35.9912 9.13288 32.4292 5.57085C28.8671 2.00881 24.0375 0.00531967 19 0ZM19 35.0769C15.8203 35.0769 12.712 34.134 10.0681 32.3675C7.42431 30.6009 5.36369 28.09 4.14687 25.1524C2.93004 22.2147 2.61167 18.9822 3.232 15.8635C3.85233 12.7449 5.38351 9.88029 7.63191 7.6319C9.8803 5.3835 12.7449 3.85232 15.8636 3.23199C18.9822 2.61166 22.2147 2.93004 25.1524 4.14686C28.09 5.36368 30.6009 7.4243 32.3675 10.0681C34.134 12.712 35.0769 15.8203 35.0769 19C35.0721 23.2624 33.3767 27.3488 30.3628 30.3628C27.3488 33.3767 23.2624 35.0721 19 35.0769ZM26.3077 22.6538C26.3077 24.0105 25.7688 25.3116 24.8094 26.271C23.8501 27.2303 22.549 27.7692 21.1923 27.7692H20.4615V29.2308C20.4615 29.6184 20.3076 29.9901 20.0335 30.2642C19.7594 30.5383 19.3876 30.6923 19 30.6923C18.6124 30.6923 18.2406 30.5383 17.9665 30.2642C17.6924 29.9901 17.5385 29.6184 17.5385 29.2308V27.7692H14.6154C14.2278 27.7692 13.856 27.6152 13.5819 27.3412C13.3078 27.0671 13.1539 26.6953 13.1539 26.3077C13.1539 25.9201 13.3078 25.5483 13.5819 25.2742C13.856 25.0001 14.2278 24.8461 14.6154 24.8461H21.1923C21.7737 24.8461 22.3314 24.6152 22.7425 24.204C23.1536 23.7929 23.3846 23.2353 23.3846 22.6538C23.3846 22.0724 23.1536 21.5148 22.7425 21.1036C22.3314 20.6925 21.7737 20.4615 21.1923 20.4615H16.8077C15.451 20.4615 14.1499 19.9226 13.1906 18.9633C12.2313 18.004 11.6923 16.7028 11.6923 15.3462C11.6923 13.9895 12.2313 12.6883 13.1906 11.729C14.1499 10.7697 15.451 10.2308 16.8077 10.2308H17.5385V8.76923C17.5385 8.38161 17.6924 8.00986 17.9665 7.73577C18.2406 7.46167 18.6124 7.30769 19 7.30769C19.3876 7.30769 19.7594 7.46167 20.0335 7.73577C20.3076 8.00986 20.4615 8.38161 20.4615 8.76923V10.2308H23.3846C23.7722 10.2308 24.144 10.3848 24.4181 10.6588C24.6922 10.9329 24.8462 11.3047 24.8462 11.6923C24.8462 12.0799 24.6922 12.4517 24.4181 12.7258C24.144 12.9999 23.7722 13.1538 23.3846 13.1538H16.8077C16.2263 13.1538 15.6686 13.3848 15.2575 13.796C14.8464 14.2071 14.6154 14.7647 14.6154 15.3462C14.6154 15.9276 14.8464 16.4852 15.2575 16.8963C15.6686 17.3075 16.2263 17.5385 16.8077 17.5385H21.1923C22.549 17.5385 23.8501 18.0774 24.8094 19.0367C25.7688 19.996 26.3077 21.2972 26.3077 22.6538Z"
+              fill="white"
+            />
+          </svg>
+          <span
+            >We not only offer discounts from the partners with whom we
+            cooperate, but also offer advantageous offers from ourselves.
+            Promotions are held regularly!</span
+          >
+        </div>
+        <div class="fact">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="39"
+            height="35"
+            viewBox="0 0 39 35"
+            fill="none"
+          >
+            <path
+              d="M37.954 11.221C37.5618 10.7743 37.0796 10.4165 36.5393 10.1715C35.9989 9.92652 35.413 9.79988 34.8202 9.8H25.0706V7C25.0706 5.14349 24.3368 3.36301 23.0308 2.05025C21.7248 0.737498 19.9535 3.58929e-07 18.1065 3.58929e-07C17.8478 -0.000185851 17.5941 0.0720845 17.3739 0.208708C17.1537 0.345331 16.9757 0.540905 16.8599 0.7735L10.2824 14H2.78562C2.04683 14 1.33829 14.295 0.815888 14.8201C0.293484 15.3452 0 16.0574 0 16.8V32.2C0 32.9426 0.293484 33.6548 0.815888 34.1799C1.33829 34.705 2.04683 35 2.78562 35H32.731C33.749 35.0004 34.7321 34.6272 35.4957 33.9505C36.2593 33.2738 36.7508 32.3402 36.8781 31.325L38.9673 14.525C39.0413 13.9335 38.9893 13.333 38.8146 12.7633C38.6399 12.1937 38.3465 11.6679 37.954 11.221ZM2.78562 16.8H9.74966V32.2H2.78562V16.8ZM36.2026 14.175L34.1134 30.975C34.0709 31.3134 33.9071 31.6246 33.6526 31.8502C33.398 32.0757 33.0703 32.2001 32.731 32.2H12.5353V15.7308L18.9265 2.8805C19.8738 3.07107 20.7261 3.58567 21.3384 4.33675C21.9507 5.08782 22.2852 6.02896 22.2849 7V11.2C22.2849 11.5713 22.4317 11.9274 22.6929 12.1899C22.9541 12.4525 23.3083 12.6 23.6777 12.6H34.8202C35.0179 12.5999 35.2133 12.6421 35.3934 12.7238C35.5736 12.8055 35.7344 12.9248 35.8651 13.0738C35.9959 13.2228 36.0936 13.398 36.1518 13.5879C36.21 13.7778 36.2273 13.9779 36.2026 14.175Z"
+              fill="white"
+            />
+          </svg>
+          <span
+            >You will have the opportunity to take advantage of all the
+            discounts, promotions and bonuses from the provider. We offer the
+            same subscription price, and sometimes even lower!</span
+          >
+        </div>
+        <div class="fact">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+          >
+            <path
+              d="M7.27273 3.23768e-06C5.83432 3.23768e-06 4.42821 0.426541 3.23222 1.22568C2.03623 2.02482 1.10406 3.16066 0.553607 4.48958C0.00315116 5.81849 -0.140873 7.2808 0.139747 8.69157C0.420366 10.1023 1.11303 11.3982 2.13014 12.4153C3.14724 13.4324 4.44312 14.1251 5.85389 14.4057C7.26466 14.6863 8.72696 14.5423 10.0559 13.9919C11.3848 13.4414 12.5206 12.5092 13.3198 11.3132C14.1189 10.1172 14.5455 8.71114 14.5455 7.27273C14.5455 5.34388 13.7792 3.49404 12.4153 2.13014C11.0514 0.766235 9.20158 3.23768e-06 7.27273 3.23768e-06ZM7.27273 11.6364C6.40968 11.6364 5.56602 11.3804 4.84842 10.901C4.13083 10.4215 3.57153 9.73997 3.24126 8.94262C2.91098 8.14527 2.82457 7.26789 2.99294 6.42143C3.16131 5.57496 3.57691 4.79744 4.18717 4.18717C4.79744 3.57691 5.57496 3.16131 6.42143 2.99294C7.26789 2.82457 8.14527 2.91098 8.94262 3.24126C9.73997 3.57153 10.4215 4.13083 10.901 4.84842C11.3804 5.56602 11.6364 6.40968 11.6364 7.27273C11.6364 8.43004 11.1766 9.53994 10.3583 10.3583C9.53994 11.1766 8.43004 11.6364 7.27273 11.6364ZM24.7273 14.5455C26.1657 14.5455 27.5718 14.1189 28.7678 13.3198C29.9638 12.5206 30.8959 11.3848 31.4464 10.0559C31.9968 8.72696 32.1409 7.26466 31.8603 5.85389C31.5796 4.44312 30.887 3.14724 29.8699 2.13014C28.8528 1.11303 27.5569 0.420366 26.1461 0.139747C24.7353 -0.140873 23.273 0.00315116 21.9441 0.553607C20.6152 1.10406 19.4794 2.03623 18.6802 3.23222C17.8811 4.42821 17.4545 5.83432 17.4545 7.27273C17.4545 9.20158 18.2208 11.0514 19.5847 12.4153C20.9486 13.7792 22.7984 14.5455 24.7273 14.5455ZM24.7273 2.90909C25.5903 2.90909 26.434 3.16502 27.1516 3.6445C27.8692 4.12398 28.4285 4.80549 28.7587 5.60284C29.089 6.40019 29.1754 7.27757 29.0071 8.12403C28.8387 8.97049 28.4231 9.74802 27.8128 10.3583C27.2026 10.9686 26.425 11.3841 25.5786 11.5525C24.7321 11.7209 23.8547 11.6345 23.0574 11.3042C22.26 10.9739 21.5785 10.4146 21.099 9.69703C20.6196 8.97944 20.3636 8.13577 20.3636 7.27273C20.3636 6.11542 20.8234 5.00551 21.6417 4.18717C22.4601 3.36883 23.57 2.90909 24.7273 2.90909ZM7.27273 17.4545C5.83432 17.4545 4.42821 17.8811 3.23222 18.6802C2.03623 19.4794 1.10406 20.6152 0.553607 21.9441C0.00315116 23.273 -0.140873 24.7353 0.139747 26.1461C0.420366 27.5569 1.11303 28.8528 2.13014 29.8699C3.14724 30.887 4.44312 31.5796 5.85389 31.8603C7.26466 32.1409 8.72696 31.9968 10.0559 31.4464C11.3848 30.8959 12.5206 29.9638 13.3198 28.7678C14.1189 27.5718 14.5455 26.1657 14.5455 24.7273C14.5455 22.7984 13.7792 20.9486 12.4153 19.5847C11.0514 18.2208 9.20158 17.4545 7.27273 17.4545ZM7.27273 29.0909C6.40968 29.0909 5.56602 28.835 4.84842 28.3555C4.13083 27.876 3.57153 27.1945 3.24126 26.3972C2.91098 25.5998 2.82457 24.7224 2.99294 23.876C3.16131 23.0295 3.57691 22.252 4.18717 21.6417C4.79744 21.0314 5.57496 20.6159 6.42143 20.4475C7.26789 20.2791 8.14527 20.3655 8.94262 20.6958C9.73997 21.0261 10.4215 21.5854 10.901 22.303C11.3804 23.0206 11.6364 23.8642 11.6364 24.7273C11.6364 25.8846 11.1766 26.9945 10.3583 27.8128C9.53994 28.6312 8.43004 29.0909 7.27273 29.0909ZM24.7273 17.4545C23.2889 17.4545 21.8828 17.8811 20.6868 18.6802C19.4908 19.4794 18.5586 20.6152 18.0081 21.9441C17.4577 23.273 17.3137 24.7353 17.5943 26.1461C17.8749 27.5569 18.5676 28.8528 19.5847 29.8699C20.6018 30.887 21.8977 31.5796 23.3084 31.8603C24.7192 32.1409 26.1815 31.9968 27.5104 31.4464C28.8393 30.8959 29.9752 29.9638 30.7743 28.7678C31.5735 27.5718 32 26.1657 32 24.7273C32 22.7984 31.2338 20.9486 29.8699 19.5847C28.506 18.2208 26.6561 17.4545 24.7273 17.4545ZM24.7273 29.0909C23.8642 29.0909 23.0206 28.835 22.303 28.3555C21.5854 27.876 21.0261 27.1945 20.6958 26.3972C20.3655 25.5998 20.2791 24.7224 20.4475 23.876C20.6159 23.0295 21.0314 22.252 21.6417 21.6417C22.252 21.0314 23.0295 20.6159 23.876 20.4475C24.7224 20.2791 25.5998 20.3655 26.3972 20.6958C27.1945 21.0261 27.876 21.5854 28.3555 22.303C28.835 23.0206 29.0909 23.8642 29.0909 24.7273C29.0909 25.8846 28.6312 26.9945 27.8128 27.8128C26.9945 28.6312 25.8846 29.0909 24.7273 29.0909Z"
+              fill="white"
+            />
+          </svg>
+          <span
+            >Customize, Set up your tariff parameters and see only the offers
+            that suit you</span
+          >
+        </div>
+        <div class="fact">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="31"
+            height="32"
+            viewBox="0 0 31 32"
+            fill="none"
+          >
+            <path
+              d="M22.6026 16.6547C22.9858 16.6547 23.3605 16.7674 23.6792 16.9785C23.9979 17.1897 24.2462 17.4898 24.3929 17.8409C24.5396 18.1921 24.578 18.5785 24.5032 18.9512C24.4284 19.324 24.2439 19.6664 23.9728 19.9352C23.7018 20.2039 23.3565 20.387 22.9806 20.4611C22.6047 20.5353 22.2151 20.4972 21.861 20.3518C21.5069 20.2063 21.2042 19.96 20.9913 19.644C20.7783 19.328 20.6647 18.9564 20.6647 18.5763C20.6647 18.0667 20.8689 17.5779 21.2323 17.2175C21.5957 16.8571 22.0886 16.6547 22.6026 16.6547ZM24.6405 11.41L14.0291 6.50012C11.2967 6.84368 8.77618 8.13863 6.9172 10.154C5.05822 12.1693 3.98163 14.774 3.87948 17.5034L14.8898 11.6807C15.0867 11.5767 15.3073 11.5251 15.5302 11.5308C15.7531 11.5365 15.9708 11.5993 16.162 11.7131C16.3532 11.8269 16.5114 11.9879 16.6213 12.1803C16.7311 12.3728 16.7889 12.5901 16.7889 12.8113V29.3939C19.0325 29.1529 21.1561 28.2665 22.8981 26.8438C24.64 25.4211 25.9244 23.5242 26.593 21.3868C26.6968 21.0621 26.9265 20.7916 27.2315 20.6349C27.5364 20.4781 27.8917 20.4479 28.2192 20.5509C28.5466 20.6539 28.8193 20.8816 28.9774 21.1841C29.1355 21.4865 29.166 21.8388 29.0621 22.1635C28.46 24.0483 27.4647 25.7864 26.1409 27.2648C24.817 28.7431 23.1943 29.9287 21.3781 30.7445C19.562 31.5603 17.5931 31.988 15.5993 31.9997C13.6056 32.0115 11.6317 31.6072 9.80585 30.8129C7.98003 30.0187 6.34316 28.8524 5.00164 27.3898C3.66012 25.9271 2.64397 24.201 2.01923 22.3234C1.39449 20.4458 1.17514 18.4589 1.37544 16.4918C1.57574 14.5247 2.19121 12.6214 3.18185 10.9056C2.01727 10.3193 1.08571 9.36119 0.537314 8.18573C-0.0110825 7.01028 -0.144363 5.68594 0.158955 4.4262C0.462274 3.16645 1.18452 2.04468 2.20928 1.24171C3.23403 0.438731 4.5016 0.00132736 5.80766 0C5.99624 0.000302691 6.18249 0.0412856 6.3535 0.120106L25.4496 8.95668C26.2793 8.88768 27.0501 8.50359 27.6011 7.88457C28.1521 7.26554 28.4408 6.45942 28.4068 5.63443C28.3728 4.80944 28.0189 4.02933 27.4189 3.4569C26.8188 2.88447 26.019 2.56396 25.1864 2.56225C24.8437 2.56225 24.5151 2.42728 24.2729 2.18702C24.0306 1.94676 23.8945 1.6209 23.8945 1.28113C23.8945 0.941351 24.0306 0.615492 24.2729 0.375234C24.5151 0.134976 24.8437 0 25.1864 0C26.7283 0 28.207 0.60739 29.2972 1.68855C30.3875 2.76971 31 4.23608 31 5.76507C31 7.29406 30.3875 8.76043 29.2972 9.84159C28.207 10.9228 26.7283 11.5301 25.1864 11.5301C24.9978 11.5298 24.8116 11.4889 24.6405 11.41ZM9.03745 27.517V17.6796L4.11364 20.2834C4.73819 23.2402 6.50569 25.8369 9.03745 27.517ZM14.2051 14.9459L11.6213 16.3135V28.8045C12.4567 29.0989 13.3238 29.2961 14.2051 29.3923V14.9459ZM10.3504 4.80423L5.54444 2.57346C4.81151 2.63463 4.1216 2.94203 3.58878 3.44483C3.05596 3.94763 2.71216 4.61571 2.61424 5.33859C2.51632 6.06147 2.67013 6.79584 3.05025 7.42025C3.43037 8.04466 4.01403 8.52172 4.70469 8.77252C4.80158 8.65882 4.89848 8.54512 5.00183 8.43462C6.47887 6.83209 8.30932 5.58965 10.3504 4.80423Z"
+              fill="white"
+            />
+          </svg>
+          <span
+            >Fast registration, 95% of our clients were connected within 24
+            hours</span
+          >
         </div>
       </div>
     </div>
-
-    <div class="advantages">
-      <div class="advantage">
-        <img src="static/img/main/широкийВыбор64px.png" alt="" /><span
-          >Мы предлагаем огромный ассортимент тарифных планов от всех
-          провайдеров, включая федеральных и региональных операторов связи. У
-          нас вы сможете найти множество вариантов для подключения, включая
-          десятки различных тарифов. Мы понимаем, что каждый клиент имеет свои
-          уникальные потребности, поэтому мы предлагаем самый широкий выбор
-          тарифов, чтобы удовлетворить все ваши требования.</span
-        >
+    <div id="question" class="questions">
+      <div class="question question-unactive">
+        <div class="header-question">
+          <span
+            >I have a problem with the Internet, TV or equipment, can you help
+            me?</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="11"
+            viewBox="0 0 20 11"
+            fill="none"
+          >
+            <path
+              d="M19.7081 0.291713C19.6152 0.198736 19.5049 0.124978 19.3835 0.0746536C19.2621 0.0243292 19.132 -0.00157261 19.0006 -0.00157261C18.8691 -0.00157261 18.739 0.0243292 18.6176 0.0746536C18.4962 0.124978 18.3859 0.198736 18.2931 0.291713L10.0006 8.58546L1.70806 0.291713C1.52042 0.104073 1.26592 -0.00134373 1.00056 -0.00134373C0.735192 -0.00134373 0.480697 0.104073 0.293056 0.291713C0.105415 0.479353 1.97712e-09 0.73385 0 0.999213C-1.97712e-09 1.26458 0.105415 1.51907 0.293056 1.70671L9.29306 10.7067C9.38593 10.7997 9.49622 10.8734 9.61762 10.9238C9.73901 10.9741 9.86914 11 10.0006 11C10.132 11 10.2621 10.9741 10.3835 10.9238C10.5049 10.8734 10.6152 10.7997 10.7081 10.7067L19.7081 1.70671C19.801 1.61384 19.8748 1.50355 19.9251 1.38215C19.9754 1.26076 20.0013 1.13063 20.0013 0.999213C20.0013 0.867798 19.9754 0.737671 19.9251 0.616273C19.8748 0.494875 19.801 0.384585 19.7081 0.291713Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+        <div class="body-question">
+          <span
+            >The tariff plan provides the opportunity to compare all current
+            tariff plans without overpayments for all federal providers. You can
+            objectively evaluate bonuses from each provider, and our operators
+            will answer all your questions and help you make your choice.</span
+          >
+        </div>
       </div>
-      <div class="advantage">
-        <img src="static/img/main/качество64px.png" alt="" /><span
-          >Мы активно собираем обратную связь от наших клиентов о работе наших
-          партнеров Интернет-провайдеров. Это позволяет нам быть в курсе их
-          работы и предлагать клиенту только лучшие предложения по качеству. Мы
-          ценим мнение наших клиентов и стремимся обеспечить высокое качество
-          работы наших провайдеров.</span
-        >
+      <div class="question question-unactive">
+        <div class="header-question">
+          <span
+            >I have a problem with the Internet, TV or equipment, can you help
+            me?</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="11"
+            viewBox="0 0 20 11"
+            fill="none"
+          >
+            <path
+              d="M19.7081 0.291713C19.6152 0.198736 19.5049 0.124978 19.3835 0.0746536C19.2621 0.0243292 19.132 -0.00157261 19.0006 -0.00157261C18.8691 -0.00157261 18.739 0.0243292 18.6176 0.0746536C18.4962 0.124978 18.3859 0.198736 18.2931 0.291713L10.0006 8.58546L1.70806 0.291713C1.52042 0.104073 1.26592 -0.00134373 1.00056 -0.00134373C0.735192 -0.00134373 0.480697 0.104073 0.293056 0.291713C0.105415 0.479353 1.97712e-09 0.73385 0 0.999213C-1.97712e-09 1.26458 0.105415 1.51907 0.293056 1.70671L9.29306 10.7067C9.38593 10.7997 9.49622 10.8734 9.61762 10.9238C9.73901 10.9741 9.86914 11 10.0006 11C10.132 11 10.2621 10.9741 10.3835 10.9238C10.5049 10.8734 10.6152 10.7997 10.7081 10.7067L19.7081 1.70671C19.801 1.61384 19.8748 1.50355 19.9251 1.38215C19.9754 1.26076 20.0013 1.13063 20.0013 0.999213C20.0013 0.867798 19.9754 0.737671 19.9251 0.616273C19.8748 0.494875 19.801 0.384585 19.7081 0.291713Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+        <div class="body-question">
+          <span
+            >The tariff plan provides the opportunity to compare all current
+            tariff plans without overpayments for all federal providers. You can
+            objectively evaluate bonuses from each provider, and our operators
+            will answer all your questions and help you make your choice.</span
+          >
+        </div>
       </div>
-      <div class="advantage">
-        <img src="static/img/main/официально64px.png" alt="" /><span>
-          Вы заключаете соглашение прямо с поставщиком и получаете доступ к
-          персональному кабинету. Поэтому вы можете рассчитывать на поддержку
-          экспертов в случае проблем, они всегда доступны. Обеспечивается также
-          высокое качество оборудования.</span
-        >
+      <div class="question question-unactive">
+        <div class="header-question">
+          <span
+            >I have a problem with the Internet, TV or equipment, can you help
+            me?</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="11"
+            viewBox="0 0 20 11"
+            fill="none"
+          >
+            <path
+              d="M19.7081 0.291713C19.6152 0.198736 19.5049 0.124978 19.3835 0.0746536C19.2621 0.0243292 19.132 -0.00157261 19.0006 -0.00157261C18.8691 -0.00157261 18.739 0.0243292 18.6176 0.0746536C18.4962 0.124978 18.3859 0.198736 18.2931 0.291713L10.0006 8.58546L1.70806 0.291713C1.52042 0.104073 1.26592 -0.00134373 1.00056 -0.00134373C0.735192 -0.00134373 0.480697 0.104073 0.293056 0.291713C0.105415 0.479353 1.97712e-09 0.73385 0 0.999213C-1.97712e-09 1.26458 0.105415 1.51907 0.293056 1.70671L9.29306 10.7067C9.38593 10.7997 9.49622 10.8734 9.61762 10.9238C9.73901 10.9741 9.86914 11 10.0006 11C10.132 11 10.2621 10.9741 10.3835 10.9238C10.5049 10.8734 10.6152 10.7997 10.7081 10.7067L19.7081 1.70671C19.801 1.61384 19.8748 1.50355 19.9251 1.38215C19.9754 1.26076 20.0013 1.13063 20.0013 0.999213C20.0013 0.867798 19.9754 0.737671 19.9251 0.616273C19.8748 0.494875 19.801 0.384585 19.7081 0.291713Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+        <div class="body-question">
+          <span
+            >The tariff plan provides the opportunity to compare all current
+            tariff plans without overpayments for all federal providers. You can
+            objectively evaluate bonuses from each provider, and our operators
+            will answer all your questions and help you make your choice.</span
+          >
+        </div>
       </div>
-      <div class="advantage">
-        <img src="static/img/main/сравнение64px.png" alt="" /><span
-          >На нашем веб-сайте вы можете оперативно сопоставить цену, условия
-          подключения и другую информацию, относящуюся к тарифам, и сделать
-          оптимальный выбор! Чтобы облегчить поиск, мы отбираем предложения по
-          объему данных, количеству минут и стоимости (₽). Введите эти параметры
-          для удобства.</span
-        >
+      <div class="question question-unactive">
+        <div class="header-question">
+          <span
+            >I have a problem with the Internet, TV or equipment, can you help
+            me?</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="11"
+            viewBox="0 0 20 11"
+            fill="none"
+          >
+            <path
+              d="M19.7081 0.291713C19.6152 0.198736 19.5049 0.124978 19.3835 0.0746536C19.2621 0.0243292 19.132 -0.00157261 19.0006 -0.00157261C18.8691 -0.00157261 18.739 0.0243292 18.6176 0.0746536C18.4962 0.124978 18.3859 0.198736 18.2931 0.291713L10.0006 8.58546L1.70806 0.291713C1.52042 0.104073 1.26592 -0.00134373 1.00056 -0.00134373C0.735192 -0.00134373 0.480697 0.104073 0.293056 0.291713C0.105415 0.479353 1.97712e-09 0.73385 0 0.999213C-1.97712e-09 1.26458 0.105415 1.51907 0.293056 1.70671L9.29306 10.7067C9.38593 10.7997 9.49622 10.8734 9.61762 10.9238C9.73901 10.9741 9.86914 11 10.0006 11C10.132 11 10.2621 10.9741 10.3835 10.9238C10.5049 10.8734 10.6152 10.7997 10.7081 10.7067L19.7081 1.70671C19.801 1.61384 19.8748 1.50355 19.9251 1.38215C19.9754 1.26076 20.0013 1.13063 20.0013 0.999213C20.0013 0.867798 19.9754 0.737671 19.9251 0.616273C19.8748 0.494875 19.801 0.384585 19.7081 0.291713Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+        <div class="body-question">
+          <span
+            >The tariff plan provides the opportunity to compare all current
+            tariff plans without overpayments for all federal providers. You can
+            objectively evaluate bonuses from each provider, and our operators
+            will answer all your questions and help you make your choice.</span
+          >
+        </div>
       </div>
-      <div class="advantage">
-        <img src="static/img/main/выгодно64px.png" alt="" />
-        <span>
-          Мы не только предлагаем скидки от партнеров, с которыми сотрудничаем,
-          но и предлагаем выгодные предложения от себя. Акции проводятся
-          регулярно!
-        </span>
-      </div>
-      <div class="advantage">
-        <img src="static/img/main/доступныеЦены64px.png" alt="" />
-        <span>
-          Вы получите возможность воспользоваться всеми скидками, акциями и
-          бонусами от провайдера. Мы предлагаем такую же стоимость подписки, а
-          иногда даже ниже!
-        </span>
+      <div class="question question-unactive">
+        <div class="header-question">
+          <span
+            >I have a problem with the Internet, TV or equipment, can you help
+            me?</span
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="11"
+            viewBox="0 0 20 11"
+            fill="none"
+          >
+            <path
+              d="M19.7081 0.291713C19.6152 0.198736 19.5049 0.124978 19.3835 0.0746536C19.2621 0.0243292 19.132 -0.00157261 19.0006 -0.00157261C18.8691 -0.00157261 18.739 0.0243292 18.6176 0.0746536C18.4962 0.124978 18.3859 0.198736 18.2931 0.291713L10.0006 8.58546L1.70806 0.291713C1.52042 0.104073 1.26592 -0.00134373 1.00056 -0.00134373C0.735192 -0.00134373 0.480697 0.104073 0.293056 0.291713C0.105415 0.479353 1.97712e-09 0.73385 0 0.999213C-1.97712e-09 1.26458 0.105415 1.51907 0.293056 1.70671L9.29306 10.7067C9.38593 10.7997 9.49622 10.8734 9.61762 10.9238C9.73901 10.9741 9.86914 11 10.0006 11C10.132 11 10.2621 10.9741 10.3835 10.9238C10.5049 10.8734 10.6152 10.7997 10.7081 10.7067L19.7081 1.70671C19.801 1.61384 19.8748 1.50355 19.9251 1.38215C19.9754 1.26076 20.0013 1.13063 20.0013 0.999213C20.0013 0.867798 19.9754 0.737671 19.9251 0.616273C19.8748 0.494875 19.801 0.384585 19.7081 0.291713Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+        <div class="body-question">
+          <span
+            >The tariff plan provides the opportunity to compare all current
+            tariff plans without overpayments for all federal providers. You can
+            objectively evaluate bonuses from each provider, and our operators
+            will answer all your questions and help you make your choice.</span
+          >
+        </div>
       </div>
     </div>
-
-    <div class="wrapper-form">
-      <span>Свяжитесь с нами</span>
-      <span>Для сотрудничества</span>
-      <form method="post" id="colobarationForm">
-        <input
-          placeholder="Ваше имя"
-          type="text"
-          name="name"
-          id="colobarationName"
-        />
-        <input
-          placeholder="Ваш E-mail "
-          type="email"
-          name="email"
-          id="colobarationEmail"
-        />
-        <button id="colobarationButton">Оставить заявку</button>
-      </form>
-    </div>
-    <div class="footer">
-      <div class="wrapper-footer-a">
-        <a href="/tariffs?city={{data['City']['Name']}}">Тариф</a>
-        <a href="/reviews">Отзывы клиентов</a>
-        <a href="/aboutUs">О нас</a>
-        <a href="/questions">Часто задаваемые вопросы</a>
+    <div id="feedback" class="feedback">
+      <div class="typeRooms">
+        <button class="active-typeRoom">Подключение в квартиру</button>
+        <button class="unactive-typeRoom">Подключение в офис</button>
+        <button class="unactive-typeRoom">Подкючение в частный дом</button>
       </div>
-      <div class="footer-logo">
-        <span>On-</span><span>Wi</span><span>Fi</span>
-      </div>
-      <span class="footer-title">© 2023 On-WiFi. Все права защищены.</span>
-    </div>
-
-    <div id="modal" class="modals-inactive">
-      <div class="modals">
-        <div class="modals-header">
-          <p>Оставить заявку</p>
-          <img
-            onclick="closeModalApplication()"
-            src="static/img/main/closeModal.svg"
-            alt=""
+      <div class="data-feedback">
+        <div class="inputs-data-feedback">
+          <input class="validInput" placeholder="Ваше имя" type="text" />
+          <input
+            class="validInput"
+            placeholder="Ваш номер телефона"
+            type="text"
           />
+          <textarea
+            class="validInput"
+            placeholder="Адрес подключения"
+            cols="30"
+            rows="10"
+          ></textarea>
         </div>
-        <form action="">
-          <div class="input-container">
-            <img src="static/img/main/telephone-modal.svg" alt="" />
-            <input placeholder="Номер телефона" type="tel" name="" id="" />
+        <div class="checkAndSubmit">
+          <div class="checkAndText">
+            <div class="custom-checkbox">
+              <input type="checkbox" id="myCheckbox" />
+              <label for="myCheckbox"></label>
+            </div>
+            <span>Соглашение на обработку персональных данных</span>
           </div>
-          <div class="input-container">
-            <img src="static/img/main/user-modal.svg" alt="" />
-            <input placeholder="Ваше имя" type="text" name="" id="" />
-          </div>
-          <div class="input-container">
-            <img src="static/img/main/geo-modal.svg" alt="" />
-            <input placeholder="Адрес подключения" type="text" name="" id="" />
-          </div>
-          <button>Отправить</button>
-        </form>
+          <button disabled>Отправить</button>
+        </div>
       </div>
     </div>
-    <script src="static/js/main.js"></script>
+    <div id="footer" class="footer">
+      <a href="" class="logo">ON-WiFi</a>
+
+      <div class="numberAndMedia">
+        <a href="tel:+78005500792"><span>&phone; +78005500792</span></a>
+        <span>Бесплатная консультация Ежедневно с 9 до 22 часов</span>
+        <div class="group-logo">
+          <a href="https://t.me/on_wifi_bot"
+            ><img src="/static/img/telegram50px.svg" alt=""
+          /></a>
+          <a href="https://wa.me/79526896473"
+            ><img src="/static/img/whatsapp50px.svg" alt=""
+          /></a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/modals.js"></script>
   </body>
 </html>

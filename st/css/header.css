@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 35px 30px;
+}
+
+.header .logo {
+  color: #0500ff;
+  white-space: nowrap;
+
+  font-family: Tektur;
+  font-size: 46px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.header div {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  cursor: pointer;
+  color: #fff;
+  text-align: center;
+  font-family: Tektur;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.header a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: #fff;
+}

@@ -20,15 +20,15 @@ app.static("/static/", "./st/")
 @app.route("/")
 async def index(request):
     data = {}
-    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    data['City'] = {'Name':'Москва', 'NameEng': 'moskva','id':416}
     
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
-    if subdomain!="on-wifi"and subdomain!="www" and host!=local_link:
+    if subdomain!="on-wifi" and subdomain!="www" and host!=local_link:
         data['City'] = Database.GetCityBySubdomain(subdomain)
     data['RandTariffs'] = []
-    for i in range(4):
+    for i in range(5):
         data['RandTariffs'].append(Database.GetRandomTariffByCity(data['City']['id']))
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
@@ -50,13 +50,15 @@ async def tariffs(request):
     provider = request.args.get("provider")
     if provider:
         data['provider'] = provider
-    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    data['City'] = {'Name':'Москва', 'NameEng': 'moskva','id':416}
     
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
-    if subdomain!="on-wifi"and subdomain!="www" and host!=local_link:
+    if subdomain!="on-wifi"and subdomain!="www" and host!=local_link and not city:
         data['City'] = Database.GetCityBySubdomain(subdomain)
+    if city:
+        data['City'] = city
     rendered_html = template.render(data = data)
     return html(rendered_html)
 #endregion
@@ -65,7 +67,7 @@ async def tariffs(request):
 @app.route("/aboutUs")
 async def aboutUs(request):
     data = {}
-    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    data['City'] = {'Name':'Москва', 'NameEng': 'moskva','id':416}
     
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')
@@ -80,7 +82,7 @@ async def aboutUs(request):
 @app.route("/questions")
 async def questions(request):
     data = {}
-    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    data['City'] = {'Name':'Москва', 'NameEng': 'moskva','id':416}
     
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')
@@ -95,7 +97,7 @@ async def questions(request):
 @app.route("/reviews")
 async def reviews(request):
     data = {}
-    data['City'] = {'Name':'Москва', 'NameEng': 'unknown','id':416}
+    data['City'] = {'Name':'Москва', 'NameEng': 'moskva','id':416}
     
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')

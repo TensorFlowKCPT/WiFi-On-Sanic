@@ -1,0 +1,166 @@
+.feedback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80%;
+  margin: 50px auto;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgb(255, 255, 255, 0.05);
+  box-shadow: 30px 30px 70px 0px rgba(0, 0, 0, 0.25);
+}
+.typeRooms {
+  width: 100%;
+  height: 57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.unactive-typeRoom {
+  background: rgba(255, 255, 255, 0.05);
+}
+.active-typeRoom {
+  background: #0500ff;
+}
+.typeRooms button {
+  height: 100%;
+  width: 33.33%;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  font-family: Tektur;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.data-feedback {
+  display: flex;
+  width: 90%;
+  padding: 25px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+}
+.inputs-data-feedback {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.inputs-data-feedback input {
+  width: 100%;
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 5px 15px;
+  box-sizing: border-box;
+  height: 58px;
+  color: white;
+  font-family: Tektur;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.inputs-data-feedback input:focus {
+  outline: none;
+}
+.inputs-data-feedback textarea {
+  resize: none;
+  width: 100%;
+  height: 142px;
+  color: white;
+  font-family: Tektur;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 15px 15px;
+  box-sizing: border-box;
+}
+.inputs-data-feedback textarea:focus {
+  outline: none;
+}
+.unvalidInput {
+  border: 1px solid red;
+}
+.validInput {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.checkAndSubmit {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.checkAndText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.checkAndText.custom-checkbox {
+  position: relative;
+}
+
+.checkAndText.custom-checkbox input {
+  display: none;
+}
+
+.checkAndText.custom-checkbox label {
+  position: relative;
+  padding-left: 25px; /* Установите отступ слева, чтобы было место для галочки */
+  cursor: pointer;
+}
+
+.checkAndText.custom-checkbox label:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 33px; /* Размер области для галочки */
+  height: 33px; /* Размер области для галочки */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: transparent; /* Цвет фона галочки */
+}
+
+.checkAndText.custom-checkbox input:checked + label:before {
+  content: "\2713"; /* Юникод для галочки */
+  font-size: 44px; /* Размер шрифта галочки */
+  line-height: 38px; /* Высота линии галочки */
+  color: rgba(255, 255, 255, 0.3);
+}
+.checkAndSubmit span {
+  margin-top: 30px;
+  color: #fff;
+  font-family: Tektur;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.checkAndSubmit button {
+  height: 47px;
+  border-radius: 10px;
+  background: #0500ff;
+  padding: 0 50px;
+  border: none;
+  color: #fff;
+  font-family: Tektur;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.checkAndSubmit button:disabled {
+  background-color: #9999cc;
+  color: #666;
+  cursor: not-allowed; /* Запрет курсора для неактивной кнопки */
+}
