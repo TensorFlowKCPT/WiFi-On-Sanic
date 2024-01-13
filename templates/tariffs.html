@@ -172,14 +172,13 @@
               data-mobile="{{tariff['Options']['Mobile']['гигабайт']}}"
               {%endif%}
               >
-                {% if tariff['PriceOld'] %}
+                
                 <div class="header-card">
-                  <span>Акция</span>
+                  <span>{{tariff['Name']}}</span>
                 </div>
-                {% endif %}
                 <div class="body-card">
                   <div class="nameAndImg">
-                    <span>{{tariff['Name']}}</span>
+                    <span>{{tariff['Provider']['Name']}}</span>
                     <img src="/static/img/{{tariff['Provider']['ImageUrl']}}" alt="" />
                   </div>
                   <div class="paramsTariff">

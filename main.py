@@ -28,7 +28,7 @@ async def index(request):
     if subdomain!="on-wifi" and subdomain!="www" and host!=local_link:
         data['City'] = Database.GetCityBySubdomain(subdomain)
     data['RandTariffs'] = []
-    for i in range(5):
+    for i in range(10):
         data['RandTariffs'].append(Database.GetRandomTariffByCity(data['City']['id']))
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
