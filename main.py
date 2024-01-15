@@ -16,6 +16,8 @@ env = Environment(
 
 app.static("/static/", "./st/")
 #Получение адреса пользователя из ip не очень работает, надо будет уже с ssh и серваком это делать, без них не понять
+cacheAdr = {}
+cacheCities = {}
 #region /index
 @app.route("/")
 async def index(request):
@@ -25,7 +27,7 @@ async def index(request):
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
-    if subdomain!="on-wifi" and subdomain!="www" and host!=local_link:
+    if host!=local_link and subdomain!="on-wifi" and subdomain!="www"  :
         data['City'] = Database.GetCityBySubdomain(subdomain)
     data['RandTariffs'] = []
     for i in range(10):
@@ -36,16 +38,76 @@ async def index(request):
 #endregion
 
 #region /tariffs
+@app.post("/get_tariffs")
+async def get_tariffs(request):
+    
+    MinTP = request.json.get('MinTP')
+    MaxTP=request.json.get('MaxTP')
+    MinTIS=request.json.get('MinTIS')
+    MaxTIS=request.json.get('MaxTIS')
+    activeProviders=request.json.get('activeProviders')
+    activeOptions=request.json.get('activeOptions')
+    page=int(request.json.get('page'))
+    adr= request.json.get('adr')
+    host = request.headers.get('host')
+    data = {}
+    subdomain = host.split('.')[0].removeprefix('https://')
+    if host!=local_link and subdomain!="on-wifi"and subdomain!="www":
+        city  = Database.GetCityBySubdomain(subdomain)
+        data['City']= city
+    
+    if adr:
+        try: 
+            data = cacheAdr[adr].copy()
+        except KeyError:
+            data = Database.GetInfoByAddress(adr)
+            cacheAdr[adr] = data.copy()
+    elif city:
+        try:
+            data = cacheCities[adr].copy()
+        except KeyError:
+            data = Database.GetInfoByCityName(city)
+            cacheCities[city] = data.copy()
+    viabletariffs = []
+    for tariff in data['tariffs'].copy():
+        if ((tariff['Provider']['Name'] in activeProviders or len(activeProviders) == 0) 
+        and MaxTP >= tariff['Price'] and MinTP <= tariff['Price'] and(MaxTIS >= int(tariff['Options']['Internet']['InternetSpeed']) and MinTIS <= int(tariff['Options']['Internet']['InternetSpeed']))):
+            if (len(activeOptions) == 0):
+                viabletariffs.append(tariff)
+            else:
+                if 'mobile' in activeOptions and not ("Mobile" in tariff['Options'].keys()):
+                    continue
+                if 'internetspeed' in activeOptions and not ("Internet" in tariff['Options'].keys()):
+                    continue
+                if 'channels' in activeOptions and not ("TV" in tariff['Options'].keys()):
+                    continue
+                viabletariffs.append(tariff)
+    data['tariffs'] = viabletariffs
+    
+    data['pages'] = int(len(data["tariffs"])/6)
+    if page:
+        data['currentpage'] = page
+        starttariff = (page-1)*6
+        data['tariffs'] = data['tariffs'].copy()[starttariff:starttariff+6]
+    else:
+        data['currentpage'] = 1
+        data['tariffs'] = data['tariffs'].copy()[0:6]
+    return json(data)
+
 @app.route("/tariffs")
 async def tariffs(request):
     address = request.args.get("address")
-    city = request.args.get("city")
-    
+    host = request.headers.get('host')
+    subdomain = host.split('.')[0].removeprefix('https://')
+    if host!=local_link and subdomain!="on-wifi"and subdomain!="www":
+        city  = Database.GetCityBySubdomain(subdomain)
+        data['City']= city
         
     template = env.get_template('tariffs.html')
+    data = {}
     if address:
         data = Database.GetInfoByAddress(address)
-    elif city:
+    else:
         data = Database.GetInfoByCityName(city)
     provider = request.args.get("provider")
     if provider:
@@ -53,12 +115,7 @@ async def tariffs(request):
     data['City'] = {'Name':'Москва', 'NameEng': 'moskva','id':416}
     
     data['Cities'] = Database.GetAllCities()
-    host = request.headers.get('host')
-    subdomain = host.split('.')[0].removeprefix('https://')
-    if subdomain!="on-wifi"and subdomain!="www" and host!=local_link and not city:
-        data['City'] = Database.GetCityBySubdomain(subdomain)
-    if city:
-        data['City'] = city
+    
     rendered_html = template.render(data = data)
     return html(rendered_html)
 #endregion
