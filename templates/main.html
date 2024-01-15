@@ -31,14 +31,12 @@
       <div id="blue-blur-7"></div>
       <div id="blue-blur-8"></div>
       <div id="blue-blur-9"></div>
-      <div id="blue-blur-10"></div>
     </div>
     <div class="header">
       <a href="" class="logo">ON-WiFi</a>
       <div>
         <a href="">Тарифы</a>
         <a>FAQ</a>
-        <a>Полулярные</a>
         <a>Контакты</a>
       </div>
     </div>
@@ -47,12 +45,15 @@
       <h2>Подключи <span id="typed-output"></span></h2>
       <div class="searchAndListbox">
         <div class="custom-search">
-          <input placeholder="Начните вводить свой адрес" id="SearchBox" type="text" oninput="CheckAddress()"/>
+          <input
+            placeholder="Начните вводить свой адрес"
+            id="SearchBox"
+            type="text"
+            oninput="CheckAddress()"
+          />
           <img src="/static/img/search.svg" alt="" />
         </div>
-        <div id="SuggestionsContainer">
-        </div>
-        <div class="custom-listbox"></div>
+        <div id="SuggestionsContainer"></div>
       </div>
     </div>
     <div class="paramsMain">
@@ -89,7 +90,7 @@
         </div></a
       >
     </div>
-    <div class="providersInCity">
+    <div id="providers" class="providersInCity">
       <span>Провайдеры в городе {{data['City']['Name']}}</span>
       <div class="wrapper-providersInCity">
         <a href="">
@@ -139,41 +140,56 @@
             {% for tariff in data['RandTariffs'] %}
             <div class="swiper-slide">
               <div class="card">
-                {% if tariff['PriceOld'] %}
                 <div class="header-card">
-                  <span>Акция</span>
+                  <span>{{tariff['Name']}}</span>
                 </div>
-                {% endif %}
+
                 <div class="body-card">
                   <div class="nameAndImg">
-                    <span>{{tariff['Name']}}</span>
-                    <img src="/static/img/{{tariff['Provider']['ImageUrl']}}" alt="" />
+                    <span></span>
+                    <img
+                      src="/static/img/{{tariff['Provider']['ImageUrl']}}"
+                      alt=""
+                    />
                   </div>
                   <div class="paramsTariff">
                     {% if tariff['Options']['Internet'] %}
                     <div class="paramTariff">
                       <img src="/static/img/speedInternetTariff.svg" alt="" />
-                      <span>{{tariff['Options']['Internet']['InternetSpeed']}} мбит./с.</span>
+                      <span
+                        >{{tariff['Options']['Internet']['InternetSpeed']}}
+                        мбит./с.</span
+                      >
                       {% if tariff['Options']['Internet']['Router'] %}
                       <img src="/static/img/routerTariff.svg" alt="" />
-                      <span>Роутер:<br/>{{tariff['Options']['Internet']['Router']}}</span>
+                      <span
+                        >Роутер:<br />{{tariff['Options']['Internet']['Router']}}</span
+                      >
                       {%endif%}
                     </div>
-                    {%endif%}
-                    {% if tariff['Options']['TV'] %}
+                    {%endif%} {% if tariff['Options']['TV'] %}
                     <div class="paramTariff">
                       <img src="/static/img/channelsTariff.svg" alt="" />
                       <span>{{tariff['Options']['TV']['Channels']}}</span>
                       {% if tariff['Options']['TV']['TvBox'] %}
                       <img src="/static/img/routerTariff.svg" alt="" />
-                      <span>Тв приставка:<br/>{{tariff['Options']['TV']['TvBox']}}</span>
+                      <span
+                        >Тв приставка:<br />{{tariff['Options']['TV']['TvBox']}}</span
+                      >
                       {%endif%}
                     </div>
-                    {% endif %}
-                    {% if tariff['Options']['Mobile'] %}
+                    {% endif %} {% if tariff['Options']['Mobile'] %}
                     <div class="paramTariff">
                       <img src="/static/img/mobileTariff.svg" alt="" />
-                      <span>{%if tariff['Options']['Mobile']['гигабайт']%}{{tariff['Options']['Mobile']['гигабайт']}}Гб  {%endif%}{%if tariff['Options']['Mobile']['минут']%}| {{tariff['Options']['Mobile']['минут']}} минут {%endif%}{%if tariff['Options']['Mobile']['смс']%}| {{tariff['Options']['Mobile']['смс']}} смс{%endif%}</span>
+                      <span
+                        >{%if
+                        tariff['Options']['Mobile']['гигабайт']%}{{tariff['Options']['Mobile']['гигабайт']}}Гб
+                        {%endif%}{%if tariff['Options']['Mobile']['минут']%}|
+                        {{tariff['Options']['Mobile']['минут']}} минут
+                        {%endif%}{%if tariff['Options']['Mobile']['смс']%}|
+                        {{tariff['Options']['Mobile']['смс']}}
+                        смс{%endif%}</span
+                      >
                     </div>
                     {% endif %}
                   </div>
@@ -198,9 +214,17 @@
         </div>
       </div>
       <div class="buttonsSlider">
-        <img class="leftSliderButton" src="/static/img/leftSliderButton.svg" alt="" />
+        <img
+          class="leftSliderButton"
+          src="/static/img/leftSliderButton.svg"
+          alt=""
+        />
         <button>Посмотреть все</button>
-        <img class="rightSliderButton" src="/static/img/rightSliderButton.svg" alt="" />
+        <img
+          class="rightSliderButton"
+          src="/static/img/rightSliderButton.svg"
+          alt=""
+        />
       </div>
     </div>
     <div class="outPopularity">
@@ -653,6 +677,7 @@
       </div>
     </div>
     <div id="question" class="questions">
+      <h2>FAQ</h2>
       <div class="question question-unactive">
         <div class="header-question">
           <span
@@ -849,5 +874,6 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="/static/js/main.js"></script>
     <script src="/static/js/modals.js"></script>
+    <script src="/static/js/header.js"></script>
   </body>
 </html>

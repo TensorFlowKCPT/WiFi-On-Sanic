@@ -57,15 +57,6 @@ button:hover {
 }
 
 /* БЛОК ПОИСКА */
-.search a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.search a:hover {
-  color: #fff;
-}
-
 .search {
   margin: 70px 0;
   display: flex;
@@ -104,6 +95,8 @@ button:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  border: solid 1px #fff;
+  border-radius: 10px;
 }
 .custom-search {
   display: flex;
@@ -115,7 +108,7 @@ button:hover {
   padding: 0 20px;
   box-sizing: border-box;
   border: solid 1px #fff;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
 }
 .custom-search input {
   width: 100%;
@@ -134,15 +127,14 @@ button:hover {
   outline: none; /* Убираем внешний контур (обычно отображается при фокусировке) */
   border: none; /* Убираем границу при фокусировке */
 }
-.custom-listbox {
+#SuggestionsContainer {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: solid 1px #fff;
-  border-radius: 0 0 10px 10px;
   width: 100%;
-  box-sizing: border-box;
+  gap: 5px;
+  color: #fff;
 
   font-family: Tektur;
   font-size: 20px;
@@ -150,11 +142,11 @@ button:hover {
   font-weight: 400;
   line-height: normal;
 }
-.custom-listbox a {
+#SuggestionsContainer div {
   width: 100%;
-  padding: 10px 25px;
-  box-sizing: border-box;
   text-align: center;
+  padding: 10px 10px;
+  cursor: pointer;
 }
 /* БЛОК ПАРАМЕТРОВ ТАРИФОВ */
 .paramsMain {
@@ -196,7 +188,7 @@ button:hover {
 .paramMain span {
   color: #fff;
   text-align: center;
-  font-family: Montserrat;
+  font-family: Tektur;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -312,7 +304,7 @@ button:hover {
 }
 .container-swiper {
   width: 100%;
-  margin: 100px auto;
+  margin: 10px auto;
 }
 .swiper-wrapper .swiper-slide {
   width: auto;
@@ -335,7 +327,7 @@ button:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 50px 0;
+  margin: 10px 0;
 }
 .header-outPopularity {
   display: flex;
@@ -410,6 +402,7 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 40px auto;
 }
 .facts {
   display: flex;
@@ -479,9 +472,19 @@ button:hover {
   justify-content: center;
   flex-direction: column;
   max-width: 1270px;
-  margin: 120px auto;
+  margin: 20px auto;
   gap: 30px;
 }
+.questions h2 {
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
 .question {
   display: flex;
   align-items: center;

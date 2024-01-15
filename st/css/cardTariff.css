@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 315px;
+  height: 501px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   transition: transform 0.1s ease-out;
@@ -18,10 +19,13 @@
   transform: scale(1.04);
 }
 .header-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 15px;
   box-sizing: border-box;
-  height: 82px;
+  height: 100px;
   width: 100%;
-  padding-left: 20px;
   border-radius: 10px 10px 0px 0px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   display: flex;
@@ -32,14 +36,16 @@
   color: #fff;
 
   font-family: Tektur;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 .body-card {
   display: block;
+  flex-wrap: wrap;
   margin: 10px 20px;
+  height: 220px;
 }
 .nameAndImg {
   display: flex;
@@ -64,8 +70,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 10px;
   flex-direction: column;
+  gap: 10px;
   color: #fff;
   font-family: Tektur;
   font-size: 14px;
@@ -77,6 +83,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  height: 54px;
   gap: 10px;
 }
 .footer-card {
@@ -115,7 +122,6 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  text-transform: uppercase;
 }
 .twoPrice span:nth-child(2) {
   color: #fff;
@@ -129,7 +135,7 @@
 
 .card button {
   width: 100%;
-  height: 75px;
+  height: 59px;
   border-radius: 0 0 10px 10px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: #0500ff;

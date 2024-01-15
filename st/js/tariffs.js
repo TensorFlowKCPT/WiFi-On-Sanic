@@ -12,8 +12,6 @@ $(function () {
     },
   });
 
-    
-
   $("#inputNumber11").val($("#inputRange1").slider("values", 0));
   $("#inputNumber12").val($("#inputRange1").slider("values", 1));
   $(".inputNumber").on("input", function () {
@@ -47,7 +45,6 @@ $(function () {
       CheckTariffs();
     },
   });
-
 
   $("#inputNumber21").val($("#inputRange2").slider("values", 0));
   $("#inputNumber22").val($("#inputRange2").slider("values", 1));
@@ -393,14 +390,18 @@ function CheckTariffs(page) {
       var tis = parseInt(element.dataset.internetspeed);
       element.style.display = "none";
       if (
-        (true)&&(activeProviders.includes(providerName) ||
+        true &&
+        (activeProviders.includes(providerName) ||
           activeProviders.length === 0) &&
         MaxTP >= tariffprice &&
         MinTP <= tariffprice &&
         (Number.isNaN(tis) || (MaxTIS >= tis && MinTIS <= tis))
       ) {
-        if (activeOptions.length == 0){element.style.display = "block"; return}
-        var allOptionsPresent = activeOptions.every(function(Option) {
+        if (activeOptions.length == 0) {
+          element.style.display = "block";
+          return;
+        }
+        var allOptionsPresent = activeOptions.every(function (Option) {
           return Object.keys(element.dataset).includes(Option);
         });
         if (allOptionsPresent) {
@@ -412,3 +413,31 @@ function CheckTariffs(page) {
     }
   });
 }
+const filtersHeader = document.querySelector(".filters-header");
+const filtersBody = document.querySelector(".filters-body");
+const filtersRangeHeader = document.querySelectorAll(".filter-price-header");
+const filtersRangeBody = document.querySelectorAll(".filter-price-body");
+const filtersCheckboxHeader = document.querySelectorAll(".filter-header");
+const filtersCheckboxBody = document.querySelectorAll(".filter-body");
+
+// Добавляем обработчик события клика для filtersHeader
+filtersHeader.addEventListener("click", () => {
+  filtersBody.classList.toggle("filterUnactive");
+  filtersBody.classList.toggle("filterActive");
+});
+
+// Добавляем обработчик события клика для каждого элемента в filtersRange
+filtersRangeHeader.forEach(function (element, number) {
+  element.addEventListener("click", () => {
+    filtersRangeBody[number].classList.toggle("filterUnactive");
+    filtersRangeBody[number].classList.toggle("filterActive");
+  });
+});
+
+// Добавляем обработчик события клика для каждого элемента в filtersCheckbox
+filtersCheckboxHeader.forEach(function (element, number) {
+  element.addEventListener("click", () => {
+    filtersCheckboxBody[number].classList.toggle("filterUnactive");
+    filtersCheckboxBody[number].classList.toggle("filterActive");
+  });
+});
