@@ -318,71 +318,7 @@ function CheckTariffs(page) {
     console.error("Ошибка сети: " + error);
     return
   });
-  //             <div class="card" id="{{data['tariffs'].index(tariff)}}" 
-  //             data-provider="{{tariff['Provider']['Name']}}" 
-  //             data-price="{{tariff['Price']}}"
-  //             {% if tariff['Options']['Internet'] %}
-  //             data-internetspeed="{{tariff['Options']['Internet']['InternetSpeed']}}"
-  //             {%endif%}
-  //             {% if tariff['Options']['TV'] %}
-  //             data-channels="{{tariff['Options']['TV']['Channels']}}"
-  //             {%endif%}
-  //             {%if tariff['Options']['Mobile'] %}
-  //             data-mobile="{{tariff['Options']['Mobile']['гигабайт']}}"
-  //             {%endif%}
-  //             >
-                
-  //               <div class="header-card">
-  //                 <span>{{tariff['Name']}}</span>
-  //               </div>
-  //               <div class="body-card">
-  //                 <div class="nameAndImg">
-  //                   <span>{{tariff['Provider']['Name']}}</span>
-  //                   <img src="/static/img/{{tariff['Provider']['ImageUrl']}}" alt="" />
-  //                 </div>
-  //                 <div class="paramsTariff">
-  //                   {% if tariff['Options']['Internet'] %}
-  //                   <div class="paramTariff">
-  //                     <img src="/static/img/speedInternetTariff.svg" alt="" />
-  //                     <span>{{tariff['Options']['Internet']['InternetSpeed']}} мбит./с.</span>
-  //                     {% if tariff['Options']['Internet']['Router'] %}
-  //                     <img src="/static/img/routerTariff.svg" alt="" />
-  //                     <span>Роутер:<br/>{{tariff['Options']['Internet']['Router']}}</span>
-  //                     {%endif%}
-  //                   </div>
-  //                   {%endif%}
-  //                   {% if tariff['Options']['TV'] %}
-  //                   <div class="paramTariff">
-  //                     <img src="/static/img/channelsTariff.svg" alt="" />
-  //                     <span>{{tariff['Options']['TV']['Channels']}}</span>
-  //                     {% if tariff['Options']['TV']['TvBox'] %}
-  //                     <img src="/static/img/routerTariff.svg" alt="" />
-  //                     <span>Тв приставка:<br/>{{tariff['Options']['TV']['TvBox']}}</span>
-  //                     {%endif%}
-  //                   </div>
-  //                   {% endif %}
-  //                   {% if tariff['Options']['Mobile'] %}
-  //                   <div class="paramTariff">
-  //                     <img src="/static/img/mobileTariff.svg" alt="" />
-  //                     <span>{%if tariff['Options']['Mobile']['гигабайт']%}{{tariff['Options']['Mobile']['гигабайт']}}Гб  {%endif%}{%if tariff['Options']['Mobile']['минут']%}| {{tariff['Options']['Mobile']['минут']}} минут {%endif%}{%if tariff['Options']['Mobile']['смс']%}| {{tariff['Options']['Mobile']['смс']}} смс{%endif%}</span>
-  //                   </div>
-  //                   {% endif %}
-  //                 </div>
-  //               </div>
-  //               <div class="footer-card">
-  //                 <div class="textAndImg">
-  //                   <span>Comparing to</span>
-  //                   <img src="/static/img/priceTariff.svg" alt="" />
-  //                 </div>
-  //                 <div class="twoPrice">
-  //                   <span>{{tariff['Price']}}</span>
-  //                   {%if tariff['PriceOld'] %}
-  //                   <span>{{tariff['PriceOld']}}</span>
-  //                   {%endif%}
-  //                 </div>
-  //               </div>
-  //               <button>Подключить</button>
-  //           </div>
+  
   tariffsContainer?.childNodes.forEach((element) => {
     if (element.nodeType === 1) {
       var providerName = element.dataset.provider;
