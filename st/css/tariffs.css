@@ -3,7 +3,7 @@ body {
   background: #000;
   box-shadow: 50px 50px 100px 0px rgba(0, 0, 0, 0.25);
   margin: 0;
-  margin-right: 15px;
+  margin-right: 20px;
 }
 .blue-blur div {
   position: absolute;
@@ -65,7 +65,9 @@ body {
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
+  gap: 10px;
   width: 100%;
+  height: fit-content;
   max-width: 320px;
   box-sizing: border-box;
   padding: 24px 21px;
@@ -84,7 +86,7 @@ body {
   border-radius: 5px;
   border: 0.5px solid #fff;
   background: rgba(255, 255, 255, 0.05);
-
+  cursor: pointer;
   color: #fff;
   font-family: Tektur;
   font-size: 16px;
@@ -92,17 +94,24 @@ body {
   font-weight: 500;
   line-height: normal;
 }
+.filterUnactive {
+  display: none;
+}
+.filterActive {
+  display: flex;
+}
 .filters-body {
   width: 100%;
+  flex-direction: column;
 }
 .filter-inputRange {
   width: 100%;
-  margin: 15px 0;
 }
 .filter-price-header {
   width: 100%;
   display: flex;
   margin-bottom: 7px;
+  cursor: pointer;
   align-items: center;
   justify-content: space-between;
   color: #fff;
@@ -113,11 +122,11 @@ body {
   line-height: normal;
 }
 .filter-price-body {
-  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 15px;
+  margin-bottom: 15px;
 }
 .header-inputRange {
   display: flex;
@@ -161,6 +170,7 @@ body {
   border: none !important;
   border-radius: 10px;
   margin-left: -0.3em !important;
+  cursor: pointer !important;
 }
 /* Убираем стрелочки у элемента input type="number" */
 input[type="number"]::-webkit-inner-spin-button,
@@ -185,9 +195,10 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 100%;
 }
 .filter-header {
-  display: flex;
   width: 100%;
+  display: flex;
   align-items: center;
+  cursor: pointer;
   justify-content: space-between;
   color: #fff;
   font-family: Tektur;
@@ -198,7 +209,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .filter-body {
   width: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -212,7 +222,7 @@ input[type="number"]::-webkit-outer-spin-button {
   gap: 13px;
 }
 /* КАСТОМНЫЙ ЧЕКБОКС */
-.custom-checkbox {
+.filters .custom-checkbox {
   position: relative;
   width: 14px;
   height: 14px;
@@ -220,12 +230,12 @@ input[type="number"]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
-.custom-checkbox input {
+.filters .custom-checkbox input {
   position: absolute;
   opacity: 0;
 }
 
-.custom-checkbox label {
+.filters .custom-checkbox label {
   position: absolute;
   top: 0;
   left: 0;
@@ -234,9 +244,10 @@ input[type="number"]::-webkit-outer-spin-button {
   flex-shrink: 0;
   background-color: transparent;
   border: 1px solid #fff;
+  cursor: pointer;
 }
 
-.custom-checkbox label:after {
+.filters .custom-checkbox label:after {
   content: "";
   width: 8px;
   height: 8px;
@@ -249,7 +260,7 @@ input[type="number"]::-webkit-outer-spin-button {
   transition: transform 0.2s ease-in-out;
 }
 
-.custom-checkbox input:checked + label:after {
+.filters .custom-checkbox input:checked + label:after {
   transform: translate(-50%, -50%) scale(1);
 }
 .checkboxAndText span {
@@ -266,8 +277,8 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 100%;
   gap: 30px;
-
   box-sizing: border-box;
   padding: 28px;
   border-radius: 10px;
@@ -278,6 +289,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .wrapper-tariffs {
   display: flex;
   align-items: center;
+  width: 100%;
   justify-content: center;
   flex-wrap: wrap;
   gap: 28px;

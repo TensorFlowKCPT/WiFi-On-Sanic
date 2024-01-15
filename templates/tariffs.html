@@ -31,7 +31,6 @@
       <div>
         <a href="">Тарифы</a>
         <a>FAQ</a>
-        <a>Полулярные</a>
         <a>Контакты</a>
       </div>
     </div>
@@ -41,13 +40,13 @@
           <span>Фильтр</span>
           <img src="/static/img/filtersIcon.svg" alt="" />
         </div>
-        <div class="filters-body">
+        <div class="filters-body filterUnactive">
           <div class="filter-inputRange">
             <div class="filter-price-header">
               <span>Цена</span>
               <img src="/static/img/filterIcon.svg" alt="" />
             </div>
-            <div class="filter-price-body">
+            <div class="filter-price-body filterUnactive">
               <div class="header-inputRange">
                 <input
                   class="inputNumber"
@@ -73,37 +72,37 @@
                 onchange="CheckTariffs()"
               ></div>
             </div>
-            <div class="filter-inputRange">
-              <div class="filter-price-header">
-                <span>Скорость интернета (Мбит./C.)</span>
-                <img src="/static/img/filterIcon.svg" alt="" />
-              </div>
-              <div class="filter-price-body">
-                <div class="header-inputRange">
-                  <input
-                    class="inputNumber"
-                    type="number"
-                    name=""
-                    id="inputNumber21"
-                    onchange="CheckTariffs()"
-                  />
-                  <div class="lineForNumbers"></div>
-                  <input
-                    class="inputNumber"
-                    type="number"
-                    name=""
-                    id="inputNumber22"
-                    onchange="CheckTariffs()"
-                  />
-                </div>
-                <div
-                  class="body-inputRange"
-                  data-min="{{data['mintariffinternetspeed']}}"
-                  data-max="{{data['maxtariffinternetspeed']}}"
-                  id="inputRange2"
+          </div>
+          <div class="filter-inputRange">
+            <div class="filter-price-header">
+              <span>Скорость интернета (Мбит./C.)</span>
+              <img src="/static/img/filterIcon.svg" alt="" />
+            </div>
+            <div class="filter-price-body filterUnactive">
+              <div class="header-inputRange">
+                <input
+                  class="inputNumber"
+                  type="number"
+                  name=""
+                  id="inputNumber21"
                   onchange="CheckTariffs()"
-                ></div>
+                />
+                <div class="lineForNumbers"></div>
+                <input
+                  class="inputNumber"
+                  type="number"
+                  name=""
+                  id="inputNumber22"
+                  onchange="CheckTariffs()"
+                />
               </div>
+              <div
+                class="body-inputRange"
+                data-min="{{data['mintariffinternetspeed']}}"
+                data-max="{{data['maxtariffinternetspeed']}}"
+                id="inputRange2"
+                onchange="CheckTariffs()"
+              ></div>
             </div>
           </div>
           <div class="wrapper-filters">
@@ -112,7 +111,7 @@
                 <span>Провайдеры</span>
                 <img src="/static/img/filterIcon.svg" alt="" />
               </div>
-              <div class="filter-body">
+              <div class="filter-body filterUnactive">
                 {% for provider in data['providers'] %}
                 <div class="checkboxAndText">
                   <div class="custom-checkbox">
@@ -129,7 +128,7 @@
                 <span>Опции</span>
                 <img src="/static/img/filterIcon.svg" alt="" />
               </div>
-              <div class="filter-body">
+              <div class="filter-body filterUnactive">
                 <div class="checkboxAndText">
                   <div class="custom-checkbox">
                     <input type="checkbox" class="OptionCheckbox" id="InternetCheckbox" name="internetspeed" onchange="CheckTariffs()"/>
@@ -212,13 +211,13 @@
                 </div>
                 <div class="footer-card">
                   <div class="textAndImg">
-                    <span>Comparing to</span>
+                    <span>Цена</span>
                     <img src="/static/img/priceTariff.svg" alt="" />
                   </div>
                   <div class="twoPrice">
-                    <span>{{tariff['Price']}}</span>
+                    <span>{{tariff['Price']}} руб.</span>
                     {%if tariff['PriceOld'] %}
-                    <span>{{tariff['PriceOld']}}</span>
+                    <span>{{tariff['PriceOld']}} руб.</span>
                     {%endif%}
                   </div>
                 </div>
@@ -226,7 +225,7 @@
             </div>
             {% endfor %}
         </div>
-        <div class="navigate-tariffs">
+        <div style="display: none;" class="navigate-tariffs">
           <button>Открыть все</button>
           <div class="pages">
             <img src="/static/img/previousPage.svg" alt="" />
@@ -297,5 +296,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/static/js/tariffs.js"></script>
+    <script src="/static/js/modals.js"></script>
+    <script src="/static/js/header.js"></script>
   </body>
 </html>

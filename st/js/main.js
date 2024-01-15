@@ -20,16 +20,14 @@ var options = {
 var typed = new Typed("#typed-output", options);
 // КОД ДЛЯ ПОИСКОВИКА
 const SearchBox = document.getElementById("SearchBox");
-const url ="https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
+const url =
+  "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "37246a81de5e3317c98fb92126a5e5bf19aae2b2";
 function CheckAddress() {
   var query = document.querySelector(".custom-search input").value;
   const suggestionsContainer = document.querySelector(".custom-listbox");
   if (query == "") {
     // Удаляем все дочерние элементы
-    while (suggestionsContainer.firstChild) {
-      suggestionsContainer.removeChild(suggestionsContainer.firstChild);
-    }
   }
   var options = {
     method: "POST",
@@ -107,4 +105,3 @@ questions.forEach(function (question, index) {
     toggleAccordion(question);
   });
 });
-

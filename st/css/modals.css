@@ -106,21 +106,21 @@
   justify-content: center;
   gap: 20px;
 }
-.checkAndText.custom-checkbox {
+.checkAndText .custom-checkbox {
   position: relative;
 }
 
-.checkAndText.custom-checkbox input {
+.checkAndText .custom-checkbox input {
   display: none;
 }
 
-.checkAndText.custom-checkbox label {
+.checkAndText .custom-checkbox label {
   position: relative;
   padding-left: 25px; /* Установите отступ слева, чтобы было место для галочки */
   cursor: pointer;
 }
 
-.checkAndText.custom-checkbox label:before {
+.checkAndText .custom-checkbox label:before {
   content: "";
   position: absolute;
   left: 0;
@@ -131,7 +131,7 @@
   background-color: transparent; /* Цвет фона галочки */
 }
 
-.checkAndText.custom-checkbox input:checked + label:before {
+.checkAndText .custom-checkbox input:checked + label:before {
   content: "\2713"; /* Юникод для галочки */
   font-size: 44px; /* Размер шрифта галочки */
   line-height: 38px; /* Высота линии галочки */
