@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   width: 315px;
-  height: 501px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.25);
   transition: transform 0.1s ease-out;
@@ -45,7 +44,6 @@
   display: block;
   flex-wrap: wrap;
   margin: 10px 20px;
-  height: 220px;
 }
 .nameAndImg {
   display: flex;
@@ -69,9 +67,9 @@
 .paramsTariff {
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
-  gap: 10px;
+  height: 230px;
   color: #fff;
   font-family: Tektur;
   font-size: 14px;
@@ -83,7 +81,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  height: 54px;
+  padding: 3px 0;
   gap: 10px;
 }
 .footer-card {
@@ -92,7 +90,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 15px;
-  margin: 20px 20px 20px 20px;
+  margin: 10px 20px;
 }
 .textAndImg {
   display: flex;
@@ -146,4 +144,54 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+/* Медиа-запрос для устройств с разрешением от 601px до 1024px */
+@media screen and (max-width: 441px) {
+  .header-card span {
+    font-size: 14px;
+  }
+  .nameAndImg span {
+    font-size: 15px;
+  }
+  .paramsTariff {
+    font-size: 10px;
+  }
+  .textAndImg span {
+    font-size: 12px;
+  }
+  .twoPrice span:nth-child(1) {
+    font-size: 26px;
+  }
+  .twoPrice span:nth-child(2) {
+    font-size: 18px;
+  }
+  .card button {
+    font-size: 18px;
+  }
+  .paramsTariff img {
+    width: 30px;
+    height: 30px;
+  }
+  .paramsTariff {
+    height: 180px;
+  }
+  .header-card {
+    height: 60px;
+  }
+  .nameAndImg img {
+    height: 32px;
+    width: 32px;
+  }
+  .footer-card {
+    gap: 0px;
+  }
+  .body-card {
+    margin: 5px 10px;
+  }
+  .footer-card {
+    margin: 5px 10px;
+  }
+  .nameAndImg {
+    margin-bottom: 0px;
+  }
 }

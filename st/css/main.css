@@ -58,11 +58,12 @@ button:hover {
 
 /* БЛОК ПОИСКА */
 .search {
-  margin: 70px 0;
+  margin: 70px auto;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 90%;
 }
 .search h1 {
   margin: 0;
@@ -90,7 +91,7 @@ button:hover {
   line-height: normal;
 }
 .searchAndListbox {
-  width: 60%;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,8 +156,10 @@ button:hover {
   justify-content: center;
   flex-wrap: wrap;
   gap: 50px;
+  margin: 0 auto;
   margin-top: 100px;
   margin-bottom: 60px;
+  width: 90%;
 }
 .paramMain {
   height: 330px;
@@ -200,6 +203,8 @@ button:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
   gap: 50px;
 }
 .providersInCity span {
@@ -327,7 +332,8 @@ button:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 10px 0;
+  margin: 30px auto;
+  width: 90%;
 }
 .header-outPopularity {
   display: flex;
@@ -335,7 +341,7 @@ button:hover {
   justify-content: center;
 }
 .header-outPopularity div {
-  width: 360px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -365,7 +371,7 @@ button:hover {
   justify-content: space-between;
   padding: 0 15px;
   height: 83px;
-  width: 352px;
+  max-width: 352px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.05);
 }
@@ -403,27 +409,31 @@ button:hover {
   align-items: center;
   justify-content: center;
   margin: 40px auto;
+  width: 90%;
 }
 .facts {
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 14px;
 }
 .fact {
-  height: 100px;
-  width: 425px;
+  min-height: 100px;
+  box-sizing: border-box;
+  width: 100%;
   display: flex;
+  gap: 20px;
   align-items: center;
-  justify-content: space-around;
-  padding: 0 5px;
+  justify-content: space-between;
+  padding: 20px 17px;
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.05);
 }
 .fact span {
-  width: 330px;
+  width: 90%;
   color: #fff;
   font-family: Tektur;
   font-size: 10px;
@@ -465,70 +475,67 @@ button:hover {
   justify-content: center;
   flex-direction: column;
 }
-/* ВОПРОСЫ */
-.questions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  max-width: 1270px;
-  margin: 20px auto;
-  gap: 30px;
-}
-.questions h2 {
-  color: #fff;
-  text-align: center;
-  font-family: Poppins;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-.question {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  cursor: pointer;
-  color: #fff;
-  font-family: Tektur;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.header-question {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 80px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 25px 25px 50px 0px rgba(0, 0, 0, 0.25);
-  padding: 0 20px;
-  box-sizing: border-box;
-  transition: transform 0.1s ease-out;
-}
-.header-question:hover {
-  transform: scale(1.04);
-}
-.body-question {
-  box-sizing: border-box;
-  width: 100%;
-  border-radius: 0 0 10px 10px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 25px 25px 50px 0px rgba(0, 0, 0, 0.25);
-  padding: 30px;
-}
-.question-unactive .body-question {
+#ourServiceMobile {
   display: none;
 }
-.question-active .header-question {
-  border-radius: 10px 10px 0 0;
+@media screen and (max-width: 1420px) {
+  .dottedLine {
+    display: none;
+  }
+  #ourServiceMobile {
+    display: flex;
+    width: 60%;
+  }
+  #ourServiceDesktop {
+    display: none;
+  }
+  .ourService-leftDotting {
+    display: none;
+  }
+  .ourService-rightDotting {
+    display: none;
+  }
+  .outPopularity {
+    gap: 20px;
+  }
+  .footer-outPopularity {
+    flex-wrap: wrap;
+  }
+  .facts-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .questions h2 {
+    margin: 0px;
+  }
+  .question {
+    font-size: 18px;
+  }
+  .fact span {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .fact span {
+    font-size: 10px;
+  }
+  .question {
+    font-size: 16px;
+  }
+  .search h1 {
+    font-size: 42px;
+  }
+  .search h1 {
+    font-size: 36px;
+  }
+  .custom-search input {
+    font-size: 18px;
+  }
+  #SuggestionsContainer {
+    font-size: 18px;
+  }
+  .paramMain {
+    height: 300px;
+    width: 280px;
+  }
 }

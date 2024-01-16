@@ -65,11 +65,11 @@ $(function () {
     }
   });
 });
-const tariffsContainer = document.getElementById('tariffs')
+const tariffsContainer = document.getElementById("tariffs");
 
 function CheckTariffs(page) {
-  console.log(page)
-  const pagesGroup = document.getElementById('pagesGroup')
+  console.log(page);
+  const pagesGroup = document.getElementById("pagesGroup");
   const ProviderFilters = document.querySelectorAll(".provider-checkbox");
 
   const MinTP = parseInt(document.getElementById("inputNumber11").value);
@@ -90,12 +90,11 @@ function CheckTariffs(page) {
     }
   });
   var tariffsContainer = document.getElementById("tariffs");
-  var pageNum = 1
-  if(page){
-    pageNum = parseInt(page)
-
+  var pageNum = 1;
+  if (page) {
+    pageNum = parseInt(page);
   }
-  
+
   const data = {
     MinTP: MinTP,
     MaxTP: MaxTP,
@@ -103,13 +102,12 @@ function CheckTariffs(page) {
     MaxTIS: MaxTIS,
     activeProviders: activeProviders,
     activeOptions: activeOptions,
-    page: pageNum
+    page: pageNum,
   };
   var currentUrl = window.location.href;
-  if(currentUrl.includes('=')){
-    data['adr'] = decodeURIComponent(currentUrl.split('=')[1])
+  if (currentUrl.includes("=")) {
+    data["adr"] = decodeURIComponent(currentUrl.split("=")[1]);
   }
-  
 
   fetch("/get_tariffs", {
     method: "POST",
@@ -118,207 +116,214 @@ function CheckTariffs(page) {
     },
     body: JSON.stringify(data),
   })
-  .then((response) => response.json())
-  .then((data) => {
-      console.log(data)
-      tariffsContainer.innerHTML = ""
-      data['tariffs'].forEach(tariff => {
-        var card = document.createElement('div');
-        card.classList.add('card');
-        card.dataset.provider = tariff['Provider']['Name'];
-        card.dataset.price = tariff['Price'];
-    
-        if (tariff['Options']['Internet']) {
-            card.dataset.internetspeed = tariff['Options']['Internet']['InternetSpeed'];
-        }
-        if (tariff['Options']['TV']) {
-            card.dataset.channels = tariff['Options']['TV']['Channels'];
-        }
-        if (tariff['Options']['Mobile']) {
-            card.dataset.mobile = tariff['Options']['Mobile']['гигабайт'];
-        }
-    
-        var headercard = document.createElement('div');
-        headercard.classList.add('header-card');
-    
-        var TariffName = document.createElement('span');
-        TariffName.innerText = tariff['Name'];
-        headercard.appendChild(TariffName);
-    
-        card.appendChild(headercard);
-    
-        var bodycard = document.createElement('div');
-        bodycard.classList.add('body-card');
-    
-        var nameAndImg = document.createElement('div');
-        nameAndImg.classList.add('nameAndImg');
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      tariffsContainer.innerHTML = "";
+      data["tariffs"].forEach((tariff) => {
+        var card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.provider = tariff["Provider"]["Name"];
+        card.dataset.price = tariff["Price"];
 
-        var providerName = document.createElement('span');
-        providerName.innerText = tariff['Provider']['Name'];
+        if (tariff["Options"]["Internet"]) {
+          card.dataset.internetspeed =
+            tariff["Options"]["Internet"]["InternetSpeed"];
+        }
+        if (tariff["Options"]["TV"]) {
+          card.dataset.channels = tariff["Options"]["TV"]["Channels"];
+        }
+        if (tariff["Options"]["Mobile"]) {
+          card.dataset.mobile = tariff["Options"]["Mobile"]["гигабайт"];
+        }
+
+        var headercard = document.createElement("div");
+        headercard.classList.add("header-card");
+
+        var TariffName = document.createElement("span");
+        TariffName.innerText = tariff["Name"];
+        headercard.appendChild(TariffName);
+
+        card.appendChild(headercard);
+
+        var bodycard = document.createElement("div");
+        bodycard.classList.add("body-card");
+
+        var nameAndImg = document.createElement("div");
+        nameAndImg.classList.add("nameAndImg");
+
+        var providerName = document.createElement("span");
+        providerName.innerText = tariff["Provider"]["Name"];
         nameAndImg.appendChild(providerName);
 
-        var providerImage = document.createElement('img');
-        providerImage.src = "/static/img/" + tariff['Provider']['ImageUrl'];
+        var providerImage = document.createElement("img");
+        providerImage.src = "/static/img/" + tariff["Provider"]["ImageUrl"];
         providerImage.alt = "";
         nameAndImg.appendChild(providerImage);
 
-        var paramsTariff = document.createElement('div');
-        paramsTariff.classList.add('paramsTariff');
+        var paramsTariff = document.createElement("div");
+        paramsTariff.classList.add("paramsTariff");
 
         //Скорость интернета
-        if (tariff['Options']['Internet']) {
-          var paramTariffInternet = document.createElement('div');
-          paramTariffInternet.classList.add('paramTariff');
-      
-          var imgSpeedInternet = document.createElement('img');
+        if (tariff["Options"]["Internet"]) {
+          var paramTariffInternet = document.createElement("div");
+          paramTariffInternet.classList.add("paramTariff");
+
+          var imgSpeedInternet = document.createElement("img");
           imgSpeedInternet.src = "/static/img/speedInternetTariff.svg";
           imgSpeedInternet.alt = "";
           paramTariffInternet.appendChild(imgSpeedInternet);
-      
-          var spanInternetSpeed = document.createElement('span');
-          spanInternetSpeed.innerText = tariff['Options']['Internet']['InternetSpeed'] + " мбит./с.";
-          paramTariffInternet.appendChild(spanInternetSpeed);
-      
-          
-      
-          paramsTariff.appendChild(paramTariffInternet);
-      }
-      //Цена роутера
-      if (tariff['Options']['Internet']&&tariff['Options']['Internet']['Router']) {
-        var paramTariffRouter = document.createElement('div');
-        paramTariffRouter.classList.add('paramTariff');
-        var imgRouter = document.createElement('img');
-        imgRouter.src = "/static/img/routerTariff.svg";
-        imgRouter.alt = "";
-        paramTariffRouter.appendChild(imgRouter);
 
-        var spanRouter = document.createElement('span');
-        spanRouter.innerHTML = "Роутер:<br/>" + tariff['Options']['Internet']['Router'];
-        paramTariffRouter.appendChild(spanRouter);
-        paramsTariff.appendChild(paramTariffRouter);
-    }
-    //Количество каналов
-      if (tariff['Options']['TV']) {
-          var paramTariffTV = document.createElement('div');
-          paramTariffTV.classList.add('paramTariff');
-      
-          var imgChannels = document.createElement('img');
+          var spanInternetSpeed = document.createElement("span");
+          spanInternetSpeed.innerText =
+            tariff["Options"]["Internet"]["InternetSpeed"] + " мбит./с.";
+          paramTariffInternet.appendChild(spanInternetSpeed);
+
+          paramsTariff.appendChild(paramTariffInternet);
+        }
+        //Цена роутера
+        if (
+          tariff["Options"]["Internet"] &&
+          tariff["Options"]["Internet"]["Router"]
+        ) {
+          var paramTariffRouter = document.createElement("div");
+          paramTariffRouter.classList.add("paramTariff");
+          var imgRouter = document.createElement("img");
+          imgRouter.src = "/static/img/routerTariff.svg";
+          imgRouter.alt = "";
+          paramTariffRouter.appendChild(imgRouter);
+
+          var spanRouter = document.createElement("span");
+          spanRouter.innerHTML =
+            "Роутер:<br/>" + tariff["Options"]["Internet"]["Router"];
+          paramTariffRouter.appendChild(spanRouter);
+          paramsTariff.appendChild(paramTariffRouter);
+        }
+        //Количество каналов
+        if (tariff["Options"]["TV"]) {
+          var paramTariffTV = document.createElement("div");
+          paramTariffTV.classList.add("paramTariff");
+
+          var imgChannels = document.createElement("img");
           imgChannels.src = "/static/img/channelsTariff.svg";
           imgChannels.alt = "";
           paramTariffTV.appendChild(imgChannels);
-      
-          var spanChannels = document.createElement('span');
-          spanChannels.innerText = tariff['Options']['TV']['Channels'];
-          paramTariffTV.appendChild(spanChannels);
-      
-          
-      
-          paramsTariff.appendChild(paramTariffTV);
-      }
-      //Тв приставка
-      if (tariff['Options']['TV'] && tariff['Options']['TV']['TvBox'] ) {
-        var paramTariffTVBox = document.createElement('div');
-        paramTariffTVBox.classList.add('paramTariff')
-        var imgTvBox = document.createElement('img');
-        imgTvBox.src = "/static/img/routerTariff.svg";
-        imgTvBox.alt = "";
-        paramTariffTVBox.appendChild(imgTvBox);
 
-        var spanTvBox = document.createElement('span');
-        spanTvBox.innerHTML = "Тв приставка:<br/>" + tariff['Options']['TV']['TvBox'];
-        paramTariffTVBox.appendChild(spanTvBox);
-        paramsTariff.appendChild(paramTariffTVBox);
-    }
-    //Мобильный интернет
-      if (tariff['Options']['Mobile']) {
-          var paramTariffMobile = document.createElement('div');
-          paramTariffMobile.classList.add('paramTariff');
-      
-          var imgMobile = document.createElement('img');
+          var spanChannels = document.createElement("span");
+          spanChannels.innerText = tariff["Options"]["TV"]["Channels"];
+          paramTariffTV.appendChild(spanChannels);
+
+          paramsTariff.appendChild(paramTariffTV);
+        }
+        //Тв приставка
+        if (tariff["Options"]["TV"] && tariff["Options"]["TV"]["TvBox"]) {
+          var paramTariffTVBox = document.createElement("div");
+          paramTariffTVBox.classList.add("paramTariff");
+          var imgTvBox = document.createElement("img");
+          imgTvBox.src = "/static/img/routerTariff.svg";
+          imgTvBox.alt = "";
+          paramTariffTVBox.appendChild(imgTvBox);
+
+          var spanTvBox = document.createElement("span");
+          spanTvBox.innerHTML =
+            "Тв приставка:<br/>" + tariff["Options"]["TV"]["TvBox"];
+          paramTariffTVBox.appendChild(spanTvBox);
+          paramsTariff.appendChild(paramTariffTVBox);
+        }
+        //Мобильный интернет
+        if (tariff["Options"]["Mobile"]) {
+          var paramTariffMobile = document.createElement("div");
+          paramTariffMobile.classList.add("paramTariff");
+
+          var imgMobile = document.createElement("img");
           imgMobile.src = "/static/img/mobileTariff.svg";
           imgMobile.alt = "";
           paramTariffMobile.appendChild(imgMobile);
-      
-          var spanMobile = document.createElement('span');
-          spanMobile.innerHTML = 
-              (tariff['Options']['Mobile']['гигабайт'] ? tariff['Options']['Mobile']['гигабайт'] + "Гб " : "") +
-              (tariff['Options']['Mobile']['минут'] ? "| " + tariff['Options']['Mobile']['минут'] + " минут " : "") +
-              (tariff['Options']['Mobile']['смс'] ? "| " + tariff['Options']['Mobile']['смс'] + " смс" : "");
-          
+
+          var spanMobile = document.createElement("span");
+          spanMobile.innerHTML =
+            (tariff["Options"]["Mobile"]["гигабайт"]
+              ? tariff["Options"]["Mobile"]["гигабайт"] + "Гб "
+              : "") +
+            (tariff["Options"]["Mobile"]["минут"]
+              ? "| " + tariff["Options"]["Mobile"]["минут"] + " минут "
+              : "") +
+            (tariff["Options"]["Mobile"]["смс"]
+              ? "| " + tariff["Options"]["Mobile"]["смс"] + " смс"
+              : "");
+
           paramTariffMobile.appendChild(spanMobile);
-      
+
           paramsTariff.appendChild(paramTariffMobile);
-      }
-      
-        
+        }
+
         bodycard.appendChild(nameAndImg);
         bodycard.appendChild(paramsTariff);
 
         card.appendChild(bodycard);
-        
-        var footerCard = document.createElement('div');
-        footerCard.classList.add('footer-card');
-    
-        var footerCard = document.createElement('div');
-        footerCard.classList.add('footer-card');
 
-        var textAndImg = document.createElement('div');
-        textAndImg.classList.add('textAndImg');
+        var footerCard = document.createElement("div");
+        footerCard.classList.add("footer-card");
 
-        var spanComparingTo = document.createElement('span');
+        var footerCard = document.createElement("div");
+        footerCard.classList.add("footer-card");
+
+        var textAndImg = document.createElement("div");
+        textAndImg.classList.add("textAndImg");
+
+        var spanComparingTo = document.createElement("span");
         spanComparingTo.innerText = "Comparing to";
         textAndImg.appendChild(spanComparingTo);
 
-        var imgPriceTariff = document.createElement('img');
+        var imgPriceTariff = document.createElement("img");
         imgPriceTariff.src = "/static/img/priceTariff.svg";
         imgPriceTariff.alt = "";
         textAndImg.appendChild(imgPriceTariff);
 
         footerCard.appendChild(textAndImg);
 
-        var twoPrice = document.createElement('div');
-        twoPrice.classList.add('twoPrice');
+        var twoPrice = document.createElement("div");
+        twoPrice.classList.add("twoPrice");
 
-        var spanPrice = document.createElement('span');
-        spanPrice.innerText = tariff['Price'];
+        var spanPrice = document.createElement("span");
+        spanPrice.innerText = tariff["Price"];
         twoPrice.appendChild(spanPrice);
 
-        if (tariff['PriceOld']) {
-            var spanOldPrice = document.createElement('span');
-            spanOldPrice.innerText = tariff['PriceOld'];
-            twoPrice.appendChild(spanOldPrice);
+        if (tariff["PriceOld"]) {
+          var spanOldPrice = document.createElement("span");
+          spanOldPrice.innerText = tariff["PriceOld"];
+          twoPrice.appendChild(spanOldPrice);
         }
 
         footerCard.appendChild(twoPrice);
 
         card.appendChild(footerCard);
-        var button = document.createElement('button');
+        var button = document.createElement("button");
         button.innerText = "Подключить";
         card.appendChild(button);
         tariffsContainer.appendChild(card);
-              });
-        
-        pagesGroup.innerHTML = ""
-        for (var i = 1; i <= data['pages']; i++) {
-          pagebtn = document.createElement('div')
-          pagebtn.classList.add('pageNumber')
-          pagebtn.innerHTML = i
-          pagebtn.id = i
-          pagebtn.onclick = function() {
-            CheckTariffs(this.id)
-          };
-          if(i === pageNum){
-            pagebtn.style.background = "#0500ff"
-          }
-          pagesGroup.appendChild(pagebtn)
+      });
+
+      pagesGroup.innerHTML = "";
+      for (var i = 1; i <= data["pages"]; i++) {
+        pagebtn = document.createElement("div");
+        pagebtn.classList.add("pageNumber");
+        pagebtn.innerHTML = i;
+        pagebtn.id = i;
+        pagebtn.onclick = function () {
+          CheckTariffs(this.id);
         };
-        
-          })
-  .catch((error) => {
-    console.error("Ошибка сети: " + error);
-    return
-  });
-  
+        if (i === pageNum) {
+          pagebtn.style.background = "#0500ff";
+        }
+        pagesGroup.appendChild(pagebtn);
+      }
+    })
+    .catch((error) => {
+      console.error("Ошибка сети: " + error);
+      return;
+    });
+
   tariffsContainer?.childNodes.forEach((element) => {
     if (element.nodeType === 1) {
       var providerName = element.dataset.provider;
@@ -349,6 +354,7 @@ function CheckTariffs(page) {
     }
   });
 }
+// ОТКРЫТИЕ И ЗАКРЫТИЕ ДЛЯ ФИЛЬТРОВ
 const filtersHeader = document.querySelector(".filters-header");
 const filtersBody = document.querySelector(".filters-body");
 const filtersRangeHeader = document.querySelectorAll(".filter-price-header");

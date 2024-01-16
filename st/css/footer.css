@@ -3,33 +3,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 30px;
-  gap: 20px;
+  gap: 30px;
 }
 .footer .logo {
   color: #0500ff;
-  text-align: right;
+  text-align: left;
   font-family: Tektur;
   font-size: 56px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-}
-.footer .navigation {
-  max-width: 800px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-
-  color: #fff;
-  text-align: center;
-  font-family: Tektur;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  text-decoration-line: underline;
 }
 .numberAndMedia {
   display: flex;
@@ -54,4 +37,14 @@
 
 .footer a:hover {
   color: #fff;
+}
+@media screen and (max-width: 600px) {
+  .footer {
+    padding: 20px 10px;
+  }
+}
+@media screen and (max-width: 370px) {
+  .numberAndMedia {
+    font-size: 15px;
+  }
 }

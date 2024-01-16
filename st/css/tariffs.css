@@ -3,7 +3,6 @@ body {
   background: #000;
   box-shadow: 50px 50px 100px 0px rgba(0, 0, 0, 0.25);
   margin: 0;
-  margin-right: 20px;
 }
 .blue-blur div {
   position: absolute;
@@ -56,8 +55,8 @@ body {
 }
 .filtersAndTariff {
   display: flex;
-  width: 100%;
-  margin: 0 20px;
+  width: 90%;
+  margin: 0 auto;
   gap: 35px;
 }
 .filters {
@@ -297,23 +296,10 @@ input[type="number"]::-webkit-outer-spin-button {
 .navigate-tariffs {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
-  gap: 17px;
-  width: 60%;
-}
-.navigate-tariffs button {
-  max-width: 365px;
   width: 100%;
-  height: 49px;
-  border-radius: 5px;
-  background: #0500ff;
-  color: #fff;
-  font-family: Tektur;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  gap: 17px;
 }
 .pages {
   display: flex;
@@ -321,8 +307,18 @@ input[type="number"]::-webkit-outer-spin-button {
   justify-content: space-between;
   width: 100%;
 }
+.pages svg {
+  cursor: pointer;
+}
+.pages rect:hover {
+  fill: #0500ff;
+  fill-opacity: 1;
+}
 .group-pages {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 10px;
 }
 .pageNumber {
@@ -330,13 +326,31 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 44px;
   border-radius: 3px;
   border: 1px solid #fff;
-  padding: 8px;
   box-sizing: border-box;
   color: #fff;
-  text-align: center;
   font-family: Tektur;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  cursor: pointer;
+}
+.activePage {
+  background-color: #0500ff;
+}
+.unactivePage {
+  background-color: transparent;
+}
+/* Стили для разрешения ширины экрана до 600 пикселей */
+@media screen and (max-width: 683px) {
+  .filtersAndTariff {
+    flex-direction: column;
+  }
+  .filters {
+    max-width: none;
+  }
+  .pageNumber {
+    height: 30px;
+    width: 30px;
+  }
 }

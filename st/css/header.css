@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 30px;
   padding: 35px 30px;
 }
 
@@ -38,4 +38,12 @@
 
 .header a:hover {
   color: #fff;
+}
+@media screen and (max-width: 600px) {
+  .header {
+    padding: 20px 10px;
+  }
+  .header div {
+    gap: 10px;
+  }
 }
