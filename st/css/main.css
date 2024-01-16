@@ -2,6 +2,7 @@ html,
 body {
   background: #000;
   box-shadow: 50px 50px 100px 0px rgba(0, 0, 0, 0.25);
+  margin: 0;
 }
 button:hover {
   cursor: pointer;
@@ -478,6 +479,48 @@ button:hover {
 #ourServiceMobile {
   display: none;
 }
+.cities {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+  margin: 40px auto;
+  gap: 50px;
+}
+.cities h2 {
+  color: #fff;
+  font-family: Tektur;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.cities-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.cities10-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 226px;
+}
+.cities10-wrapper a {
+  text-decoration: none;
+  color: #fff;
+  font-family: Tektur;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 @media screen and (max-width: 1420px) {
   .dottedLine {
     display: none;
@@ -537,5 +580,8 @@ button:hover {
   .paramMain {
     height: 300px;
     width: 280px;
+  }
+  .cities {
+    gap: 10px;
   }
 }
