@@ -89,3 +89,39 @@ document
 document
   .querySelector(".custom-checkbox input")
   .addEventListener("change", allValidInput);
+
+document.getElementById("submitButton").addEventListener("click", function () {
+  var typeRoom = document.querySelector(".active-typeRoom").innerText;
+  var nameValue = document.getElementById("nameInput").value;
+  var phoneValue = document.getElementById("phoneInput").value;
+  var addressValue = document.getElementById("addressTextarea").value;
+
+  // Отправляем данные на сервер с использованием fetch
+  fetch("/send-lead", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: nameValue,
+      phone: phoneValue,
+      address: addressValue,
+      room: typeRoom,
+    }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Ошибка сети");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // Обработка успешного ответа от сервера
+      console.log("Данные успешно отправлены", data);
+      const textFeedback = document.querySelector(".lead-ready");
+      textFeedback.style.display = "block";
+    })
+    .catch((error) => {
+      console.error("Произошла ошибка:", error);
+    });
+});

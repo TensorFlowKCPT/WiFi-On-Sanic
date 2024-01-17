@@ -433,11 +433,14 @@ button:hover {
   border: 1px solid rgba(255, 255, 255, 0.5);
   background: rgba(255, 255, 255, 0.05);
 }
+.right-facts span {
+  text-align: end;
+}
 .fact span {
   width: 90%;
   color: #fff;
   font-family: Tektur;
-  font-size: 10px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -554,13 +557,10 @@ button:hover {
   .question {
     font-size: 18px;
   }
-  .fact span {
-    font-size: 16px;
-  }
 }
 @media screen and (max-width: 400px) {
   .fact span {
-    font-size: 10px;
+    font-size: 14px;
   }
   .question {
     font-size: 16px;

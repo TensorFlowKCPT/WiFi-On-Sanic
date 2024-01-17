@@ -166,6 +166,15 @@
   color: #666;
   cursor: not-allowed; /* Запрет курсора для неактивной кнопки */
 }
+.lead-ready {
+  display: none;
+  color: #fff;
+  font-family: Tektur;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 @media screen and (max-width: 600px) {
   .typeRooms button {
     font-size: 12px;

@@ -6,6 +6,7 @@ from Database import Database
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import requests
 
 app = Sanic("Wifi-On")
 local_link = "localhost:3000"
@@ -217,6 +218,31 @@ def send_email(email, name):
     except Exception as e:
         return f'Ошибка при отправке письма: {e}'
 
+def send_lead(name, phone, address, room):
+    url = "https://on-wifi.bitrix24.ru/rest/11940/pn37z1pw2mxrg7dz/crm.lead.add.json"
+
+    data = {
+        "fields[TITLE]": "С сайта on-wifi.ru",
+        "fields[NAME]": name,
+        "fields[PHONE][0][VALUE]": phone,
+        "fields[ADDRESS]": f"{address}[{room}]",
+    }
+
+    response = requests.post(url, data=data)
+
+    return response.text
+
+@app.route('/send-lead', methods=['POST'])
+async def send_lead_handler(request):
+    name = request.json.get('name')
+    phone = request.json.get('phone')
+    address = request.json.get('address')
+    room = request.json.get('room')
+    
+    lead = send_lead(name=name, phone=phone, address=address, room=room)
+
+    return response.json({"data": lead}, status=200)
+    
 @app.route('/send-email', methods=['POST'])
 async def send_email_handler(request):
     email = request.form.get('email')

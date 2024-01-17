@@ -23,16 +23,16 @@
   </head>
   <body>
     <!-- <div class="blue-blur"> -->
-      <!-- <div id="blue-blur-1"></div> -->
-      <!-- <div id="blue-blur-2"></div> -->
-      <!-- <div id="blue-blur-3"></div> -->
-      <!-- <div id="blue-blur-4"></div> -->
-      <!-- <div id="blue-blur-5"></div> -->
-      <!-- <div id="blue-blur-6"></div> -->
-      <!-- <div id="blue-blur-7"></div> -->
-      <!-- <div id="blue-blur-8"></div> -->
-      <!-- <div id="blue-blur-9"></div> -->
-      <!-- <div id="blue-blur-10"></div> -->
+    <!-- <div id="blue-blur-1"></div> -->
+    <!-- <div id="blue-blur-2"></div> -->
+    <!-- <div id="blue-blur-3"></div> -->
+    <!-- <div id="blue-blur-4"></div> -->
+    <!-- <div id="blue-blur-5"></div> -->
+    <!-- <div id="blue-blur-6"></div> -->
+    <!-- <div id="blue-blur-7"></div> -->
+    <!-- <div id="blue-blur-8"></div> -->
+    <!-- <div id="blue-blur-9"></div> -->
+    <!-- <div id="blue-blur-10"></div> -->
     <!-- </div> -->
     <div class="header">
       <a href="https://{{data['host']}}/" class="logo">ON-WiFi</a>
@@ -143,9 +143,8 @@
                       <img src="/static/img/channelsTariff.svg" alt="" />
                       <span>{{tariff['Options']['TV']['Channels']}}</span>
                     </div>
-                    
-                    {% endif %}
-                    {% if tariff['Options']['Mobile'] %}
+
+                    {% endif %} {% if tariff['Options']['Mobile'] %}
                     <div class="paramTariff">
                       <img src="/static/img/mobileTariff.svg" alt="" />
                       <span
@@ -158,16 +157,16 @@
                         смс{%endif%}</span
                       >
                     </div>
-                    {% endif %}
-                    {% if tariff['Options']['Internet'] and tariff['Options']['Internet']['Router'] %}
+                    {% endif %} {% if tariff['Options']['Internet'] and
+                    tariff['Options']['Internet']['Router'] %}
                     <div class="paramTariff">
                       <img src="/static/img/routerTariff.svg" alt="" />
                       <span
                         >Роутер:<br />{{tariff['Options']['Internet']['Router']}}</span
                       >
                     </div>
-                    {%endif%}
-                    {% if tariff['Options']['TV'] and tariff['Options']['TV']['TvBox'] %}
+                    {%endif%} {% if tariff['Options']['TV'] and
+                    tariff['Options']['TV']['TvBox'] %}
                     <div class="paramTariff">
                       <img src="/static/img/routerTariff.svg" alt="" />
                       <span
@@ -224,22 +223,22 @@
       <div class="footer-outPopularity">
         <div class="info-outPopularity">
           <div class="text-info-outPopularity">
-            <span>10 Years</span>
-            <span>cooperation with the country's leading providers</span>
+            <span>10 Лет</span>
+            <span>сотрудничество с ведущими провайдерами страны</span>
           </div>
           <img src="/static/img/like-outPopulary.png" alt="" />
         </div>
         <div class="info-outPopularity">
           <div class="text-info-outPopularity">
-            <span>89 regions</span>
-            <span>in which we connect the Internet and TV</span>
+            <span>89 регионов</span>
+            <span>в котором мы подключаем Интернет и ТВ</span>
           </div>
           <img src="/static/img/money-outPopulary.png" alt="" />
         </div>
         <div class="info-outPopularity">
           <div class="text-info-outPopularity">
             <span>31452</span>
-            <span>100% money back guarantee in case of order failure</span>
+            <span>подключенных клиентов через наш сервис</span>
           </div>
           <img src="/static/img/return-outPopulary.png" alt="" />
         </div>
@@ -268,15 +267,9 @@
         </svg>
         <span>Наш сервис</span>
       </div>
-      <div class="facts">
+      <div class="facts left-facts">
         <div class="fact">
-          <span
-            >We offer a huge range of tariff plans from all providers, including
-            federal and regional telecom operators. Here you can find many
-            options for connection, including dozens of different tariffs. We
-            understand that every customer has unique needs, which is why we
-            offer the widest range of rates to suit your needs.</span
-          >
+          <span>Актуальность тарифов и акций</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="33"
@@ -291,13 +284,7 @@
           </svg>
         </div>
         <div class="fact">
-          <span
-            >We actively collect feedback from our customers about the work of
-            our Internet service provider partners. This allows us to keep
-            abreast of their work and offer the client only the best quality
-            offers. We value the opinions of our clients and strive to ensure
-            high quality work from our providers.</span
-          >
+          <span>Квалифицированные менеджеры</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="41"
@@ -312,13 +299,7 @@
           </svg>
         </div>
         <div class="fact">
-          <span
-            >On our website you can quickly compare prices, connection
-            conditions and other information related to tariffs and make the
-            best choice! To make your search easier, we select offers by data
-            volume, number of minutes and cost (₽). Enter these parameters for
-            convenience.</span
-          >
+          <span>Поиск лучшего провайдера по адресу</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="36"
@@ -333,13 +314,7 @@
           </svg>
         </div>
         <div class="fact">
-          <span
-            >On our website you can quickly compare prices, connection
-            conditions and other information related to tariffs and make the
-            best choice! To make your search easier, we select offers by data
-            volume, number of minutes and cost (₽). Enter these parameters for
-            convenience.</span
-          >
+          <span>Помощь в смене интернет-провайдера</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="36"
@@ -606,7 +581,7 @@
           </svg>
         </div>
       </div>
-      <div class="facts">
+      <div class="facts right-facts">
         <div class="fact">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -620,11 +595,7 @@
               fill="white"
             />
           </svg>
-          <span
-            >We not only offer discounts from the partners with whom we
-            cooperate, but also offer advantageous offers from ourselves.
-            Promotions are held regularly!</span
-          >
+          <span>Наш сервис бесплатный!</span>
         </div>
         <div class="fact">
           <svg
@@ -639,11 +610,7 @@
               fill="white"
             />
           </svg>
-          <span
-            >You will have the opportunity to take advantage of all the
-            discounts, promotions and bonuses from the provider. We offer the
-            same subscription price, and sometimes even lower!</span
-          >
+          <span>Хорошие отзывы от клиентов</span>
         </div>
         <div class="fact">
           <svg
@@ -658,10 +625,7 @@
               fill="white"
             />
           </svg>
-          <span
-            >Customize, Set up your tariff parameters and see only the offers
-            that suit you</span
-          >
+          <span>Гибкая настройка тарифов</span>
         </div>
         <div class="fact">
           <svg
@@ -676,10 +640,7 @@
               fill="white"
             />
           </svg>
-          <span
-            >Fast registration, 95% of our clients were connected within 24
-            hours</span
-          >
+          <span>Быстрое подключение к интернету</span>
         </div>
       </div>
     </div>
@@ -687,10 +648,7 @@
       <h2>FAQ</h2>
       <div class="question question-unactive">
         <div class="header-question">
-          <span
-            >I have a problem with the Internet, TV or equipment, can you help
-            me?</span
-          >
+          <span>Нужно ли мне платить за ваши услуги?</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -706,19 +664,14 @@
         </div>
         <div class="body-question">
           <span
-            >The tariff plan provides the opportunity to compare all current
-            tariff plans without overpayments for all federal providers. You can
-            objectively evaluate bonuses from each provider, and our operators
-            will answer all your questions and help you make your choice.</span
+            >Нет. Сервис, а так же консультация со специалистом полностью
+            бесплатны!</span
           >
         </div>
       </div>
       <div class="question question-unactive">
         <div class="header-question">
-          <span
-            >I have a problem with the Internet, TV or equipment, can you help
-            me?</span
-          >
+          <span>Как быстро меня подключат к интернету?</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -734,19 +687,15 @@
         </div>
         <div class="body-question">
           <span
-            >The tariff plan provides the opportunity to compare all current
-            tariff plans without overpayments for all federal providers. You can
-            objectively evaluate bonuses from each provider, and our operators
-            will answer all your questions and help you make your choice.</span
+            >Все зависит от нагруженности вашего города. Как правило, наших
+            клиентов подключают в течении 1-2 дней с момента составления
+            заявки.</span
           >
         </div>
       </div>
       <div class="question question-unactive">
         <div class="header-question">
-          <span
-            >I have a problem with the Internet, TV or equipment, can you help
-            me?</span
-          >
+          <span>Могу ли я подключиться со своим роутером?</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -762,19 +711,15 @@
         </div>
         <div class="body-question">
           <span
-            >The tariff plan provides the opportunity to compare all current
-            tariff plans without overpayments for all federal providers. You can
-            objectively evaluate bonuses from each provider, and our operators
-            will answer all your questions and help you make your choice.</span
+            >Да, вы сможете подключиться со своим роутером. Но этот роутер
+            должен был приобретаться в магазине, если оборудование от какого
+            либо провайдера, есть большой шанс того что он не подойдет.</span
           >
         </div>
       </div>
       <div class="question question-unactive">
         <div class="header-question">
-          <span
-            >I have a problem with the Internet, TV or equipment, can you help
-            me?</span
-          >
+          <span>Будет ли повышение цены по тарифам?</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -790,19 +735,14 @@
         </div>
         <div class="body-question">
           <span
-            >The tariff plan provides the opportunity to compare all current
-            tariff plans without overpayments for all federal providers. You can
-            objectively evaluate bonuses from each provider, and our operators
-            will answer all your questions and help you make your choice.</span
+            >Как правило, провайдеры для текущих клиентов не повышают цены,
+            стоит обращать внимание на договор.</span
           >
         </div>
       </div>
       <div class="question question-unactive">
         <div class="header-question">
-          <span
-            >I have a problem with the Internet, TV or equipment, can you help
-            me?</span
-          >
+          <span>Какую скорость интернета выбрать?</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -818,10 +758,12 @@
         </div>
         <div class="body-question">
           <span
-            >The tariff plan provides the opportunity to compare all current
-            tariff plans without overpayments for all federal providers. You can
-            objectively evaluate bonuses from each provider, and our operators
-            will answer all your questions and help you make your choice.</span
+            >При выборе скорости интернета важно учитывать свои потребности и
+            бюджет. Если вы планируете использовать интернет для просмотра видео
+            высокого качества, онлайн-игр или загрузки больших файлов,
+            рекомендуется выбрать более высокую скорость. Если вам нужен
+            интернет только для просмотра веб-страниц и общения в социальных
+            сетях, то вам хватит 100 мбит/сек.</span
           >
         </div>
       </div>
@@ -834,17 +776,24 @@
       </div>
       <div class="data-feedback">
         <div class="inputs-data-feedback">
-          <input class="validInput" placeholder="Ваше имя" type="text" />
+          <input
+            class="validInput"
+            placeholder="Ваше имя"
+            type="text"
+            id="nameInput"
+          />
           <input
             class="validInput"
             placeholder="Ваш номер телефона"
             type="text"
+            id="phoneInput"
           />
           <textarea
             class="validInput"
             placeholder="Адрес подключения"
             cols="30"
             rows="10"
+            id="addressTextarea"
           ></textarea>
         </div>
         <div class="checkAndSubmit">
@@ -855,8 +804,11 @@
             </div>
             <span>Соглашение на обработку персональных данных</span>
           </div>
-          <button disabled>Отправить</button>
+          <button id="submitButton" disabled>Отправить</button>
         </div>
+        <span class="lead-ready"
+          >Ваша заявка принята! Ждите обратного звонка.</span
+        >
       </div>
     </div>
     <div class="cities">
