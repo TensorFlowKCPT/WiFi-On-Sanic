@@ -106,15 +106,10 @@ class Database:
             rows = cursor.fetchall()
             output = []
             if rows != None:
-                lastLetter = ''
-                for row in sorted(rows):
-                    if row[0][0] == lastLetter:
-                        output.append([row[0], row[1]])
-                    else:
-                        output.append(row[0][0])
-                        output.append([row[0], row[1]])
-                    lastLetter = row[0][0]
-                return output
+                for city in rows:
+                    output.append([city[0],city[1]])
+            output = [output[i:i + 10] for i in range(0, len(output), 10)]
+            return output
     def GetRandomTariffByCity(cityName:str):
         with sqlite3.connect("sqlite.sqlite3") as conn:
             row = conn.execute("SELECT id, Name, NameEng, Description, Price, PriceOld, OptionsJSON, idProvider FROM Tariffs WHERE idCity = ? ORDER BY RANDOM() LIMIT 1",(cityName,)).fetchone()
