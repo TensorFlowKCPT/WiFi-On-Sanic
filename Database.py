@@ -85,10 +85,13 @@ class Database:
                             pass
                     try:
                         if options['Internet']['InternetSpeed']:
-                            if int(options['Internet']['InternetSpeed'])>maxtariffinternetspeed:
-                                maxtariffinternetspeed = int(options['Internet']['InternetSpeed'])
-                            if int(options['Internet']['InternetSpeed'])<mintariffinternetspeed:
-                                mintariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                            try:
+                                if int(options['Internet']['InternetSpeed'])>maxtariffinternetspeed:
+                                    maxtariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                                if int(options['Internet']['InternetSpeed'])<mintariffinternetspeed:
+                                    mintariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                            except ValueError:
+                                pass
                     except KeyError:
                         pass
                     tariffs.append({'id':row[0],
@@ -167,10 +170,13 @@ class Database:
                         pass
                 try:
                     if options['Internet']['InternetSpeed']:
-                        if int(options['Internet']['InternetSpeed'])>maxtariffinternetspeed:
-                            maxtariffinternetspeed = int(options['Internet']['InternetSpeed'])
-                        if int(options['Internet']['InternetSpeed'])<mintariffinternetspeed:
-                            mintariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                        try:
+                            if int(options['Internet']['InternetSpeed'])>maxtariffinternetspeed:
+                                maxtariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                            if int(options['Internet']['InternetSpeed'])<mintariffinternetspeed:
+                                mintariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                        except ValueError:
+                            pass
                 except KeyError:
                     pass
                 tariffs.append({'id':row[0],
