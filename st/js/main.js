@@ -1,11 +1,11 @@
-// ЭТО ЭФФЕКТ ПОЯВЛЕНИЯ ПРИ ЗАГРУЗКЕ
-//const animeBody = anime({
-//  targets: document.querySelector("body"),
-//  opacity: [0, 1], // Переход от невидимости к видимости
-//  translateY: [0, 0], // Смещение по оси Y
-//  easing: "easeInOutQuad",
-//  duration: 1000,
-//});
+
+const animeBody = anime({
+  targets: document.querySelector("body"),
+  opacity: [0, 1], // Переход от невидимости к видимости
+  translateY: [0, 0], // Смещение по оси Y
+  easing: "easeInOutQuad",
+  duration: 1000,
+});
 
 // ЭФФЕКТ ПЕЧАТНОЙ МАШИНКИ
 var options = {
