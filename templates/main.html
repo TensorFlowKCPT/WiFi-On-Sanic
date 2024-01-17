@@ -148,7 +148,7 @@
 
                 <div class="body-card">
                   <div class="nameAndImg">
-                    <span></span>
+                    <span>{{tariff['Provider']['Name']}}</span>
                     <img
                       src="/static/img/{{tariff['Provider']['ImageUrl']}}"
                       alt=""
@@ -157,29 +157,29 @@
                   <div class="paramsTariff">
                     {% if tariff['Options']['Internet'] %}
                     <div class="paramTariff">
-                      <img src="/static/img/speedInternetTariff.svg" alt="" />
-                      <span
-                        >{{tariff['Options']['Internet']['InternetSpeed']}}
-                        мбит./с.</span
-                      >
-                      {% if tariff['Options']['Internet']['Router'] %}
-                      <img src="/static/img/routerTariff.svg" alt="" />
-                      <span
-                        >Роутер:<br />{{tariff['Options']['Internet']['Router']}}</span
-                      >
+                      <img src="/static/img/speedInternetTariff.svg" alt=""/>
+                      <span>{{tariff['Options']['Internet']['InternetSpeed']}}мбит./с.</span>
+                        </div>
+                        {% if tariff['Options']['Internet']['Router'] %}
+                          <div class="paramTariff">
+                          <img src="/static/img/routerTariff.svg" alt="" />
+                          <span>Роутер:<br />{{tariff['Options']['Internet']['Router']}}</span>
+                        </div>
                       {%endif%}
-                    </div>
-                    {%endif%} {% if tariff['Options']['TV'] %}
-                    <div class="paramTariff">
-                      <img src="/static/img/channelsTariff.svg" alt="" />
-                      <span>{{tariff['Options']['TV']['Channels']}}</span>
+                    {%endif%} 
+                    {% if tariff['Options']['TV'] %}
+                      <div class="paramTariff">
+                        <img src="/static/img/channelsTariff.svg" alt="" />
+                        <span>{{tariff['Options']['TV']['Channels']}}</span>
+                      </div>
                       {% if tariff['Options']['TV']['TvBox'] %}
-                      <img src="/static/img/routerTariff.svg" alt="" />
-                      <span
-                        >Тв приставка:<br />{{tariff['Options']['TV']['TvBox']}}</span
-                      >
+                        <div class="paramTariff">
+                        <img src="/static/img/routerTariff.svg" alt="" />
+                        <span
+                          >Тв приставка:<br />{{tariff['Options']['TV']['TvBox']}}</span
+                        >
+                      </div>
                       {%endif%}
-                    </div>
                     {% endif %} {% if tariff['Options']['Mobile'] %}
                     <div class="paramTariff">
                       <img src="/static/img/mobileTariff.svg" alt="" />

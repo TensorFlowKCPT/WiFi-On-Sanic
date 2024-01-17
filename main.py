@@ -53,7 +53,7 @@ async def get_tariffs(request):
     data = {}
     subdomain = host.split('.')[0].removeprefix('https://')
     if host!=local_link and subdomain!="on-wifi"and subdomain!="www":
-        city  = Database.GetCityBySubdomain(subdomain)
+        city = Database.GetCityBySubdomain(subdomain)
         data['City']= city
     
     if adr:
