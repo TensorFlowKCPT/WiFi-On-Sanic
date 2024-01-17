@@ -85,9 +85,9 @@ class Database:
                             pass
                     try:
                         if options['Internet']['InternetSpeed']:
-                                if int(options['Internet']['InternetSpeed'])>maxtariffinternetspeed:
+                                if int(options['Internet']['InternetSpeed'].removeprefix('до '))>maxtariffinternetspeed:
                                     maxtariffinternetspeed = int(options['Internet']['InternetSpeed'])
-                                if int(options['Internet']['InternetSpeed'])<mintariffinternetspeed:
+                                if int(options['Internet']['InternetSpeed'].removeprefix('до '))<mintariffinternetspeed:
                                     mintariffinternetspeed = int(options['Internet']['InternetSpeed'])
                     except:
                         pass
@@ -167,9 +167,9 @@ class Database:
                         pass
                 try:
                     if options['Internet']['InternetSpeed']:
-                            if int(options['Internet']['InternetSpeed'])>maxtariffinternetspeed:
+                            if int(options['Internet']['InternetSpeed'].removeprefix('до '))>maxtariffinternetspeed:
                                 maxtariffinternetspeed = int(options['Internet']['InternetSpeed'])
-                            if int(options['Internet']['InternetSpeed'])<mintariffinternetspeed:
+                            if int(options['Internet']['InternetSpeed'].removeprefix('до '))<mintariffinternetspeed:
                                 mintariffinternetspeed = int(options['Internet']['InternetSpeed'])
                 except:
                     pass
