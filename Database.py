@@ -144,10 +144,10 @@ class Database:
                 options = json.loads(row[6])
                 try:
                     if options['Internet']['InternetSpeed']:
-                        if int(options['Internet']['InternetSpeed'][0])>maxtariffinternetspeed:
-                            maxtariffinternetspeed = int(options['Internet']['InternetSpeed'][0])
-                        if int(options['Internet']['InternetSpeed'][0])<mintariffinternetspeed:
-                            mintariffinternetspeed = int(options['Internet']['InternetSpeed'][0])
+                        if int(options['Internet']['InternetSpeed'])>maxtariffinternetspeed:
+                            maxtariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                        if int(options['Internet']['InternetSpeed'])<mintariffinternetspeed:
+                            mintariffinternetspeed = int(options['Internet']['InternetSpeed'])
                 except KeyError:
                     pass
                 tariffs.append({'id':row[0],

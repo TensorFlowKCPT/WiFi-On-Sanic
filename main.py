@@ -58,7 +58,6 @@ async def get_tariffs(request):
     else:
         city = {'Name':'Москва', 'NameEng': 'moskva','id':416}
         data['City']= city
-    print(adr)
     if adr:
         try: 
             data = cacheAdr[adr].copy()
@@ -70,21 +69,21 @@ async def get_tariffs(request):
             data = cacheCities[adr].copy()
         except KeyError:
             data = Database.GetInfoByCity(city)
-            cacheCities[city] = data.copy()
+            cacheCities[city['Name']] = data.copy()
     viabletariffs = []
     for tariff in data['tariffs'].copy():
-        if ((tariff['Provider']['Name'] in activeProviders or len(activeProviders) == 0) 
-        and MaxTP >= tariff['Price'] and MinTP <= tariff['Price'] and(MaxTIS >= int(tariff['Options']['Internet']['InternetSpeed']) and MinTIS <= int(tariff['Options']['Internet']['InternetSpeed']))):
-            if (len(activeOptions) == 0):
-                viabletariffs.append(tariff)
-            else:
-                if 'mobile' in activeOptions and not ("Mobile" in tariff['Options'].keys()):
-                    continue
-                if 'internetspeed' in activeOptions and not ("Internet" in tariff['Options'].keys()):
-                    continue
-                if 'channels' in activeOptions and not ("TV" in tariff['Options'].keys()):
-                    continue
-                viabletariffs.append(tariff)
+        if 'Internet' in tariff['Options'].keys():
+            if ((tariff['Provider']['Name'] in activeProviders or len(activeProviders) == 0) and MaxTP >= tariff['Price'] and MinTP <= tariff['Price'] and(MaxTIS >= int(tariff['Options']['Internet']['InternetSpeed']) and MinTIS <= int(tariff['Options']['Internet']['InternetSpeed']))):
+                if (len(activeOptions) == 0):
+                    viabletariffs.append(tariff)
+                else:
+                    if 'mobile' in activeOptions and not ("Mobile" in tariff['Options'].keys()):
+                        continue
+                    if 'internetspeed' in activeOptions and not ("Internet" in tariff['Options'].keys()):
+                        continue
+                    if 'channels' in activeOptions and not ("TV" in tariff['Options'].keys()):
+                        continue
+                    viabletariffs.append(tariff)
     data['tariffs'] = viabletariffs
     
     data['pages'] = int(len(data["tariffs"])/6)
