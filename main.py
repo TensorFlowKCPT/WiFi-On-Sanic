@@ -58,6 +58,7 @@ async def get_tariffs(request):
     else:
         city = {'Name':'Москва', 'NameEng': 'moskva','id':416}
         data['City']= city
+    print(adr)
     if adr:
         try: 
             data = cacheAdr[adr].copy()
