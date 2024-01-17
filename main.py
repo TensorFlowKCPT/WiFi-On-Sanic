@@ -100,15 +100,17 @@ async def tariffs(request):
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
     if host!=local_link and subdomain!="on-wifi"and subdomain!="www":
-        city  = Database.GetCityBySubdomain(subdomain)
+        city = Database.GetCityBySubdomain(subdomain)
         data['City']= city
-        
+    else:
+        city = {'Name':'Москва', 'NameEng': 'moskva','id':416}
+        data['City']= city
     template = env.get_template('tariffs.html')
     data = {}
     if address:
         data = Database.GetInfoByAddress(address)
     else:
-        data = Database.GetInfoByCityName(city)
+        data = Database.GetInfoByCityName(city['Name'])
     provider = request.args.get("provider")
     if provider:
         data['provider'] = provider
