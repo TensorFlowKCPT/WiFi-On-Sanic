@@ -17,7 +17,7 @@ var options = {
   loop: true,
 };
 
-var typed = new Typed("#typed-output", options);
+//var typed = new Typed("#typed-output", options);
 // КОД ДЛЯ ПОИСКОВИКА
 const SearchBox = document.getElementById("SearchBox");
 const url =
