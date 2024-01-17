@@ -70,7 +70,6 @@ $(function () {
 const tariffsContainer = document.getElementById("tariffs");
 
 function CheckTariffs(page) {
-  console.log(page);
   const pagesGroup = document.getElementById("pagesGroup");
   const ProviderFilters = document.querySelectorAll(".provider-checkbox");
 
@@ -120,7 +119,6 @@ function CheckTariffs(page) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       tariffsContainer.innerHTML = "";
       if(data["tariffs"].length!=0){
         document.getElementById("noTariff").style.display = 'none'
