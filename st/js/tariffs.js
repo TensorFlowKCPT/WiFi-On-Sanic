@@ -323,7 +323,9 @@ function CheckTariffs(page) {
       for (var i = 1; i <= data["pages"]; i++) {
         pagebtn = document.createElement("button");
         pagebtn.classList.add("pageNumber");
-        pagebtn.innerHTML = i;
+        PgNum = document.createElement("span")
+        PgNum.innerHTML = i
+        pagebtn.appendChild(PgNum)
         pagebtn.id = i;
         pagebtn.onclick = function () {
           CheckTariffs(this.id);
