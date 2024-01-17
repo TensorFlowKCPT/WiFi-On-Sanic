@@ -186,24 +186,7 @@ function CheckTariffs(page) {
 
           paramsTariff.appendChild(paramTariffInternet);
         }
-        //Цена роутера
-        if (
-          tariff["Options"]["Internet"] &&
-          tariff["Options"]["Internet"]["Router"]
-        ) {
-          var paramTariffRouter = document.createElement("div");
-          paramTariffRouter.classList.add("paramTariff");
-          var imgRouter = document.createElement("img");
-          imgRouter.src = "/static/img/routerTariff.svg";
-          imgRouter.alt = "";
-          paramTariffRouter.appendChild(imgRouter);
-
-          var spanRouter = document.createElement("span");
-          spanRouter.innerHTML =
-            "Роутер:<br/>" + tariff["Options"]["Internet"]["Router"];
-          paramTariffRouter.appendChild(spanRouter);
-          paramsTariff.appendChild(paramTariffRouter);
-        }
+        
         //Количество каналов
         if (tariff["Options"]["TV"]) {
           var paramTariffTV = document.createElement("div");
@@ -220,21 +203,7 @@ function CheckTariffs(page) {
 
           paramsTariff.appendChild(paramTariffTV);
         }
-        //Тв приставка
-        if (tariff["Options"]["TV"] && tariff["Options"]["TV"]["TvBox"]) {
-          var paramTariffTVBox = document.createElement("div");
-          paramTariffTVBox.classList.add("paramTariff");
-          var imgTvBox = document.createElement("img");
-          imgTvBox.src = "/static/img/routerTariff.svg";
-          imgTvBox.alt = "";
-          paramTariffTVBox.appendChild(imgTvBox);
-
-          var spanTvBox = document.createElement("span");
-          spanTvBox.innerHTML =
-            "Тв приставка:<br/>" + tariff["Options"]["TV"]["TvBox"];
-          paramTariffTVBox.appendChild(spanTvBox);
-          paramsTariff.appendChild(paramTariffTVBox);
-        }
+        
         //Мобильный интернет
         if (tariff["Options"]["Mobile"]) {
           var paramTariffMobile = document.createElement("div");
@@ -261,7 +230,39 @@ function CheckTariffs(page) {
 
           paramsTariff.appendChild(paramTariffMobile);
         }
+        //Цена роутера
+        if (
+          tariff["Options"]["Internet"] &&
+          tariff["Options"]["Internet"]["Router"]
+        ) {
+          var paramTariffRouter = document.createElement("div");
+          paramTariffRouter.classList.add("paramTariff");
+          var imgRouter = document.createElement("img");
+          imgRouter.src = "/static/img/routerTariff.svg";
+          imgRouter.alt = "";
+          paramTariffRouter.appendChild(imgRouter);
 
+          var spanRouter = document.createElement("span");
+          spanRouter.innerHTML =
+            "Роутер:<br/>" + tariff["Options"]["Internet"]["Router"];
+          paramTariffRouter.appendChild(spanRouter);
+          paramsTariff.appendChild(paramTariffRouter);
+        }
+        //Тв приставка
+        if (tariff["Options"]["TV"] && tariff["Options"]["TV"]["TvBox"]) {
+          var paramTariffTVBox = document.createElement("div");
+          paramTariffTVBox.classList.add("paramTariff");
+          var imgTvBox = document.createElement("img");
+          imgTvBox.src = "/static/img/routerTariff.svg";
+          imgTvBox.alt = "";
+          paramTariffTVBox.appendChild(imgTvBox);
+
+          var spanTvBox = document.createElement("span");
+          spanTvBox.innerHTML =
+            "Тв приставка:<br/>" + tariff["Options"]["TV"]["TvBox"];
+          paramTariffTVBox.appendChild(spanTvBox);
+          paramsTariff.appendChild(paramTariffTVBox);
+        }
         bodycard.appendChild(nameAndImg);
         bodycard.appendChild(paramsTariff);
 

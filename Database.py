@@ -77,6 +77,12 @@ class Database:
                     if row[4] < mintariffcost:
                         mintariffcost = row[4]
                     options = json.loads(row[6])
+                    if "TV" in options.keys() and 'Channels' in options['TV'].keys():
+                        try: 
+                            int(options['TV']['Channels'])
+                            options['TV']['Channels'] = options['TV']['Channels']+" каналов"
+                        except:
+                            pass
                     try:
                         if options['Internet']['InternetSpeed']:
                             if int(options['Internet']['InternetSpeed'])>maxtariffinternetspeed:
@@ -117,13 +123,20 @@ class Database:
     def GetRandomTariffByCity(cityName:str):
         with sqlite3.connect("sqlite.sqlite3") as conn:
             row = conn.execute("SELECT id, Name, NameEng, Description, Price, PriceOld, OptionsJSON, idProvider FROM Tariffs WHERE idCity = ? ORDER BY RANDOM() LIMIT 1",(cityName,)).fetchone()
+            options = json.loads(row[6])
+            if "TV" in options.keys() and 'Channels' in options['TV'].keys():
+                try: 
+                    int(options['TV']['Channels'])
+                    options['TV']['Channels'] = options['TV']['Channels']+" каналов"
+                except:
+                    pass
             return {'id':row[0],
                                     'Name':row[1],
                                     'NameEng':row[2],
                                     'Description':row[3],
                                     'Price': row[4],
                                     'PriceOld': row[5],
-                                    'Options': json.loads(row[6]),
+                                    'Options': options,
                                     'Provider': Database.GetProviderById(row[7])
                     }
     def GetInfoByCity(city:str):
@@ -146,6 +159,12 @@ class Database:
                 if row[4] < mintariffcost:
                     mintariffcost = row[4]
                 options = json.loads(row[6])
+                if "TV" in options.keys() and 'Channels' in options['TV'].keys():
+                    try: 
+                        int(options['TV']['Channels'])
+                        options['TV']['Channels'] = options['TV']['Channels']+" каналов"
+                    except:
+                        pass
                 try:
                     if options['Internet']['InternetSpeed']:
                         if int(options['Internet']['InternetSpeed'])>maxtariffinternetspeed:
