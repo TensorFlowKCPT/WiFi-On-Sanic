@@ -76,7 +76,7 @@ async def get_tariffs(request):
     viabletariffs = []
     for tariff in data['tariffs'].copy():
         if 'Internet' in tariff['Options'].keys():
-            if ((tariff['Provider']['Name'] in activeProviders or len(activeProviders) == 0) and MaxTP >= tariff['Price'] and MinTP <= tariff['Price'] and(MaxTIS >= int(tariff['Options']['Internet']['InternetSpeed']) and MinTIS <= int(tariff['Options']['Internet']['InternetSpeed']))):
+            if ((tariff['Provider']['Name'] in activeProviders or len(activeProviders) == 0) and MaxTP >= tariff['Price'] and MinTP <= tariff['Price'] and(MaxTIS >= int(tariff['Options']['Internet']['InternetSpeed'].removeprefix('до ')) and MinTIS <= int(tariff['Options']['Internet']['InternetSpeed'].removeprefix('до ')))):
                 if (len(activeOptions) == 0):
                     viabletariffs.append(tariff)
                 else:
