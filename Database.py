@@ -13,7 +13,8 @@ class Database:
         except KeyError:
             pass
         return providers
-    
+        
+            
     def GetAllProvidersFromDB():
         with sqlite3.connect("sqlite.sqlite3") as conn:
             cursor = conn.execute("SELECT * FROM Providers")

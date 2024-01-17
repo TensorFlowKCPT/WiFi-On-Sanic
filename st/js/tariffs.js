@@ -107,7 +107,7 @@ function CheckTariffs(page) {
     page: pageNum,
   };
   var currentUrl = window.location.href;
-  if (currentUrl.includes("=")) {
+  if (currentUrl.includes("address")) {
     data["adr"] = decodeURIComponent(currentUrl.split("=")[1]);
   }
 

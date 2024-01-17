@@ -29,10 +29,12 @@ async def index(request):
     subdomain = host.split('.')[0].removeprefix('https://')
     if host!=local_link and subdomain!="on-wifi" and subdomain!="www"  :
         data['City'] = Database.GetCityBySubdomain(subdomain)
+    data['Providers'] = Database.GetInfoByCity(data['City'])['providers']
     data['RandTariffs'] = []
     for i in range(10):
         data['RandTariffs'].append(Database.GetRandomTariffByCity(data['City']['id']))
     data['host'] = host
+    
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
     return html(rendered_html)
@@ -118,8 +120,10 @@ async def tariffs(request):
     provider = request.args.get("provider")
     if provider:
         data['provider'] = provider
+    options = request.args.get("options")
+    if options:
+        data['options'] = options.split(' ')
     data['host'] = host
-    print(host)
     data['Cities'] = Database.GetAllCities()
     
     rendered_html = template.render(data = data)

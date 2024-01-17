@@ -59,7 +59,7 @@
       </div>
     </div>
     <div class="paramsMain">
-      <a href="">
+      <a href="/tariffs?options=internet+tv">
         <div class="paramMain">
           <div class="wrapper-svg">
             <img src="/static/img/Internet+TV.svg" alt="" />
@@ -67,7 +67,7 @@
           <span>Интернет + ТВ</span>
         </div>
       </a>
-      <a href=""
+      <a href="/tariffs?options=internet"
         ><div class="paramMain">
           <div class="wrapper-svg">
             <img src="/static/img/HomeInternet.svg" alt="" />
@@ -75,7 +75,7 @@
           <span>Домашний интернет</span>
         </div></a
       >
-      <a href=""
+      <a href="/tariffs?options=internet+tv+mobile"
         ><div class="paramMain">
           <div class="wrapper-svg">
             <img src="/static/img/Communication+Internet+TV.svg" alt="" />
@@ -83,7 +83,7 @@
           <span>Связь + Интернет + ТВ</span>
         </div></a
       >
-      <a href="">
+      <a href="/tariffs?options=tv">
         <div class="paramMain">
           <div class="wrapper-svg">
             <img src="/static/img/Atelevision.svg" alt="" />
@@ -95,41 +95,15 @@
     <div id="providers" class="providersInCity">
       <span>Провайдеры в городе {{data['City']['Name']}}</span>
       <div class="wrapper-providersInCity">
-        <a href="">
+        {%for provider in data['Providers']%}
+        <a href="https://{{data['host']}}/tariffs?provider={{provider['Name']}}">
           <div class="providerInCity">
             <div class="wrapper-img">
-              <img src="/static/img/beeline80px.png" alt="" />
+              <img src="/static/img/{{provider['ImageUrl']}}" alt="" />
             </div>
           </div>
         </a>
-        <a href="">
-          <div class="providerInCity">
-            <div class="wrapper-img">
-              <img src="/static/img/domru80px.png" alt="" />
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="providerInCity">
-            <div class="wrapper-img">
-              <img src="/static/img/mts80px.png" alt="" />
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="providerInCity">
-            <div class="wrapper-img">
-              <img src="/static/img/rostelecom80px.png" alt="" />
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="providerInCity">
-            <div class="wrapper-img">
-              <img src="/static/img/ttk80px.png" alt="" />
-            </div>
-          </div>
-        </a>
+        {%endfor%}
       </div>
     </div>
     <div id="popularRates" class="popularRates">

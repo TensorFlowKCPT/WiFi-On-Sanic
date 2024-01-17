@@ -119,7 +119,7 @@
                 {% for provider in data['providers'] %}
                 <div class="checkboxAndText">
                   <div class="custom-checkbox">
-                    <input class="provider-checkbox" type="checkbox" id="{{provider['id']}}" name="{{provider['Name']}}" onchange="CheckTariffs()"/>
+                    <input class="provider-checkbox" type="checkbox" id="{{provider['id']}}" {%if data['provider']==provider['Name']%}checked {%endif%} name="{{provider['Name']}}" onchange="CheckTariffs()"/>
                     <label for="{{provider['id']}}"></label>
                   </div>
                   <span>{{provider['Name']}}</span>
@@ -135,21 +135,21 @@
               <div class="filter-body filterActive">
                 <div class="checkboxAndText">
                   <div class="custom-checkbox">
-                    <input type="checkbox" class="OptionCheckbox" id="InternetCheckbox" name="internetspeed" onchange="CheckTariffs()"/>
+                    <input type="checkbox" class="OptionCheckbox" id="InternetCheckbox" {%if 'internet' in data['options']%}checked {%endif%} name="internetspeed" onchange="CheckTariffs()"/>
                     <label for="InternetCheckbox"></label>
                   </div>
                   <span>Интернет</span>
                 </div>
                 <div class="checkboxAndText">
                   <div class="custom-checkbox">
-                    <input type="checkbox" class="OptionCheckbox" id="TVCheckbox" name="channels" onchange="CheckTariffs()"/>
+                    <input type="checkbox" class="OptionCheckbox" id="TVCheckbox" {%if 'tv' in data['options']%}checked {%endif%} name="channels" onchange="CheckTariffs()"/>
                     <label for="TVCheckbox"></label>
                   </div>
                   <span>Тв</span>
                 </div>
                 <div class="checkboxAndText">
                   <div class="custom-checkbox">
-                    <input type="checkbox" class="OptionCheckbox" id="MobileCheckbox" name="mobile" onchange="CheckTariffs()"/>
+                    <input type="checkbox" class="OptionCheckbox" id="MobileCheckbox" {%if 'mobile' in data['options']%}checked {%endif%} name="mobile" onchange="CheckTariffs()"/>
                     <label for="MobileCheckbox"></label>
                   </div>
                   <span>Мобильный</span>
