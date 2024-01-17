@@ -44,13 +44,11 @@ class Database:
             return output
     def GetInfoByAddress(address:str):
         providers = Database.GetProvidersByAdress(address)
-        print(providers)
         allProviders = Database.GetAllProvidersFromDB()
         
         providers = str(providers)
         validproviders = []
         for i in allProviders:
-            print(str(i["Name"]).lower() in providers, str(i["Name"]).lower())
             if str(i["Name"]).lower() in str(providers):
                 validproviders.append(i)
         
