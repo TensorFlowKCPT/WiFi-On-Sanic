@@ -50,8 +50,10 @@ async def get_tariffs(request):
     page=int(request.json.get('page'))
     adr= request.json.get('adr')
     host = request.headers.get('host')
+    print(host)
     data = {}
     subdomain = host.split('.')[0].removeprefix('https://')
+    print(subdomain)
     if host!=local_link and subdomain!="on-wifi"and subdomain!="www":
         city  = Database.GetCityBySubdomain(subdomain)
         data['City']= city
@@ -111,11 +113,10 @@ async def tariffs(request):
     if address:
         data = Database.GetInfoByAddress(address)
     else:
-        data = Database.GetInfoByCityName(city['Name'])
+        data = Database.GetInfoByCity(city)
     provider = request.args.get("provider")
     if provider:
         data['provider'] = provider
-    data['City'] = {'Name':'Москва', 'NameEng': 'moskva','id':416}
     
     data['Cities'] = Database.GetAllCities()
     

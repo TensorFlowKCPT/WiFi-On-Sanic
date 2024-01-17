@@ -122,10 +122,9 @@ class Database:
                                     'Options': json.loads(row[6]),
                                     'Provider': Database.GetProviderById(row[7])
                     }
-    def GetInfoByCityName(cityName:str):
+    def GetInfoByCity(city:str):
         with sqlite3.connect("sqlite.sqlite3") as conn:
-            cursor = conn.execute("SELECT id FROM Cities WHERE Name = ?", (cityName,))
-            CityId = cursor.fetchone()[0]
+            CityId = city['id']
             cursor = conn.execute("SELECT id, Name, NameEng, Description, Price, PriceOld, OptionsJSON, idProvider FROM Tariffs WHERE idCity = ?", (CityId,))
             rows = cursor.fetchall()
             tariffs = []
