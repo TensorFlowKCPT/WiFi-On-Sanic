@@ -229,4 +229,4 @@ async def send_email_handler(request):
 
 
 if __name__ == "__main__":
-    app.run(host="localhost", port=3000, debug=True)
+    app.run(host="localhost", port=3000, debug=False)
