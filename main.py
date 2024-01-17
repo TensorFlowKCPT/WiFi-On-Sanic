@@ -233,4 +233,4 @@ async def handle_500(request, exception):
 app.error_handler.add(Exception, handle_500)
 
 if __name__ == "__main__":
-    app.run(host="localhost", port=3000, debug=False)
+    app.run(host="0.0.0.0", port=3000, debug=False)
