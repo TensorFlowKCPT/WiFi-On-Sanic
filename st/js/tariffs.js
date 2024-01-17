@@ -304,6 +304,13 @@ function CheckTariffs(page) {
 
         card.appendChild(footerCard);
         var button = document.createElement("button");
+        const feedback = document.querySelector("#feedback");
+        button.onclick= function () {
+          window.scrollTo({
+            top: feedback.offsetTop,
+            behavior: "smooth",
+          });
+        };
         button.innerText = "Подключить";
         card.appendChild(button);
         tariffsContainer.appendChild(card);
