@@ -148,7 +148,10 @@
 /* Медиа-запрос для устройств с разрешением от 601px до 1024px */
 @media screen and (max-width: 441px) {
   .header-card span {
-    font-size: 14px;
+    font-size: 12px;
+  }
+  .card {
+    width: 270px;
   }
   .nameAndImg span {
     font-size: 15px;

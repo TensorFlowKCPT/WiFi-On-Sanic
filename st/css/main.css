@@ -257,7 +257,7 @@ button:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 93%;
+  width: 90%;
   margin: 0 auto;
 }
 .popularRates h2 {
@@ -281,7 +281,7 @@ button:hover {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  width: 70%;
+  width: 100%;
   margin-top: 30px;
 }
 .buttonsSlider img {
@@ -296,7 +296,6 @@ button:hover {
   border-radius: 5px;
   border: 1px solid #fff;
   height: 48px;
-  width: 360px;
   color: #fff;
   font-family: Tektur;
   font-size: 16px;
@@ -314,6 +313,7 @@ button:hover {
 }
 .swiper-wrapper .swiper-slide {
   width: auto;
+  max-width: 317px;
 }
 .swiper-wrapper .swiper-slide {
   padding: 10px 0;

@@ -1,6 +1,7 @@
 // ЯКОРЬ НА ЛИД
 const anchors = document.querySelectorAll(".card button");
 const feedback = document.querySelector("#feedback");
+console.log(anchors, feedback);
 anchors.forEach(function (anchor, index) {
   anchor.addEventListener("click", function () {
     window.scrollTo({

@@ -96,7 +96,9 @@
       <span>Провайдеры в городе {{data['City']['Name']}}</span>
       <div class="wrapper-providersInCity">
         {%for provider in data['Providers']%}
-        <a href="https://{{data['host']}}/tariffs?provider={{provider['Name']}}">
+        <a
+          href="https://{{data['host']}}/tariffs?provider={{provider['Name']}}"
+        >
           <div class="providerInCity">
             <div class="wrapper-img">
               <img src="/static/img/{{provider['ImageUrl']}}" alt="" />
@@ -131,30 +133,31 @@
                   <div class="paramsTariff">
                     {% if tariff['Options']['Internet'] %}
                     <div class="paramTariff">
-                      <img src="/static/img/speedInternetTariff.svg" alt=""/>
-                      <span>{{tariff['Options']['Internet']['InternetSpeed']}}мбит./с.</span>
-                        </div>
-                        {% if tariff['Options']['Internet']['Router'] %}
-                          <div class="paramTariff">
-                          <img src="/static/img/routerTariff.svg" alt="" />
-                          <span>Роутер:<br />{{tariff['Options']['Internet']['Router']}}</span>
-                        </div>
-                      {%endif%}
-                    {%endif%} 
-                    {% if tariff['Options']['TV'] %}
-                      <div class="paramTariff">
-                        <img src="/static/img/channelsTariff.svg" alt="" />
-                        <span>{{tariff['Options']['TV']['Channels']}}</span>
-                      </div>
-                      {% if tariff['Options']['TV']['TvBox'] %}
-                        <div class="paramTariff">
-                        <img src="/static/img/routerTariff.svg" alt="" />
-                        <span
-                          >Тв приставка:<br />{{tariff['Options']['TV']['TvBox']}}</span
-                        >
-                      </div>
-                      {%endif%}
-                    {% endif %} {% if tariff['Options']['Mobile'] %}
+                      <img src="/static/img/speedInternetTariff.svg" alt="" />
+                      <span
+                        >{{tariff['Options']['Internet']['InternetSpeed']}}мбит./с.</span
+                      >
+                    </div>
+                    {% if tariff['Options']['Internet']['Router'] %}
+                    <div class="paramTariff">
+                      <img src="/static/img/routerTariff.svg" alt="" />
+                      <span
+                        >Роутер:<br />{{tariff['Options']['Internet']['Router']}}</span
+                      >
+                    </div>
+                    {%endif%} {%endif%} {% if tariff['Options']['TV'] %}
+                    <div class="paramTariff">
+                      <img src="/static/img/channelsTariff.svg" alt="" />
+                      <span>{{tariff['Options']['TV']['Channels']}}</span>
+                    </div>
+                    {% if tariff['Options']['TV']['TvBox'] %}
+                    <div class="paramTariff">
+                      <img src="/static/img/routerTariff.svg" alt="" />
+                      <span
+                        >Тв приставка:<br />{{tariff['Options']['TV']['TvBox']}}</span
+                      >
+                    </div>
+                    {%endif%} {% endif %} {% if tariff['Options']['Mobile'] %}
                     <div class="paramTariff">
                       <img src="/static/img/mobileTariff.svg" alt="" />
                       <span
@@ -196,7 +199,7 @@
           alt=""
         />
         <a href="/tariffs">
-        <button>Посмотреть все</button>
+          <button>Посмотреть все</button>
         </a>
         <img
           class="rightSliderButton"
@@ -857,15 +860,23 @@
       <div class="cities-wrapper">
         <div class="cities10-wrapper">
           <a class="city" href="https://moskva.on-wifi.ru">Москва</a>
-          <a class="city" href="https://sankt-peterburg.on-wifi.ru">Санкт-Петербург</a>
+          <a class="city" href="https://sankt-peterburg.on-wifi.ru"
+            >Санкт-Петербург</a
+          >
           <a class="city" href="https://novosibirsk.on-wifi.ru">Новосибирск</a>
-          <a class="city" href="https://ekaterinburg.on-wifi.ru">Екатеринбург</a>
-          <a class="city" href="https://nizhnij-novgorod.on-wifi.ru">Нижний Новгород</a>
+          <a class="city" href="https://ekaterinburg.on-wifi.ru"
+            >Екатеринбург</a
+          >
+          <a class="city" href="https://nizhnij-novgorod.on-wifi.ru"
+            >Нижний Новгород</a
+          >
           <a class="city" href="https://kazan.on-wifi.ru">Казань</a>
           <a class="city" href="https://samara.on-wifi.ru">Самара</a>
           <a class="city" href="https://chelyabinsk.on-wifi.ru">Челябинск</a>
           <a class="city" href="https://omsk.on-wifi.ru">Омск</a>
-          <a class="city" href="https://rostov-na-donu.on-wifi.ru">Ростов-на-Дону</a>
+          <a class="city" href="https://rostov-na-donu.on-wifi.ru"
+            >Ростов-на-Дону</a
+          >
         </div>
         <div class="cities10-wrapper">
           <a class="city" href="https://ufa.on-wifi.ru">Уфа</a>
@@ -895,7 +906,9 @@
           <a class="city" href="https://kemerovo.on-wifi.ru">Кемерово</a>
           <a class="city" href="https://astrahan.on-wifi.ru">Астрахань</a>
           <a class="city" href="https://ryazan.on-wifi.ru">Рязань</a>
-          <a class="city" href="https://naberezhnye-chelny.on-wifi.ru">Набережные Челны</a>
+          <a class="city" href="https://naberezhnye-chelny.on-wifi.ru"
+            >Набережные Челны</a
+          >
           <a class="city" href="https://penza.on-wifi.ru">Пенза</a>
           <a class="city" href="https://lipeck.on-wifi.ru">Липецк</a>
           <a class="city" href="https://tula.on-wifi.ru">Тула</a>
@@ -929,5 +942,6 @@
     <script src="/static/js/modals.js"></script>
     <script src="/static/js/header.js"></script>
     <script src="/static/js/questions.js"></script>
+    <script src="/static/js/cardTariff.js"></script>
   </body>
 </html>

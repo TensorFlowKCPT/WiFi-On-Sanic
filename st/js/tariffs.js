@@ -1,5 +1,5 @@
-var currentPage = 1
-var currentPageCount = 0
+var currentPage = 1;
+var currentPageCount = 0;
 $(function () {
   // СОЗДАНИЕ И ОБРАБОТКА ПЕРВОГО СЛАЙДЕРА ЧЕРЕЗ JQUERY
   $("#inputRange1").slider({
@@ -120,11 +120,10 @@ function CheckTariffs(page) {
     .then((response) => response.json())
     .then((data) => {
       tariffsContainer.innerHTML = "";
-      if(data["tariffs"].length!=0){
-        document.getElementById("noTariff").style.display = 'none'
-      }
-      else{
-        document.getElementById("noTariff").style.display = 'block'
+      if (data["tariffs"].length != 0) {
+        document.getElementById("noTariff").style.display = "none";
+      } else {
+        document.getElementById("noTariff").style.display = "block";
       }
       data["tariffs"].forEach((tariff) => {
         var card = document.createElement("div");
@@ -311,8 +310,8 @@ function CheckTariffs(page) {
       });
 
       pagesGroup.innerHTML = "";
-      currentPage = pageNum
-      currentPageCount = data["pages"]
+      currentPage = pageNum;
+      currentPageCount = data["pages"];
       for (var i = 1; i <= data["pages"]; i++) {
         pagebtn = document.createElement("button");
         pagebtn.classList.add("pageNumber");
@@ -323,8 +322,7 @@ function CheckTariffs(page) {
         };
         if (i === pageNum) {
           pagebtn.classList.add("activePage");
-        }
-        else{
+        } else {
           pagebtn.classList.add("unactivePage");
         }
         pagesGroup.appendChild(pagebtn);
@@ -365,14 +363,14 @@ function CheckTariffs(page) {
     }
   });
 }
-function ChangePageRight(){
-  if(currentPage<currentPageCount){
-      CheckTariffs(currentPage+1)
+function ChangePageRight() {
+  if (currentPage < currentPageCount) {
+    CheckTariffs(currentPage + 1);
   }
 }
-function ChangePageLeft(){
-  if(currentPage>0){
-      CheckTariffs(currentPage-1)
+function ChangePageLeft() {
+  if (currentPage > 0) {
+    CheckTariffs(currentPage - 1);
   }
 }
 // ОТКРЫТИЕ И ЗАКРЫТИЕ ДЛЯ ФИЛЬТРОВ

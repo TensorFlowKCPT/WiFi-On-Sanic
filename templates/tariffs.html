@@ -119,7 +119,10 @@
                 {% for provider in data['providers'] %}
                 <div class="checkboxAndText">
                   <div class="custom-checkbox">
-                    <input class="provider-checkbox" type="checkbox" id="{{provider['id']}}" {%if data['provider']==provider['Name']%}checked {%endif%} name="{{provider['Name']}}" onchange="CheckTariffs()"/>
+                    <input class="provider-checkbox" type="checkbox"
+                    id="{{provider['id']}}" {%if
+                    data['provider']==provider['Name']%}checked {%endif%}
+                    name="{{provider['Name']}}" onchange="CheckTariffs()"/>
                     <label for="{{provider['id']}}"></label>
                   </div>
                   <span>{{provider['Name']}}</span>
@@ -135,21 +138,29 @@
               <div class="filter-body filterActive">
                 <div class="checkboxAndText">
                   <div class="custom-checkbox">
-                    <input type="checkbox" class="OptionCheckbox" id="InternetCheckbox" {%if 'internet' in data['options']%}checked {%endif%} name="internetspeed" onchange="CheckTariffs()"/>
+                    <input type="checkbox" class="OptionCheckbox"
+                    id="InternetCheckbox" {%if 'internet' in
+                    data['options']%}checked {%endif%} name="internetspeed"
+                    onchange="CheckTariffs()"/>
                     <label for="InternetCheckbox"></label>
                   </div>
                   <span>Интернет</span>
                 </div>
                 <div class="checkboxAndText">
                   <div class="custom-checkbox">
-                    <input type="checkbox" class="OptionCheckbox" id="TVCheckbox" {%if 'tv' in data['options']%}checked {%endif%} name="channels" onchange="CheckTariffs()"/>
+                    <input type="checkbox" class="OptionCheckbox"
+                    id="TVCheckbox" {%if 'tv' in data['options']%}checked
+                    {%endif%} name="channels" onchange="CheckTariffs()"/>
                     <label for="TVCheckbox"></label>
                   </div>
                   <span>Тв</span>
                 </div>
                 <div class="checkboxAndText">
                   <div class="custom-checkbox">
-                    <input type="checkbox" class="OptionCheckbox" id="MobileCheckbox" {%if 'mobile' in data['options']%}checked {%endif%} name="mobile" onchange="CheckTariffs()"/>
+                    <input type="checkbox" class="OptionCheckbox"
+                    id="MobileCheckbox" {%if 'mobile' in
+                    data['options']%}checked {%endif%} name="mobile"
+                    onchange="CheckTariffs()"/>
                     <label for="MobileCheckbox"></label>
                   </div>
                   <span>Мобильный</span>
@@ -165,13 +176,29 @@
           <span>Свяжитесь с нами для уточнения информации.</span>
           <span>&phone; +78005500792</span>
         </div>
-        <div class="wrapper-tariffs" id="tariffs">
-        </div>
+        <div class="wrapper-tariffs" id="tariffs"></div>
         <div class="navigate-tariffs">
           <div class="pages">
-            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 45 45" fill="none" onclick="ChangePageLeft()">
-              <rect width="44.6465" height="44.6465" rx="5" transform="matrix(-1 0 0 1 44.7754 0.298828)" fill="white" fill-opacity="0.1"/>
-              <path d="M28.2429 32.0512C28.3372 32.1455 28.4119 32.2574 28.463 32.3806C28.514 32.5038 28.5402 32.6358 28.5402 32.7691C28.5402 32.9024 28.514 33.0344 28.463 33.1576C28.4119 33.2808 28.3372 33.3927 28.2429 33.487C28.1486 33.5813 28.0367 33.6561 27.9135 33.7071C27.7903 33.7581 27.6583 33.7844 27.525 33.7844C27.3917 33.7844 27.2596 33.7581 27.1365 33.7071C27.0133 33.6561 26.9014 33.5813 26.8071 33.487L16.6601 23.3401C16.5658 23.2458 16.491 23.1339 16.4399 23.0107C16.3888 22.8875 16.3625 22.7555 16.3625 22.6222C16.3625 22.4888 16.3888 22.3568 16.4399 22.2336C16.491 22.1104 16.5658 21.9985 16.6601 21.9043L26.8071 11.7573C26.9975 11.5669 27.2557 11.46 27.525 11.46C27.7942 11.46 28.0525 11.5669 28.2429 11.7573C28.4333 11.9477 28.5402 12.206 28.5402 12.4752C28.5402 12.7445 28.4333 13.0027 28.2429 13.1931L18.8126 22.6222L28.2429 32.0512Z" fill="white"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="45"
+              height="45"
+              viewBox="0 0 45 45"
+              fill="none"
+              onclick="ChangePageLeft()"
+            >
+              <rect
+                width="44.6465"
+                height="44.6465"
+                rx="5"
+                transform="matrix(-1 0 0 1 44.7754 0.298828)"
+                fill="white"
+                fill-opacity="0.1"
+              />
+              <path
+                d="M28.2429 32.0512C28.3372 32.1455 28.4119 32.2574 28.463 32.3806C28.514 32.5038 28.5402 32.6358 28.5402 32.7691C28.5402 32.9024 28.514 33.0344 28.463 33.1576C28.4119 33.2808 28.3372 33.3927 28.2429 33.487C28.1486 33.5813 28.0367 33.6561 27.9135 33.7071C27.7903 33.7581 27.6583 33.7844 27.525 33.7844C27.3917 33.7844 27.2596 33.7581 27.1365 33.7071C27.0133 33.6561 26.9014 33.5813 26.8071 33.487L16.6601 23.3401C16.5658 23.2458 16.491 23.1339 16.4399 23.0107C16.3888 22.8875 16.3625 22.7555 16.3625 22.6222C16.3625 22.4888 16.3888 22.3568 16.4399 22.2336C16.491 22.1104 16.5658 21.9985 16.6601 21.9043L26.8071 11.7573C26.9975 11.5669 27.2557 11.46 27.525 11.46C27.7942 11.46 28.0525 11.5669 28.2429 11.7573C28.4333 11.9477 28.5402 12.206 28.5402 12.4752C28.5402 12.7445 28.4333 13.0027 28.2429 13.1931L18.8126 22.6222L28.2429 32.0512Z"
+                fill="white"
+              />
             </svg>
             <div class="group-pages" id="pagesGroup">
               <button class="pageNumber activePage">1</button>
@@ -182,9 +209,27 @@
               <button class="pageNumber unactivePage">6</button>
               <button class="pageNumber unactivePage">7</button>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="46" height="45" viewBox="0 0 46 45" fill="none" onclick="ChangePageRight()">
-              <rect x="0.956604" y="0.298828" width="44.6465" height="44.6465" rx="5" fill="white" fill-opacity="0.1"/>
-              <path d="M17.4891 32.0512C17.3948 32.1455 17.32 32.2574 17.269 32.3806C17.218 32.5038 17.1917 32.6358 17.1917 32.7691C17.1917 32.9024 17.218 33.0344 17.269 33.1576C17.32 33.2808 17.3948 33.3927 17.4891 33.487C17.5833 33.5813 17.6953 33.6561 17.8184 33.7071C17.9416 33.7581 18.0736 33.7844 18.207 33.7844C18.3403 33.7844 18.4723 33.7581 18.5955 33.7071C18.7187 33.6561 18.8306 33.5813 18.9249 33.487L29.0718 23.3401C29.1661 23.2458 29.241 23.1339 29.292 23.0107C29.3431 22.8875 29.3694 22.7555 29.3694 22.6222C29.3694 22.4888 29.3431 22.3568 29.292 22.2336C29.241 22.1104 29.1661 21.9985 29.0718 21.9043L18.9249 11.7573C18.7345 11.5669 18.4762 11.46 18.207 11.46C17.9377 11.46 17.6795 11.5669 17.4891 11.7573C17.2987 11.9477 17.1917 12.206 17.1917 12.4752C17.1917 12.7445 17.2987 13.0027 17.4891 13.1931L26.9194 22.6222L17.4891 32.0512Z" fill="white"/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="46"
+              height="45"
+              viewBox="0 0 46 45"
+              fill="none"
+              onclick="ChangePageRight()"
+            >
+              <rect
+                x="0.956604"
+                y="0.298828"
+                width="44.6465"
+                height="44.6465"
+                rx="5"
+                fill="white"
+                fill-opacity="0.1"
+              />
+              <path
+                d="M17.4891 32.0512C17.3948 32.1455 17.32 32.2574 17.269 32.3806C17.218 32.5038 17.1917 32.6358 17.1917 32.7691C17.1917 32.9024 17.218 33.0344 17.269 33.1576C17.32 33.2808 17.3948 33.3927 17.4891 33.487C17.5833 33.5813 17.6953 33.6561 17.8184 33.7071C17.9416 33.7581 18.0736 33.7844 18.207 33.7844C18.3403 33.7844 18.4723 33.7581 18.5955 33.7071C18.7187 33.6561 18.8306 33.5813 18.9249 33.487L29.0718 23.3401C29.1661 23.2458 29.241 23.1339 29.292 23.0107C29.3431 22.8875 29.3694 22.7555 29.3694 22.6222C29.3694 22.4888 29.3431 22.3568 29.292 22.2336C29.241 22.1104 29.1661 21.9985 29.0718 21.9043L18.9249 11.7573C18.7345 11.5669 18.4762 11.46 18.207 11.46C17.9377 11.46 17.6795 11.5669 17.4891 11.7573C17.2987 11.9477 17.1917 12.206 17.1917 12.4752C17.1917 12.7445 17.2987 13.0027 17.4891 13.1931L26.9194 22.6222L17.4891 32.0512Z"
+                fill="white"
+              />
             </svg>
           </div>
         </div>
@@ -388,7 +433,6 @@
     <script src="/static/js/tariffs.js"></script>
     <script src="/static/js/modals.js"></script>
     <script src="/static/js/header.js"></script>
-    <script src="/static/js/cardTariff.js"></script>
     <script src="/static/js/questions.js"></script>
   </body>
 </html>
