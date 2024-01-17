@@ -227,6 +227,10 @@ async def send_email_handler(request):
     else:
         return json({'status': 'error', 'message': 'Недостающие данные'})
 
+async def handle_500(request, exception):
+    return redirect('https://on-wifi.ru/')
+
+app.error_handler.add(Exception, handle_500)
 
 if __name__ == "__main__":
     app.run(host="localhost", port=3000, debug=False)
