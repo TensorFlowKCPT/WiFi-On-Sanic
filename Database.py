@@ -9,7 +9,7 @@ class Database:
         providers = []
         try:
             for i in resp['result']['items']:
-                providers.append(i['name'])
+                providers.append(str(i['name']).lower())
         except KeyError:
             pass
         return providers
@@ -44,11 +44,14 @@ class Database:
             return output
     def GetInfoByAddress(address:str):
         providers = Database.GetProvidersByAdress(address)
+        print(providers)
         allProviders = Database.GetAllProvidersFromDB()
+        
         providers = str(providers)
         validproviders = []
         for i in allProviders:
-            if i["Name"] in providers:
+            print(str(i["Name"]).lower() in providers, str(i["Name"]).lower())
+            if str(i["Name"]).lower() in str(providers):
                 validproviders.append(i)
         
         tariffs = []
