@@ -32,6 +32,7 @@ async def index(request):
     data['RandTariffs'] = []
     for i in range(10):
         data['RandTariffs'].append(Database.GetRandomTariffByCity(data['City']['id']))
+    data['host'] = host
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
     return html(rendered_html)
@@ -117,7 +118,7 @@ async def tariffs(request):
     provider = request.args.get("provider")
     if provider:
         data['provider'] = provider
-    
+    data['host'] = host
     data['Cities'] = Database.GetAllCities()
     
     rendered_html = template.render(data = data)
