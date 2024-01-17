@@ -119,6 +119,7 @@ async def tariffs(request):
     if provider:
         data['provider'] = provider
     data['host'] = host
+    print(host)
     data['Cities'] = Database.GetAllCities()
     
     rendered_html = template.render(data = data)
