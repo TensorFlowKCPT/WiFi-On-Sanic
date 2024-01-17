@@ -29,9 +29,12 @@ async def index(request):
     subdomain = host.split('.')[0].removeprefix('https://')
     if host!=local_link and subdomain!="on-wifi" and subdomain!="www"  :
         data['City'] = Database.GetCityBySubdomain(subdomain)
+    data['Providers'] = Database.GetInfoByCity(data['City'])['providers']
     data['RandTariffs'] = []
     for i in range(10):
         data['RandTariffs'].append(Database.GetRandomTariffByCity(data['City']['id']))
+    data['host'] = host
+    
     template = env.get_template('main.html')
     rendered_html = template.render(data=data)
     return html(rendered_html)
@@ -52,10 +55,12 @@ async def get_tariffs(request):
     host = request.headers.get('host')
     data = {}
     subdomain = host.split('.')[0].removeprefix('https://')
-    if host!=local_link and subdomain!="on-wifi"and subdomain!="www":
-        city  = Database.GetCityBySubdomain(subdomain)
+    if host!=local_link and subdomain!="on-wifi" and subdomain!="www":
+        city = Database.GetCityBySubdomain(subdomain)
         data['City']= city
-    
+    else:
+        city = {'Name':'Москва', 'NameEng': 'moskva','id':416}
+        data['City']= city
     if adr:
         try: 
             data = cacheAdr[adr].copy()
@@ -66,22 +71,22 @@ async def get_tariffs(request):
         try:
             data = cacheCities[adr].copy()
         except KeyError:
-            data = Database.GetInfoByCityName(city)
-            cacheCities[city] = data.copy()
+            data = Database.GetInfoByCity(city)
+            cacheCities[city['Name']] = data.copy()
     viabletariffs = []
     for tariff in data['tariffs'].copy():
-        if ((tariff['Provider']['Name'] in activeProviders or len(activeProviders) == 0) 
-        and MaxTP >= tariff['Price'] and MinTP <= tariff['Price'] and(MaxTIS >= int(tariff['Options']['Internet']['InternetSpeed']) and MinTIS <= int(tariff['Options']['Internet']['InternetSpeed']))):
-            if (len(activeOptions) == 0):
-                viabletariffs.append(tariff)
-            else:
-                if 'mobile' in activeOptions and not ("Mobile" in tariff['Options'].keys()):
-                    continue
-                if 'internetspeed' in activeOptions and not ("Internet" in tariff['Options'].keys()):
-                    continue
-                if 'channels' in activeOptions and not ("TV" in tariff['Options'].keys()):
-                    continue
-                viabletariffs.append(tariff)
+        if 'Internet' in tariff['Options'].keys():
+            if ((tariff['Provider']['Name'] in activeProviders or len(activeProviders) == 0) and MaxTP >= tariff['Price'] and MinTP <= tariff['Price'] and(MaxTIS >= int(tariff['Options']['Internet']['InternetSpeed'].removeprefix('до ')) and MinTIS <= int(tariff['Options']['Internet']['InternetSpeed'].removeprefix('до ')))):
+                if (len(activeOptions) == 0):
+                    viabletariffs.append(tariff)
+                else:
+                    if 'mobile' in activeOptions and not ("Mobile" in tariff['Options'].keys()):
+                        continue
+                    if 'internetspeed' in activeOptions and not ("Internet" in tariff['Options'].keys()):
+                        continue
+                    if 'channels' in activeOptions and not ("TV" in tariff['Options'].keys()):
+                        continue
+                    viabletariffs.append(tariff)
     data['tariffs'] = viabletariffs
     
     data['pages'] = int(len(data["tariffs"])/6)
@@ -99,21 +104,26 @@ async def tariffs(request):
     address = request.args.get("address")
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
+    data = {}
     if host!=local_link and subdomain!="on-wifi"and subdomain!="www":
-        city  = Database.GetCityBySubdomain(subdomain)
+        city = Database.GetCityBySubdomain(subdomain)
         data['City']= city
-        
+    else:
+        city = {'Name':'Москва', 'NameEng': 'moskva','id':416}
+        data['City']= city
     template = env.get_template('tariffs.html')
     data = {}
     if address:
         data = Database.GetInfoByAddress(address)
     else:
-        data = Database.GetInfoByCityName(city)
+        data = Database.GetInfoByCity(city)
     provider = request.args.get("provider")
     if provider:
         data['provider'] = provider
-    data['City'] = {'Name':'Москва', 'NameEng': 'moskva','id':416}
-    
+    options = request.args.get("options")
+    if options:
+        data['options'] = options.split(' ')
+    data['host'] = host
     data['Cities'] = Database.GetAllCities()
     
     rendered_html = template.render(data = data)
@@ -217,6 +227,10 @@ async def send_email_handler(request):
     else:
         return json({'status': 'error', 'message': 'Недостающие данные'})
 
+async def handle_500(request, exception):
+    return redirect('https://on-wifi.ru/')
+
+app.error_handler.add(Exception, handle_500)
 
 if __name__ == "__main__":
-    app.run(host="localhost", port=3000, debug=True)
+    app.run(host="localhost", port=3000, debug=False)

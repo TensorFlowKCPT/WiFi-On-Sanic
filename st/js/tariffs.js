@@ -1,3 +1,5 @@
+var currentPage = 1;
+var currentPageCount = 0;
 $(function () {
   // СОЗДАНИЕ И ОБРАБОТКА ПЕРВОГО СЛАЙДЕРА ЧЕРЕЗ JQUERY
   $("#inputRange1").slider({
@@ -68,7 +70,6 @@ $(function () {
 const tariffsContainer = document.getElementById("tariffs");
 
 function CheckTariffs(page) {
-  console.log(page);
   const pagesGroup = document.getElementById("pagesGroup");
   const ProviderFilters = document.querySelectorAll(".provider-checkbox");
 
@@ -105,7 +106,7 @@ function CheckTariffs(page) {
     page: pageNum,
   };
   var currentUrl = window.location.href;
-  if (currentUrl.includes("=")) {
+  if (currentUrl.includes("address")) {
     data["adr"] = decodeURIComponent(currentUrl.split("=")[1]);
   }
 
@@ -118,8 +119,12 @@ function CheckTariffs(page) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       tariffsContainer.innerHTML = "";
+      if (data["tariffs"].length != 0) {
+        document.getElementById("noTariff").style.display = "none";
+      } else {
+        document.getElementById("noTariff").style.display = "block";
+      }
       data["tariffs"].forEach((tariff) => {
         var card = document.createElement("div");
         card.classList.add("card");
@@ -181,24 +186,7 @@ function CheckTariffs(page) {
 
           paramsTariff.appendChild(paramTariffInternet);
         }
-        //Цена роутера
-        if (
-          tariff["Options"]["Internet"] &&
-          tariff["Options"]["Internet"]["Router"]
-        ) {
-          var paramTariffRouter = document.createElement("div");
-          paramTariffRouter.classList.add("paramTariff");
-          var imgRouter = document.createElement("img");
-          imgRouter.src = "/static/img/routerTariff.svg";
-          imgRouter.alt = "";
-          paramTariffRouter.appendChild(imgRouter);
-
-          var spanRouter = document.createElement("span");
-          spanRouter.innerHTML =
-            "Роутер:<br/>" + tariff["Options"]["Internet"]["Router"];
-          paramTariffRouter.appendChild(spanRouter);
-          paramsTariff.appendChild(paramTariffRouter);
-        }
+        
         //Количество каналов
         if (tariff["Options"]["TV"]) {
           var paramTariffTV = document.createElement("div");
@@ -215,21 +203,7 @@ function CheckTariffs(page) {
 
           paramsTariff.appendChild(paramTariffTV);
         }
-        //Тв приставка
-        if (tariff["Options"]["TV"] && tariff["Options"]["TV"]["TvBox"]) {
-          var paramTariffTVBox = document.createElement("div");
-          paramTariffTVBox.classList.add("paramTariff");
-          var imgTvBox = document.createElement("img");
-          imgTvBox.src = "/static/img/routerTariff.svg";
-          imgTvBox.alt = "";
-          paramTariffTVBox.appendChild(imgTvBox);
-
-          var spanTvBox = document.createElement("span");
-          spanTvBox.innerHTML =
-            "Тв приставка:<br/>" + tariff["Options"]["TV"]["TvBox"];
-          paramTariffTVBox.appendChild(spanTvBox);
-          paramsTariff.appendChild(paramTariffTVBox);
-        }
+        
         //Мобильный интернет
         if (tariff["Options"]["Mobile"]) {
           var paramTariffMobile = document.createElement("div");
@@ -256,7 +230,39 @@ function CheckTariffs(page) {
 
           paramsTariff.appendChild(paramTariffMobile);
         }
+        //Цена роутера
+        if (
+          tariff["Options"]["Internet"] &&
+          tariff["Options"]["Internet"]["Router"]
+        ) {
+          var paramTariffRouter = document.createElement("div");
+          paramTariffRouter.classList.add("paramTariff");
+          var imgRouter = document.createElement("img");
+          imgRouter.src = "/static/img/routerTariff.svg";
+          imgRouter.alt = "";
+          paramTariffRouter.appendChild(imgRouter);
 
+          var spanRouter = document.createElement("span");
+          spanRouter.innerHTML =
+            "Роутер:<br/>" + tariff["Options"]["Internet"]["Router"];
+          paramTariffRouter.appendChild(spanRouter);
+          paramsTariff.appendChild(paramTariffRouter);
+        }
+        //Тв приставка
+        if (tariff["Options"]["TV"] && tariff["Options"]["TV"]["TvBox"]) {
+          var paramTariffTVBox = document.createElement("div");
+          paramTariffTVBox.classList.add("paramTariff");
+          var imgTvBox = document.createElement("img");
+          imgTvBox.src = "/static/img/routerTariff.svg";
+          imgTvBox.alt = "";
+          paramTariffTVBox.appendChild(imgTvBox);
+
+          var spanTvBox = document.createElement("span");
+          spanTvBox.innerHTML =
+            "Тв приставка:<br/>" + tariff["Options"]["TV"]["TvBox"];
+          paramTariffTVBox.appendChild(spanTvBox);
+          paramsTariff.appendChild(paramTariffTVBox);
+        }
         bodycard.appendChild(nameAndImg);
         bodycard.appendChild(paramsTariff);
 
@@ -299,14 +305,23 @@ function CheckTariffs(page) {
 
         card.appendChild(footerCard);
         var button = document.createElement("button");
+        const feedback = document.querySelector("#feedback");
+        button.onclick= function () {
+          window.scrollTo({
+            top: feedback.offsetTop,
+            behavior: "smooth",
+          });
+        };
         button.innerText = "Подключить";
         card.appendChild(button);
         tariffsContainer.appendChild(card);
       });
 
       pagesGroup.innerHTML = "";
+      currentPage = pageNum;
+      currentPageCount = data["pages"];
       for (var i = 1; i <= data["pages"]; i++) {
-        pagebtn = document.createElement("div");
+        pagebtn = document.createElement("button");
         pagebtn.classList.add("pageNumber");
         pagebtn.innerHTML = i;
         pagebtn.id = i;
@@ -314,7 +329,9 @@ function CheckTariffs(page) {
           CheckTariffs(this.id);
         };
         if (i === pageNum) {
-          pagebtn.style.background = "#0500ff";
+          pagebtn.classList.add("activePage");
+        } else {
+          pagebtn.classList.add("unactivePage");
         }
         pagesGroup.appendChild(pagebtn);
       }
@@ -353,6 +370,16 @@ function CheckTariffs(page) {
       }
     }
   });
+}
+function ChangePageRight() {
+  if (currentPage < currentPageCount) {
+    CheckTariffs(currentPage + 1);
+  }
+}
+function ChangePageLeft() {
+  if (currentPage > 0) {
+    CheckTariffs(currentPage - 1);
+  }
 }
 // ОТКРЫТИЕ И ЗАКРЫТИЕ ДЛЯ ФИЛЬТРОВ
 const filtersHeader = document.querySelector(".filters-header");

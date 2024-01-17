@@ -9,11 +9,12 @@ class Database:
         providers = []
         try:
             for i in resp['result']['items']:
-                providers.append(i['name'])
+                providers.append(str(i['name']).lower())
         except KeyError:
             pass
         return providers
-    
+        
+            
     def GetAllProvidersFromDB():
         with sqlite3.connect("sqlite.sqlite3") as conn:
             cursor = conn.execute("SELECT * FROM Providers")
@@ -44,10 +45,11 @@ class Database:
     def GetInfoByAddress(address:str):
         providers = Database.GetProvidersByAdress(address)
         allProviders = Database.GetAllProvidersFromDB()
+        
         providers = str(providers)
         validproviders = []
         for i in allProviders:
-            if i["Name"] in providers:
+            if str(i["Name"]).lower() in str(providers):
                 validproviders.append(i)
         
         tariffs = []
@@ -73,13 +75,19 @@ class Database:
                     if row[4] < mintariffcost:
                         mintariffcost = row[4]
                     options = json.loads(row[6])
+                    if "TV" in options.keys() and 'Channels' in options['TV'].keys():
+                        try: 
+                            int(options['TV']['Channels'])
+                            options['TV']['Channels'] = options['TV']['Channels']+" каналов"
+                        except:
+                            pass
                     try:
                         if options['Internet']['InternetSpeed']:
-                            if int(options['Internet']['InternetSpeed'])>maxtariffinternetspeed:
-                                maxtariffinternetspeed = int(options['Internet']['InternetSpeed'])
-                            if int(options['Internet']['InternetSpeed'])<mintariffinternetspeed:
-                                mintariffinternetspeed = int(options['Internet']['InternetSpeed'])
-                    except KeyError:
+                                if int(options['Internet']['InternetSpeed'].removeprefix('до '))>maxtariffinternetspeed:
+                                    maxtariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                                if int(options['Internet']['InternetSpeed'].removeprefix('до '))<mintariffinternetspeed:
+                                    mintariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                    except:
                         pass
                     tariffs.append({'id':row[0],
                                     'Name':row[1],
@@ -106,31 +114,32 @@ class Database:
             rows = cursor.fetchall()
             output = []
             if rows != None:
-                lastLetter = ''
-                for row in sorted(rows):
-                    if row[0][0] == lastLetter:
-                        output.append([row[0], row[1]])
-                    else:
-                        output.append(row[0][0])
-                        output.append([row[0], row[1]])
-                    lastLetter = row[0][0]
-                return output
+                for city in rows:
+                    output.append([city[0],city[1]])
+            output = [output[i:i + 10] for i in range(0, len(output), 10)]
+            return output
     def GetRandomTariffByCity(cityName:str):
         with sqlite3.connect("sqlite.sqlite3") as conn:
             row = conn.execute("SELECT id, Name, NameEng, Description, Price, PriceOld, OptionsJSON, idProvider FROM Tariffs WHERE idCity = ? ORDER BY RANDOM() LIMIT 1",(cityName,)).fetchone()
+            options = json.loads(row[6])
+            if "TV" in options.keys() and 'Channels' in options['TV'].keys():
+                try: 
+                    int(options['TV']['Channels'])
+                    options['TV']['Channels'] = options['TV']['Channels']+" каналов"
+                except:
+                    pass
             return {'id':row[0],
                                     'Name':row[1],
                                     'NameEng':row[2],
                                     'Description':row[3],
                                     'Price': row[4],
                                     'PriceOld': row[5],
-                                    'Options': json.loads(row[6]),
+                                    'Options': options,
                                     'Provider': Database.GetProviderById(row[7])
                     }
-    def GetInfoByCityName(cityName:str):
+    def GetInfoByCity(city:str):
         with sqlite3.connect("sqlite.sqlite3") as conn:
-            cursor = conn.execute("SELECT id FROM Cities WHERE Name = ?", (cityName,))
-            CityId = cursor.fetchone()[0]
+            CityId = city['id']
             cursor = conn.execute("SELECT id, Name, NameEng, Description, Price, PriceOld, OptionsJSON, idProvider FROM Tariffs WHERE idCity = ?", (CityId,))
             rows = cursor.fetchall()
             tariffs = []
@@ -148,13 +157,19 @@ class Database:
                 if row[4] < mintariffcost:
                     mintariffcost = row[4]
                 options = json.loads(row[6])
+                if "TV" in options.keys() and 'Channels' in options['TV'].keys():
+                    try: 
+                        int(options['TV']['Channels'])
+                        options['TV']['Channels'] = options['TV']['Channels']+" каналов"
+                    except:
+                        pass
                 try:
                     if options['Internet']['InternetSpeed']:
-                        if int(options['Internet']['InternetSpeed'][0])>maxtariffinternetspeed:
-                            maxtariffinternetspeed = int(options['Internet']['InternetSpeed'][0])
-                        if int(options['Internet']['InternetSpeed'][0])<mintariffinternetspeed:
-                            mintariffinternetspeed = int(options['Internet']['InternetSpeed'][0])
-                except KeyError:
+                            if int(options['Internet']['InternetSpeed'].removeprefix('до '))>maxtariffinternetspeed:
+                                maxtariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                            if int(options['Internet']['InternetSpeed'].removeprefix('до '))<mintariffinternetspeed:
+                                mintariffinternetspeed = int(options['Internet']['InternetSpeed'])
+                except:
                     pass
                 tariffs.append({'id':row[0],
                                 'Name':row[1],
