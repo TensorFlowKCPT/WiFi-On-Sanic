@@ -81,15 +81,12 @@ async def get_tariffs(request):
                 if (len(activeOptions) == 0):
                     viabletariffs.append(tariff)
                 else:
-                    if 'mobile' in activeOptions and not ("Mobile" in tariff['Options'].keys()):
-                        continue
-                    if 'internetspeed' in activeOptions and not ("Internet" in tariff['Options'].keys()):
-                        continue
-                    if 'channels' in activeOptions and not ("TV" in tariff['Options'].keys()):
-                        continue
-                    viabletariffs.append(tariff)
-    data['tariffs'] = viabletariffs
-    
+                    if "Internet" in activeOptions and "Internet" in tariff['Options'].keys() or not ("Internet" in activeOptions) and not ("Internet" in tariff['Options'].keys()):
+                        if "TV" in activeOptions and "TV" in tariff['Options'].keys() or not ("TV" in activeOptions) and not ("TV" in tariff['Options'].keys()):
+                            if "Mobile" in activeOptions and "Mobile" in tariff['Options'].keys() or not ("Mobile" in activeOptions) and not ("Mobile" in tariff['Options'].keys()):
+                                viabletariffs.append(tariff)
+                    
+    data['tariffs'] = viabletariffs.copy()
     data['pages'] = int(len(data["tariffs"])/6)
     if page:
         data['currentpage'] = page
