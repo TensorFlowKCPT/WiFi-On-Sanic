@@ -69,6 +69,8 @@ $(function () {
 });
 const tariffsContainer = document.getElementById("tariffs");
 
+document.addEventListener("DOMContentLoaded", CheckTariffs(1))
+
 function CheckTariffs(page) {
   const pagesGroup = document.getElementById("pagesGroup");
   const ProviderFilters = document.querySelectorAll(".provider-checkbox");
