@@ -46,12 +46,26 @@ async def index(request):
 async def get_tariffs(request):
     
     MinTP = request.json.get('MinTP')
+    if not MinTP:
+        MinTP = 0
     MaxTP=request.json.get('MaxTP')
+    if not MaxTP:
+        MaxTP = 9999
     MinTIS=request.json.get('MinTIS')
+    if not MinTIS:
+        MinTIS = 0
     MaxTIS=request.json.get('MaxTIS')
+    if not MaxTIS:
+        MaxTIS = 9999
     activeProviders=request.json.get('activeProviders')
+    if not activeProviders:
+        activeProviders = []
     activeOptions=request.json.get('activeOptions')
+    if not activeOptions:
+        activeOptions = []
     page=int(request.json.get('page'))
+    if not page:
+        page = 1
     adr= request.json.get('adr')
     host = request.headers.get('host')
     data = {}
