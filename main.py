@@ -69,7 +69,7 @@ async def get_tariffs(request):
     adr= request.json.get('adr')
     cityadd = request.json.get('cityadd')
     if cityadd:
-        cityadd = cityadd.removeprefix('г ')
+        cityadd = cityadd.split(' ')[-1]
     host = request.headers.get('host')
     data = {}
     subdomain = host.split('.')[0].removeprefix('https://')
