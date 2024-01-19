@@ -197,6 +197,18 @@ class Database:
             for i in rows:
                 output.append(i[0])
         return output
+    def GetCityByName(Name):
+        with sqlite3.connect("sqlite.sqlite3") as conn:
+            cursor = conn.execute("SELECT * FROM Cities Where Name = ?",(Name,))
+            row = cursor.fetchone()
+            if row:
+                output = {
+                    'id' : row[0],
+                    'Name' : row[1],
+                    'NameEng': row[2]
+                }
+            else: output = None
+        return output
     def GetCityBySubdomain(subdomain):
         with sqlite3.connect("sqlite.sqlite3") as conn:
             cursor = conn.execute("SELECT * FROM Cities Where NameEng = ?",(subdomain,))

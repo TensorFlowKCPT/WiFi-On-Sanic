@@ -67,6 +67,9 @@ async def get_tariffs(request):
     if not page:
         page = 1
     adr= request.json.get('adr')
+    cityadd = request.json.get('cityadd')
+    if cityadd:
+        cityadd = cityadd.removeprefix('г ')
     host = request.headers.get('host')
     data = {}
     subdomain = host.split('.')[0].removeprefix('https://')
@@ -82,6 +85,12 @@ async def get_tariffs(request):
         except KeyError:
             data = Database.GetInfoByAddress(adr)
             cacheAdr[adr] = data.copy()
+    elif cityadd:
+        try:
+            data = cacheCities[cityadd].copy()
+        except KeyError:
+            data = Database.GetInfoByCity(Database.GetCityByName(cityadd))
+            cacheCities[cityadd] = data.copy()
     elif city:
         try:
             data = cacheCities[adr].copy()

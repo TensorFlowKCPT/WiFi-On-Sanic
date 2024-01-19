@@ -111,6 +111,9 @@ function CheckTariffs(page) {
   if (currentUrl.includes("address")) {
     data["adr"] = decodeURIComponent(currentUrl.split("=")[1]);
   }
+  else if(currentUrl.includes("city")) {
+    data["cityadd"] = decodeURIComponent(currentUrl.split("=")[1]);
+  }
 
   fetch("/get_tariffs", {
     method: "POST",

@@ -16,14 +16,14 @@ var options = {
   startDelay: 500,
   loop: true,
 };
-
+var clicker = 0
 var typed = new Typed("#typed-output", options);
 // КОД ДЛЯ ПОИСКОВИКА
 const SearchBox = document.getElementById("SearchBox");
 const url =
   "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
 const token = "37246a81de5e3317c98fb92126a5e5bf19aae2b2";
-function CheckAddress() {
+function CheckAddress(clicked) {
   var query = document.querySelector(".custom-search input").value;
   const suggestionsContainer = document.querySelector(".custom-listbox");
   if (query == "") {
@@ -51,6 +51,18 @@ function CheckAddress() {
       ) {
         window.location.href = "/tariffs?address=" + query;
       }
+      else if(clicked && (suggestions[0].data.fias_level == 4||suggestions[0].value.includes('г ')&&!suggestions[0].value.includes(',')) && query == suggestions[0].value){
+        if(clicker===1){
+          window.location.href = "/tariffs?city=" + query;
+        }
+        else{
+          clicker++
+        }
+      }
+      else{
+        clicker = 0
+      }
+      
       setSuggestions(suggestions.map((suggestion) => suggestion.value));
       animationElemetsSearch.restart();
     })
@@ -70,7 +82,7 @@ function setSuggestions(suggestions) {
 }
 function SelectSuggestion(text) {
   SearchBox.value = text;
-  CheckAddress();
+  CheckAddress(true);
 }
 document
   .querySelector(".custom-search input")
