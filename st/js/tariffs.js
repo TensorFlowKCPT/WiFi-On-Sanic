@@ -296,12 +296,12 @@ function CheckTariffs(page) {
         twoPrice.classList.add("twoPrice");
 
         var spanPrice = document.createElement("span");
-        spanPrice.innerText = tariff["Price"];
+        spanPrice.innerText = tariff["Price"] + " руб";
         twoPrice.appendChild(spanPrice);
 
         if (tariff["PriceOld"]) {
           var spanOldPrice = document.createElement("span");
-          spanOldPrice.innerText = tariff["PriceOld"];
+          spanOldPrice.innerText = tariff["PriceOld"] + " руб";
           twoPrice.appendChild(spanOldPrice);
         }
 
