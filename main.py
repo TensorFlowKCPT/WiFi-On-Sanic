@@ -91,9 +91,9 @@ async def get_tariffs(request):
         except KeyError:
             data = Database.GetInfoByCity(Database.GetCityByName(cityadd))
             cacheCities[cityadd] = data.copy()
-    elif city:
+    else:
         try:
-            data = cacheCities[adr].copy()
+            data = cacheCities[city['Name']].copy()
         except KeyError:
             data = Database.GetInfoByCity(city)
             cacheCities[city['Name']] = data.copy()
@@ -125,6 +125,9 @@ async def tariffs(request):
     address = request.args.get("address")
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
+    cityadd = request.args.get('city')
+    if cityadd:
+        cityadd = cityadd.split(' ')[-1]
     data = {}
     if host!=local_link and subdomain!="on-wifi"and subdomain!="www":
         city = Database.GetCityBySubdomain(subdomain)
@@ -135,9 +138,23 @@ async def tariffs(request):
     template = env.get_template('tariffs.html')
     data = {}
     if address:
-        data = Database.GetInfoByAddress(address)
+        try: 
+            data = cacheAdr[address].copy()
+        except KeyError:
+            data = Database.GetInfoByAddress(address)
+            cacheAdr[address] = data.copy()
+    elif cityadd:
+        try:
+            data = cacheCities[cityadd].copy()
+        except KeyError:
+            data = Database.GetInfoByCity(Database.GetCityByName(cityadd))
+            cacheCities[cityadd] = data.copy()
     else:
-        data = Database.GetInfoByCity(city)
+        try:
+            data = cacheCities[city['Name']].copy()
+        except KeyError:
+            data = Database.GetInfoByCity(city)
+            cacheCities[city['Name']] = data.copy()
     provider = request.args.get("provider")
     if provider:
         data['provider'] = provider
@@ -276,7 +293,7 @@ async def send_email_handler(request):
 async def handle_500(request, exception):
     return redirect('https://on-wifi.ru/')
 
-app.error_handler.add(Exception, handle_500)
+#app.error_handler.add(Exception, handle_500)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000, debug=False)
