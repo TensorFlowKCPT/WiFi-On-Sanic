@@ -4,6 +4,11 @@ body {
   box-shadow: 50px 50px 100px 0px rgba(0, 0, 0, 0.25);
   margin: 0;
 }
+input,
+textarea,
+select {
+  text-size-adjust: 100%;
+}
 .blue-blur div {
   position: absolute;
   height: 250px;
@@ -176,6 +181,12 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+input[type="number"] {
+  /* Firefox */
+  -moz-appearance: textfield;
+  /* Chrome, Safari, Edge */
+  appearance: textfield;
 }
 .wrapper-filters {
   display: flex;
