@@ -5,14 +5,9 @@
   padding: 30px;
   gap: 30px;
 }
-.footer .logo {
-  color: #0500ff;
-  text-align: left;
-  font-family: Tektur;
-  font-size: 56px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.footer .logo img {
+  height: 44px;
+  width: 200px;
 }
 .numberAndMedia {
   display: flex;
@@ -23,7 +18,7 @@
 
   color: #fff;
   text-align: right;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -41,6 +36,11 @@
 @media screen and (max-width: 600px) {
   .footer {
     padding: 20px 10px;
+    gap: 5px;
+  }
+  .footer .logo img {
+    height: 40px;
+    width: 170px;
   }
 }
 @media screen and (max-width: 370px) {

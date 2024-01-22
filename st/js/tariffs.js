@@ -69,7 +69,7 @@ $(function () {
 });
 const tariffsContainer = document.getElementById("tariffs");
 
-document.addEventListener("DOMContentLoaded", CheckTariffs(1))
+document.addEventListener("DOMContentLoaded", CheckTariffs(1));
 
 function CheckTariffs(page) {
   const pagesGroup = document.getElementById("pagesGroup");
@@ -110,8 +110,7 @@ function CheckTariffs(page) {
   var currentUrl = window.location.href;
   if (currentUrl.includes("address")) {
     data["adr"] = decodeURIComponent(currentUrl.split("=")[1]);
-  }
-  else if(currentUrl.includes("city")) {
+  } else if (currentUrl.includes("city")) {
     data["cityadd"] = decodeURIComponent(currentUrl.split("=")[1]);
   }
 
@@ -191,7 +190,7 @@ function CheckTariffs(page) {
 
           paramsTariff.appendChild(paramTariffInternet);
         }
-        
+
         //Количество каналов
         if (tariff["Options"]["TV"]) {
           var paramTariffTV = document.createElement("div");
@@ -208,7 +207,7 @@ function CheckTariffs(page) {
 
           paramsTariff.appendChild(paramTariffTV);
         }
-        
+
         //Мобильный интернет
         if (tariff["Options"]["Mobile"]) {
           var paramTariffMobile = document.createElement("div");
@@ -283,7 +282,7 @@ function CheckTariffs(page) {
         textAndImg.classList.add("textAndImg");
 
         var spanComparingTo = document.createElement("span");
-        spanComparingTo.innerText = "Comparing to";
+        spanComparingTo.innerText = "Цена";
         textAndImg.appendChild(spanComparingTo);
 
         var imgPriceTariff = document.createElement("img");
@@ -311,7 +310,7 @@ function CheckTariffs(page) {
         card.appendChild(footerCard);
         var button = document.createElement("button");
         const feedback = document.querySelector("#feedback");
-        button.onclick= function () {
+        button.onclick = function () {
           window.scrollTo({
             top: feedback.offsetTop,
             behavior: "smooth",
@@ -328,9 +327,9 @@ function CheckTariffs(page) {
       for (var i = 1; i <= data["pages"]; i++) {
         pagebtn = document.createElement("button");
         pagebtn.classList.add("pageNumber");
-        PgNum = document.createElement("span")
-        PgNum.innerHTML = i
-        pagebtn.appendChild(PgNum)
+        PgNum = document.createElement("span");
+        PgNum.innerHTML = i;
+        pagebtn.appendChild(PgNum);
         pagebtn.id = i;
         pagebtn.onclick = function () {
           CheckTariffs(this.id);

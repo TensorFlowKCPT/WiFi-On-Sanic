@@ -5,26 +5,26 @@
   gap: 30px;
   padding: 35px 30px;
 }
-
-.header .logo {
-  color: #0500ff;
-  white-space: nowrap;
-
-  font-family: Tektur;
-  font-size: 46px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.header span {
+  background-color: #0500ff;
+  border-radius: 20px;
+  padding: 5px;
+}
+.header .logo img {
+  height: 44px;
+  width: 190px;
 }
 
 .header div {
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
   gap: 30px;
   flex-wrap: wrap;
   cursor: pointer;
   color: #fff;
   text-align: center;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 17px;
   font-style: normal;
   font-weight: 700;
@@ -42,8 +42,16 @@
 @media screen and (max-width: 600px) {
   .header {
     padding: 20px 10px;
+    gap: 5px;
+  }
+  .header .logo img {
+    height: 38px;
+    width: 160px;
   }
   .header div {
     gap: 10px;
+  }
+  .header div span {
+    font-size: 14px;
   }
 }

@@ -34,7 +34,7 @@
 .header-card span {
   color: #fff;
 
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
@@ -53,7 +53,7 @@
 }
 .nameAndImg span {
   color: #fff;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 17px;
   font-style: normal;
   font-weight: 700;
@@ -71,7 +71,7 @@
   flex-direction: column;
   height: 230px;
   color: #fff;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -100,7 +100,7 @@
 }
 .textAndImg span {
   color: #fff;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -115,7 +115,7 @@
 .twoPrice span:nth-child(1) {
   color: #fff;
   text-align: center;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 28px;
   font-style: normal;
   font-weight: 700;
@@ -125,7 +125,7 @@
   text-decoration: line-through;
   color: #fff;
   text-align: center;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -140,7 +140,7 @@
   background: #0500ff;
   color: #fff;
   text-align: center;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;

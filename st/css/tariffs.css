@@ -87,7 +87,7 @@ body {
   background: rgba(255, 255, 255, 0.05);
   cursor: pointer;
   color: #fff;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -114,7 +114,7 @@ body {
   align-items: center;
   justify-content: space-between;
   color: #fff;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -143,7 +143,7 @@ body {
   border-radius: 5px;
   border: 0.5px solid #fff;
   color: #fff;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -200,7 +200,7 @@ input[type="number"]::-webkit-outer-spin-button {
   cursor: pointer;
   justify-content: space-between;
   color: #fff;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -264,7 +264,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 .checkboxAndText span {
   color: #fff;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -331,7 +331,7 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 1px solid #fff;
   box-sizing: border-box;
   color: #fff;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -352,31 +352,17 @@ input[type="number"]::-webkit-outer-spin-button {
   flex-wrap: wrap;
   text-align: center;
   gap: 7px;
-}
-.noTariff span:nth-child(1) {
   color: #fff;
-  font-family: Tektur;
+  font-family: Inter;
   font-size: 30px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
-.noTariff span:nth-child(2) {
+.noTariff a {
   color: #fff;
-  font-family: Tektur;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
 }
-.noTariff span:nth-child(3) {
-  color: #fff;
-  font-family: Tektur;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
+
 /* Стили для разрешения ширины экрана до 600 пикселей */
 @media screen and (max-width: 683px) {
   .filtersAndTariff {
