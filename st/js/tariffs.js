@@ -166,7 +166,7 @@ function CheckTariffs(page) {
         nameAndImg.appendChild(providerName);
 
         var providerImage = document.createElement("img");
-        providerImage.src = "/static/img/" + tariff["Provider"]["ImageUrl"];
+        providerImage.src = "/static/img/providers/" + tariff["Provider"]["ImageUrl"];
         providerImage.alt = "";
         nameAndImg.appendChild(providerImage);
 
