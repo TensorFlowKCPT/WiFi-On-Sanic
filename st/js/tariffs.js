@@ -166,7 +166,8 @@ function CheckTariffs(page) {
         nameAndImg.appendChild(providerName);
 
         var providerImage = document.createElement("img");
-        providerImage.src = "/static/img/providers/" + tariff["Provider"]["ImageUrl"];
+        providerImage.src =
+          "/static/img/providers/" + tariff["Provider"]["ImageUrl"];
         providerImage.alt = "";
         nameAndImg.appendChild(providerImage);
 
@@ -341,6 +342,13 @@ function CheckTariffs(page) {
         }
         pagesGroup.appendChild(pagebtn);
       }
+      const modal = document.querySelector(".container-modals");
+      const openModal = document.querySelectorAll(".card button");
+      openModal.forEach((md) => {
+        md.addEventListener("click", () => {
+          modal.style.display = "block";
+        });
+      });
     })
     .catch((error) => {
       console.error("Ошибка сети: " + error);

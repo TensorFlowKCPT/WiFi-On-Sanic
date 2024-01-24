@@ -146,7 +146,10 @@
         >
           <div class="providerInCity">
             <div class="wrapper-img">
-              <img src="/static/img/providers/{{provider['ImageUrl']}}" alt="" />
+              <img
+                src="/static/img/providers/{{provider['ImageUrl']}}"
+                alt=""
+              />
             </div>
           </div>
         </a>
@@ -813,49 +816,6 @@
         </div>
       </div>
     </div>
-    <div id="feedback" class="feedback">
-      <div class="typeRooms">
-        <button class="active-typeRoom">Подключение в квартиру</button>
-        <button class="unactive-typeRoom">Подключение в офис</button>
-        <button class="unactive-typeRoom">Подкючение в частный дом</button>
-      </div>
-      <div class="data-feedback">
-        <div class="inputs-data-feedback">
-          <input
-            class="validInput"
-            placeholder="Ваше имя"
-            type="text"
-            id="nameInput"
-          />
-          <input
-            class="validInput"
-            placeholder="Ваш номер телефона"
-            type="text"
-            id="phoneInput"
-          />
-          <textarea
-            class="validInput"
-            placeholder="Адрес подключения"
-            cols="30"
-            rows="10"
-            id="addressTextarea"
-          ></textarea>
-        </div>
-        <div class="checkAndSubmit">
-          <div class="checkAndText">
-            <div class="custom-checkbox">
-              <input type="checkbox" id="myCheckbox" />
-              <label for="myCheckbox"></label>
-            </div>
-            <span>Соглашение на обработку персональных данных</span>
-          </div>
-          <button id="submitButton" disabled>Отправить</button>
-        </div>
-        <span class="lead-ready"
-          >Ваша заявка принята! Ждите обратного звонка.</span
-        >
-      </div>
-    </div>
     <div class="cities">
       <h2>Наши города</h2>
       <div class="cities-wrapper">
@@ -937,7 +897,54 @@
         </div>
       </div>
     </div>
-
+    <div class="container-modals">
+      <div id="feedback" class="feedback">
+        <div class="typeRooms">
+          <button class="active-typeRoom">Подключение в квартиру</button>
+          <button class="unactive-typeRoom">Подключение в офис</button>
+          <button class="unactive-typeRoom">Подкючение в частный дом</button>
+        </div>
+        <div class="data-feedback">
+          <div class="inputs-data-feedback">
+            <input
+              class="validInput"
+              placeholder="Ваше имя"
+              type="text"
+              id="nameInput"
+            />
+            <input
+              class="validInput"
+              placeholder="Ваш номер телефона"
+              type="text"
+              id="phoneInput"
+            />
+            <textarea
+              class="validInput"
+              placeholder="Адрес подключения"
+              cols="30"
+              rows="10"
+              id="addressTextarea"
+            ></textarea>
+          </div>
+          <div class="checkAndSubmit">
+            <div class="checkAndText">
+              <div class="custom-checkbox">
+                <input type="checkbox" id="myCheckbox" />
+                <label for="myCheckbox"></label>
+              </div>
+              <span>Соглашение на обработку персональных данных</span>
+            </div>
+            <div class="buttons">
+              <button id="submitButton" disabled>Отправить</button>
+              <button id="closeModal">Закрыть</button>
+            </div>
+          </div>
+          <span class="lead-ready"
+            >Ваша заявка принята! Ждите обратного звонка.</span
+          >
+        </div>
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

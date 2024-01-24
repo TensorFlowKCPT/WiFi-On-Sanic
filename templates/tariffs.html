@@ -408,49 +408,6 @@
         </div>
       </div>
     </div>
-    <div id="feedback" class="feedback">
-      <div class="typeRooms">
-        <button class="active-typeRoom">Подключение в квартиру</button>
-        <button class="unactive-typeRoom">Подключение в офис</button>
-        <button class="unactive-typeRoom">Подкючение в частный дом</button>
-      </div>
-      <div class="data-feedback">
-        <div class="inputs-data-feedback">
-          <input
-            class="validInput"
-            placeholder="Ваше имя"
-            type="text"
-            id="nameInput"
-          />
-          <input
-            class="validInput"
-            placeholder="Ваш номер телефона"
-            type="text"
-            id="phoneInput"
-          />
-          <textarea
-            class="validInput"
-            placeholder="Адрес подключения"
-            cols="30"
-            rows="10"
-            id="addressTextarea"
-          ></textarea>
-        </div>
-        <div class="checkAndSubmit">
-          <div class="checkAndText">
-            <div class="custom-checkbox">
-              <input type="checkbox" id="myCheckbox" />
-              <label for="myCheckbox"></label>
-            </div>
-            <span>Соглашение на обработку персональных данных</span>
-          </div>
-          <button id="submitButton" disabled>Отправить</button>
-        </div>
-        <span class="lead-ready"
-          >Ваша заявка принята! Ждите обратного звонка.</span
-        >
-      </div>
-    </div>
     <div id="footer" class="footer">
       <a href="https://{{data['host']}}/" class="logo"
         ><img src="/static/img/logo.png" alt=""
@@ -466,6 +423,54 @@
           <a href="https://wa.me/79526896473"
             ><img src="/static/img/whatsapp50px.svg" alt=""
           /></a>
+        </div>
+      </div>
+    </div>
+    <div class="container-modals">
+      <div id="feedback" class="feedback">
+        <div class="typeRooms">
+          <button class="active-typeRoom">Подключение в квартиру</button>
+          <button class="unactive-typeRoom">Подключение в офис</button>
+          <button class="unactive-typeRoom">Подкючение в частный дом</button>
+        </div>
+        <div class="data-feedback">
+          <div class="inputs-data-feedback">
+            <input
+              class="validInput"
+              placeholder="Ваше имя"
+              type="text"
+              id="nameInput"
+            />
+            <input
+              class="validInput"
+              placeholder="Ваш номер телефона"
+              type="text"
+              id="phoneInput"
+            />
+            <textarea
+              class="validInput"
+              placeholder="Адрес подключения"
+              cols="30"
+              rows="10"
+              id="addressTextarea"
+            ></textarea>
+          </div>
+          <div class="checkAndSubmit">
+            <div class="checkAndText">
+              <div class="custom-checkbox">
+                <input type="checkbox" id="myCheckbox" />
+                <label for="myCheckbox"></label>
+              </div>
+              <span>Соглашение на обработку персональных данных</span>
+            </div>
+            <div class="buttons">
+              <button id="submitButton" disabled>Отправить</button>
+              <button id="closeModal">Закрыть</button>
+            </div>
+          </div>
+          <span class="lead-ready"
+            >Ваша заявка принята! Ждите обратного звонка.</span
+          >
         </div>
       </div>
     </div>

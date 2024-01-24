@@ -1,4 +1,3 @@
-
 const animeBody = anime({
   targets: document.querySelector("body"),
   opacity: [0, 1], // Переход от невидимости к видимости
@@ -16,7 +15,7 @@ var options = {
   startDelay: 500,
   loop: true,
 };
-var clicker = 0
+var clicker = 0;
 var typed = new Typed("#typed-output", options);
 // КОД ДЛЯ ПОИСКОВИКА
 const SearchBox = document.getElementById("SearchBox");
@@ -50,19 +49,22 @@ function CheckAddress(clicked) {
         suggestions[0].data.fias_level == 8
       ) {
         window.location.href = "/tariffs?address=" + query;
-      }
-      else if(clicked && (suggestions[0].data.fias_level == 4||suggestions[0].value.includes('г ')&&!suggestions[0].value.includes(',')) && query == suggestions[0].value){
-        if(clicker===1){
+      } else if (
+        clicked &&
+        (suggestions[0].data.fias_level == 4 ||
+          (suggestions[0].value.includes("г ") &&
+            !suggestions[0].value.includes(","))) &&
+        query == suggestions[0].value
+      ) {
+        if (clicker === 1) {
           window.location.href = "/tariffs?city=" + query;
+        } else {
+          clicker++;
         }
-        else{
-          clicker++
-        }
+      } else {
+        clicker = 0;
       }
-      else{
-        clicker = 0
-      }
-      
+
       setSuggestions(suggestions.map((suggestion) => suggestion.value));
       animationElemetsSearch.restart();
     })

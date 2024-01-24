@@ -134,3 +134,15 @@ window.onload = () => {
         });
     });
 };
+const closeModal = document.querySelector("#closeModal");
+const modal = document.querySelector(".container-modals");
+const openModal = document.querySelectorAll(".card button");
+openModal.forEach((md) => {
+  md.addEventListener("click", () => {
+    modal.style.display = "block";
+  });
+});
+
+closeModal.addEventListener("click", () => {
+  modal.style.display = "none";
+});
