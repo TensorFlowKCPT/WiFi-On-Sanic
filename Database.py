@@ -46,10 +46,12 @@ class Database:
         providers = Database.GetProvidersByAdress(address)
         allProviders = Database.GetAllProvidersFromDB()
         
-        providers = str(providers)
+        providers = str(providers).lower()
+        print(providers)
         validproviders = []
         for i in allProviders:
-            if str(i["Name"]).lower() in str(providers):
+            
+            if str(i["Name"]).lower() in providers:
                 validproviders.append(i)
         
         tariffs = []
@@ -221,3 +223,37 @@ class Database:
                 }
             else: output = None
         return output
+    
+class PromoDatabase:
+    def StartDatabase():
+        with sqlite3.connect("promo.db") as conn:
+            conn.execute("""CREATE TABLE IF NOT EXISTS Users (
+                        ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                        FIO TEXT NOT NULL,
+                        Login TEXT NOT NULL,
+                        Password TEXT NOT NULL,
+                        PhoneNumber TEXT NOT NULL
+                    )
+                """)
+    def LoginUser(Login,Password):
+        with sqlite3.connect("promo.db") as conn:
+            cursor = conn.execute("SELECT Login FROM Users Where Login = ? AND Password = ?",(Login,Password,))
+            row = cursor.fetchone()
+            if not row:
+                cursor = conn.execute("SELECT Login FROM Users Where PhoneNumber = ? AND Password = ?",(Login,Password,))
+                row = cursor.fetchone()
+            if row == None:
+                return False
+            return row[0]
+    def GetUserInfo(Login):
+        with sqlite3.connect("promo.db") as conn:
+            cursor = conn.execute("SELECT * FROM Users Where Login = ?",(Login,))
+            row = cursor.fetchone()
+            if not row:
+                return False
+            return {'id':row[0],
+                    'FIO': row[1],
+                    'Login':row[2],
+                    'PhoneNumber':row[4]
+                    }
+PromoDatabase.StartDatabase()

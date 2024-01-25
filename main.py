@@ -2,23 +2,29 @@ from sanic import Sanic, response, HTTPResponse, json, redirect, html, file
 from sanic.response import text, html
 from datetime import datetime
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from Database import Database
+from Database import Database, PromoDatabase
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import requests
+from sanic_session import Session
+
+
 
 app = Sanic("Wifi-On")
+
 local_link = "localhost:3000"
 env = Environment(
     loader=FileSystemLoader('templates'),  # Папка с шаблонами
     autoescape=select_autoescape(['html', 'xml'])
 )
-
 app.static("/static/", "./st/")
-#Получение адреса пользователя из ip не очень работает, надо будет уже с ssh и серваком это делать, без них не понять
+
 cacheAdr = {}
 cacheCities = {}
+
+Session(app)
+
 #region /index
 @app.route("/")
 async def index(request):
@@ -28,7 +34,7 @@ async def index(request):
     data['Cities'] = Database.GetAllCities()
     host = request.headers.get('host')
     subdomain = host.split('.')[0].removeprefix('https://')
-    if host!=local_link and subdomain!="on-wifi" and subdomain!="www"  :
+    if host!=local_link and subdomain!="on-wifi" and subdomain!="www" :
         data['City'] = Database.GetCityBySubdomain(subdomain)
     data['Providers'] = Database.GetInfoByCity(data['City'])['providers']
     data['RandTariffs'] = []
@@ -41,6 +47,34 @@ async def index(request):
     return html(rendered_html)
 #endregion
 
+#region /promo
+@app.post("/login")
+async def login(request):
+    loggedin = PromoDatabase.LoginUser(request.json.get('login'),request.json.get('password'))
+    if loggedin:
+        request.ctx.session['login'] = loggedin
+    return json({'status':loggedin})
+
+@app.get("/auth")
+async def auth(request):
+    request.ctx.session['login'] = None
+    data = {}
+    template = env.get_template('auth.html')
+    rendered_html = template.render(data=data)
+    return html(rendered_html)
+
+
+@app.get("/promo")
+async def promo(request):
+    login = request.ctx.session.get('login')
+    userinfo = PromoDatabase.GetUserInfo(login)
+    if not login or not userinfo:
+        return redirect('/auth')
+    data = {}
+    template = env.get_template('history-applications.html')
+    rendered_html = template.render(data=data)
+    return html(rendered_html)
+#endregion
 #region /tariffs
 @app.post("/get_tariffs")
 async def get_tariffs(request):

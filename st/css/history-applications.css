@@ -1,0 +1,55 @@
+html,
+body {
+  background-image: url("/static/img/background.png");
+  box-shadow: 50px 50px 100px 0px rgba(0, 0, 0, 0.25);
+  margin: 0;
+
+  font-family: Inter;
+  font-style: normal;
+  line-height: normal;
+}
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.main h1 {
+  color: #fff;
+}
+.orders {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 95%;
+  margin: 0 auto;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.09);
+  border-bottom: #fff solid 1px;
+  border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 15px;
+}
+table {
+  width: 100%;
+  border-spacing: 0px;
+}
+tbody {
+  text-align: center;
+}
+thead th {
+  padding: 10px;
+}
+tbody td {
+  padding: 10px;
+  margin: 0;
+}
+tbody tr {
+  cursor: pointer;
+}
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

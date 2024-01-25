@@ -45,8 +45,8 @@ function CheckAddress(clicked) {
         .suggestions.filter((suggestion) => suggestion.data.fias_level < 9)
         .map((suggestion) => suggestion);
       if (
-        suggestions[0].value === query &&
-        suggestions[0].data.fias_level == 8
+        (suggestions[0].value == query &&
+        suggestions[0].data.fias_level == 8)||(suggestions[0].value == query &&query.includes(", д ")&&clicked)
       ) {
         window.location.href = "/tariffs?address=" + query;
       } else if (
