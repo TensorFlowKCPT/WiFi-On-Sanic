@@ -71,7 +71,7 @@ async def promo(request):
     if not login or not userinfo:
         return redirect('/auth')
     data = {}
-    template = env.get_template('history-applications.html')
+    template = env.get_template('promo.html')
     rendered_html = template.render(data=data)
     return html(rendered_html)
 #endregion

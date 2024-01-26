@@ -235,6 +235,13 @@ class PromoDatabase:
                         PhoneNumber TEXT NOT NULL
                     )
                 """)
+            conn.execute("""CREATE TABLE IF NOT EXISTS Deals (
+                        ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                        DealId INT NOT NULL,
+                        LeadId INT NOT NULL,
+                        OwnerId INT NOT NULL
+                    )
+                """)
     def LoginUser(Login,Password):
         with sqlite3.connect("promo.db") as conn:
             cursor = conn.execute("SELECT Login FROM Users Where Login = ? AND Password = ?",(Login,Password,))

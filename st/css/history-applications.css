@@ -17,6 +17,22 @@ body {
 .main h1 {
   color: #fff;
 }
+.filters {
+  width: 95%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 10px;
+  gap: 15px;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 400;
+}
+.filters span:nth-child(1) {
+  font-size: 30px;
+  font-weight: 500;
+  margin-right: 10px;
+}
 .orders {
   display: flex;
   align-items: center;
@@ -25,7 +41,7 @@ body {
   width: 95%;
   margin: 0 auto;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   background-color: rgba(255, 255, 255, 0.09);
   border-bottom: #fff solid 1px;

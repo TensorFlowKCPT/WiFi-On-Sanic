@@ -35,6 +35,9 @@ input {
   font-weight: 500;
   line-height: normal;
 }
+input:focus {
+  outline: none;
+}
 button {
   border-radius: 10px;
   background: #0500ff;
@@ -47,9 +50,6 @@ button {
   font-weight: 700;
   line-height: normal;
   cursor: pointer;
-}
-input:focus {
-  outline: none;
 }
 .login {
   display: flex;
