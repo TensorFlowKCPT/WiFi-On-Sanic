@@ -47,61 +47,18 @@
               </tr>
             </thead>
             <tbody>
+              {% for i in data['PartnerLeads'] %}
               <tr>
-                <td>1-788393170702</td>
+                <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
                 <td>
-                  Челябинская обл, г Магнитогорск, пр-кт Карла Маркса, д. 121, кв.
-                  108
+                  {{i['leadInfo']['ADDRESS']}}
                 </td>
-                <td>Владимир</td>
-                <td>+79221854314</td>
-                <td>23.01.24 11:53</td>
-                <td>Открыт</td>
+                <td>{{i['leadInfo']['NAME']}}</td>
+                <td>Здесь будет номер</td>
+                <td>{{i['leadInfo']['DATE_CREATE']}}</td>
+                <td>{{i['dealInfo']['STAGE_ID']}}</td>
               </tr>
-              <tr>
-                <td>1-788393170702</td>
-                <td>
-                  Челябинская обл, г Магнитогорск, пр-кт Карла Маркса, д. 121, кв.
-                  108
-                </td>
-                <td>Владимир</td>
-                <td>+79221854314</td>
-                <td>23.01.24 11:53</td>
-                <td>Открыт</td>
-              </tr>
-              <tr>
-                <td>1-788393170702</td>
-                <td>
-                  Челябинская обл, г Магнитогорск, пр-кт Карла Маркса, д. 121, кв.
-                  108
-                </td>
-                <td>Владимир</td>
-                <td>+79221854314</td>
-                <td>23.01.24 11:53</td>
-                <td>Открыт</td>
-              </tr>
-              <tr>
-                <td>1-788393170702</td>
-                <td>
-                  Челябинская обл, г Магнитогорск, пр-кт Карла Маркса, д. 121, кв.
-                  108
-                </td>
-                <td>Владимир</td>
-                <td>+79221854314</td>
-                <td>23.01.24 11:53</td>
-                <td>Открыт</td>
-              </tr>
-              <tr>
-                <td>1-788393170702</td>
-                <td>
-                  Челябинская обл, г Магнитогорск, пр-кт Карла Маркса, д. 121, кв.
-                  108
-                </td>
-                <td>Владимир</td>
-                <td>+79221854314</td>
-                <td>23.01.24 11:53</td>
-                <td>Открыт</td>
-              </tr>
+              {%endfor%}
             </tbody>
           </table>
         </div>
@@ -122,61 +79,18 @@
               </tr>
             </thead>
             <tbody>
+              {% for i in data['PartnerLeads'] %}
               <tr>
-                <td>1-788393170702</td>
+                <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
                 <td>
-                  Челябинская обл, г Магнитогорск, пр-кт Карла Маркса, д. 121, кв.
-                  108
+                  {{i['leadInfo']['ADDRESS']}}
                 </td>
-                <td>Владимир</td>
-                <td>+79221854314</td>
-                <td>23.01.24 11:53</td>
-                <td>Закрыто</td>
+                <td>{{i['leadInfo']['NAME']}}</td>
+                <td>Здесь будет номер</td>
+                <td>{{i['leadInfo']['DATE_CREATE']}}</td>
+                <td>{{i['dealInfo']['STAGE_ID']}}</td>
               </tr>
-              <tr>
-                <td>1-788393170702</td>
-                <td>
-                  Челябинская обл, г Магнитогорск, пр-кт Карла Маркса, д. 121, кв.
-                  108
-                </td>
-                <td>Владимир</td>
-                <td>+79221854314</td>
-                <td>23.01.24 11:53</td>
-                <td>Закрыто</td>
-              </tr>
-              <tr>
-                <td>1-788393170702</td>
-                <td>
-                  Челябинская обл, г Магнитогорск, пр-кт Карла Маркса, д. 121, кв.
-                  108
-                </td>
-                <td>Владимир</td>
-                <td>+79221854314</td>
-                <td>23.01.24 11:53</td>
-                <td>Закрыто</td>
-              </tr>
-              <tr>
-                <td>1-788393170702</td>
-                <td>
-                  Челябинская обл, г Магнитогорск, пр-кт Карла Маркса, д. 121, кв.
-                  108
-                </td>
-                <td>Владимир</td>
-                <td>+79221854314</td>
-                <td>23.01.24 11:53</td>
-                <td>Закрыто</td>
-              </tr>
-              <tr>
-                <td>1-788393170702</td>
-                <td>
-                  Челябинская обл, г Магнитогорск, пр-кт Карла Маркса, д. 121, кв.
-                  108
-                </td>
-                <td>Владимир</td>
-                <td>+79221854314</td>
-                <td>23.01.24 11:53</td>
-                <td>Закрыто</td>
-              </tr>
+              {%endfor%}
             </tbody>
           </table>
         </div>
@@ -188,7 +102,7 @@
         <div class="field">
           <span>Введите адрес</span>
           <div class="listInput">
-            <input type="text" />
+            <input type="text" id="address-input"/>
             <div style="display: none" id="addressValid">
               <span>Москва</span>
               <span>Москва</span>
@@ -200,14 +114,14 @@
         </div>
         <div class="field">
           <span>Введите имя клиента</span>
-          <input type="text" />
+          <input type="text" id="clientName-input"/>
         </div>
         <div class="field">
-          <span>Введите номер телефона клиента</span>
-          <input type="text" />
+          <span>Введите номер телефона клиента</span> 
+          <input type="text" id="clientNumber-input"/>
         </div>
       </div>
-      <button disabled>Отправить</button>
+      <button onclick="sendlead()">Отправить</button>
     </div>
     <div class="footer"></div>
     <div class="modals-container"><div class="modals"></div></div>

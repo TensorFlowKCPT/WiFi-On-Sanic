@@ -309,7 +309,7 @@ class PromoDatabase:
                 }
                 response = requests.post(url, data=data)
                 dealInfo = response.json()['result'][0]
-                output.append({leadInfo,dealInfo})
+                output.append({'leadInfo':leadInfo,'dealInfo':dealInfo})
         return output
 
 PromoDatabase.StartDatabase()

@@ -17,3 +17,24 @@ function historyPage(){
     sells.style.display = 'none';
     history.style.display = 'block';
 }
+function sendlead(){
+    var address = document.getElementById('address-input').value
+    var phone = document.getElementById('clientNumber-input').value
+    var clientName = document.getElementById('clientName-input').value
+    const data = {
+        Address:address,
+        Phone:phone,
+        Name:clientName
+        };
+    fetch("/send_partner_lead", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+        })
+}
