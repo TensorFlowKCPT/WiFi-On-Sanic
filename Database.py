@@ -302,14 +302,15 @@ class PromoDatabase:
                     'filter[ID]': row[1]
                 }
                 response = requests.post(url, data=data)
-                leadInfo = response.json()['result'][0]
+                if response.json()['result']:
+                    leadInfo = response.json()['result'][0]
                 url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
                 data = {
                     'filter[ID]': row[0]
                 }
                 response = requests.post(url, data=data)
-                dealInfo = response.json()['result'][0]
-                output.append({'leadInfo':leadInfo,'dealInfo':dealInfo})
+                if len(response.json()['result']):
+                    output.append({'leadInfo':leadInfo, "dealInfo":response.json()['result'][0]})
         return output
 
 PromoDatabase.StartDatabase()
