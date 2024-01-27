@@ -71,6 +71,7 @@ async def promo(request):
     if not login or not userinfo:
         return redirect('/auth')
     data = {}
+    data['PartnerLeads'] = PromoDatabase.GetPartnerLeads(login)
     template = env.get_template('promo.html')
     rendered_html = template.render(data=data)
     return html(rendered_html)

@@ -47,7 +47,6 @@ class Database:
         allProviders = Database.GetAllProvidersFromDB()
         
         providers = str(providers).lower()
-        print(providers)
         validproviders = []
         for i in allProviders:
             
@@ -263,4 +262,54 @@ class PromoDatabase:
                     'Login':row[2],
                     'PhoneNumber':row[4]
                     }
+    def CreatePartnerLead(UserLogin, Name, Phone, Address):
+        user = PromoDatabase.GetUserInfo(UserLogin)
+        if not user:
+            return ["unauthorized",401]
+        
+        url = "https://on-wifi.bitrix24.ru/rest/11940/pn37z1pw2mxrg7dz/crm.lead.add.json"
+        data = {
+            "fields[TITLE]": "Лид с сайта on-wifi.ru от партнера "+ user['FIO'],
+            "fields[NAME]": Name,
+            "fields[PHONE][0][VALUE]": Phone,
+            "fields[ADDRESS]": Address,
+        }
+        response = requests.post(url, data=data)
+        lead_id = response.json()['result']
+        
+        url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
+        data = {
+            'filter[LEAD_ID]': lead_id,
+            'select[]': 'ID'
+        }
+        response = requests.post(url, data=data)
+        deal_id = response.json()['result'][0]['ID']
+        with sqlite3.connect("promo.db") as conn:
+            conn.execute("INSERT INTO Deals(DealId,LeadID,OwnerId) Values(?,?,?)",(deal_id, lead_id, user['id']))
+        return ['ok',200]
+
+    def GetPartnerLeads(UserLogin):
+        user = PromoDatabase.GetUserInfo(UserLogin)
+        if not user:
+            return ["unauthorized",401]
+        output = []
+        with sqlite3.connect("promo.db") as conn:
+            cursor = conn.execute("SELECT DealId, LeadId FROM Deals Where OwnerId = ?",(user['id'],))
+            rows = cursor.fetchall()
+            for row in rows:
+                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.lead.list.json"
+                data = {
+                    'filter[ID]': row[1]
+                }
+                response = requests.post(url, data=data)
+                leadInfo = response.json()['result'][0]
+                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
+                data = {
+                    'filter[ID]': row[0]
+                }
+                response = requests.post(url, data=data)
+                dealInfo = response.json()['result'][0]
+                output.append({leadInfo,dealInfo})
+        return output
+
 PromoDatabase.StartDatabase()
