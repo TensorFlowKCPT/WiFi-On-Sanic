@@ -318,7 +318,6 @@ class PromoDatabase:
                     dealInfo = response.json()['result'][0]
                     dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
                     output.append({'leadInfo':leadInfo, "dealInfo":dealInfo})
-        print(output)
         return output
 
 PromoDatabase.StartDatabase()
