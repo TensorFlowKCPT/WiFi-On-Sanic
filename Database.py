@@ -287,7 +287,12 @@ class PromoDatabase:
         with sqlite3.connect("promo.db") as conn:
             conn.execute("INSERT INTO Deals(DealId,LeadID,OwnerId) Values(?,?,?)",(deal_id, lead_id, user['id']))
         return ['ok',200]
-
+    deal_stages = { "NEW" :"Новая",
+                    "PREPARATION" : "В работе",
+                    "PREPAYMENT_INVOICE": "В работе",
+                    "EXECUTING" : "Назначена",
+                    "LOSE" : "Отказ",
+                    "WON" : "Подключен"}
     def GetPartnerLeads(UserLogin):
         user = PromoDatabase.GetUserInfo(UserLogin)
         if not user:
@@ -310,7 +315,10 @@ class PromoDatabase:
                 }
                 response = requests.post(url, data=data)
                 if len(response.json()['result']):
-                    output.append({'leadInfo':leadInfo, "dealInfo":response.json()['result'][0]})
+                    dealInfo = response.json()['result'][0]
+                    dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
+                    output.append({'leadInfo':leadInfo, "dealInfo":dealInfo})
+        print(output)
         return output
 
 PromoDatabase.StartDatabase()
