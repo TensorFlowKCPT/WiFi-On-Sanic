@@ -1,6 +1,8 @@
 import requests
 import json
 import sqlite3
+import yoomoney
+
 key2gis = "eedd6882-ab52-4127-a367-69e4286b00bf"
 class Database:
     def GetProvidersByAdress(address:str):
@@ -14,7 +16,7 @@ class Database:
             pass
         return providers
         
-            
+        
     def GetAllProvidersFromDB():
         with sqlite3.connect("sqlite.sqlite3") as conn:
             cursor = conn.execute("SELECT * FROM Providers")
@@ -231,16 +233,20 @@ class PromoDatabase:
                         FIO TEXT NOT NULL,
                         Login TEXT NOT NULL,
                         Password TEXT NOT NULL,
-                        PhoneNumber TEXT NOT NULL
+                        PhoneNumber TEXT NOT NULL,
+                        CardNumber TEXT NOT NULL
                     )
                 """)
             conn.execute("""CREATE TABLE IF NOT EXISTS Deals (
                         ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                         DealId INT NOT NULL,
                         LeadId INT NOT NULL,
-                        OwnerId INT NOT NULL
+                        OwnerId INT NOT NULL,
+                        IsPayed Boolean NOT NULL,
+                        PaymentId TEXT
                     )
                 """)
+            conn.execute("""INSERT OR IGNORE INTO Users(ID,FIO,Login,Password,PhoneNumber,CardNumber) VALUES ('1','TEST','TEST','TEST','TEST','4100116075156746')""")
     def LoginUser(Login,Password):
         with sqlite3.connect("promo.db") as conn:
             cursor = conn.execute("SELECT Login FROM Users Where Login = ? AND Password = ?",(Login,Password,))
@@ -257,11 +263,13 @@ class PromoDatabase:
             row = cursor.fetchone()
             if not row:
                 return False
-            return {'id':row[0],
+            output = {'id':row[0],
                     'FIO': row[1],
                     'Login':row[2],
-                    'PhoneNumber':row[4]
+                    'PhoneNumber':row[4],
+                    'CardNumber':row[5]
                     }
+            return output
     def CreatePartnerLead(UserLogin, Name, Phone, Address):
         user = PromoDatabase.GetUserInfo(UserLogin)
         if not user:
@@ -285,21 +293,102 @@ class PromoDatabase:
         response = requests.post(url, data=data)
         deal_id = response.json()['result'][0]['ID']
         with sqlite3.connect("promo.db") as conn:
-            conn.execute("INSERT INTO Deals(DealId,LeadID,OwnerId) Values(?,?,?)",(deal_id, lead_id, user['id']))
+            conn.execute("INSERT INTO Deals(DealId,LeadID,OwnerId,IsPayed) Values(?,?,?,?)",(deal_id, lead_id, user['id'],False,))
         return ['ok',200]
+    
+    def CreatePayout(value:int, CardNumber:str, description:str):
+        try:return yoomoney.CreatePayout(value, CardNumber, description,'None')
+        except Exception as ex:return [str(ex),500] 
+    
+    def CreateAllPartnerPayout(UserLogin):
+        user = PromoDatabase.GetUserInfo(UserLogin)
+        if not user:
+            return ["unauthorized",401]
+        Deals = list(PromoDatabase.GetPartnerFinishedLeads(UserLogin)[0])
+        
+        description = "Выплата партнеру " + user['FIO'] + "по сделкам:\n"
+        value = 0
+        for deal in Deals:
+            description+=str(deal['leadId'])+":"+str(deal['dealInfo']['ID'])
+            value += 100 #TODO Тут деньги
+        try:yoomoney.CreatePayout(value,user['cardnumber'],description,user['Login'])
+        except Exception as ex:return [str(ex),500] 
+    
+    #TODO Спросить и сделать количество бабок
+    def CreateOnePartnerPayout(DealId,UserLogin):
+        user = PromoDatabase.GetUserInfo(UserLogin)
+        if not user:
+            return ["unauthorized",401]
+        Deal = dict(PromoDatabase.GetPartnerDeal(DealId, UserLogin)[0])
+        if 'dealInfo' in Deal.keys() and Deal['dealInfo']['STAGE_ID'] != 'Подключен':
+            return ["Сделка не завершена или не существует",403]
+        try:yoomoney.CreatePayout(100,user['cardnumber'],f'Выплата партнеру {user['FIO']} по лиду {Deal['leadInfo']['ID']}:{Deal['dealInfo']['ID']}',user['Login'])
+        except Exception as ex:return [str(ex),500] 
     deal_stages = { "NEW" :"Новая",
                     "PREPARATION" : "В работе",
                     "PREPAYMENT_INVOICE": "В работе",
                     "EXECUTING" : "Назначена",
                     "LOSE" : "Отказ",
                     "WON" : "Подключен"}
+    
+    def GetPartnerDeal(DealId, Login):
+        user = PromoDatabase.GetUserInfo(Login)
+        if not user:
+            return ["unauthorized",401]
+        with sqlite3.connect("promo.db") as conn:
+            cursor = conn.execute("SELECT DealId, LeadId, IsPayed, PaymentId FROM Deals Where OwnerId = ? AND ID = ?",(user['id'], DealId,))
+            row = cursor.fetchone()
+            url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.lead.list.json"
+            data = {
+                'filter[ID]': row[1]
+            }
+            response = requests.post(url, data=data)
+            if response.json()['result']:
+                leadInfo = response.json()['result'][0]
+            url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
+            data = {
+                'filter[ID]': row[0]
+            }
+            response = requests.post(url, data=data)
+            if len(response.json()['result']):
+                dealInfo = response.json()['result'][0]
+                dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
+                newdict = {'leadInfo':leadInfo, "dealInfo":dealInfo}
+                if row[2]:
+                    newdict['PaymentInfo'] = yoomoney.GetPayout(row[3])
+                return [newdict,200]
+        return ['NotFound',404]
+    
+    #TODO Не тестил
+    def GetPartnerFinishedLeads(UserLogin):
+        user = PromoDatabase.GetUserInfo(UserLogin)
+        if not user:
+            return ["unauthorized",401]
+        output = []
+        with sqlite3.connect("promo.db") as conn:
+            cursor = conn.execute("SELECT DealId, LeadId FROM Deals Where OwnerId = ?, IsPayed = ?",(user['id'],False,))
+            rows = cursor.fetchall()
+            for row in rows:
+                
+                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
+                data = {
+                    'filter[ID]': row[0]
+                }
+                response = requests.post(url, data=data)
+                if len(response.json()['result']):
+                    dealInfo = response.json()['result'][0]
+                    if dealInfo['STAGE_ID'] == "WON":
+                        newdict = {'leadId':row[1], "dealInfo":dealInfo}
+                        output.append(newdict)
+        return [output, 200]
+    
     def GetPartnerLeads(UserLogin):
         user = PromoDatabase.GetUserInfo(UserLogin)
         if not user:
             return ["unauthorized",401]
         output = []
         with sqlite3.connect("promo.db") as conn:
-            cursor = conn.execute("SELECT DealId, LeadId FROM Deals Where OwnerId = ?",(user['id'],))
+            cursor = conn.execute("SELECT DealId, LeadId, IsPayed, PaymentId FROM Deals Where OwnerId = ?",(user['id'],))
             rows = cursor.fetchall()
             for row in rows:
                 url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.lead.list.json"
@@ -317,7 +406,11 @@ class PromoDatabase:
                 if len(response.json()['result']):
                     dealInfo = response.json()['result'][0]
                     dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
-                    output.append({'leadInfo':leadInfo, "dealInfo":dealInfo})
-        return output
+                    newdict = {'leadInfo':leadInfo, "dealInfo":dealInfo}
+                    if row[2]:
+                        newdict['PaymentInfo'] = yoomoney.GetPayout(row[3])
+                    output.append(newdict)
+        return [output, 200]
 
 PromoDatabase.StartDatabase()
+#print(PromoDatabase.CreateOnePartnerPayout())

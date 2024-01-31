@@ -79,7 +79,9 @@ async def promo(request):
     if not login or not userinfo:
         return redirect('/auth')
     data = {}
-    data['PartnerLeads'] = PromoDatabase.GetPartnerLeads(login)
+    leads = PromoDatabase.GetPartnerLeads(login)
+    if leads[1] == 200:
+        data['PartnerLeads'] = leads[0]
     template = env.get_template('promo.html')
     rendered_html = template.render(data=data)
     return html(rendered_html)
@@ -322,7 +324,6 @@ async def send_lead_handler(request):
     lead = send_lead(name=name, phone=phone, address=address, room=room)
 
     return response.json({"data": lead}, status=200)
-    
 @app.route('/send-email', methods=['POST'])
 async def send_email_handler(request):
     email = request.form.get('email')
