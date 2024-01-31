@@ -298,7 +298,7 @@ class PromoDatabase:
     
     def CreatePayout(value:int, CardNumber:str, description:str):
         try:return yoomoney.CreatePayout(value, CardNumber, description,'None')
-        except Exception as ex:return [str(ex),500] 
+        except Exception as ex:return [ex,500] 
     
     def CreateAllPartnerPayout(UserLogin):
         user = PromoDatabase.GetUserInfo(UserLogin)
@@ -306,13 +306,13 @@ class PromoDatabase:
             return ["unauthorized",401]
         Deals = list(PromoDatabase.GetPartnerFinishedLeads(UserLogin)[0])
         
-        description = "Выплата партнеру " + user['FIO'] + "по сделкам:\n"
+        description = "Выплата партнеру " + user['FIO'] + " по сделкам:\n"
         value = 0
         for deal in Deals:
             description+=str(deal['leadId'])+":"+str(deal['dealInfo']['ID'])
             value += 100 #TODO Тут деньги
-        try:yoomoney.CreatePayout(value,user['cardnumber'],description,user['Login'])
-        except Exception as ex:return [str(ex),500] 
+        try:return yoomoney.CreatePayout(value,user['CardNumber'],description,user['Login'])
+        except Exception as ex:return [ex,500] 
     
     #TODO Спросить и сделать количество бабок
     def CreateOnePartnerPayout(DealId,UserLogin):
@@ -322,8 +322,11 @@ class PromoDatabase:
         Deal = dict(PromoDatabase.GetPartnerDeal(DealId, UserLogin)[0])
         if 'dealInfo' in Deal.keys() and Deal['dealInfo']['STAGE_ID'] != 'Подключен':
             return ["Сделка не завершена или не существует",403]
-        try:yoomoney.CreatePayout(100,user['cardnumber'],f'Выплата партнеру {user['FIO']} по лиду {Deal['leadInfo']['ID']}:{Deal['dealInfo']['ID']}',user['Login'])
-        except Exception as ex:return [str(ex),500] 
+        try:
+            res = yoomoney.CreatePayout(100,user['CardNumber'],f'Выплата партнеру {user['FIO']} по лиду {Deal['leadInfo']['ID']}:{Deal['dealInfo']['ID']}',user['Login'])
+            #TODO Запилить IsPayed
+            return res
+        except Exception as ex:return [ex,500] 
     deal_stages = { "NEW" :"Новая",
                     "PREPARATION" : "В работе",
                     "PREPAYMENT_INVOICE": "В работе",
@@ -366,7 +369,7 @@ class PromoDatabase:
             return ["unauthorized",401]
         output = []
         with sqlite3.connect("promo.db") as conn:
-            cursor = conn.execute("SELECT DealId, LeadId FROM Deals Where OwnerId = ?, IsPayed = ?",(user['id'],False,))
+            cursor = conn.execute("SELECT DealId, LeadId FROM Deals Where OwnerId = ? AND IsPayed = ?",(user['id'],False,))
             rows = cursor.fetchall()
             for row in rows:
                 
@@ -412,5 +415,5 @@ class PromoDatabase:
                     output.append(newdict)
         return [output, 200]
 
-PromoDatabase.StartDatabase()
-#print(PromoDatabase.CreateOnePartnerPayout())
+#PromoDatabase.StartDatabase()
+#print(PromoDatabase.CreateAllPartnerPayout('TEST'))
