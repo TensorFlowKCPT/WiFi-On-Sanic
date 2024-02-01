@@ -366,7 +366,10 @@ class PromoDatabase:
             response = requests.post(url, data=data)
             if len(response.json()['result']):
                 dealInfo = response.json()['result'][0]
-                dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
+                if dealInfo['STAGE_ID'] in PromoDatabase.deal_stages.keys():
+                        dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
+                else:
+                    dealInfo['STAGE_ID'] = 'В работе'
                 newdict = {'leadInfo':leadInfo, "dealInfo":dealInfo}
                 if row[2]:
                     newdict['PaymentInfo'] = yoomoney.GetPayout(row[3])
@@ -418,7 +421,10 @@ class PromoDatabase:
                 response = requests.post(url, data=data)
                 if len(response.json()['result']):
                     dealInfo = response.json()['result'][0]
-                    dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
+                    if dealInfo['STAGE_ID'] in PromoDatabase.deal_stages.keys():
+                        dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
+                    else:
+                        dealInfo['STAGE_ID'] = 'В работе'
                     newdict = {'leadInfo':leadInfo, "dealInfo":dealInfo}
                     if row[2]:
                         newdict['PaymentInfo'] = yoomoney.GetPayout(row[3])
