@@ -300,6 +300,10 @@ class PromoDatabase:
         try:return yoomoney.CreatePayout(value, CardNumber, description,'None')
         except Exception as ex:return [ex,500] 
     
+    def MarkDealAsPayed(DealId, payout_id):
+        with sqlite3.connect("promo.db") as conn:
+            conn.execute("UPDATE Deals SET IsPayed = ?, PaymentId = ? WHERE DealId = ?",(True,payout_id, DealId,))
+    
     def CreateAllPartnerPayout(UserLogin):
         user = PromoDatabase.GetUserInfo(UserLogin)
         if not user:
@@ -308,10 +312,17 @@ class PromoDatabase:
         
         description = "Выплата партнеру " + user['FIO'] + " по сделкам:\n"
         value = 0
+        accepedDeals = []
         for deal in Deals:
             description+=str(deal['leadId'])+":"+str(deal['dealInfo']['ID'])
             value += 100 #TODO Тут деньги
-        try:return yoomoney.CreatePayout(value,user['CardNumber'],description,user['Login'])
+            accepedDeals.append(deal['dealInfo']['ID'])
+        try:
+            res = yoomoney.CreatePayout(value,user['CardNumber'],description,user['Login'])
+            if res:
+                for i in accepedDeals:
+                    PromoDatabase.MarkDealAsPayed(i, res['id'])
+            return [res,200]
         except Exception as ex:return [ex,500] 
     
     #TODO Спросить и сделать количество бабок
@@ -324,7 +335,7 @@ class PromoDatabase:
             return ["Сделка не завершена или не существует",403]
         try:
             res = yoomoney.CreatePayout(100,user['CardNumber'],f'Выплата партнеру {user['FIO']} по лиду {Deal['leadInfo']['ID']}:{Deal['dealInfo']['ID']}',user['Login'])
-            #TODO Запилить IsPayed
+            PromoDatabase.MarkDealAsPayed(Deal['dealInfo']['ID'], res['id'])
             return res
         except Exception as ex:return [ex,500] 
     deal_stages = { "NEW" :"Новая",
@@ -339,7 +350,7 @@ class PromoDatabase:
         if not user:
             return ["unauthorized",401]
         with sqlite3.connect("promo.db") as conn:
-            cursor = conn.execute("SELECT DealId, LeadId, IsPayed, PaymentId FROM Deals Where OwnerId = ? AND ID = ?",(user['id'], DealId,))
+            cursor = conn.execute("SELECT DealId, LeadId, IsPayed, PaymentId FROM Deals Where OwnerId = ? AND DealId = ?",(user['id'], DealId,))
             row = cursor.fetchone()
             url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.lead.list.json"
             data = {
@@ -362,7 +373,6 @@ class PromoDatabase:
                 return [newdict,200]
         return ['NotFound',404]
     
-    #TODO Не тестил
     def GetPartnerFinishedLeads(UserLogin):
         user = PromoDatabase.GetUserInfo(UserLogin)
         if not user:
@@ -415,5 +425,5 @@ class PromoDatabase:
                     output.append(newdict)
         return [output, 200]
 
-#PromoDatabase.StartDatabase()
-#print(PromoDatabase.CreateAllPartnerPayout('TEST'))
+PromoDatabase.StartDatabase()
+#print(PromoDatabase.CreateOnePartnerPayout('TEST'))

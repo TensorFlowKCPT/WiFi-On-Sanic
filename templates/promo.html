@@ -76,10 +76,12 @@
                 <th>Номер телефона</th>
                 <th>Дата и время приема</th>
                 <th>Статус</th>
+                <th><button onclick="PayMeAll()">Получить все выплаты</button></th>
               </tr>
             </thead>
             <tbody>
               {% for i in data['PartnerLeads'] %}
+              {% if i['dealInfo']['STAGE_ID'] == 'Подключен' %}
               <tr>
                 <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
                 <td>
@@ -89,7 +91,14 @@
                 <td>Здесь будет номер</td>
                 <td>{{i['leadInfo']['DATE_CREATE']}}</td>
                 <td>{{i['dealInfo']['STAGE_ID']}}</td>
+                {% if not 'PaymentInfo' in i.keys()%}
+                <td><button onclick="PayMeOne({{i['dealInfo']['ID']}})">Получить выплату</button></td>
+                {% endif %}
+                {% if 'PaymentInfo' in i.keys() and i['PaymentInfo']['status'] == 'succeeded'%}
+                <td>Выплачено</td>
+                {% endif %}
               </tr>
+              {% endif %}
               {%endfor%}
             </tbody>
           </table>

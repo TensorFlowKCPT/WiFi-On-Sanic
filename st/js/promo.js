@@ -17,6 +17,36 @@ function historyPage(){
     sells.style.display = 'none';
     history.style.display = 'block';
 }
+
+function PayMeOne(DealId){
+    const data = {
+        DealId:DealId
+        };
+    fetch("/pay_one", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            location.reload()
+        })
+}
+function PayMeAll(){
+    fetch("/pay_all", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        }
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            location.reload()
+        })
+}
+
 function sendlead(){
     var address = document.getElementById('address-input').value
     var phone = document.getElementById('clientNumber-input').value

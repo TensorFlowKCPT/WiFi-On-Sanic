@@ -55,6 +55,19 @@ async def login(request):
         request.ctx.session['login'] = loggedin
     return json({'status':loggedin})
 
+@app.post("/pay_one")
+async def pay_one(request):
+    login = request.ctx.session.get('login')
+    DealId = request.json.get('DealId')
+    res = PromoDatabase.CreateOnePartnerPayout(DealId, login)
+    return json(res)
+
+@app.post("/pay_all")
+async def pay_all(request):
+    login = request.ctx.session.get('login')
+    res = PromoDatabase.CreateAllPartnerPayout(login)
+    return json(res)
+
 @app.get("/auth")
 async def auth(request):
     request.ctx.session['login'] = None
