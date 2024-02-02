@@ -10,122 +10,111 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/static/css/history-applications.css" />
-    <link rel="stylesheet" href="/static/css/create-application.css" />
     <link rel="stylesheet" href="/static/css/header-applications.css" />
+    <link rel="stylesheet" href="/static/css/applications.css" />
   </head>
   <body>
     <div class="header">
-      <div class="navigateAndLogo">
         <a href="/"><img src="/static/img/logo.png" alt="" /></a>
         <div class="navigate">
           <a onclick="createPage()">Создание заявки</a>
           <a onclick="historyPage()">История заявок</a>
           <a onclick="sellsPage()">Мои продажи</a>
         </div>
+        <a href="/auth">Выход</a>
       </div>
-      <a href="/auth">Выход</a>
     </div>
-    <div class="main">
-      <div id="history-applications">
-        <h1>История заявок</h1>
-        <div class="filters">
-          <span>Фильтрация:</span>
-          <span>по Дате</span>
-          <span>по Статусу</span>
-        </div>
-        <div class="orders">
-          <table>
-            <thead>
-              <tr>
-                <th>ID заявки</th>
-                <th>Адрес</th>
-                <th>Имя клиента</th>
-                <th>Номер телефона</th>
-                <th>Дата и время приема</th>
-                <th>Статус</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for i in data['PartnerLeads'] %}
-              <tr>
-                <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
-                <td>
-                  {{i['leadInfo']['ADDRESS']}}
-                </td>
-                <td>{{i['leadInfo']['NAME']}}</td>
-                <td>Здесь будет номер</td>
-                <td>{{i['leadInfo']['DATE_CREATE']}}</td>
-                <td>{{i['dealInfo']['STAGE_ID']}}</td>
-              </tr>
-              {%endfor%}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div id="sells-application" style="display: none;">
-        <h1>Мои продажи</h1>
-  
-        <div class="orders">
-          <table>
-            <thead>
-              <tr>
-                <th>ID заявки</th>
-                <th>Адрес</th>
-                <th>Имя клиента</th>
-                <th>Номер телефона</th>
-                <th>Дата и время приема</th>
-                <th>Статус</th>
-                <th><button onclick="PayMeAll()">Получить все выплаты</button></th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for i in data['PartnerLeads'] %}
-              {% if i['dealInfo']['STAGE_ID'] == 'Подключен' %}
-              <tr>
-                <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
-                <td>
-                  {{i['leadInfo']['ADDRESS']}}
-                </td>
-                <td>{{i['leadInfo']['NAME']}}</td>
-                <td>Здесь будет номер</td>
-                <td>{{i['leadInfo']['DATE_CREATE']}}</td>
-                <td>{{i['dealInfo']['STAGE_ID']}}</td>
-                {% if not 'PaymentInfo' in i.keys()%}
-                <td><button onclick="PayMeOne({{i['dealInfo']['ID']}})">Получить выплату</button></td>
-                {% endif %}
-                {% if 'PaymentInfo' in i.keys() and i['PaymentInfo']['status'] == 'succeeded'%}
-                <td>Выплачено</td>
-                {% endif %}
-              </tr>
+    <div id="history-applications">
+      <h1>История заявок</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>ID заявки</th>
+              <th>Адрес</th>
+              <th>Имя клиента</th>
+              <th>Номер телефона</th>
+              <th>Дата и время приема</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in data['PartnerLeads'] %}
+            <tr>
+              <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
+              <td>{{i['leadInfo']['ADDRESS']}}</td>
+              <td>{{i['leadInfo']['NAME']}}</td>
+              <td>Здесь будет номер</td>
+              <td>{{i['leadInfo']['DATE_CREATE']}}</td>
+              <td>{{i['dealInfo']['STAGE_ID']}}</td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      
+    </div>
+    <div id="sells-application" style="display: none">
+      <h1>Мои продажи</h1>
+      
+        <table>
+          <thead>
+            <tr>
+              <th>ID заявки</th>
+              <th>Адрес</th>
+              <th>Имя клиента</th>
+              <th>Номер телефона</th>
+              <th>Дата и время приема</th>
+              <th>Статус</th>
+              <th>
+                <button onclick="PayMeAll()">Получить все выплаты</button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in data['PartnerLeads'] %} {% if
+            i['dealInfo']['STAGE_ID'] == 'Подключен' %}
+            <tr>
+              <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
+              <td>{{i['leadInfo']['ADDRESS']}}</td>
+              <td>{{i['leadInfo']['NAME']}}</td>
+              <td>Здесь будет номер</td>
+              <td>{{i['leadInfo']['DATE_CREATE']}}</td>
+              <td>{{i['dealInfo']['STAGE_ID']}}</td>
+              {% if not 'PaymentInfo' in i.keys()%}
+              <td>
+                <button onclick="PayMeOne({{i['dealInfo']['ID']}})">
+                  Получить выплату
+                </button>
+              </td>
+              {% endif %} {% if 'PaymentInfo' in i.keys() and
+              i['PaymentInfo']['status'] == 'succeeded'%}
+              <td>Выплачено</td>
               {% endif %}
-              {%endfor%}
-            </tbody>
-          </table>
-        </div>
-      </div>
+            </tr>
+            {% endif %} {%endfor%}
+          </tbody>
+        </table>
+     
     </div>
-    <div class="create" id="create-application" style="display: none;">
+    <div class="create" id="create-application" style="display: none">
       <h1>Создаение заявки</h1>
       <div class="fields">
         <div class="field">
           <span>Введите адрес</span>
           <div class="listInput">
-            <input type="text" id="address-input" oninput="CheckAddress()"/>
-            <div id="suggestions-container">
-            </div>
+            <input type="text" id="address-input" oninput="CheckAddress()" />
+            <div id="suggestions-container"></div>
           </div>
         </div>
         <div class="field">
           <span>Введите имя клиента</span>
-          <input type="text" id="clientName-input"/>
+          <input type="text" id="clientName-input" />
         </div>
         <div class="field">
-          <span>Введите номер телефона клиента</span> 
-          <input type="text" id="clientNumber-input"/>
+          <span>Введите номер телефона клиента</span>
+          <input type="text" id="clientNumber-input" />
         </div>
       </div>
-      <button onclick="sendlead()">Отправить</button>
+      <button disabled onclick="sendlead()">Отправить</button>
     </div>
     <div class="footer"></div>
     <div class="modals-container"><div class="modals"></div></div>

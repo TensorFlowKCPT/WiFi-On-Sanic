@@ -7,29 +7,25 @@
   border-bottom: #fff solid 1px;
   border-color: rgba(255, 255, 255, 0.1);
   border-radius: 0 0 20px 20px;
+  flex-wrap: wrap;
 }
 .header a {
   color: #fff;
   font-weight: 400;
   font-size: 20px;
   text-decoration: none;
+  cursor: pointer;
 }
 .header img {
   height: 45px;
   width: 210px;
 }
-.navigateAndLogo {
-  display: flex;
-  align-items: center;
-  max-width: 1200px;
-  width: 100%;
-  justify-content: space-between;
-  gap: 15px;
-}
+
 .navigate {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 15px;
+  flex-wrap: wrap;
   padding: 10px;
 }
