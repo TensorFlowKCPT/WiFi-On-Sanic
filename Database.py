@@ -334,7 +334,7 @@ class PromoDatabase:
         if 'dealInfo' in Deal.keys() and Deal['dealInfo']['STAGE_ID'] != 'Подключен':
             return ["Сделка не завершена или не существует",403]
         try:
-            res = yoomoney.CreatePayout(100,user['CardNumber'],f'Выплата партнеру {user['FIO']} по лиду {Deal['leadInfo']['ID']}:{Deal['dealInfo']['ID']}',user['Login'])
+            res = yoomoney.CreatePayout(100,user['CardNumber'],f'Выплата партнеру {user["FIO"]} по лиду {Deal["leadInfo"]["ID"]}:{Deal["dealInfo"]["ID"]}',user['Login'])
             PromoDatabase.MarkDealAsPayed(Deal['dealInfo']['ID'], res['id'])
             return res
         except Exception as ex:return [ex,500] 
