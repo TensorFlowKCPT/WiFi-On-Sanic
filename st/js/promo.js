@@ -19,6 +19,9 @@ function historyPage() {
 }
 
 function PayMeOne(DealId) {
+  var PayMeOneButton = document.getElementById('paymeoneid'+DealId)
+  PayMeOneButton.disabled = true;
+
   const data = {
     DealId: DealId,
   };
@@ -35,6 +38,10 @@ function PayMeOne(DealId) {
     });
 }
 function PayMeAll() {
+  //Здесь код перед отправкой запроса
+  var PayMeAllButton = document.getElementById('PayMeAllButton')
+  PayMeAllButton.disabled = true;
+
   fetch("/pay_all", {
     method: "POST",
     headers: {
@@ -51,11 +58,16 @@ function sendlead() {
   var address = document.getElementById("address-input").value;
   var phone = document.getElementById("clientNumber-input").value;
   var clientName = document.getElementById("clientName-input").value;
+  var sendleadbutton = document.getElementById('send-lead-button');
+  //Здесь код перед отправкой запроса
+  sendleadbutton.disabled = true;
+
   const data = {
     Address: address,
     Phone: phone,
     Name: clientName,
   };
+  
   fetch("/send_partner_lead", {
     method: "POST",
     headers: {

@@ -156,6 +156,11 @@ table button {
   font-weight: 600;
   cursor: pointer;
 }
+table button:disabled {
+  background-color: #9999cc;
+  color: #666;
+  cursor: not-allowed; /* Запрет курсора для неактивной кнопки */
+}
 
 @media screen and (max-width: 811px) {
   .header {

@@ -243,10 +243,56 @@ class PromoDatabase:
                         LeadId INT NOT NULL,
                         OwnerId INT NOT NULL,
                         IsPayed Boolean NOT NULL,
-                        PaymentId TEXT
+                        PaymentId TEXT,
+                        Cache TEXT
                     )
                 """)
             conn.execute("""INSERT OR IGNORE INTO Users(ID,FIO,Login,Password,PhoneNumber,CardNumber) VALUES ('1','TEST','TEST','TEST','TEST','4100116075156746')""")
+        with sqlite3.connect("cache.db") as conn:
+            conn.execute("""CREATE TABLE IF NOT EXISTS Cache (
+                        LeadId INT NOT NULL PRIMARY KEY,
+                        DealId INT NOT NULL,
+                        CacheJSON TEXT
+                    )
+                """)
+    def CacheAllDeals():
+        alldeals = []
+        with sqlite3.connect("promo.db") as promo:
+            cursor = promo.execute("SELECT * FROM Deals")
+            rows = cursor.fetchall()
+            for row in rows:
+                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.lead.list.json"
+                data = {
+                    'filter[ID]': row[2]
+                }
+                response = requests.post(url, data=data)
+                if response.json()['result']:
+                    leadInfo = response.json()['result'][0]
+                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
+                data = {
+                    'filter[ID]': row[1]
+                }
+                response = requests.post(url, data=data)
+                if len(response.json()['result']):
+                    dealInfo = response.json()['result'][0]
+                    if dealInfo['STAGE_ID'] in PromoDatabase.deal_stages.keys():
+                        dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
+                    else:
+                        dealInfo['STAGE_ID'] = 'В работе'
+                    newdict = {'leadInfo':leadInfo, "dealInfo":dealInfo}
+                    if row[4]:
+                        if row[5]:
+                            newdict['PaymentInfo'] = yoomoney.GetPayout(row[5])
+                        else: newdict['PaymentInfo'] = 'Payed, but no info'
+                    alldeals.append([row[2],row[1],newdict])
+        with sqlite3.connect('cache.db') as cache:
+            for deal in alldeals:
+                cachednow = cache.execute('SELECT * FROM Cache WHERE LeadId = ? AND DealId = ?',(deal[0],deal[1],)).fetchone()
+                if cachednow:
+                    cache.execute('UPDATE Cache SET CacheJSON = ? WHERE LeadId = ? AND DealId = ?',(json.dumps(deal[2]),deal[0],deal[1],))
+                else:
+                    cache.execute('INSERT INTO Cache(LeadId,DealId,CacheJSON) VALUES (?,?,?)',(deal[0],deal[1],json.dumps(deal[2]),))
+
     def LoginUser(Login,Password):
         with sqlite3.connect("promo.db") as conn:
             cursor = conn.execute("SELECT Login FROM Users Where Login = ? AND Password = ?",(Login,Password,))
@@ -257,6 +303,7 @@ class PromoDatabase:
             if row == None:
                 return False
             return row[0]
+
     def GetUserInfo(Login):
         with sqlite3.connect("promo.db") as conn:
             cursor = conn.execute("SELECT * FROM Users Where Login = ?",(Login,))
@@ -270,6 +317,7 @@ class PromoDatabase:
                     'CardNumber':row[5]
                     }
             return output
+
     def CreatePartnerLead(UserLogin, Name, Phone, Address):
         user = PromoDatabase.GetUserInfo(UserLogin)
         if not user:
@@ -292,9 +340,46 @@ class PromoDatabase:
         }
         response = requests.post(url, data=data)
         deal_id = response.json()['result'][0]['ID']
+        newdeal = (deal_id, lead_id, user['id'],False,)
         with sqlite3.connect("promo.db") as conn:
-            conn.execute("INSERT INTO Deals(DealId,LeadID,OwnerId,IsPayed) Values(?,?,?,?)",(deal_id, lead_id, user['id'],False,))
+            conn.execute("INSERT INTO Deals(DealId,LeadID,OwnerId,IsPayed) Values(?,?,?,?)",newdeal)
+            
+        PromoDatabase.CacheOneDeal(newdeal[0],newdeal[1],newdeal[2],newdeal[3])
         return ['ok',200]
+    
+    def CacheOneDeal(deal_id,lead_id, user_id, PaymentId):
+        alldeals = []
+        with sqlite3.connect("promo.db") as promo:
+                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.lead.list.json"
+                data = {
+                    'filter[ID]': lead_id
+                }
+                response = requests.post(url, data=data)
+                if response.json()['result']:
+                    leadInfo = response.json()['result'][0]
+                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
+                data = {
+                    'filter[ID]': deal_id
+                }
+                response = requests.post(url, data=data)
+                if len(response.json()['result']):
+                    dealInfo = response.json()['result'][0]
+                    if dealInfo['STAGE_ID'] in PromoDatabase.deal_stages.keys():
+                        dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
+                    else:
+                        dealInfo['STAGE_ID'] = 'В работе'
+                    newdict = {'leadInfo':leadInfo, "dealInfo":dealInfo}
+                    
+                    if PaymentId:
+                        newdict['PaymentInfo'] = yoomoney.GetPayout(PaymentId)
+                    alldeals.append([lead_id,deal_id,newdict])
+        with sqlite3.connect('cache.db') as cache:
+            for deal in alldeals:
+                cachednow = cache.execute('SELECT * FROM Cache WHERE LeadId = ? AND DealId = ?',(deal[0],deal[1],)).fetchone()
+                if cachednow:
+                    cache.execute('UPDATE Cache SET CacheJSON = ? WHERE LeadId = ? AND DealId = ?',(json.dumps(deal[2]),deal[0],deal[1],))
+                else:
+                    cache.execute('INSERT INTO Cache(LeadId,DealId,CacheJSON) VALUES (?,?,?)',(deal[0],deal[1],json.dumps(deal[2]),))
     
     def CreatePayout(value:int, CardNumber:str, description:str):
         try:return yoomoney.CreatePayout(value, CardNumber, description,'None')
@@ -302,6 +387,11 @@ class PromoDatabase:
     
     def MarkDealAsPayed(DealId, payout_id):
         with sqlite3.connect("promo.db") as conn:
+            res = conn.execute("SELECT PaymentId FROM Deals WHERE DealId = ?",(DealId,)).fetchone()
+            if not res:
+                return FileNotFoundError
+            elif not res[0]:
+                return Exception
             conn.execute("UPDATE Deals SET IsPayed = ?, PaymentId = ? WHERE DealId = ?",(True,payout_id, DealId,))
     
     def CreateAllPartnerPayout(UserLogin):
@@ -314,14 +404,18 @@ class PromoDatabase:
         value = 0
         accepedDeals = []
         for deal in Deals:
-            description+=str(deal['leadId'])+":"+str(deal['dealInfo']['ID'])
+            description+=str(deal['leadInfo']['ID'])+":"+str(deal['dealInfo']['ID'])
             value += 100 #TODO Тут деньги
-            accepedDeals.append(deal['dealInfo']['ID'])
+            PromoDatabase.MarkDealAsPayed(deal['dealInfo']['ID'], None)
+            accepedDeals.append([deal['dealInfo']['ID'],deal['leadInfo']['ID']])
         try:
+            if value == 0:
+                return ['Cannot pay 0',401]
             res = yoomoney.CreatePayout(value,user['CardNumber'],description,user['Login'])
             if res:
                 for i in accepedDeals:
-                    PromoDatabase.MarkDealAsPayed(i, res['id'])
+                    PromoDatabase.MarkDealAsPayed(i[0], res['id'])
+                    PromoDatabase.CacheOneDeal(i[0], i[1], user['id'], res['id'])
             return [res,200]
         except Exception as ex:return [ex,500] 
     
@@ -333,9 +427,18 @@ class PromoDatabase:
         Deal = dict(PromoDatabase.GetPartnerDeal(DealId, UserLogin)[0])
         if 'dealInfo' in Deal.keys() and Deal['dealInfo']['STAGE_ID'] != 'Подключен':
             return ["Сделка не завершена или не существует",403]
+        PromoDatabase.MarkDealAsPayed(Deal['dealInfo']['ID'], None)
         try:
+            with sqlite3.connect("promo.db") as conn:
+                res = conn.execute("SELECT IsPayed FROM Deals WHERE DealId = ?",(DealId,)).fetchone()
+                if not res:
+                    return ['Deal not found',404] 
+                elif res[0]:
+                    return ['Deal already payed',403] 
+            
             res = yoomoney.CreatePayout(100,user['CardNumber'],f'Выплата партнеру {user["FIO"]} по лиду {Deal["leadInfo"]["ID"]}:{Deal["dealInfo"]["ID"]}',user['Login'])
             PromoDatabase.MarkDealAsPayed(Deal['dealInfo']['ID'], res['id'])
+            PromoDatabase.CacheOneDeal(Deal['dealInfo']['ID'], Deal['leadInfo']['ID'], user['id'],res['id'])
             return res
         except Exception as ex:return [ex,500] 
     deal_stages = { "NEW" :"Новая",
@@ -349,32 +452,12 @@ class PromoDatabase:
         user = PromoDatabase.GetUserInfo(Login)
         if not user:
             return ["unauthorized",401]
-        with sqlite3.connect("promo.db") as conn:
-            cursor = conn.execute("SELECT DealId, LeadId, IsPayed, PaymentId FROM Deals Where OwnerId = ? AND DealId = ?",(user['id'], DealId,))
+        with sqlite3.connect("cache.db") as conn:
+            cursor = conn.execute("SELECT CacheJSON FROM Cache WHERE DealId = ?",(DealId,))
             row = cursor.fetchone()
-            url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.lead.list.json"
-            data = {
-                'filter[ID]': row[1]
-            }
-            response = requests.post(url, data=data)
-            if response.json()['result']:
-                leadInfo = response.json()['result'][0]
-            url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
-            data = {
-                'filter[ID]': row[0]
-            }
-            response = requests.post(url, data=data)
-            if len(response.json()['result']):
-                dealInfo = response.json()['result'][0]
-                if dealInfo['STAGE_ID'] in PromoDatabase.deal_stages.keys():
-                        dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
-                else:
-                    dealInfo['STAGE_ID'] = 'В работе'
-                newdict = {'leadInfo':leadInfo, "dealInfo":dealInfo}
-                if row[2]:
-                    newdict['PaymentInfo'] = yoomoney.GetPayout(row[3])
-                return [newdict,200]
-        return ['NotFound',404]
+            if not row:
+                return ['NotFound',404]
+            return [json.loads(row[0]),200]
     
     def GetPartnerFinishedLeads(UserLogin):
         user = PromoDatabase.GetUserInfo(UserLogin)
@@ -382,20 +465,14 @@ class PromoDatabase:
             return ["unauthorized",401]
         output = []
         with sqlite3.connect("promo.db") as conn:
-            cursor = conn.execute("SELECT DealId, LeadId FROM Deals Where OwnerId = ? AND IsPayed = ?",(user['id'],False,))
-            rows = cursor.fetchall()
-            for row in rows:
-                
-                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
-                data = {
-                    'filter[ID]': row[0]
-                }
-                response = requests.post(url, data=data)
-                if len(response.json()['result']):
-                    dealInfo = response.json()['result'][0]
-                    if dealInfo['STAGE_ID'] == "WON":
-                        newdict = {'leadId':row[1], "dealInfo":dealInfo}
-                        output.append(newdict)
+            rows = conn.execute("SELECT LeadId, DealId FROM Deals Where OwnerId = ? AND IsPayed = ?",(user['id'],False,)).fetchall()
+            with sqlite3.connect("cache.db") as cache:
+                for row in rows:
+                    res = cache.execute("SELECT CacheJSON FROM Cache Where LeadId = ? AND DealId = ?",(row[0],row[1])).fetchone()
+                    if res:
+                        res = json.loads(res[0])
+                        if res['dealInfo']['STAGE_ID'] == 'Подключен':
+                            output.append(res)
         return [output, 200]
     
     def GetPartnerLeads(UserLogin):
@@ -404,32 +481,14 @@ class PromoDatabase:
             return ["unauthorized",401]
         output = []
         with sqlite3.connect("promo.db") as conn:
-            cursor = conn.execute("SELECT DealId, LeadId, IsPayed, PaymentId FROM Deals Where OwnerId = ?",(user['id'],))
+            cursor = conn.execute("SELECT LeadId, DealId, IsPayed, PaymentId FROM Deals Where OwnerId = ?",(user['id'],))
             rows = cursor.fetchall()
-            for row in rows:
-                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.lead.list.json"
-                data = {
-                    'filter[ID]': row[1]
-                }
-                response = requests.post(url, data=data)
-                if response.json()['result']:
-                    leadInfo = response.json()['result'][0]
-                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
-                data = {
-                    'filter[ID]': row[0]
-                }
-                response = requests.post(url, data=data)
-                if len(response.json()['result']):
-                    dealInfo = response.json()['result'][0]
-                    if dealInfo['STAGE_ID'] in PromoDatabase.deal_stages.keys():
-                        dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
-                    else:
-                        dealInfo['STAGE_ID'] = 'В работе'
-                    newdict = {'leadInfo':leadInfo, "dealInfo":dealInfo}
-                    if row[2]:
-                        newdict['PaymentInfo'] = yoomoney.GetPayout(row[3])
-                    output.append(newdict)
+            with sqlite3.connect("cache.db") as cache:
+                for row in rows:
+                    res = cache.execute("SELECT CacheJSON FROM Cache Where LeadId = ? AND DealId = ?",(row[0],row[1])).fetchone()
+                    if res:
+                        output.append(json.loads(res[0]))
         return [output, 200]
 
 PromoDatabase.StartDatabase()
-#print(PromoDatabase.CreateOnePartnerPayout('TEST'))
+#PromoDatabase.CacheAllDeals()

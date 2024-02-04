@@ -8,6 +8,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import requests
 from sanic_session import Session
+import subprocess
+from threading import Thread
 
 
 
@@ -353,7 +355,13 @@ async def send_email_handler(request):
 async def handle_500(request, exception):
     return redirect('https://on-wifi.ru/')
 
-#app.error_handler.add(Exception, handle_500)
+app.error_handler.add(Exception, handle_500)
+
+def runCaching():
+    subprocess.Popen(['python', 'Cacher.py'], shell=True)
 
 if __name__ == "__main__":
+    cachingThread = Thread(target=runCaching)
+    cachingThread.start()
     app.run(host="0.0.0.0", port=3000, debug=False)
+

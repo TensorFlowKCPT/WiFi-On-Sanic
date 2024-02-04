@@ -65,7 +65,7 @@
               <th>Дата и время приема</th>
               <th>Статус</th>
               <th>
-                <button onclick="PayMeAll()">Получить все выплаты</button>
+                <button id='PayMeAllButton' onclick="PayMeAll()">Получить все выплаты</button>
               </th>
             </tr>
           </thead>
@@ -81,11 +81,11 @@
               <td>{{i['dealInfo']['STAGE_ID']}}</td>
               {% if not 'PaymentInfo' in i.keys()%}
               <td>
-                <button onclick="PayMeOne({{i['dealInfo']['ID']}})">
+                <button id="paymeoneid{{i['dealInfo']['ID']}}" onclick="PayMeOne({{i['dealInfo']['ID']}})">
                   Получить выплату
                 </button>
               </td>
-              {% endif %} {% if 'PaymentInfo' in i.keys() and
+              {% endif %} {% if 'PaymentInfo' in i.keys() and 
               i['PaymentInfo']['status'] == 'succeeded'%}
               <td>Выплачено</td>
               {% endif %}
@@ -93,10 +93,10 @@
             {% endif %} {%endfor%}
           </tbody>
         </table>
-     
+    
     </div>
     <div class="create" id="create-application" style="display: none">
-      <h1>Создаение заявки</h1>
+      <h1>Создание заявки</h1>
       <div class="fields">
         <div class="field">
           <span>Введите адрес</span>
@@ -114,7 +114,7 @@
           <input type="text" id="clientNumber-input" />
         </div>
       </div>
-      <button disabled onclick="sendlead()">Отправить</button>
+      <button disabled onclick="sendlead()" id="send-lead-button">Отправить</button>
     </div>
     <div class="footer"></div>
     <div class="modals-container"><div class="modals"></div></div>
