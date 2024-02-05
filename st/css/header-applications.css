@@ -16,11 +16,6 @@
   text-decoration: none;
   cursor: pointer;
 }
-.header img {
-  height: 45px;
-  width: 210px;
-}
-
 .navigate {
   display: flex;
   align-items: center;

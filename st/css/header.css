@@ -10,11 +10,6 @@
   border-radius: 20px;
   padding: 5px;
 }
-.header .logo img {
-  height: 44px;
-  width: 190px;
-}
-
 .header div {
   display: flex;
   align-items: center;
