@@ -128,7 +128,7 @@ function setSuggestions(suggestions) {
 }
 function SelectSuggestion(text) {
   SearchBox.value = text;
-  CheckAddress(true);
+  suggestionsContainer.innerHTML = "";
 }
 document
   .getElementById("address-input")
