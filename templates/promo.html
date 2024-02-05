@@ -71,8 +71,8 @@
             </tr>
           </thead>
           <tbody>
-            {% for i in data['PartnerLeads'] %} {% if
-            i['dealInfo']['STAGE_ID'] == 'Подключен' %}
+            {% for i in data['PartnerLeads'] %} 
+            
             <tr>
               <td>{{i['leadInfo']['ADDRESS']}}</td>
               <td>{{i['leadInfo']['NAME']}}</td>
@@ -80,12 +80,14 @@
               <td>{{i['leadInfo']['DATE_CREATE']}}</td>
               <td>{{i['dealInfo']['STAGE_ID']}}</td>
               {% if not 'PaymentInfo' in i.keys()%}
+              {% if i['dealInfo']['STAGE_ID'] == 'Подключен'%}
               <td>
                 <button id="paymeoneid{{i['dealInfo']['ID']}}" onclick="PayMeOne({{i['dealInfo']['ID']}})">
                   Получить выплату
                 </button>
               </td>
-              {% endif %} {% if 'PaymentInfo' in i.keys() and 
+              {% endif %} 
+              {% if 'PaymentInfo' in i.keys() and 
               i['PaymentInfo']['status'] == 'succeeded'%}
               <td>Выплачено</td>
               {% endif %}
