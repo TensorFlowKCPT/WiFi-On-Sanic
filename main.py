@@ -10,6 +10,7 @@ import requests
 from sanic_session import Session
 import subprocess
 from threading import Thread
+import pytz
 
 
 
@@ -55,6 +56,7 @@ async def login(request):
     loggedin = PromoDatabase.LoginUser(request.json.get('login'),request.json.get('password'))
     if loggedin:
         request.ctx.session['login'] = loggedin
+        request.ctx.session['timeZone'] = request.json.get('timeZone')
     return json({'status':loggedin})
 
 @app.post("/pay_one")
@@ -97,9 +99,16 @@ async def promo(request):
     if not login or not userinfo:
         return redirect('/auth')
     data = {}
+    data['PartnerLeads'] = []
     leads = PromoDatabase.GetPartnerLeads(login)
+    timezone = request.ctx.session.get('timeZone')
     if leads[1] == 200:
-        data['PartnerLeads'] = leads[0]
+        for i in leads[0]:
+            date_time = datetime.strptime(i['leadInfo']['DATE_CREATE'],'%Y-%m-%dT%H:%M:%S%z')
+            date_time = date_time
+            i['leadInfo']['DATE_CREATE'] = date_time.astimezone(pytz.timezone(timezone)).strftime('%d.%m %H:%M')
+            data['PartnerLeads'].append(i)
+        
     template = env.get_template('promo.html')
     rendered_html = template.render(data=data)
     return html(rendered_html)
@@ -355,7 +364,7 @@ async def send_email_handler(request):
 async def handle_500(request, exception):
     return redirect('https://on-wifi.ru/')
 
-app.error_handler.add(Exception, handle_500)
+#app.error_handler.add(Exception, handle_500)
 
 def runCaching():
     subprocess.Popen(['python', 'Cacher.py'], shell=True)

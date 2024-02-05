@@ -268,13 +268,22 @@ class PromoDatabase:
                 response = requests.post(url, data=data)
                 if response.json()['result']:
                     leadInfo = response.json()['result'][0]
+                    url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.contact.get.json"
+                    data = {
+                        'id': leadInfo['CONTACT_ID']
+                    }
+                    response = requests.post(url, data=data)
+                    if 'PHONE' in response.json()['result'].keys():
+                        leadInfo['CONTACT_ID'] = response.json()['result']['PHONE'][0]['VALUE']
+                    else:
+                        leadInfo['CONTACT_ID'] = 'Нет номера'
                 url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
                 data = {
                     'filter[ID]': row[1]
                 }
-                response = requests.post(url, data=data)
-                if len(response.json()['result']):
-                    dealInfo = response.json()['result'][0]
+                dealResp = requests.post(url, data=data)
+                if len(dealResp.json()['result']):
+                    dealInfo = dealResp.json()['result'][0]
                     if dealInfo['STAGE_ID'] in PromoDatabase.deal_stages.keys():
                         dealInfo['STAGE_ID'] = PromoDatabase.deal_stages[dealInfo['STAGE_ID']]
                     else:
@@ -284,6 +293,7 @@ class PromoDatabase:
                         if row[5]:
                             newdict['PaymentInfo'] = yoomoney.GetPayout(row[5])
                         else: newdict['PaymentInfo'] = 'Payed, but no info'
+                    
                     alldeals.append([row[2],row[1],newdict])
         with sqlite3.connect('cache.db') as cache:
             for deal in alldeals:
@@ -491,4 +501,3 @@ class PromoDatabase:
         return [output, 200]
 
 PromoDatabase.StartDatabase()
-#PromoDatabase.CacheAllDeals()

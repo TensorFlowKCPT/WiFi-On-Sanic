@@ -43,7 +43,7 @@
               <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
               <td>{{i['leadInfo']['ADDRESS']}}</td>
               <td>{{i['leadInfo']['NAME']}}</td>
-              <td>Здесь будет номер</td>
+              <td>{{i['leadInfo']['CONTACT_ID']}}</td>
               <td>{{i['leadInfo']['DATE_CREATE']}}</td>
               <td>{{i['dealInfo']['STAGE_ID']}}</td>
             </tr>
@@ -76,7 +76,7 @@
               <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
               <td>{{i['leadInfo']['ADDRESS']}}</td>
               <td>{{i['leadInfo']['NAME']}}</td>
-              <td>Здесь будет номер</td>
+              <td>{{i['leadInfo']['CONTACT_ID']}}</td>
               <td>{{i['leadInfo']['DATE_CREATE']}}</td>
               <td>{{i['dealInfo']['STAGE_ID']}}</td>
               {% if not 'PaymentInfo' in i.keys()%}
