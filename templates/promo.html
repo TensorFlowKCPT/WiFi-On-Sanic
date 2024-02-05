@@ -12,24 +12,28 @@
     />
     <link rel="stylesheet" href="/static/css/header-applications.css" />
     <link rel="stylesheet" href="/static/css/applications.css" />
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
+      <link
+        rel="shortcut icon"
+        href="/static/img/favicon.ico"
+        type="image/x-icon"
+      />
   </head>
   <body>
     <div class="header">
-        <a href="/"><img src="/static/img/logo.png" alt="" /></a>
+        <a href="/"><img src="/static/img/logoPartner.svg" alt="" /></a>
         <div class="navigate">
           <a onclick="createPage()">Создание заявки</a>
-          <a onclick="historyPage()">История заявок</a>
           <a onclick="sellsPage()">Мои продажи</a>
         </div>
         <a href="/auth">Выход</a>
       </div>
     </div>
-    <div id="history-applications">
+    <div id="history-applications" style="display: none">
       <h1>История заявок</h1>
         <table>
           <thead>
             <tr>
-              <th>ID заявки</th>
               <th>Адрес</th>
               <th>Имя клиента</th>
               <th>Номер телефона</th>
@@ -40,7 +44,6 @@
           <tbody>
             {% for i in data['PartnerLeads'] %}
             <tr>
-              <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
               <td>{{i['leadInfo']['ADDRESS']}}</td>
               <td>{{i['leadInfo']['NAME']}}</td>
               <td>Здесь будет номер</td>
@@ -52,13 +55,11 @@
         </table>
       
     </div>
-    <div id="sells-application" style="display: none">
+    <div id="sells-application" >
       <h1>Мои продажи</h1>
-      
         <table>
           <thead>
             <tr>
-              <th>ID заявки</th>
               <th>Адрес</th>
               <th>Имя клиента</th>
               <th>Номер телефона</th>
@@ -73,7 +74,6 @@
             {% for i in data['PartnerLeads'] %} {% if
             i['dealInfo']['STAGE_ID'] == 'Подключен' %}
             <tr>
-              <td>{{i['leadInfo']['ID']}}-{{i['dealInfo']['ID']}}</td>
               <td>{{i['leadInfo']['ADDRESS']}}</td>
               <td>{{i['leadInfo']['NAME']}}</td>
               <td>Здесь будет номер</td>
