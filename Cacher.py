@@ -1,6 +1,7 @@
-from Database import PromoDatabase
 import time
 from datetime import datetime, timedelta
+
+from Database import PromoDatabase
 
 #morning_time = 4
 #evening_time = 18

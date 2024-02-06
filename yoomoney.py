@@ -1,9 +1,9 @@
-from yookassa import Configuration
-from yookassa import Payout
-from yookassa.domain.models.currency import Currency
-import requests
-import uuid
 import json
+import uuid
+
+import requests
+from yookassa import Configuration, Payout
+from yookassa.domain.models.currency import Currency
 
 account_id='505279'
 secret_key='test_*gtBL0HwCla35kCv5n_o7JlpgWwt7zUAPt53x1rnXKTT4'

@@ -1,6 +1,7 @@
-import requests
 import json
 import sqlite3
+
+import requests
 import yoomoney
 
 key2gis = "eedd6882-ab52-4127-a367-69e4286b00bf"
