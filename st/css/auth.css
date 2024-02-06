@@ -17,6 +17,10 @@ body {
   background: rgb(255, 255, 255, 0.1);
   width: fit-content;
 }
+.container a {
+  text-decoration: none;
+  color: #fff;
+}
 input {
   width: 100%;
   border-radius: 10px;
