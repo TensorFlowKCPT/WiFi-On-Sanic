@@ -102,7 +102,7 @@ async def updateProfile(request):
     Card = request.json.get('Card')
     Password = request.json.get('Password')
     if login and Mail and Fio and Card and Password:
-        result = PromoDatabase.UpdateUserProfile(login, Mail, Fio, Card,Password)
+        result = PromoDatabase.UpdateUserProfile(login, str(Mail).strip(), str(Fio).strip(), str(Card).strip(),str(Password).strip())
     else:
         return json({'result': 'error'},status=403)
     return json({'result': 'ok'},status=200)
@@ -123,7 +123,9 @@ recoverydict = {}
 
 @app.post("/send_recovery_email")
 async def send_recovery_email(request):
-    user = PromoDatabase.GetUserInfoByMail(request.json.get('email'))
+    email = request.json.get('email')
+    if email:
+        user = PromoDatabase.GetUserInfoByMail(str(email).strip())
     if not user:
         return json("usernotfound",status=404)
     recoveryPassword = generate_random_string(8)
@@ -139,6 +141,8 @@ async def send_recovery_email(request):
 @app.post("/recovery_update_password")
 async def recovery_update_password(request):
     newpassword = request.json.get('password')
+    if newpassword:
+        newpassword = newpassword
     recovery = request.ctx.session.get('recovery')
     if not str(datetime.now().hour)+'%'+recovery in recoverydict.keys():
         return json('Login Time-out',status=440)
@@ -152,7 +156,7 @@ async def send_recovery_password(request):
     
     if not code:
         return json('nocode',status=400)
-    
+    code = str(code).strip()
     recovery = request.ctx.session.get('recovery')
     if not recovery:
         return json('norecovery',status=404)
