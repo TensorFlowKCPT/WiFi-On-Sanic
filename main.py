@@ -102,7 +102,7 @@ async def updateProfile(request):
     Card = request.json.get('Card')
     Password = request.json.get('Password')
     if login and Mail and Fio and Card and Password:
-        result = PromoDatabase.UpdateUserProfile(login, str(Mail).strip(), str(Fio).strip(), str(Card).strip(),str(Password).strip())
+        PromoDatabase.UpdateUserProfile(login, str(Mail).strip(), str(Fio).strip(), str(Card).strip(),str(Password).strip())
     else:
         return json({'result': 'error'},status=403)
     return json({'result': 'ok'},status=200)
