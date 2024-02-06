@@ -21,15 +21,26 @@
   <body>
     <div class="container">
       <img src="/static/img/logoPartner.svg" alt="" />
-      <div class="emailInput">
+      <div class="emailInput" id="emailDiv" >
         <span>Введите почту для восстановления</span>
-        <input placeholder="Почта" type="email" id="login" />
+        <input placeholder="Почта" type="email" id="emailInput"/>
+        <span id="incorrectEmail" style="display: none; color: red;">Пользователя с такой почтой не существует</span>
+        <button onclick="SendRecoveryEmail()" id="sendEmailButton">Отправить код восстановления</button>
       </div>
-      <div class="codeRecovery" style="display: none">
+      <div class="codeRecovery" id="codeDiv" style="display: none">
         <span>Введите код восстановления</span>
-        <input placeholder="Введите код" type="text" id="login" />
+        <input placeholder="Введите код" type="text" id="recoveryCodeInput"/>
+        <span id="codesUnmatched" style="display: none; color: red;">Неверный код</span>
+        <button onclick="TryCode()" id="TryCodeButton">Восстановить аккаунт</button>
       </div>
-      <button onclick="TryToLogin()">Отправить</button>
+      <div class="ChangePassword" id="ChangePasswordDiv" style="display: none">
+        <span>Новый пароль</span>
+        <input placeholder="Пароль" type="password" id="passwordInput"/>
+        <span>Повтор пароля</span>
+        <input placeholder="Пароль" type="password" id="passwordInput2"/>
+        <span id="passwordsUnmatched" style="display: none; color: red;">Пароли не совпадают</span>
+        <button onclick="UpdatePassword()" id="UpdatePasswordButton">Войти в аккаунт</button>
+      </div>
     </div>
     <script src="/static/js/recovery.js"></script>
   </body>

@@ -233,7 +233,7 @@ class PromoDatabase:
                         FIO TEXT NOT NULL,
                         Login TEXT NOT NULL,
                         Password TEXT NOT NULL,
-                        PhoneNumber TEXT NOT NULL,
+                        Mail TEXT NOT NULL,
                         CardNumber TEXT NOT NULL
                     )
                 """)
@@ -247,7 +247,8 @@ class PromoDatabase:
                         Cache TEXT
                     )
                 """)
-            conn.execute("""INSERT OR IGNORE INTO Users(ID,FIO,Login,Password,PhoneNumber,CardNumber) VALUES ('1','TEST','TEST','TEST','TEST','4100116075156746')""")
+            conn.execute("""INSERT OR IGNORE INTO Users(ID,FIO,Login,Password,Mail,CardNumber) VALUES ('1','Tester Vladislav Tkachuk','TEST','TEST','72vladvlad72@gmail.com','4100116075156746')""")
+            conn.execute("""INSERT OR IGNORE INTO Users(ID,FIO,Login,Password,Mail,CardNumber) VALUES ('2','Tester Vladislav Belan','TEST1','TEST','vladik008481@gmail.com','4100116075156747')""")
         with sqlite3.connect("cache.db") as conn:
             conn.execute("""CREATE TABLE IF NOT EXISTS Cache (
                         LeadId INT NOT NULL PRIMARY KEY,
@@ -308,11 +309,32 @@ class PromoDatabase:
             cursor = conn.execute("SELECT Login FROM Users Where Login = ? AND Password = ?",(Login,Password,))
             row = cursor.fetchone()
             if not row:
-                cursor = conn.execute("SELECT Login FROM Users Where PhoneNumber = ? AND Password = ?",(Login,Password,))
+                cursor = conn.execute("SELECT Login FROM Users Where Mail = ? AND Password = ?",(Login,Password,))
                 row = cursor.fetchone()
             if row == None:
                 return False
             return row[0]
+
+    def GetUserInfoByMail(Mail:str):
+        with sqlite3.connect("promo.db") as conn:
+            cursor = conn.execute("SELECT * FROM Users Where Mail = ?",(Mail,))
+            row = cursor.fetchone()
+            if not row:
+                return False
+            output = {'id':row[0],
+                    'FIO': row[1],
+                    'Login':row[2],
+                    'Mail':row[4],
+                    'CardNumber':row[5]
+                    }
+            return output
+    def UpdateUserPassword(newpassword:str, user_id:str):
+        with sqlite3.connect("promo.db") as conn:
+            conn.execute("UPDATE Users SET Password = ? Where ID = ?",(newpassword, user_id,))
+
+    def UpdateUserProfile(login, Mail, Fio, Card,Password):
+        with sqlite3.connect("promo.db") as conn:
+            conn.execute("UPDATE Users SET Mail = ?, FIO = ?, CardNumber = ?, Password = ? Where Login = ?",(Mail, Fio, Card, Password, login,))
 
     def GetUserInfo(Login):
         with sqlite3.connect("promo.db") as conn:
@@ -323,7 +345,8 @@ class PromoDatabase:
             output = {'id':row[0],
                     'FIO': row[1],
                     'Login':row[2],
-                    'PhoneNumber':row[4],
+                    'Password':row[3],
+                    'Mail':row[4],
                     'CardNumber':row[5]
                     }
             return output

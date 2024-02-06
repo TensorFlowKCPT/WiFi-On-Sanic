@@ -1,21 +1,30 @@
 const create = document.getElementById("create-application");
 const sells = document.getElementById("sells-application");
 const history = document.getElementById("history-applications");
-
+const profile = document.getElementById("profile-application")
 function createPage() {
   create.style.display = "flex";
   sells.style.display = "none";
   history.style.display = "none";
+  profile.style.display = "none"
 }
 function sellsPage() {
   create.style.display = "none";
   sells.style.display = "flex";
   history.style.display = "none";
+  profile.style.display = "none"
 }
 function historyPage() {
   create.style.display = "none";
   sells.style.display = "none";
   history.style.display = "flex";
+  profile.style.display = "none"
+}
+function profilePage() {
+  create.style.display = "none";
+  sells.style.display = "none";
+  history.style.display = "none";
+  profile.style.display = "flex"
 }
 
 function PayMeOne(DealId) {
@@ -186,3 +195,40 @@ document
   .addEventListener("input", allValid);
 document.querySelector("#clientName-input").addEventListener("input", allValid);
 document.querySelector("#address-input").addEventListener("input", allValid);
+
+const FIOInput = document.getElementById("FIOInput");
+const MailInput = document.getElementById("MailInput");
+const CardInput = document.getElementById("CardInput");
+const PasswordInput = document.getElementById("PasswordInput");
+const ChangeValuesBtn = document.getElementById("ChangeValuesBtn")
+const SaveValuesBtn = document.getElementById("SaveValuesBtn")
+
+function ChangeValues(){
+    FIOInput.disabled = false
+    MailInput.disabled = false
+    CardInput.disabled = false
+    PasswordInput.disabled = false
+    ChangeValuesBtn.style.display = 'none'
+    SaveValuesBtn.style.display = 'block'
+}
+function SaveValues(){
+    FIOInput.disabled = true
+    MailInput.disabled = true
+    CardInput.disabled = true
+    PasswordInput.disabled = true
+    SaveValuesBtn.style.display = 'none'
+    ChangeValuesBtn.style.display = 'block'
+    const data = {
+        FIO:FIOInput.value,
+        Mail: MailInput.value,
+        Card: CardInput.value,
+        Password: PasswordInput.value
+    };
+    fetch("/updateProfile", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+}

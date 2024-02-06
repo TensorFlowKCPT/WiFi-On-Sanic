@@ -12,6 +12,7 @@
     />
     <link rel="stylesheet" href="/static/css/header-applications.css" />
     <link rel="stylesheet" href="/static/css/applications.css" />
+    <link rel="stylesheet" href="/static/css/profile.css"/>
     <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
       <link
         rel="shortcut icon"
@@ -27,7 +28,7 @@
           <a onclick="sellsPage()">Мои продажи</a>
         </div>
         <div class="profileAndExit">
-          <a href="">Профиль</a>
+          <a onclick="profilePage()">Профиль</a>
           <a href="/auth">Выход</a>
         </div>
         
@@ -100,6 +101,31 @@
           </tbody>
         </table>
     
+    </div>
+    <div class="container-dataProfile" id="profile-application" style="display: none;">
+      <h1>Профиль</h1>
+      <div class="dataProfile">
+        <div class="data">
+          <span>ФИО:</span>
+          <input disabled value="{{data['userinfo']['FIO']}}" type="text" name="" id="FIOInput" />
+        </div>
+        <div class="data">
+          <span>Почта:</span>
+          <input disabled value="{{data['userinfo']['Mail']}}" type="text" name="" id="MailInput" />
+        </div>
+        <div class="data">
+          <span>Номер карты:</span>
+          <input disabled value="{{data['userinfo']['CardNumber']}}" type="text" name="" id="CardInput" />
+        </div>
+        <div class="data">
+          <span>Пароль:</span>
+          <input disabled value="{{data['userinfo']['Password']}}" type="password" name="" id="PasswordInput" />
+        </div>
+        <div>
+          <button onclick="ChangeValues()" id="ChangeValuesBtn">Изменить</button>
+          <button onclick="SaveValues()" style="display: none" id="SaveValuesBtn">Сохранить</button>
+        </div>
+      </div>
     </div>
     <div class="create" id="create-application" style="display: none">
       <h1>Создание заявки</h1>

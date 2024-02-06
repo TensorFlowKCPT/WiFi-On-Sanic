@@ -11,6 +11,8 @@ from sanic_session import Session
 import subprocess
 from threading import Thread
 import pytz
+import random
+import string
 
 
 
@@ -27,6 +29,10 @@ cacheAdr = {}
 cacheCities = {}
 
 Session(app)
+
+def generate_random_string(length):
+    letters = string.ascii_letters
+    return ''.join(random.choice(letters) for _ in range(length))
 
 #region /index
 @app.route("/")
@@ -87,12 +93,19 @@ async def recovery(request):
     rendered_html = template.render(data=data)
     return html(rendered_html)
 
-@app.get("/profile")
-async def profile(request):
-    data = {}
-    template = env.get_template('profile.html')
-    rendered_html = template.render(data=data)
-    return html(rendered_html)
+
+@app.post("/updateProfile")
+async def updateProfile(request):
+    login = request.ctx.session.get('login')
+    Mail = request.json.get('Mail')
+    Fio = request.json.get('FIO')
+    Card = request.json.get('Card')
+    Password = request.json.get('Password')
+    if login and Mail and Fio and Card and Password:
+        result = PromoDatabase.UpdateUserProfile(login, Mail, Fio, Card,Password)
+    else:
+        return json({'result': 'error'},status=403)
+    return json({'result': 'ok'},status=200)
 
 @app.post("/send_partner_lead")
 async def send_partner_lead(request):
@@ -106,6 +119,51 @@ async def send_partner_lead(request):
         return json({'result': 'error'},status=403)
     return json({'result': result[0]},status=result[1])
 
+recoverydict = {}
+
+@app.post("/send_recovery_email")
+async def send_recovery_email(request):
+    user = PromoDatabase.GetUserInfoByMail(request.json.get('email'))
+    if not user:
+        return json("usernotfound",status=404)
+    recoveryPassword = generate_random_string(8)
+    request.ctx.session['recovery'] = str(user['id'])+'%'+str(user['Mail'])
+    recoverydict[str(datetime.now().hour)+'%'+str(user['id'])+'%'+str(user['Mail'])] = recoveryPassword
+    #Вот здесь нужно будет отправить письмо, пока что выводится просто так
+    #sendRecoveryEmail(user['Mail'],recoveryPassword) например вот так
+    print(recoveryPassword)
+    print(recoveryPassword)
+    print(recoveryPassword)
+    return json('ok',status=200)
+
+@app.post("/recovery_update_password")
+async def recovery_update_password(request):
+    newpassword = request.json.get('password')
+    recovery = request.ctx.session.get('recovery')
+    if not str(datetime.now().hour)+'%'+recovery in recoverydict.keys():
+        return json('Login Time-out',status=440)
+    request.ctx.session['recovery'] = None
+    PromoDatabase.UpdateUserPassword(newpassword,str(recovery).split('%')[0])
+    return json('ok',status=200)
+
+@app.post("/send_recovery_code")
+async def send_recovery_password(request):
+    code = request.json.get('code')
+    
+    if not code:
+        return json('nocode',status=400)
+    
+    recovery = request.ctx.session.get('recovery')
+    if not recovery:
+        return json('norecovery',status=404)
+    
+    recoveryPassword = recoverydict[str(datetime.now().hour)+'%'+recovery]
+    
+    if recoveryPassword == code:
+        return json('ok',status=200)
+    else: 
+        return json('incorrectcode',status=400)
+
 @app.get("/promo")
 async def promo(request):
     login = request.ctx.session.get('login')
@@ -113,6 +171,7 @@ async def promo(request):
     if not login or not userinfo:
         return redirect('/auth')
     data = {}
+    data['userinfo'] = userinfo
     data['PartnerLeads'] = []
     leads = PromoDatabase.GetPartnerLeads(login)
     timezone = request.ctx.session.get('timeZone')
