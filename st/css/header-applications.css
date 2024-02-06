@@ -24,3 +24,17 @@
   flex-wrap: wrap;
   padding: 10px;
 }
+.profileAndExit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+@media screen and (max-width: 756px) {
+  .header {
+    align-items: center;
+    justify-content: center;
+  }
+}

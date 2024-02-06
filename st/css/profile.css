@@ -1,0 +1,83 @@
+html,
+body {
+  background-image: url("/static/img/background.png");
+  box-shadow: 50px 50px 100px 0px rgba(0, 0, 0, 0.25);
+  margin: 0;
+
+  font-family: Inter;
+  font-style: normal;
+  line-height: normal;
+}
+.container-dataProfile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container-dataProfile h1 {
+  color: white;
+  text-align: center;
+}
+.dataProfile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  width: 70%;
+}
+.data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px;
+  color: white;
+  font-weight: 500;
+  font-size: 22px;
+  width: 100%;
+}
+input {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 10px;
+  background-color: transparent;
+  padding: 5px 15px;
+  box-sizing: border-box;
+  text-align: start;
+  color: white;
+  font-size: 30px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+button {
+  border-radius: 10px;
+  background: #0500ff;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:disabled {
+  background-color: #9999cc;
+  color: #666;
+  cursor: not-allowed; /* Запрет курсора для неактивной кнопки */
+}
+@media screen and (max-width: 831px) {
+  .data {
+    flex-wrap: wrap;
+  }
+  input {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 500px) {
+  input {
+    font-size: 20px;
+  }
+  button {
+    font-size: 20px;
+  }
+}

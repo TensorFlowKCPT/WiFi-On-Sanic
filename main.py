@@ -80,6 +80,20 @@ async def auth(request):
     rendered_html = template.render(data=data)
     return html(rendered_html)
 
+@app.get("/recovery")
+async def recovery(request):
+    data = {}
+    template = env.get_template('recovery.html')
+    rendered_html = template.render(data=data)
+    return html(rendered_html)
+
+@app.get("/profile")
+async def profile(request):
+    data = {}
+    template = env.get_template('profile.html')
+    rendered_html = template.render(data=data)
+    return html(rendered_html)
+
 @app.post("/send_partner_lead")
 async def send_partner_lead(request):
     login = request.ctx.session.get('login')

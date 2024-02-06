@@ -21,14 +21,14 @@
   <body>
     <div class="container">
       <img src="/static/img/logoPartner.svg" alt="" />
-      <div class="login">
-        <input placeholder="Логин" type="text" id="login" />
+      <div class="emailInput">
+        <span>Введите почту для восстановления</span>
+        <input placeholder="Почта" type="email" id="login" />
       </div>
-      <div class="password">
-        <input placeholder="Пароль" type="password" name="" id="password" />
-        <span></span>
+      <div class="codeRecovery" style="display: none">
+        <span>Введите код восстановления</span>
+        <input placeholder="Введите код" type="text" id="login" />
       </div>
-      <a href="">Забыли пароль?</a>
       <button onclick="TryToLogin()">Отправить</button>
     </div>
     <script src="/static/js/recovery.js"></script>
