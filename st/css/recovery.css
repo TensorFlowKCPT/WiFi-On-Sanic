@@ -22,7 +22,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
 }
 .container span {
   color: white;

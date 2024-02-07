@@ -37,7 +37,7 @@ body {
   font-size: 22px;
   width: 100%;
 }
-input {
+.dataProfile input {
   width: 100%;
   max-width: 350px;
   border-radius: 10px;
@@ -46,11 +46,11 @@ input {
   box-sizing: border-box;
   text-align: start;
   color: white;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 500;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
-button {
+.dataProfile button {
   border-radius: 10px;
   background: #0500ff;
   padding: 10px 20px;
@@ -60,7 +60,7 @@ button {
   font-weight: 600;
   cursor: pointer;
 }
-button:disabled {
+.dataProfile button:disabled {
   background-color: #9999cc;
   color: #666;
   cursor: not-allowed; /* Запрет курсора для неактивной кнопки */
@@ -69,15 +69,15 @@ button:disabled {
   .data {
     flex-wrap: wrap;
   }
-  input {
+  .dataProfile input {
     text-align: center;
   }
 }
 @media screen and (max-width: 500px) {
-  input {
-    font-size: 20px;
+  .dataProfile input {
+    font-size: 16px;
   }
-  button {
+  .dataProfile button {
     font-size: 20px;
   }
 }
