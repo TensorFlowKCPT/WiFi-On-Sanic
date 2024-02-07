@@ -357,7 +357,7 @@ class PromoDatabase:
         if not user:
             return ["unauthorized",401]
         
-        url = "https://on-wifi.bitrix24.ru/rest/11940/27jqlumce11cb10r/crm.lead.add.json"
+        url = "https://on-wifi.bitrix24.ru/rest/1/27jqlumce11cb10r/crm.lead.add.json"
         data = {
             "fields[TITLE]": "Лид с сайта on-wifi.ru от партнера "+ user['FIO'],
             "fields[NAME]": Name,
@@ -366,7 +366,6 @@ class PromoDatabase:
             "fields[ADDRESS]": Address,
         }
         response = requests.post(url, data=data)
-        print(response.json())
         lead_id = response.json()['result']
         
         url = "https://on-wifi.bitrix24.ru/rest/1/27jqlumce11cb10r/crm.deal.list.json"
