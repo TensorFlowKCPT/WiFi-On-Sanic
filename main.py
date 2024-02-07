@@ -94,6 +94,13 @@ async def recovery(request):
     rendered_html = template.render(data=data)
     return html(rendered_html)
 
+@app.get("/policy")
+async def policy(request):
+    data = {}
+    template = env.get_template('policy.html')
+    rendered_html = template.render(data=data)
+    return html(rendered_html)
+
 
 @app.post("/updateProfile")
 async def updateProfile(request):
