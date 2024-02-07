@@ -121,8 +121,9 @@ async def send_partner_lead(request):
     Name = request.json.get('Name')
     Phone = request.json.get('Phone')
     Address = request.json.get('Address')
+    clientComment= request.json.get('clientComment')
     if login and Name and Phone and Address:
-        result = PromoDatabase.CreatePartnerLead(login, Name, Phone, Address)
+        result = PromoDatabase.CreatePartnerLead(login, Name, Phone, Address, clientComment)
     else:
         return json({'result': 'error'},status=403)
     return json({'result': result[0]},status=result[1])

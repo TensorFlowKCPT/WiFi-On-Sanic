@@ -67,6 +67,7 @@ function sendlead() {
   var address = document.getElementById("address-input").value;
   var phone = document.getElementById("clientNumber-input").value;
   var clientName = document.getElementById("clientName-input").value;
+  var clientComment = document.getElementById("clientComment-input").value
   var sendleadbutton = document.getElementById("send-lead-button");
   //Здесь код перед отправкой запроса
   sendleadbutton.disabled = true;
@@ -78,6 +79,7 @@ function sendlead() {
     Address: address,
     Phone: phone,
     Name: clientName,
+    clientComment: clientComment
   };
 
   fetch("/send_partner_lead", {

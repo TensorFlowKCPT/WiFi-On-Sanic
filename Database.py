@@ -352,22 +352,24 @@ class PromoDatabase:
                     }
             return output
 
-    def CreatePartnerLead(UserLogin, Name, Phone, Address):
+    def CreatePartnerLead(UserLogin, Name, Phone, Address, Comment):
         user = PromoDatabase.GetUserInfo(UserLogin)
         if not user:
             return ["unauthorized",401]
         
-        url = "https://on-wifi.bitrix24.ru/rest/11940/pn37z1pw2mxrg7dz/crm.lead.add.json"
+        url = "https://on-wifi.bitrix24.ru/rest/11940/27jqlumce11cb10r/crm.lead.add.json"
         data = {
             "fields[TITLE]": "Лид с сайта on-wifi.ru от партнера "+ user['FIO'],
             "fields[NAME]": Name,
             "fields[PHONE][0][VALUE]": Phone,
+            "fields[COMMENTS]": Comment,
             "fields[ADDRESS]": Address,
         }
         response = requests.post(url, data=data)
+        print(response.json())
         lead_id = response.json()['result']
         
-        url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
+        url = "https://on-wifi.bitrix24.ru/rest/1/27jqlumce11cb10r/crm.deal.list.json"
         data = {
             'filter[LEAD_ID]': lead_id,
             'select[]': 'ID'
@@ -384,14 +386,14 @@ class PromoDatabase:
     def CacheOneDeal(deal_id,lead_id, user_id, PaymentId):
         alldeals = []
         with sqlite3.connect("promo.db") as promo:
-                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.lead.list.json"
+                url = "https://on-wifi.bitrix24.ru/rest/1/27jqlumce11cb10r/crm.lead.list.json"
                 data = {
                     'filter[ID]': lead_id
                 }
                 response = requests.post(url, data=data)
                 if response.json()['result']:
                     leadInfo = response.json()['result'][0]
-                url = "https://on-wifi.bitrix24.ru/rest/1/6c7x0i0n05ww6zmc/crm.deal.list.json"
+                url = "https://on-wifi.bitrix24.ru/rest/1/27jqlumce11cb10r/crm.deal.list.json"
                 data = {
                     'filter[ID]': deal_id
                 }
