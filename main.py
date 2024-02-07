@@ -134,10 +134,45 @@ async def send_recovery_email(request):
     recoverydict[str(datetime.now().hour)+'%'+str(user['id'])+'%'+str(user['Mail'])] = recoveryPassword
     #Вот здесь нужно будет отправить письмо, пока что выводится просто так
     #sendRecoveryEmail(user['Mail'],recoveryPassword) например вот так
-    print(recoveryPassword)
-    print(recoveryPassword)
-    print(recoveryPassword)
-    return json('ok',status=200)
+    # Настройки почтового сервера
+    smtp_server = 'sm4.hosting.reg.ru'  # Замените на адрес вашего SMTP-сервера
+    smtp_port = 587  # Порт SMTP-сервера (обычно 587 для TLS)
+
+    # Ваши учетные данные
+    sender_email = 'support@on-wifi.ru'  # Ваш адрес электронной почты
+    sender_password = 'vP1kO7cW0zaZ7qB7'  # Ваш пароль
+
+    # Получатель и тема письма
+    subject = 'Восстановление пароля'
+
+    # Текст и формат письма
+    body = f'Код для восстановления пароля: {recoveryPassword}'
+
+    # Создание объекта MIMEMultipart
+    message = MIMEMultipart()
+    message['From'] = sender_email
+    message['To'] = email
+    message['Subject'] = subject
+
+    # Добавление текста в письмо
+    message.attach(MIMEText(body, 'plain'))
+
+    # Подключение к почтовому серверу
+    try:
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            # Установка соединения с сервером
+            server.starttls()
+
+            # Вход в учетную запись отправителя
+            server.login(sender_email, sender_password)
+
+            # Отправка письма
+            server.send_message(message)
+
+        return json('ok',status=200)
+    except Exception as e:
+        return f'Ошибка при отправке письма: {e}'
+    
 
 @app.post("/recovery_update_password")
 async def recovery_update_password(request):
