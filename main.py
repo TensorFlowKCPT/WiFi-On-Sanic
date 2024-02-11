@@ -97,6 +97,8 @@ async def recovery(request):
 @app.get("/policy")
 async def policy(request):
     data = {}
+    host = request.headers.get('host')
+    data['host'] = host
     template = env.get_template('policy.html')
     rendered_html = template.render(data=data)
     return html(rendered_html)
