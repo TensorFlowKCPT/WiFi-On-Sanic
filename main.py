@@ -449,7 +449,7 @@ def send_email(email, name):
         return f'Ошибка при отправке письма: {e}'
 
 def send_lead(name, phone, address, room):
-    url = "https://on-wifi.bitrix24.ru/rest/11940/pn37z1pw2mxrg7dz/crm.lead.add.json"
+    url = "https://on-wifi.bitrix24.ru/rest/1/27jqlumce11cb10r/crm.lead.add.json"
 
     data = {
         "fields[TITLE]": "С сайта on-wifi.ru",
