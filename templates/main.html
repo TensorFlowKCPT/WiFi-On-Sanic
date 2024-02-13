@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="On-WiFi поможет вам найти подходящего
+    интернет-провайдера в (Динамический город). Мы являемся официальным
+    партнером ведущих провайдеров, таких как 'МТС', 'Билайн', 'Дом.ру' и еще
+    более 25 других компаний. Наша команда специалистов готова помочь вам
+    выбрать самое выгодное предложение, учитывая ваши потребности и
+    предпочтения. Не тратьте время на поиск самостоятельно, доверьтесь нам и
+    получите надежное и быстрое подключение к интернету."
+    />
+    <meta
+      name="keywords"
+      content="Подключить домашний интернет, подключить телевидение, мобильная связь интернет и тв, провайдеры Москва, провайдеры Краснодар, провайдеры Казань, провайдеры Екатеринбург, провайдеры Тюмень, провайдеры Пермь, провайдеры Нижний Новгород, провайдеры Челябинск, провайдеры Новосибирск, провайдеры Саратов, провайдеры Ярославль, провайдеры Пенза, провайдеры Рязань, провайдеры Волгоград, провайдеры Сургут, провайдеры Сочи, провайдеры Владимир, провайдеры Самара, провайдеры Ульяновск, провайдеры Москва, провайдеры по адресу, дешевый интернет, дешевое ТВ, поиск провайдера, интернет г Тюмень, провайдеры г Тюмень, телевидение г Тюмень."
+    />
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
       (function (m, e, t, r, i, k, a) {
@@ -68,7 +82,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/static/css/cookie-banner.css" />
-    <title>on-wifi</title>
+    <title>Домашний интернет и тв - выгодные тарифы и акции</title>
   </head>
   <body>
     <!-- <div class="blue-blur"> -->
@@ -152,7 +166,10 @@
           href="https://{{data['host']}}/tariffs?provider={{provider['Name']}}"
         >
           <div class="providerInCity">
-            <img src="/static/img/providers/{{provider['ImageUrl']}}" alt="" />
+            <img
+              src="/static/img/providers/{{provider['ImageUrl']}}"
+              alt="Логотип компании {{provider['Name']}}"
+            />
           </div>
         </a>
         {%endfor%}
@@ -177,7 +194,7 @@
                     <span>{{tariff['Provider']['Name']}}</span>
                     <img
                       src="/static/img/providers/{{tariff['Provider']['ImageUrl']}}"
-                      alt=""
+                      alt="Логотип компании {{tariff['Provider']['Name']}}"
                     />
                   </div>
                   <div class="paramsTariff">
