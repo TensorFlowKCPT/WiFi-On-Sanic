@@ -19,6 +19,9 @@
   font-weight: 400;
   line-height: normal;
 }
+.termsOfUs a {
+  color: #fff;
+}
 .termsOfUs button {
   border-radius: 10px;
   background: #0500ff;

@@ -103,6 +103,14 @@ async def policy(request):
     rendered_html = template.render(data=data)
     return html(rendered_html)
 
+@app.get("/termsOfUs")
+async def termsOfUs(request):
+    data = {}
+    host = request.headers.get('host')
+    data['host'] = host
+    template = env.get_template('termsOfUs.html')
+    rendered_html = template.render(data=data)
+    return html(rendered_html)
 
 @app.post("/updateProfile")
 async def updateProfile(request):
