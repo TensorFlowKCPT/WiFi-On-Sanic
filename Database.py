@@ -1,52 +1,60 @@
 import json
-import sqlite3
+import psycopg2
 
 import requests
 import yoomoney
 
-key2gis = "eedd6882-ab52-4127-a367-69e4286b00bf"
+from keys import DB_HOST,DB_NAME,DB_USER,DB_PASSWORD
+
+
 class Database:
-    def GetProvidersByAdress(address:str):
-        houseid = json.loads(requests.get(f"https://catalog.api.2gis.com/3.0/items/geocode?q={address}&key="+key2gis).content)['result']['items'][0]['id']
-        resp = json.loads(requests.get(f"https://catalog.api.2gis.com/2.0/catalog/branch/list?building_id={houseid}&servicing=true&servicing_group=internet&key={key2gis}").content)
-        providers = []
-        try:
-            for i in resp['result']['items']:
-                providers.append(str(i['name']).lower())
-        except KeyError:
-            pass
-        return providers
-        
-        
-    def GetAllProvidersFromDB():
-        with sqlite3.connect("sqlite.sqlite3") as conn:
-            cursor = conn.execute("SELECT * FROM Providers")
-            rows = cursor.fetchall()
-            if not rows:
-                return None
-            rows = [row for row in rows]
+    connectionstring = f'host={DB_HOST} user={DB_USER} password={DB_PASSWORD!r} dbname={DB_NAME}'
+    
+    def GetProvidersByDadataKladr(streetKladr):
+        with psycopg2.connect(Database.connectionstring) as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT providers.id, providers.name FROM providersonstreet JOIN providers ON providers.id = providersonstreet.provider_id WHERE street_id = %s', (streetKladr,))
             output = []
-            for row in rows:
+            for provider in cursor.fetchall():
                 output.append({
-                    "id" : row[0],
-                    "Name": row[1],
-                    "NameEng" : row[2],
-                    "ImageUrl" : row[3]})
+                    'id': provider[0],
+                    'name': provider[1]
+                })
+            return output
+    def GetAllAddressesWithProviderById(providerId):
+        with psycopg2.connect(Database.connectionstring) as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT street_id, provider_id FROM providersonstreet WHERE provider_id = %s', (providerId,))
+            output = []
+            for address in cursor.fetchall():
+                output.append({
+                    'street_id': address[0],
+                    'provider_id': address[1]
+                })
+            return output
+    
+    def GetAllProvidersFromDB():
+        with psycopg2.connect(Database.connectionstring) as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT * FROM Providers')
+            output = []
+            for provider in cursor.fetchall():
+                output.append({
+                    'id': provider[0],
+                    'name': provider[1]
+                })
             return output
     def GetProviderById(id:int):
-        with sqlite3.connect("sqlite.sqlite3") as conn:
-            cursor = conn.execute("SELECT * FROM Providers WHERE ID = ?",(id,))
-            row = cursor.fetchone()
-            if not row:
-                return None
-            output = {
-                "id" : row[0],
-                "Name": row[1],
-                "NameEng" : row[2],
-                "ImageUrl" : row[3]}
-            return output
-    def GetInfoByAddress(address:str):
-        providers = Database.GetProvidersByAdress(address)
+        with psycopg2.connect(Database.connectionstring) as conn:
+            сursor = conn.cursor()
+            сursor.execute('SELECT * FROM Providers WHERE id = %s', (id,))
+            row = сursor.fetchone()
+            return {
+                'id': row[0],
+                'name': row[1]
+            }
+    def GetInfoByHouseKladr(houseKladr):
+        providers = Database.GetProvidersByDadataKladr(houseKladr)
         allProviders = Database.GetAllProvidersFromDB()
         
         providers = str(providers).lower()
